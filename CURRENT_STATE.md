@@ -7,7 +7,8 @@
 - Project Brain repository created.
 - Repository published publicly on GitHub: `https://github.com/skavir88/project-brain.git`.
 - Main branch established: `main`.
-- 9 Markdown files created in repository root.
+- 9 core Markdown files created in repository root.
+- 3 supporting workflow files created in repository root.
 - Dify `v1.16.0` installed.
 - PostgreSQL and Redis available on `rddb`.
 - Qdrant available on `rdvector`.

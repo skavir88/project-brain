@@ -7,7 +7,8 @@ Complete Project Brain documentation rewrite for Arandi Platform.
 `Phase 0.5 — Prepare Codex Workflow`
 
 ## Scope
-- Rewrite all 9 Markdown files with real Arandi Platform content.
+- Rewrite all 9 core Markdown files with real Arandi Platform content.
+- Align the 3 supporting workflow files with the same project facts and workflow rules.
 - Remove sample-project content.
 - Align all files with Phase 0.5.
 - Prepare Codex Workflow documentation.
@@ -23,6 +24,8 @@ Complete Project Brain documentation rewrite for Arandi Platform.
 - `DECISIONS.md` records key decisions.
 - `DESIGN_SYSTEM.md` is prepared for Phase 1 without starting implementation.
 - `CHANGELOG.md` includes the documentation rewrite entry.
+- `PROMPTS.md`, `Readme.txt`, and `SESSION_LOG.md` are aligned with the 9 core files.
+- Supporting files do not introduce conflicting project state, architecture, or workflow claims.
 
 ## Validation
 - Review all 9 files for sample-project content.
