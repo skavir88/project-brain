@@ -1,61 +1,34 @@
 # Next Task
 
-## Current Active Task
+## Task
+Complete Project Brain documentation rewrite for Arandi Platform.
 
-Phase 0.5 - Prepare Codex Workflow
+## Current Phase
+`Phase 0.5 — Prepare Codex Workflow`
 
+## Scope
+- Rewrite all 9 Markdown files with real Arandi Platform content.
+- Remove sample-project content.
+- Align all files with Phase 0.5.
+- Prepare Codex Workflow documentation.
+- Update `CHANGELOG.md`.
 
-## Objective
+## Acceptance Criteria
+- All files use Arandi Platform facts only.
+- `AI_CONTEXT.md` defines AI session rules.
+- `PROJECT.md` defines project identity, mission, scope, and repository role.
+- `CURRENT_STATE.md` reflects the real current state.
+- `MASTER_PLAN.md` shows Phase 0, 0.5, 1, 2, and 3 clearly.
+- `ARCHITECTURE.md` reflects the actual infrastructure.
+- `DECISIONS.md` records key decisions.
+- `DESIGN_SYSTEM.md` is prepared for Phase 1 without starting implementation.
+- `CHANGELOG.md` includes the documentation rewrite entry.
 
-Prepare the AI-assisted development workflow before starting product development.
+## Validation
+- Review all 9 files for sample-project content.
+- Confirm current phase is consistently `Phase 0.5 — Prepare Codex Workflow`.
+- Confirm infrastructure facts are consistent across files.
+- Confirm no speculative architecture or feature claims exist.
 
-
-## Tasks
-
-
-### 1. Define Codex Workflow
-
-Document:
-
-- How Codex receives tasks.
-- Required project context.
-- Expected implementation process.
-- Testing requirements.
-- Documentation update requirements.
-
-
-### 2. Verify Development Environment
-
-Completed:
-
-✅ Next.js  
-✅ TypeScript  
-✅ Tailwind CSS  
-✅ shadcn/ui  
-✅ Framer Motion  
-✅ Lucide React  
-✅ Playwright  
-
-
-### 3. Start Phase 1 Preparation
-
-Prepare:
-
-- Design System implementation
-- Base layout
-- Component structure
-- First UI development tasks
-
-
-## Completion Criteria
-
-This task is completed when:
-
-- Codex workflow is defined.
-- Development rules are clear.
-- Project is ready for implementation.
-
-
-## Next Phase
-
-Phase 1 - Design System & UI Foundation
+## Commit Message
+`docs: align project brain with Arandi Platform phase 0.5`

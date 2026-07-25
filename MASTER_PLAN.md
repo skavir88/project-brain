@@ -1,189 +1,61 @@
 # Master Plan
 
-## Project
-
-Arandi Platform
-
-
-## Version
-
-Master Plan v1.0
-
-
----
-
-# Overview
-
-This document defines the high-level roadmap of the project.
-
-The project is divided into phases.
-
-Each phase must be completed and documented before moving to the next phase.
-
-
----
-
-# Phase 0 — Foundation
-
-Status:
-
-In Progress
-
-
-Objectives:
-
-Create a stable development foundation.
-
-
-Tasks:
-
-- Create workspace
-- Initialize Next.js
-- Configure TypeScript
-- Configure Tailwind CSS
-- Install UI framework
-- Install animation framework
-- Setup Git
-- Create project documentation
-
-
-Completion Criteria:
-
-- Development environment works.
-- Architecture documented.
-- Version control active.
-- AI workflow defined.
-
-
----
-
-# Phase 1 — Design System & UI Foundation
-
-Status:
-
-Pending
-
-
-Objectives:
-
-Create the visual foundation of the platform.
-
-
-Tasks:
-
-- Define brand colors
-- Define typography
-- Create layout system
-- Create reusable components
-- Configure navigation
-- Create base page structure
-
-
-Completion Criteria:
-
-- Design system finalized.
-- Core UI components available.
-- Page structure ready.
-
-
----
-
-# Phase 2 — Main Website Experience
-
-Status:
-
-Pending
-
-
-Objectives:
-
-Build the main user-facing website.
-
-
-Tasks:
-
-- Homepage
-- Header
-- Footer
-- Navigation
-- Service pages
-- Company pages
-- Contact section
-
-
-Completion Criteria:
-
-Professional enterprise website is functional.
-
-
----
-
-# Phase 3 — AI Features
-
-Status:
-
-Pending
-
-
-Objectives:
-
-Add intelligent capabilities.
-
-
-Tasks:
-
-- AI chat interface
-- Knowledge base integration
-- AI assistant workflows
-- Content intelligence
-
-
-Completion Criteria:
-
-AI features integrated into platform.
-
-
----
-
-# Phase 4 — Testing & Optimization
-
-Status:
-
-Pending
-
-
-Tasks:
-
-- Browser testing
-- Performance optimization
-- SEO optimization
-- Accessibility review
-- Security review
-
-
----
-
-# Phase 5 — Deployment
-
-Status:
-
-Pending
-
-
-Tasks:
-
-- Production hosting
-- CI/CD setup
-- Monitoring
-- Backup strategy
-
-
----
-
-# Development Rules
-
-- Complete one phase before starting the next.
-- Document all important decisions.
-- Avoid unnecessary technology changes.
-- Keep architecture stable.
-- Maintain Git history.
+## Purpose
+Define the Arandi Platform roadmap from documentation control to implementation.
+
+## Phase 0 — Initialization
+Status: Completed
+
+Scope:
+- Create Project Brain repository.
+- Establish 9-file documentation structure.
+- Publish repository publicly on GitHub.
+- Prepare infrastructure baseline.
+
+## Phase 0.5 — Prepare Codex Workflow
+Status: Active
+
+Scope:
+- Rewrite all documentation with real Arandi Platform data.
+- Finalize AI context rules.
+- Define Codex task intake format.
+- Define required context package for every task.
+- Define test and validation procedure.
+- Define commit and changelog procedure.
+- Define acceptance criteria for moving to Phase 1.
+
+Exit criteria:
+- All 9 files contain Arandi Platform-specific content only.
+- `AI_CONTEXT.md` controls AI/Codex session behavior.
+- `NEXT_TASK.md` contains a single immediate task.
+- `CHANGELOG.md` records documentation changes.
+- Codex task template is ready for use.
+
+## Phase 1 — Design System and UI Foundation
+Status: Next
+
+Scope:
+- Finalize `DESIGN_SYSTEM.md`.
+- Define UI tokens.
+- Define component principles.
+- Prepare frontend foundation.
+- Create first implementation tasks for Codex.
+
+Phase 1 starts only after Phase 0.5 is complete.
+
+## Phase 2 — Core Platform Implementation
+Status: Future
+
+Scope:
+- Implement core website/application features.
+- Connect UI foundation to real application behavior.
+- Expand AI-assisted development workflow.
+
+## Phase 3 — Stabilization and Operations
+Status: Future
+
+Scope:
+- Monitoring.
+- Performance review.
+- Documentation hardening.
+- Operational procedures.

@@ -1,103 +1,30 @@
-# Arandi Platform Project
+# Arandi Platform
 
 ## Project Identity
+Arandi Platform is an AI-first Enterprise Website Platform. It is being built as an enterprise-grade website/application foundation controlled by structured documentation, AI-assisted development, and a disciplined Codex workflow.
 
-Name:
-Arandi Platform
+## Mission
+The platform mission is to establish a clean, maintainable, and scalable foundation for enterprise web/application development. The project uses documentation as the control layer so human operators and AI development agents work from the same operational source of truth.
 
-Type:
-AI-first Enterprise Website Platform
+## Repository Role
+This repository is the Project Brain for Arandi Platform. It stores the authoritative project context, current state, roadmap, architecture boundaries, design-system preparation, decision records, next task, and changelog.
 
-Purpose:
-Create a professional, modern, scalable website platform for Arandi Bonyan with a focus on AI, IT services, enterprise solutions, and future intelligent services.
+The repository controls AI context and development workflow. It is not the runtime application and must not contain unrelated implementation assumptions.
 
----
+## Current Scope
+- Project documentation
+- Codex workflow preparation
+- Design system planning
+- UI foundation planning
+- AI context governance
 
-## Vision
+## Out of Scope
+- Unrelated infrastructure
+- Sample-project content
+- Speculative modules
+- Undocumented assumptions
 
-Build a high-quality enterprise digital platform that represents innovation, technology leadership, and AI-driven services.
+## Current Phase
+`Phase 0.5 — Prepare Codex Workflow` is active.
 
-The platform should not only present company information but also provide the foundation for future intelligent capabilities such as AI assistants, knowledge systems, and interactive services.
-
----
-
-## Main Goals
-
-- Create a premium enterprise website.
-- Build a modern and scalable frontend architecture.
-- Provide an excellent user experience.
-- Prepare the foundation for AI integration.
-- Maintain clean, documented, and maintainable code.
-- Enable future expansion into a digital platform.
-
----
-
-## Development Philosophy
-
-The project follows these principles:
-
-- Architecture first.
-- Documentation driven development.
-- AI-assisted development workflow.
-- Clean and maintainable code.
-- Controlled technology decisions.
-- Avoid unnecessary complexity.
-
----
-
-## Current Version
-
-Architecture Version:
-Frozen v1.1
-
-Development Status:
-Phase 0 - Initialization
-
----
-
-## Technology Stack
-
-Frontend Framework:
-Next.js (App Router)
-
-Language:
-TypeScript
-
-Styling:
-Tailwind CSS
-
-UI System:
-shadcn/ui
-
-Premium Components:
-21st.dev
-
-Animation:
-Framer Motion
-
-Icons:
-Lucide
-
-Testing:
-Playwright
-
-Version Control:
-Git
-
-IDE:
-Cursor
-
-AI Developer:
-Codex
-
-AI Architect:
-ChatGPT
-
----
-
-## Project Rules
-
-- Do not change architecture without a documented decision.
-- Every development session must update project documentation.
-- Every completed task must be committed to Git.
-- The .ai folder is the source of project knowledge.
+Phase 0 initialization and infrastructure preparation are completed. Phase 1 starts only after Codex Workflow is finalized.

@@ -1,37 +1,20 @@
 # Changelog
 
-All important project changes are recorded here.
+## Unreleased
 
----
+### Changed
+- Rewriting Project Brain documentation with Arandi Platform-specific content.
+- Aligning documentation with Phase 0.5 Codex Workflow preparation.
+- Removing sample-project assumptions from all core documents.
 
-# Version 0.1.0
+### Added
+- Current infrastructure facts for Dify, PostgreSQL, Redis, Qdrant, and GapGPT.
+- AI session rules and mandatory documentation reading order.
+- Codex workflow preparation requirements.
+- Decision records for documentation governance.
+- Phase-based roadmap from initialization through stabilization.
 
-Date:
-
-2026-07-23
-
-## Added
-
-- Created project workspace.
-- Created project Brain structure.
-- Initialized Next.js application.
-- Configured TypeScript.
-- Configured Tailwind CSS.
-- Installed shadcn/ui.
-- Installed Framer Motion.
-- Installed Lucide React.
-- Initialized Git repository.
-
-## Architecture
-
-- Frozen architecture v1.1 created.
-
-## Git
-
-Initial commit:
-
-a3a8a77
-
-Message:
-
-chore: initialize arandi platform architecture
+### Current Baseline
+- Phase 0 completed.
+- Phase 0.5 active.
+- Phase 1 pending after Codex Workflow finalization.

@@ -1,262 +1,42 @@
-# Arandi Platform Architecture
-
-## Architecture Version
-
-Frozen v1.1
-
-Status:
-Approved
-
----
-
-# Overview
-
-Arandi Platform is built as a modern AI-ready enterprise web platform.
-
-The architecture prioritizes:
-
-- Scalability
-- Maintainability
-- Clean code structure
-- AI-assisted development
-- Automated testing
-- Long-term evolution
-
----
-
-# Technology Stack
-
-## Framework
-
-Next.js
-
-Configuration:
-
-- App Router
-- TypeScript
-- Server Components where applicable
-
----
-
-## Language
-
-TypeScript
-
-Purpose:
-
-- Type safety
-- Better maintainability
-- Reduced runtime errors
-
----
-
-## Styling
-
-Tailwind CSS
-
-Purpose:
-
-- Utility-first styling
-- Responsive design
-- Consistent UI development
-
----
-
-## UI Component System
-
-shadcn/ui
-
-Purpose:
-
-- Reusable components
-- Accessible UI primitives
-- Maintainable design system
-
----
-
-## Premium Components
-
-21st.dev
-
-Usage:
-
-- Selected premium UI components
-- Enhanced visual quality
-- Accelerated development
-
-Rule:
-
-Components must follow the project Design System.
-
----
-
-## Animation
-
-Framer Motion
-
-Usage:
-
-- Page transitions
-- Micro interactions
-- Professional animations
-
-Rule:
-
-Animations should be purposeful and not excessive.
-
----
-
-## Icons
-
-Lucide React
-
-Usage:
-
-- Interface icons
-- Navigation icons
-- UI elements
-
----
-
-## Testing
-
-Playwright
-
-Responsibilities:
-
-- Browser automation
-- User flow testing
-- Responsive testing
-- Screenshot capture
-- Detection of UI/runtime problems
-
----
-
-## Version Control
-
-Git
-
-Purpose:
-
-- Source control
-- Change history
-- Safe development
-
----
-
-# AI Development Architecture
-
-## ChatGPT
-
-Role:
-
-- System architect
-- Project manager
-- Technical reviewer
-- Planning assistant
-
-Responsibilities:
-
-- Define architecture
-- Create development tasks
-- Review implementation
-- Maintain project consistency
-
----
-
-## Codex
-
-Role:
-
-- AI developer
-
-Responsibilities:
-
-- Create code
-- Modify files
-- Refactor
-- Fix bugs
-- Implement tasks
-
----
-
-## Cursor
-
-Role:
-
-- Development environment
-
-Responsibilities:
-
-- Code editing
-- Terminal execution
-- Git operations
-- Running project
-
----
-
-# Development Workflow
-
-Every development session follows:
-
-1. Read CURRENT_STATE.md
-
-2. Read NEXT_TASK.md
-
-3. Implement only the active task
-
-4. Test the result
-
-5. Update:
-
-- CURRENT_STATE.md
-- CHANGELOG.md
-- SESSION_LOG.md
-
-6. Commit changes to Git
-
----
-
-# Review Process
-
-## Code Review
-
-Performed by:
-
-- ChatGPT
-- Codex
-
-Focus:
-
-- Architecture
-- Code quality
-- Maintainability
-
----
-
-## Visual Review
-
-Performed by:
-
-- Product Owner
-- ChatGPT
-
-Focus:
-
-- User experience
-- Design quality
-- Brand consistency
-
----
-
-# Architecture Change Policy
-
-Architecture changes are allowed only when:
-
-1. A serious technical limitation blocks progress.
-
-or
-
-2. A new major version is planned.
-
-Minor preferences or external trends do not justify architecture changes.
+# Architecture
+
+## Architecture Baseline
+Architecture version: `v1.1 frozen baseline`.
+
+This file documents the current real architecture and technical boundaries of Arandi Platform. It must not describe speculative product features or unapproved integrations.
+
+## Current AI Infrastructure
+- Dify `v1.16.0` is installed on `rdapp`.
+- PostgreSQL is available on `rddb`.
+- Redis is available on `rddb`.
+- Qdrant is available on `rdvector`.
+- GapGPT connection is prepared for LLM service delivery.
+
+Core AI infrastructure is installed and ready for workflow integration.
+
+## Server Responsibilities
+- `rddb`: Database and Redis services.
+- `rdapp`: Application layer and Dify runtime.
+- `rdvector`: Vector database layer using Qdrant.
+- `rdautomation`: Reserved for automation/workflow services.
+- `rdmonitor`: Reserved for monitoring/observability services.
+
+## System Separation
+The Project Brain repository, AI orchestration layer, Codex development workflow, and future UI/application codebase are separate concerns.
+
+- Project Brain repository: controls documentation, AI context, project state, decisions, roadmap, and task flow.
+- AI orchestration layer: uses Dify and the prepared GapGPT LLM connection.
+- Codex development workflow: receives controlled tasks with mandatory context and validation requirements.
+- Future UI/application codebase: will be defined after Phase 0.5 and during Phase 1.
+
+The documentation repository controls AI context but is not the runtime application.
+
+## Architecture Constraints
+- No undocumented service additions.
+- No speculative integrations.
+- No architecture drift without decision logging.
+- No implementation assumptions outside approved project state.
+- No sample-project architecture may remain in documentation.
+
+## Future Architecture Expansion
+Future expansion is reserved for Phase 1 and later. It may include frontend foundation, UI architecture, component structure, and application implementation details only after the Codex Workflow is finalized and relevant decisions are recorded.
