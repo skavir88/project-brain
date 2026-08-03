@@ -1,20 +1,13 @@
 # Changelog
 
-## Unreleased
+## 2026-08-03
 
 ### Changed
-- Rewriting Project Brain documentation with Arandi Platform-specific content.
-- Aligning documentation with Phase 0.5 Codex Workflow preparation.
-- Removing sample-project assumptions from all core documents.
+- Rebased Project Brain documentation from test content to Enterprise AI Stage 0.
+- Replaced unsupported infrastructure claims with declared topology, evidence states, and explicit unknowns.
+- Replaced the broad legacy task with the next atomic local baseline-evidence task.
+- Aligned supporting prompts and repository guide with the 10-file Project Brain model.
 
 ### Added
-- Current infrastructure facts for Dify, PostgreSQL, Redis, Qdrant, and GapGPT.
-- AI session rules and mandatory documentation reading order.
-- Codex workflow preparation requirements.
-- Decision records for documentation governance.
-- Phase-based roadmap from initialization through stabilization.
-
-### Current Baseline
-- Phase 0 completed.
-- Phase 0.5 active.
-- Phase 1 pending after Codex Workflow finalization.
+- Declared host inventory manifest, read-only local baseline collector, and raw-evidence Git exclusion.
+- Evidence-first status model and Stage 0 governance decisions.

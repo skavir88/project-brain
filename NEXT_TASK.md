@@ -1,37 +1,73 @@
 # Next Task
 
-## Task
-Complete Project Brain documentation rewrite for Arandi Platform.
+## Metadata
+- Task ID: ET0-002
+- Stage: Stage 0 — Project Discovery, Baseline and Automation Foundation
+- Status: Ready
+- Owner: Authorized infrastructure operator
 
-## Current Phase
-`Phase 0.5 — Prepare Codex Workflow`
+## Objective
+Collect one read-only baseline JSON file from each declared host (`rddb`, `rdapp`, `rdvector`, `rdautomation`, `rdmonitor`) using the approved local collector, without making infrastructure changes.
+
+## Rationale
+All infrastructure status remains `unknown` until reproducible host-local evidence is available.
+
+## Preconditions
+- An authorized operator has local shell access to each declared Ubuntu host.
+- `scripts/collect-host-baseline.sh` is transferred or made available without modification.
+- `/var/tmp/enterprise-ai-baseline` is writable on each host, or a safe non-repository output directory is selected.
 
 ## Scope
-- Rewrite all 9 core Markdown files with real Arandi Platform content.
-- Align the 3 supporting workflow files with the same project facts and workflow rules.
-- Remove sample-project content.
-- Align all files with Phase 0.5.
-- Prepare Codex Workflow documentation.
-- Update `CHANGELOG.md`.
+- Run the collector locally once per declared host.
+- Review outputs for secrets or sensitive operational content before sharing sanitized copies for review.
+- Record a blocker if a host cannot be accessed or collection returns a nonzero code.
+
+## Out of Scope
+- Installing packages, changing Docker/Compose, restarting services, using SSH automation, or committing raw evidence.
+- Declaring service availability, security, backup, HA, or production readiness.
+
+## Files to Inspect
+- `AI_CONTEXT.md`
+- `CURRENT_STATE.md`
+- `ARCHITECTURE.md`
+- `inventory/hosts.yaml`
+- `scripts/collect-host-baseline.sh`
+- `evidence/README.md`
+
+## Files Allowed to Change
+- None in this repository during collection. A subsequent review task will define any permitted documentation updates.
+
+## Execution Steps
+1. On each matching host, run the collector with its declared host identifier.
+2. Record the command exit code and the generated file path locally.
+3. Review and sanitize outputs; do not commit raw files.
+4. Provide sanitized outputs and recorded blockers for the next review task.
 
 ## Acceptance Criteria
-- All files use Arandi Platform facts only.
-- `AI_CONTEXT.md` defines AI session rules.
-- `PROJECT.md` defines project identity, mission, scope, and repository role.
-- `CURRENT_STATE.md` reflects the real current state.
-- `MASTER_PLAN.md` shows Phase 0, 0.5, 1, 2, and 3 clearly.
-- `ARCHITECTURE.md` reflects the actual infrastructure.
-- `DECISIONS.md` records key decisions.
-- `DESIGN_SYSTEM.md` is prepared for Phase 1 without starting implementation.
-- `CHANGELOG.md` includes the documentation rewrite entry.
-- `PROMPTS.md`, `Readme.txt`, and `SESSION_LOG.md` are aligned with the 9 core files.
-- Supporting files do not introduce conflicting project state, architecture, or workflow claims.
+- Exactly one output exists for each accessible declared host, with matching `host_id` and a UTC timestamp.
+- Each output is valid JSON and includes all six named result records.
+- Nonzero command or collector exit codes are retained as failures/unknowns, not treated as success.
+- No raw output is committed to this repository.
 
-## Validation
-- Review all 9 files for sample-project content.
-- Confirm current phase is consistently `Phase 0.5 — Prepare Codex Workflow`.
-- Confirm infrastructure facts are consistent across files.
-- Confirm no speculative architecture or feature claims exist.
+## Verification Commands
+```bash
+bash scripts/collect-host-baseline.sh --host-id rddb
+bash scripts/collect-host-baseline.sh --host-id rdapp
+bash scripts/collect-host-baseline.sh --host-id rdvector
+bash scripts/collect-host-baseline.sh --host-id rdautomation
+bash scripts/collect-host-baseline.sh --host-id rdmonitor
+```
 
-## Commit Message
-`docs: align project brain with Arandi Platform phase 0.5`
+## Evidence Required
+- Five reviewed, sanitized JSON outputs or explicit per-host access/collection blockers.
+- The local exit code for each collector execution.
+
+## Rollback
+No infrastructure changes are made. Remove only locally generated evidence files if the authorized operator decides they must not be retained.
+
+## Completion Updates
+- `CURRENT_STATE.md`
+- `SESSION_LOG.md`
+- `CHANGELOG.md`
+- `NEXT_TASK.md`
+- `DECISIONS.md`, only if evidence requires an architecture decision

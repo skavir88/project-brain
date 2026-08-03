@@ -1,0 +1,3 @@
+# Raw infrastructure evidence must be reviewed and sanitized before versioning.
+/evidence/*
+!/evidence/README.md

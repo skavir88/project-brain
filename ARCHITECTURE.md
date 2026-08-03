@@ -1,42 +1,26 @@
 # Architecture
 
-## Architecture Baseline
-Architecture version: `v1.1 frozen baseline`.
+## Evidence Status
+The topology below is **declared** project context. It is not `verified`; no local evidence of reachability, operating system, Docker, services, versions, ports, or configuration has been collected yet.
 
-This file documents the current real architecture and technical boundaries of Arandi Platform. It must not describe speculative product features or unapproved integrations.
+## Declared Infrastructure Topology
+| Host | IP | Declared responsibility |
+|---|---:|---|
+| `rddb` | `172.20.190.61` | PostgreSQL and durable data services |
+| `rdapp` | `172.20.190.62` | Dify, Nginx, and application services |
+| `rdvector` | `172.20.190.63` | Qdrant and vector services |
+| `rdautomation` | `172.20.190.64` | n8n and workflow automation |
+| `rdmonitor` | `172.20.190.65` | Monitoring, logging, and observability |
 
-## Current AI Infrastructure
-- Dify `v1.16.0` is installed on `rdapp`.
-- PostgreSQL is available on `rddb`.
-- Redis is available on `rddb`.
-- Qdrant is available on `rdvector`.
-- GapGPT connection is prepared for LLM service delivery.
+The declared virtualization platform is VMware; the declared server OS is Ubuntu Linux; the declared primary deployment method is Docker Compose. These are `planned` until evidence is captured.
 
-Core AI infrastructure is installed and ready for workflow integration.
+## Logical Flow
+`Data Sources → Ingestion → Structural Validation → Normalization and Deduplication → Quality Gates → Certified Data / Certified Knowledge → AI Services, Automation, Reporting, Audit, and Monitoring`.
 
-## Server Responsibilities
-- `rddb`: Database and Redis services.
-- `rdapp`: Application layer and Dify runtime.
-- `rdvector`: Vector database layer using Qdrant.
-- `rdautomation`: Reserved for automation/workflow services.
-- `rdmonitor`: Reserved for monitoring/observability services.
+Human review/HITL is a branch from Quality Gates for sensitive cases.
 
-## System Separation
-The Project Brain repository, AI orchestration layer, Codex development workflow, and future UI/application codebase are separate concerns.
-
-- Project Brain repository: controls documentation, AI context, project state, decisions, roadmap, and task flow.
-- AI orchestration layer: uses Dify and the prepared GapGPT LLM connection.
-- Codex development workflow: receives controlled tasks with mandatory context and validation requirements.
-- Future UI/application codebase: will be defined after Phase 0.5 and during Phase 1.
-
-The documentation repository controls AI context but is not the runtime application.
-
-## Architecture Constraints
-- No undocumented service additions.
-- No speculative integrations.
-- No architecture drift without decision logging.
-- No implementation assumptions outside approved project state.
-- No sample-project architecture may remain in documentation.
-
-## Future Architecture Expansion
-Future expansion is reserved for Phase 1 and later. It may include frontend foundation, UI architecture, component structure, and application implementation details only after the Codex Workflow is finalized and relevant decisions are recorded.
+## Technical Boundaries
+- PostgreSQL, Redis, and Qdrant are intended to be external backends for Dify. They must not be duplicated inside the application stack without a recorded architecture decision.
+- Services must be independently deployable and communicate backend-to-backend.
+- No claim of production readiness, HA, backup, monitoring, or security hardening is permitted without recorded evidence.
+- The need for accessible regional image/package mirrors is `planned` and requires a later decision backed by operational evidence.

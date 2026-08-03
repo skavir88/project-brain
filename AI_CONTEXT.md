@@ -1,53 +1,32 @@
-# AI Context
+# Enterprise AI — AI Context
 
 ## Mandatory First Read
-This file must be read first at the start of every AI or Codex work session for Arandi Platform.
+Read this file first in every work session. The Project Brain has 10 authoritative Markdown files in the repository root.
 
 ## Mandatory Reading Order
 1. `AI_CONTEXT.md`
-2. `PROJECT.md`
-3. `CURRENT_STATE.md`
-4. `NEXT_TASK.md`
-5. `DECISIONS.md`
-6. `MASTER_PLAN.md`
-7. `ARCHITECTURE.md`
+2. `CURRENT_STATE.md`
+3. `NEXT_TASK.md`
+4. `MASTER_PLAN.md`
+5. `ARCHITECTURE.md`
+6. `PROJECT.md`
+7. `DECISIONS.md`
 8. `DESIGN_SYSTEM.md`
-9. `CHANGELOG.md`
+9. `SESSION_LOG.md`
+10. `CHANGELOG.md`
 
-## AI Operating Rules
-- Use real Arandi Platform project data only.
-- Never use sample-project assumptions.
-- Never invent architecture, services, modules, or roadmap items.
-- Never skip current state review.
-- Never start coding or documentation work without understanding `NEXT_TASK.md`.
-- Keep documentation concise, operational, and enterprise-grade.
-- Update state files after completing work.
-- Record meaningful documentation or project-state changes in `CHANGELOG.md`.
+## Operating Contract
+- Execute only the single atomic task in `NEXT_TASK.md`.
+- Separate `planned`, `configured`, `deployed`, `verified`, and `unknown`. Only reproducible evidence may support `verified`.
+- Inspect affected files before changing them; use the smallest safe scope; run the listed verification commands.
+- Record architecture changes in `DECISIONS.md`, state changes in `CURRENT_STATE.md`, changes in `CHANGELOG.md`, and each changing session in `SESSION_LOG.md`.
+- Leave one testable atomic next task when work is complete.
 
-## Codex Behavior
-Every Codex task must include:
-- project name
-- current phase
-- relevant files
-- exact task objective
-- constraints
-- expected output
-- test or validation method
-- commit message suggestion
+## Safety and Evidence
+- Do not install, remove, restart, reconfigure, or otherwise change infrastructure without explicit user approval.
+- Do not store or disclose secrets, tokens, passwords, private keys, real organizational data, environment variables, or unreviewed raw evidence.
+- Treat missing infrastructure access as a documented limitation, never as verification.
+- Resolve a material conflict through a recorded decision; do not silently choose a narrative.
 
-Codex output must be reviewed before acceptance. No Codex change is accepted only because it was generated.
-
-## Forbidden Behavior
-- Introducing unapproved dependencies.
-- Adding undocumented services or integrations.
-- Changing architecture without recording a decision in `DECISIONS.md`.
-- Modifying roadmap without updating `MASTER_PLAN.md`.
-- Completing work without updating `CURRENT_STATE.md` and `NEXT_TASK.md`.
-- Leaving sample-project content in any Project Brain file.
-
-## End-of-Session Updates
-At the end of every work session, update:
-- `CURRENT_STATE.md`
-- `NEXT_TASK.md`
-- `CHANGELOG.md` when documentation or project state changes
-- `SESSION_LOG.md` if introduced later
+## Stage Boundary
+Stage 0 is discovery, baseline, documentation, policy, and automation foundation only. Production deployment, HA/DR, real-data integration, complete product development, and Stage 1 work are out of scope unless explicitly tasked.

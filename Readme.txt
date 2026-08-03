@@ -1,58 +1,20 @@
-.ai/
+Enterprise AI Project Brain
 
-AI_CONTEXT.md
-│
-├── قوانین استفاده از Brain
-├── ترتیب خواندن فایل‌ها
-├── رفتار AI
-└── Workflow عمومی
+Authoritative documents (read in the order defined by AI_CONTEXT.md):
+- AI_CONTEXT.md
+- CURRENT_STATE.md
+- NEXT_TASK.md
+- MASTER_PLAN.md
+- ARCHITECTURE.md
+- PROJECT.md
+- DECISIONS.md
+- DESIGN_SYSTEM.md
+- SESSION_LOG.md
+- CHANGELOG.md
 
+Supporting paths:
+- inventory/hosts.yaml: declared, non-sensitive host topology
+- scripts/collect-host-baseline.sh: local read-only evidence collector
+- evidence/: documentation plus ignored raw collection output
 
-PROJECT.md
-│
-└── اطلاعات مخصوص پروژه
-
-
-ARCHITECTURE.md
-│
-└── معماری فنی
-
-
-DESIGN_SYSTEM.md
-│
-└── زبان طراحی
-
-
-CURRENT_STATE.md
-│
-└── وضعیت واقعی پروژه
-
-
-NEXT_TASK.md
-│
-└── یک کار فعال
-
-
-DECISIONS.md
-│
-└── چرایی تصمیم‌ها
-
-
-MASTER_PLAN.md
-│
-└── مسیر بلندمدت
-
-
-CHANGELOG.md
-│
-└── تاریخچه تغییرات
-
-
-SESSION_LOG.md
-│
-└── گزارش جلسات
-
-
-PROMPTS.md
-│
-└── پرامپت‌های اثبات‌شده
+Do not treat declared topology as verified infrastructure evidence.

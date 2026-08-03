@@ -1,26 +1,26 @@
 # Decisions
 
-## Decision 001 — Use Project Brain Repository
-Decision: Maintain a dedicated documentation repository as the AI/project control layer.
+## DEC-001 — Enterprise AI Is the Sole Project Identity
+Status: Accepted
 
-Reason: Prevent context loss and guide AI-assisted development from a single operational source of truth.
+The Project Brain documents Enterprise AI, titled Enterprise Data Platform & Data Credibility Assurance. Previous test-project identity and claims are removed.
 
-## Decision 002 — Use 9-File Documentation Structure
-Decision: Use the approved 9 Markdown files as the project documentation framework.
+## DEC-002 — Stage 0 Is Evidence-First
+Status: Accepted
 
-Reason: Standardize context for human operators and AI workflows while avoiding uncontrolled document growth.
+No infrastructure condition is `verified` without reproducible command output. Missing access remains `unknown` or `blocked`.
 
-## Decision 003 — Enter Phase 0.5 Before Coding
-Decision: Complete Codex Workflow preparation before Phase 1 implementation.
+## DEC-003 — Local, Read-Only Baseline Collection
+Status: Accepted
 
-Reason: Avoid uncontrolled coding, missing context, and architecture drift.
+Baseline evidence is collected on each Ubuntu host by a local script. The collector performs no installation, configuration, restart, deletion, inspection of secrets, or Docker inspection.
 
-## Decision 004 — Use Real Project Data Only
-Decision: Replace all sample-project content with Arandi Platform-specific information.
+## DEC-004 — Raw Evidence Is Not Versioned by Default
+Status: Accepted
 
-Reason: Prevent architecture contamination, documentation drift, and incorrect AI assumptions.
+Collector output is written outside Git by default. Only reviewed and sanitized evidence may be incorporated later under an explicitly scoped task.
 
-## Decision 005 — Commit and Changelog Discipline
-Decision: Every meaningful documentation or project change must be committed and reflected in `CHANGELOG.md`.
+## DEC-005 — External Dify Backends
+Status: Accepted
 
-Reason: Maintain traceability and make project state reviewable across human and AI sessions.
+PostgreSQL, Redis, and Qdrant are intended as external Dify backends. Duplicating them within an application stack requires a documented architecture decision.

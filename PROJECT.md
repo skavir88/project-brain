@@ -1,30 +1,23 @@
-# Arandi Platform
+# Enterprise AI
 
-## Project Identity
-Arandi Platform is an AI-first Enterprise Website Platform. It is being built as an enterprise-grade website/application foundation controlled by structured documentation, AI-assisted development, and a disciplined Codex workflow.
+## Identity
+**Architecture/Product title:** Enterprise Data Platform & Data Credibility Assurance
 
-## Mission
-The platform mission is to establish a clean, maintainable, and scalable foundation for enterprise web/application development. The project uses documentation as the control layer so human operators and AI development agents work from the same operational source of truth.
+Enterprise AI is an organizational platform for controlled, traceable, and evidence-based use of data and artificial intelligence. “Data Credibility Assurance” means recording and controlling evidence of data credibility; it is not a legal guarantee or insurance product.
+
+## Goals
+- Ingest and integrate data from multiple sources.
+- Validate structure, normalize data, detect duplicates and inconsistencies, and apply quality rules.
+- Route sensitive cases through Human-In-The-Loop review.
+- Preserve lineage, audit trail, certified datasets/knowledge, and controlled AI, RAG, automation, reporting, and observability use.
+
+## Current Stage
+`Stage 0 — Project Discovery, Baseline and Automation Foundation`
 
 ## Repository Role
-This repository is the Project Brain for Arandi Platform. It stores the authoritative project context, current state, roadmap, architecture boundaries, design-system preparation, decision records, next task, and changelog.
+This repository is the Project Brain: the controlled source of truth for project context, decisions, status, plans, tasks, and verification evidence policy. It is not a runtime application or evidence store for secrets.
 
-The repository controls AI context and development workflow. It is not the runtime application and must not contain unrelated implementation assumptions.
+## Stage 0 Boundary
+In scope: infrastructure discovery, host/service inventory, repository and automation foundation, verification tooling, configuration/secrets policy, and Stage 0 Definition of Done.
 
-## Current Scope
-- Project documentation
-- Codex workflow preparation
-- Design system planning
-- UI foundation planning
-- AI context governance
-
-## Out of Scope
-- Unrelated infrastructure
-- Sample-project content
-- Speculative modules
-- Undocumented assumptions
-
-## Current Phase
-`Phase 0.5 — Prepare Codex Workflow` is active.
-
-Phase 0 initialization and infrastructure preparation are completed. Phase 1 starts only after Codex Workflow is finalized.
+Out of scope unless explicitly tasked: production deployment, HA, complete DR, full UI, full validation engine, real organizational data, and Stage 1 or later implementation.

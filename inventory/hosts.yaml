@@ -1,0 +1,18 @@
+# Declared topology only. This file is not runtime evidence.
+version: 1
+hosts:
+  - id: rddb
+    ip: 172.20.190.61
+    declared_role: PostgreSQL and durable data services
+  - id: rdapp
+    ip: 172.20.190.62
+    declared_role: Dify, Nginx, and application services
+  - id: rdvector
+    ip: 172.20.190.63
+    declared_role: Qdrant and vector services
+  - id: rdautomation
+    ip: 172.20.190.64
+    declared_role: n8n and workflow automation
+  - id: rdmonitor
+    ip: 172.20.190.65
+    declared_role: monitoring, logging, and observability

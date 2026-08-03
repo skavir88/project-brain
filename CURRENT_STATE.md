@@ -1,38 +1,29 @@
 # Current State
 
-## Current Phase
-`Phase 0.5 — Prepare Codex Workflow` is active.
+## Current Stage
+`Stage 0 — Project Discovery, Baseline and Automation Foundation` is active.
 
-## Completed
-- Project Brain repository created.
-- Repository published publicly on GitHub: `https://github.com/skavir88/project-brain.git`.
-- Main branch established: `main`.
-- 9 core Markdown files created in repository root.
-- 3 supporting workflow files created in repository root.
-- Dify `v1.16.0` installed.
-- PostgreSQL and Redis available on `rddb`.
-- Qdrant available on `rdvector`.
-- GapGPT LLM connection prepared.
-- Phase 0 initialization completed.
+## Status Model
+- `planned`: intended but not configured.
+- `configured`: configuration exists, but runtime operation is unproven.
+- `deployed`: installation or deployment is evidenced, but expected behavior is unproven.
+- `verified`: reproducible evidence confirms the stated condition.
+- `unknown`: no sufficient evidence is available.
 
-## In Progress
-- Replacing template content with real Arandi Platform documentation.
-- Finalizing Codex Workflow.
-- Defining required context format for Codex tasks.
-- Defining validation, test, commit, and changelog procedure.
+## Confirmed Repository Baseline
+- The 10 Project Brain documents exist in the repository root.
+- The Enterprise AI documentation baseline and local collection kit were created in this session; repository-local verification is recorded in `SESSION_LOG.md`.
 
-## Not Started
-- Phase 1 Design System execution.
-- UI Foundation implementation.
-- Production application coding.
+## Declared, Not Verified
+- Five VMware-hosted Ubuntu servers and their declared roles/IPs are listed in `ARCHITECTURE.md` and `inventory/hosts.yaml`.
+- Docker Compose is the intended deployment method.
+- PostgreSQL, Redis, Qdrant, Dify `1.16.0`, n8n, Nginx, and a monitoring/logging stack are planned components.
+- Dify is intended to use PostgreSQL, Redis, and Qdrant as external backends.
 
-## Risks
-- Sample content remaining in documents.
-- AI starting work without reading context files.
-- Tasks being sent to Codex without enough context.
-- Architecture drift caused by undocumented assumptions.
+## Unknowns and Constraints
+- No SSH or local-server evidence is available in this repository.
+- Service installation, runtime status, versions, ports, dependencies, security posture, backup, HA, and observability are `unknown`.
+- Raw host evidence must be collected locally, reviewed, and sanitized before any repository use.
 
 ## Next Operational Target
-- Complete documentation rewrite.
-- Finalize Codex Workflow.
-- Prepare Phase 1 entry criteria.
+Run the approved read-only collector on each declared host and safely provide sanitized outputs for review.

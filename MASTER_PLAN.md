@@ -1,61 +1,18 @@
 # Master Plan
 
-## Purpose
-Define the Arandi Platform roadmap from documentation control to implementation.
-
-## Phase 0 — Initialization
-Status: Completed
-
-Scope:
-- Create Project Brain repository.
-- Establish 9-file documentation structure.
-- Publish repository publicly on GitHub.
-- Prepare infrastructure baseline.
-
-## Phase 0.5 — Prepare Codex Workflow
+## Stage 0 — Project Discovery, Baseline and Automation Foundation
 Status: Active
 
-Scope:
-- Rewrite all documentation with real Arandi Platform data.
-- Finalize AI context rules.
-- Define Codex task intake format.
-- Define required context package for every task.
-- Define test and validation procedure.
-- Define commit and changelog procedure.
-- Define acceptance criteria for moving to Phase 1.
+Objectives:
+- Record the actual infrastructure baseline, host roles, services, versions, ports, dependencies, and unknowns.
+- Establish Project Brain governance, configuration/secrets policy, repeatable verification tools, and atomic-task automation workflow.
+- Define and verify Stage 0 completion criteria.
 
-Exit criteria:
-- All 9 files contain Arandi Platform-specific content only.
-- `AI_CONTEXT.md` controls AI/Codex session behavior.
-- `NEXT_TASK.md` contains a single immediate task.
-- `CHANGELOG.md` records documentation changes.
-- Codex task template is ready for use.
+Quality gates:
+- Every infrastructure claim is classified and evidence-backed when marked `verified`.
+- No secrets or unreviewed raw evidence are versioned.
+- Verification is command-based, repeatable, readable, and returns meaningful exit codes.
+- `NEXT_TASK.md` contains only one atomic, testable task.
 
-## Phase 1 — Design System and UI Foundation
-Status: Next
-
-Scope:
-- Finalize `DESIGN_SYSTEM.md`.
-- Define UI tokens.
-- Define component principles.
-- Prepare frontend foundation.
-- Create first implementation tasks for Codex.
-
-Phase 1 starts only after Phase 0.5 is complete.
-
-## Phase 2 — Core Platform Implementation
-Status: Future
-
-Scope:
-- Implement core website/application features.
-- Connect UI foundation to real application behavior.
-- Expand AI-assisted development workflow.
-
-## Phase 3 — Stabilization and Operations
-Status: Future
-
-Scope:
-- Monitoring.
-- Performance review.
-- Documentation hardening.
-- Operational procedures.
+## Later Stages
+Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.
