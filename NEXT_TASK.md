@@ -1,73 +1,72 @@
 # Next Task
 
 ## Metadata
-- Task ID: ET0-002
+- Task ID: ET0-SSH-001
 - Stage: Stage 0 — Project Discovery, Baseline and Automation Foundation
-- Status: Ready
+- Status: Blocked pending authorized operator action
 - Owner: Authorized infrastructure operator
 
 ## Objective
-Collect one read-only baseline JSON file from each declared host (`rddb`, `rdapp`, `rdvector`, `rdautomation`, `rdmonitor`) using the approved local collector, without making infrastructure changes.
+Add the already-created Enterprise AI project public key to the `root` account's `authorized_keys` file on each declared host, then verify non-interactive public-key login through the configured aliases.
 
 ## Rationale
-All infrastructure status remains `unknown` until reproducible host-local evidence is available.
+All five hosts are reachable and their host keys are registered locally, but `BatchMode=yes` fails with `auth_failed` because the project public key is absent remotely. Completing this prerequisite enables the approved read-only baseline collector without password prompts.
 
 ## Preconditions
-- An authorized operator has local shell access to each declared Ubuntu host.
-- `scripts/collect-host-baseline.sh` is transferred or made available without modification.
-- `/var/tmp/enterprise-ai-baseline` is writable on each host, or a safe non-repository output directory is selected.
+- The operator has authorized root access to each declared Ubuntu host.
+- The local public key exists at `%USERPROFILE%\\.ssh\\enterprise_ai_ed25519.pub` on the control workstation.
+- The operator has independently verified the intended host and root account before modifying `authorized_keys`.
 
 ## Scope
-- Run the collector locally once per declared host.
-- Review outputs for secrets or sensitive operational content before sharing sanitized copies for review.
-- Record a blocker if a host cannot be accessed or collection returns a nonzero code.
+- Append the exact existing public-key line once to `/root/.ssh/authorized_keys` on each declared host.
+- Ensure `/root/.ssh` is mode `700` and `authorized_keys` is mode `600` when needed for SSH to accept the key.
+- Test `ssh -o BatchMode=yes -o ConnectTimeout=10 <alias> 'id -un'` for every declared alias.
 
 ## Out of Scope
-- Installing packages, changing Docker/Compose, restarting services, using SSH automation, or committing raw evidence.
-- Declaring service availability, security, backup, HA, or production readiness.
+- Changing passwords, `sshd_config`, password-authentication policy, users, sudoers, firewall, services, packages, containers, or network settings.
+- Adding keys for hosts outside `inventory/hosts.yaml`.
+- Copying passwords, private keys, or raw evidence into the repository.
 
 ## Files to Inspect
-- `AI_CONTEXT.md`
-- `CURRENT_STATE.md`
-- `ARCHITECTURE.md`
 - `inventory/hosts.yaml`
-- `scripts/collect-host-baseline.sh`
-- `evidence/README.md`
+- `CURRENT_STATE.md`
+- `%USERPROFILE%\\.ssh\\enterprise_ai_ed25519.pub` (local, untracked)
 
 ## Files Allowed to Change
-- None in this repository during collection. A subsequent review task will define any permitted documentation updates.
+- Remote `/root/.ssh/authorized_keys` and its required standard SSH permissions only.
+- This repository remains unchanged until a following evidence-review task is explicitly created.
 
 ## Execution Steps
-1. On each matching host, run the collector with its declared host identifier.
-2. Record the command exit code and the generated file path locally.
-3. Review and sanitize outputs; do not commit raw files.
-4. Provide sanitized outputs and recorded blockers for the next review task.
+1. On each declared host, append the local public-key line only if that exact line is not already present.
+2. Apply only the standard SSH directory/file modes in Scope when required.
+3. From the control workstation, run the five verification commands below with `BatchMode=yes`.
+4. Record the remote identity and exit code per alias; do not record credentials.
 
 ## Acceptance Criteria
-- Exactly one output exists for each accessible declared host, with matching `host_id` and a UTC timestamp.
-- Each output is valid JSON and includes all six named result records.
-- Nonzero command or collector exit codes are retained as failures/unknowns, not treated as success.
-- No raw output is committed to this repository.
+- Each host accepts the project public key for the declared root account.
+- Every verification command exits `0` and prints `root`.
+- No password prompt occurs and no SSH host-key warning/change occurs.
+- No secret or private key is added to Git, logs, evidence, or documentation.
 
 ## Verification Commands
 ```bash
-bash scripts/collect-host-baseline.sh --host-id rddb
-bash scripts/collect-host-baseline.sh --host-id rdapp
-bash scripts/collect-host-baseline.sh --host-id rdvector
-bash scripts/collect-host-baseline.sh --host-id rdautomation
-bash scripts/collect-host-baseline.sh --host-id rdmonitor
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rddb 'id -un'
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdapp 'id -un'
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdvector 'id -un'
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdautomation 'id -un'
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdmonitor 'id -un'
 ```
 
 ## Evidence Required
-- Five reviewed, sanitized JSON outputs or explicit per-host access/collection blockers.
-- The local exit code for each collector execution.
+- Per-host exit code and remote identity from the five verification commands.
+- Explicit blocker for any host that cannot accept the key.
 
 ## Rollback
-No infrastructure changes are made. Remove only locally generated evidence files if the authorized operator decides they must not be retained.
+Remove only the exact project public-key line from the affected remote `authorized_keys` file. Do not delete other keys or the `.ssh` directory.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only if evidence requires an architecture decision
+- `DECISIONS.md`, only if a new architecture or security policy is required

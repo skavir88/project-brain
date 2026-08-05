@@ -24,3 +24,8 @@ Collector output is written outside Git by default. Only reviewed and sanitized 
 Status: Accepted
 
 PostgreSQL, Redis, and Qdrant are intended as external Dify backends. Duplicating them within an application stack requires a documented architecture decision.
+
+## DEC-006 — SSH Trust and Authentication Bootstrap
+Status: Accepted
+
+Each declared host uses a dedicated local Enterprise AI SSH key and a stable alias. Host-key verification remains enabled and initial host keys are recorded locally only after review. Passwords are never sent through command arguments, stored in the repository, or placed in project documentation. Non-interactive operations are blocked until the authorized operator installs the project public key on each host.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-05
+
+### Added
+- Non-secret SSH connection metadata for the five declared hosts.
+- Local dedicated SSH key, managed aliases, host-key registration, and the SSH bootstrap decision.
+
+### Changed
+- Replaced the collector task with the prerequisite public-key authentication task after verified `auth_failed` results on all five hosts.
+
 ## 2026-08-03
 
 ### Changed

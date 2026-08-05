@@ -4,15 +4,45 @@ hosts:
   - id: rddb
     ip: 172.20.190.61
     declared_role: PostgreSQL and durable data services
+    ssh:
+      alias: enterprise-ai-rddb
+      port: 22
+      username: root
+      auth_method: public_key
+      identity_reference: enterprise_ai_ed25519
   - id: rdapp
     ip: 172.20.190.62
     declared_role: Dify, Nginx, and application services
+    ssh:
+      alias: enterprise-ai-rdapp
+      port: 22
+      username: root
+      auth_method: public_key
+      identity_reference: enterprise_ai_ed25519
   - id: rdvector
     ip: 172.20.190.63
     declared_role: Qdrant and vector services
+    ssh:
+      alias: enterprise-ai-rdvector
+      port: 22
+      username: root
+      auth_method: public_key
+      identity_reference: enterprise_ai_ed25519
   - id: rdautomation
     ip: 172.20.190.64
     declared_role: n8n and workflow automation
+    ssh:
+      alias: enterprise-ai-rdautomation
+      port: 22
+      username: root
+      auth_method: public_key
+      identity_reference: enterprise_ai_ed25519
   - id: rdmonitor
     ip: 172.20.190.65
     declared_role: monitoring, logging, and observability
+    ssh:
+      alias: enterprise-ai-rdmonitor
+      port: 22
+      username: root
+      auth_method: public_key
+      identity_reference: enterprise_ai_ed25519
