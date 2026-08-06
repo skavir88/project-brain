@@ -12,7 +12,7 @@ The topology below is **declared** project context. It is not `verified`; no loc
 | `rdautomation` | `172.20.190.64` | n8n and workflow automation |
 | `rdmonitor` | `172.20.190.65` | Monitoring, logging, and observability |
 
-The declared virtualization platform is VMware; the declared server OS is Ubuntu Linux; the declared primary deployment method is Docker Compose. These are `planned` until evidence is captured.
+The declared virtualization platform is VMware and declared server OS is Ubuntu Linux. Docker CLI and Docker Compose command availability are `verified` on all five declared hosts by the 2026-08-05 baseline collection; VMware, service deployment, service versions, and configuration remain unverified.
 
 ## Logical Flow
 `Data Sources → Ingestion → Structural Validation → Normalization and Deduplication → Quality Gates → Certified Data / Certified Knowledge → AI Services, Automation, Reporting, Audit, and Monitoring`.

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "sanitization": "Counts and command exit codes only; excludes raw command output, container names, images, ports, listeners, configuration, and secrets.",
+  "hosts": [
+    {
+      "host_id": "rddb",
+      "collected_at_utc": "20260805T143519Z",
+      "collector_exit_code": 0,
+      "command_exit_codes": {"uname": 0, "os_release": 0, "docker_version": 0, "docker_compose_version": 0, "docker_containers": 0, "tcp_listeners": 0},
+      "docker_available": true,
+      "docker_compose_available": true,
+      "running_container_count": 2,
+      "tcp_listener_count": 11
+    },
+    {
+      "host_id": "rdapp",
+      "collected_at_utc": "20260805T143523Z",
+      "collector_exit_code": 0,
+      "command_exit_codes": {"uname": 0, "os_release": 0, "docker_version": 0, "docker_compose_version": 0, "docker_containers": 0, "tcp_listeners": 0},
+      "docker_available": true,
+      "docker_compose_available": true,
+      "running_container_count": 12,
+      "tcp_listener_count": 21
+    },
+    {
+      "host_id": "rdvector",
+      "collected_at_utc": "20260805T143526Z",
+      "collector_exit_code": 0,
+      "command_exit_codes": {"uname": 0, "os_release": 0, "docker_version": 0, "docker_compose_version": 0, "docker_containers": 0, "tcp_listeners": 0},
+      "docker_available": true,
+      "docker_compose_available": true,
+      "running_container_count": 1,
+      "tcp_listener_count": 11
+    },
+    {
+      "host_id": "rdautomation",
+      "collected_at_utc": "20260805T143529Z",
+      "collector_exit_code": 0,
+      "command_exit_codes": {"uname": 0, "os_release": 0, "docker_version": 0, "docker_compose_version": 0, "docker_containers": 0, "tcp_listeners": 0},
+      "docker_available": true,
+      "docker_compose_available": true,
+      "running_container_count": 0,
+      "tcp_listener_count": 7
+    },
+    {
+      "host_id": "rdmonitor",
+      "collected_at_utc": "20260805T143533Z",
+      "collector_exit_code": 0,
+      "command_exit_codes": {"uname": 0, "os_release": 0, "docker_version": 0, "docker_compose_version": 0, "docker_containers": 0, "tcp_listeners": 0},
+      "docker_available": true,
+      "docker_compose_available": true,
+      "running_container_count": 0,
+      "tcp_listener_count": 7
+    }
+  ]
+}

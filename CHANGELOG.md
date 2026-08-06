@@ -5,9 +5,11 @@
 ### Added
 - Non-secret SSH connection metadata for the five declared hosts.
 - Local dedicated SSH key, managed aliases, host-key registration, and the SSH bootstrap decision.
+- Sanitized Stage 0 baseline summary from all five declared hosts.
 
 ### Changed
 - Replaced the collector task with the prerequisite public-key authentication task after verified `auth_failed` results on all five hosts.
+- Replaced the SSH bootstrap task with a read-only service-inventory task after public-key login and collector execution were verified on all five hosts.
 
 ## 2026-08-03
 

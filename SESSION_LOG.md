@@ -46,3 +46,24 @@ The project public key is not in the remote `root` `authorized_keys` files. No s
 
 ### Next Session
 Complete `ET0-SSH-001` in `NEXT_TASK.md`; after public-key login is verified, restore the host-baseline collection task.
+
+## Session 003 — 2026-08-05
+
+### Objective
+Verify non-interactive SSH authentication and collect the Stage 0 host baseline without changing infrastructure.
+
+### Completed
+- Verified `ssh -o BatchMode=yes -o ConnectTimeout=10 <alias> 'id -un'` for all five aliases; each returned `root` with exit code `0`.
+- Executed the approved read-only collector on `rddb`, `rdapp`, `rdvector`, `rdautomation`, and `rdmonitor` through the verified aliases.
+- Retrieved the raw JSON only to validate its six-record contract and create a versioned sanitized summary; raw files remain on their originating hosts and outside Git.
+
+### Verification Evidence
+- All five collector executions exited `0`.
+- Each evidence document matched its requested host identifier and contained successful `uname`, `os_release`, Docker, Docker Compose, container-list, and TCP-listener command records.
+- `evidence/sanitized/2026-08-05-stage0-host-baseline-summary.json` contains only timestamps, exit codes, availability flags, and aggregate counts.
+
+### Limitations
+- Aggregate counts do not establish specific service identities, versions, ports, dependencies, security, backup, HA, or monitoring readiness.
+
+### Next Session
+Execute `ET0-003` in `NEXT_TASK.md` to create an approved, read-only sanitized service inventory.
