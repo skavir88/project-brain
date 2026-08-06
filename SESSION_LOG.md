@@ -67,3 +67,26 @@ Verify non-interactive SSH authentication and collect the Stage 0 host baseline 
 
 ### Next Session
 Execute `ET0-003` in `NEXT_TASK.md` to create an approved, read-only sanitized service inventory.
+
+## Session 004 — 2026-08-06
+
+### Objective
+Produce the approved sanitized service inventory for the five declared hosts.
+
+### Completed
+- Ran the mandatory read-only preflight on every declared host; all hostname, identity, working-directory, UTC-time, disk, memory, Docker, and Docker Compose commands exited `0`.
+- Ran the approved read-only Docker service-list command through every verified SSH alias; all commands exited `0`.
+- Created `evidence/sanitized/2026-08-06-stage0-service-inventory.json` without raw service metadata.
+- Recorded the updated scoped autonomous implementation authority and its high-risk exclusions in Project Brain.
+
+### Evidence Summary
+- `rddb`: PostgreSQL and Redis categories are running.
+- `rdapp`: Dify API/web `1.16.0`, Nginx, Redis, n8n, Dify sandbox, Dify plugin daemon, and three unclassified running containers are observed.
+- `rdvector`: Qdrant is running.
+- `rdautomation` and `rdmonitor`: no running Docker containers were observed.
+
+### Recorded Divergence
+n8n is observed on `rdapp`, not the declared `rdautomation` host. No service was moved, restarted, reconfigured, or otherwise changed.
+
+### Next Session
+Execute `ET0-004` in `NEXT_TASK.md` to gather sanitized runtime-connection evidence for Dify external backend usage.

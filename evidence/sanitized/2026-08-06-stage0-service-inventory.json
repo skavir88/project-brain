@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "collected_at_utc": "2026-08-06T04:47:57Z",
+  "sanitization": "Contains only approved service category, public version indicator, normalized runtime state, aggregate container count, published binding count, and command exit codes. It excludes container IDs, names, image paths, registry paths, labels, mounts, environment values, and full port bindings.",
+  "hosts": [
+    {
+      "host_id": "rddb",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "service_list_exit_code": 0,
+      "services": [
+        {"category": "postgresql", "version_indicator": "not_recorded", "runtime_state": "running", "published_binding_count": 2, "container_count": 1},
+        {"category": "redis", "version_indicator": "not_recorded", "runtime_state": "running", "published_binding_count": 2, "container_count": 1}
+      ]
+    },
+    {
+      "host_id": "rdapp",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "service_list_exit_code": 0,
+      "services": [
+        {"category": "dify_api", "version_indicator": "1.16.0", "runtime_state": "running", "published_binding_count": 0, "container_count": 2},
+        {"category": "dify_api", "version_indicator": "1.16.0", "runtime_state": "running", "published_binding_count": 2, "container_count": 1},
+        {"category": "dify_plugin_daemon", "version_indicator": "not_recorded", "runtime_state": "running", "published_binding_count": 2, "container_count": 1},
+        {"category": "dify_sandbox", "version_indicator": "0.2.12", "runtime_state": "running", "published_binding_count": 0, "container_count": 1},
+        {"category": "dify_web", "version_indicator": "1.16.0", "runtime_state": "running", "published_binding_count": 2, "container_count": 1},
+        {"category": "n8n", "version_indicator": "latest", "runtime_state": "running", "published_binding_count": 2, "container_count": 1},
+        {"category": "nginx", "version_indicator": "latest", "runtime_state": "running", "published_binding_count": 4, "container_count": 1},
+        {"category": "other_unclassified", "version_indicator": "not_recorded", "runtime_state": "running", "published_binding_count": 0, "container_count": 3},
+        {"category": "redis", "version_indicator": "not_recorded", "runtime_state": "running", "published_binding_count": 0, "container_count": 1}
+      ]
+    },
+    {
+      "host_id": "rdvector",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "service_list_exit_code": 0,
+      "services": [
+        {"category": "qdrant", "version_indicator": "latest", "runtime_state": "running", "published_binding_count": 2, "container_count": 1}
+      ]
+    },
+    {
+      "host_id": "rdautomation",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "service_list_exit_code": 0,
+      "services": []
+    },
+    {
+      "host_id": "rdmonitor",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "service_list_exit_code": 0,
+      "services": []
+    }
+  ]
+}

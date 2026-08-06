@@ -1,78 +1,53 @@
 # Next Task
 
 ## Metadata
-- Task ID: ET0-003
+- Task ID: ET0-004
 - Stage: Stage 0 — Project Discovery, Baseline and Automation Foundation
 - Status: Ready
-- Owner: Enterprise AI Project Operator
+- Owner: Autonomous Implementation Agent
 
-## Objective
-Create one reviewed, machine-readable service inventory for the five declared hosts using only read-only SSH commands and a documented sanitization profile.
-
-## Rationale
-The first baseline verifies host reachability, Docker/Compose availability, and aggregate counts, but it intentionally excludes the service identities, versions, and published-port metadata needed to assess declared roles.
-
-## Preconditions
-- Public-key, non-interactive SSH authentication remains verified for all aliases in `inventory/hosts.yaml`.
-- `evidence/sanitized/2026-08-05-stage0-host-baseline-summary.json` is available.
-- No raw evidence will be committed.
+## Goal
+Collect sanitized, read-only runtime-connection evidence showing whether running Dify API/worker components on `rdapp` have observed TCP connections to the declared `rddb` and `rdvector` backend IPs.
 
 ## Scope
-- Collect read-only Docker container metadata required to identify service category, image version, status, and published-port count.
-- Sanitize output by excluding commands, labels, environment variables, mounts, container IDs, private registry paths, full port bindings, and secrets.
-- Create one versioned machine-readable sanitized inventory and update Project Brain with evidence-backed service classifications only.
+- Allowed hosts: `rdapp` only, using `enterprise-ai-rdapp`.
+- Allowed operations: SSH preflight, `docker ps`, read-only `docker exec`, and reading `/proc/net/tcp` or `/proc/net/tcp6` only.
+- Create one sanitized evidence file containing component counts, command exit codes, and booleans for observed connections to declared backend identifiers.
 
-## Out of Scope
-- Docker inspection, configuration reads, package changes, service restarts, deployment changes, database access, network changes, and any action outside the five declared aliases.
+## Forbidden Operations
+- No Docker inspection, configuration or environment-value reads, writes, package changes, restarts, deploys, database queries, network changes, or operations on hosts outside scope.
+- Do not persist container IDs, names, raw IP addresses, port values, environment values, labels, mounts, logs, credentials, or raw `/proc` output.
 
-## Files to Inspect
-- `AI_CONTEXT.md`
-- `CURRENT_STATE.md`
-- `ARCHITECTURE.md`
+## Inputs
 - `inventory/hosts.yaml`
-- `evidence/sanitized/2026-08-05-stage0-host-baseline-summary.json`
-
-## Files Allowed to Change
-- `evidence/sanitized/`
+- `evidence/sanitized/2026-08-06-stage0-service-inventory.json`
 - `CURRENT_STATE.md`
 - `ARCHITECTURE.md`
-- `SESSION_LOG.md`
-- `CHANGELOG.md`
-- `NEXT_TASK.md`
-- `DECISIONS.md`, only if required
 
-## Execution Steps
-1. Run the defined read-only service-list command through each alias with `BatchMode=yes`.
-2. Validate exit codes and sanitize each record before writing it to Git.
-3. Record only evidence-backed service classifications and unresolved unknowns.
-4. Run repository consistency and secret scans; create the next atomic task.
+## Steps
+1. Run the mandatory read-only preflight on `rdapp`.
+2. Identify running Dify API/worker container IDs in memory only from `docker ps` output.
+3. Read the selected containers’ TCP tables without storing raw output.
+4. Record only whether a connection to the declared `rddb` or `rdvector` backend IP was observed; absence is `unknown`, not evidence of non-use.
+5. Sanitize evidence, update Project Brain, run final checks, and create the next atomic task.
 
-## Acceptance Criteria
-- Every accessible declared host has a sanitized service-inventory record or an explicit failure classification.
-- The inventory identifies only service category, public image/version indicator, runtime status, and published-port count.
-- No raw output, container ID, label, environment variable, mount, private registry path, secret, or full port binding is versioned.
-- All claims added to Project Brain are traceable to successful command output.
-
-## Verification Commands
+## Verification
 ```bash
-ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rddb "docker ps --format '{{.Image}}\t{{.Status}}\t{{.Ports}}'"
-ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdapp "docker ps --format '{{.Image}}\t{{.Status}}\t{{.Ports}}'"
-ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdvector "docker ps --format '{{.Image}}\t{{.Status}}\t{{.Ports}}'"
-ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdautomation "docker ps --format '{{.Image}}\t{{.Status}}\t{{.Ports}}'"
-ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdmonitor "docker ps --format '{{.Image}}\t{{.Status}}\t{{.Ports}}'"
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdapp 'hostname; whoami; pwd; date -u; df -h; free -m; docker --version; docker compose version'
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdapp "docker ps --format '{{.ID}}\t{{.Image}}\t{{.Status}}'"
 ```
 
-## Evidence Required
-- One sanitized inventory record per host or a precise per-host failure classification.
-- Recorded SSH and command exit codes.
+## Evidence Requirements
+- Successful preflight and service-list exit codes.
+- Sanitized booleans for observed active TCP connections to `rddb` and `rdvector`, per component category.
+- Explicit `unknown` classification when no usable connection evidence exists.
 
 ## Rollback
-Delete only the newly created sanitized inventory file if review finds prohibited data. No infrastructure changes are made.
+No remote or service state changes are made. If review finds prohibited content, remove only the new sanitized evidence file and revert its documentation references.
 
-## Completion Updates
-- `CURRENT_STATE.md`
-- `ARCHITECTURE.md`
-- `SESSION_LOG.md`
-- `CHANGELOG.md`
-- `NEXT_TASK.md`
-- `DECISIONS.md`, only if required
+## Definition of Done
+- Only `rdapp` is contacted.
+- No prohibited data is persisted.
+- Every added claim is tied to exit-code evidence.
+- `CURRENT_STATE.md`, `ARCHITECTURE.md`, `SESSION_LOG.md`, `CHANGELOG.md`, and `NEXT_TASK.md` are updated.
+- `git diff --check`, secret scan, legacy scan, and JSON validation pass.

@@ -23,7 +23,9 @@ Read this file first in every work session. The Project Brain has 10 authoritati
 - Leave one testable atomic next task when work is complete.
 
 ## Safety and Evidence
-- Do not install, remove, restart, reconfigure, or otherwise change infrastructure without explicit user approval.
+- The Autonomous Implementation Agent may perform scoped, reversible project changes on declared hosts only when the active atomic `NEXT_TASK.md` explicitly authorizes them and required preflight, backup, verification, evidence, and rollback steps are present.
+- High-risk operations still require explicit approval: permanent-data deletion, destructive database operations, volume removal, SSH/sshd changes or restart, network/firewall/DNS/routing changes, reboot/shutdown, full OS or kernel upgrades, broad sudo grants, and public exposure.
+- Use only declared SSH aliases with public-key `BatchMode=yes`; do not request or persist credentials unless authentication is genuinely unavailable or security-invalid.
 - Do not store or disclose secrets, tokens, passwords, private keys, real organizational data, environment variables, or unreviewed raw evidence.
 - Treat missing infrastructure access as a documented limitation, never as verification.
 - Resolve a material conflict through a recorded decision; do not silently choose a narrative.

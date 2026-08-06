@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-06
+
+### Added
+- Sanitized, machine-readable Stage 0 service inventory for all declared hosts.
+
+### Changed
+- Recorded observed service placement and the n8n/`rdautomation` divergence without changing architecture responsibilities.
+- Recorded scoped autonomous implementation authority while retaining high-risk approval gates.
+
 ## 2026-08-05
 
 ### Added

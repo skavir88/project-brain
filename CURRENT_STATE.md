@@ -20,8 +20,10 @@
 - The observed SSH host-key fingerprints were registered in the control workstation's `known_hosts` with host-key verification enabled.
 - Public-key authentication and non-interactive `root` login are `verified` for every declared alias: `BatchMode=yes` returned `root` with exit code `0` on 2026-08-05.
 - The read-only collector is `verified` on every declared host. The reviewed summary is `evidence/sanitized/2026-08-05-stage0-host-baseline-summary.json`; raw JSON remains outside Git on the remote hosts.
-- Docker CLI and Docker Compose command availability are `verified` on every declared host. The observed running-container counts were `rddb=2`, `rdapp=12`, `rdvector=1`, `rdautomation=0`, and `rdmonitor=0`; these counts do not identify or verify specific services.
-- Specific service status, service versions, published ports, dependencies, security posture, backup, HA, and monitoring remain unverified.
+- Docker CLI and Docker Compose command availability are `verified` on every declared host. The baseline observed running-container counts were `rddb=2`, `rdapp=12`, `rdvector=1`, `rdautomation=0`, and `rdmonitor=0`; service identity required the subsequent sanitized inventory.
+- The sanitized service inventory is `verified` in `evidence/sanitized/2026-08-06-stage0-service-inventory.json`. It observed running PostgreSQL and Redis containers on `rddb`, Qdrant on `rdvector`, and Dify `1.16.0` API/web components, Nginx, Redis, n8n, and additional unclassified containers on `rdapp`.
+- A placement divergence is observed: n8n is running on `rdapp`, while `rdautomation` has no running containers. This is evidence, not an approved architecture change.
+- Full service versions, port values, dependencies, configuration targets, security posture, backup, HA, and monitoring remain unverified.
 
 ## Declared, Not Verified
 - Five VMware-hosted Ubuntu servers and their declared roles/IPs are listed in `ARCHITECTURE.md` and `inventory/hosts.yaml`.
@@ -35,4 +37,4 @@
 - Raw host evidence must be collected locally, reviewed, and sanitized before any repository use.
 
 ## Next Operational Target
-Create a read-only sanitized service inventory from the collected remote baseline evidence.
+Verify runtime connection evidence for Dify components on `rdapp` against the declared external data backends without exposing configuration values.

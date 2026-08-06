@@ -29,3 +29,8 @@ PostgreSQL, Redis, and Qdrant are intended as external Dify backends. Duplicatin
 Status: Accepted
 
 Each declared host uses a dedicated local Enterprise AI SSH key and a stable alias. Host-key verification remains enabled and initial host keys are recorded locally only after review. Passwords are never sent through command arguments, stored in the repository, or placed in project documentation. Non-interactive operations are blocked until the authorized operator installs the project public key on each host.
+
+## DEC-007 — Scoped Autonomous Implementation Authority
+Status: Accepted
+
+The Autonomous Implementation Agent may execute the active atomic task on declared hosts when its scope, rollback, and verification are explicit. It must run preflight, make backups before important changes, sanitize evidence, and update Project Brain. High-risk destructive, SSH, network, reboot, credential, broad-sudo, or public-exposure operations remain approval-gated.

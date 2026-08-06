@@ -24,3 +24,8 @@ Human review/HITL is a branch from Quality Gates for sensitive cases.
 - Services must be independently deployable and communicate backend-to-backend.
 - No claim of production readiness, HA, backup, monitoring, or security hardening is permitted without recorded evidence.
 - The need for accessible regional image/package mirrors is `planned` and requires a later decision backed by operational evidence.
+
+## Observed Service Placement — 2026-08-06
+The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, and three unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
+
+This observation conflicts with the declared automation-host responsibility because n8n was observed on `rdapp`. It does not alter declared responsibilities or prove backend integration. The follow-up task gathers read-only runtime evidence before any architecture decision.
