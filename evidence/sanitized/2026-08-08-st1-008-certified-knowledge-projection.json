@@ -1,0 +1,15 @@
+{
+  "task_id": "ST1-008",
+  "synthetic_only": true,
+  "projection_source_lifecycle": "certified",
+  "knowledge_item_count": 3,
+  "noncertified_projection_count": 0,
+  "projection_counts_by_source_lifecycle": {"certification_candidate": 0, "certified": 3, "human_review_required": 0, "rejected": 0},
+  "traceability_incomplete_count": 0,
+  "first_projection_rows_inserted": 1,
+  "repeat_projection_rows_inserted": 0,
+  "knowledge_count_after_application_restart": 3,
+  "noncertified_projection_count_after_restart": 0,
+  "runtime_knowledge_delete_privilege": false,
+  "secrets_recorded": false
+}

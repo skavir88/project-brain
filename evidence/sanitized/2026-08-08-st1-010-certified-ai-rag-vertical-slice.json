@@ -1,0 +1,33 @@
+{
+  "task_id": "ST1-010/ST1-011",
+  "synthetic_only": true,
+  "dify_runtime": "existing_rdapp_deployment",
+  "generation_model": "openai_api_compatible/gpt-4o",
+  "embedding_model": "openai_api_compatible/text-embedding-3-large",
+  "embedding_dimension": 3072,
+  "generation_capability_verified": true,
+  "embedding_capability_verified": true,
+  "private_consumption_path_verified": true,
+  "qdrant_collection": "enterprise_ai_certified_knowledge_v1",
+  "qdrant_collection_collision_preflight": false,
+  "qdrant_point_count": 3,
+  "controlled_knowledge_count": 3,
+  "qdrant_identity_matches_controlled_knowledge": true,
+  "qdrant_payload_contains_only_certified_knowledge_fields": true,
+  "qdrant_payload_source_identity_present": true,
+  "noncertified_source_states": {
+    "certification_candidate": 4,
+    "human_review_required": 3,
+    "rejected": 3
+  },
+  "noncertified_knowledge_rows": 0,
+  "source_identity_missing": 0,
+  "index_repeat_is_idempotent": true,
+  "grounded_answer_returned": true,
+  "grounded_answer_provenance_count": 1,
+  "minimum_certified_evidence_score": 0.7,
+  "no_evidence_behavior": "insufficient_certified_evidence",
+  "public_endpoint_created": false,
+  "raw_ingestion_records_read": false,
+  "secrets_recorded": false
+}

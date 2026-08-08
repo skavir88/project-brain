@@ -375,3 +375,51 @@ Execute ST1-006 durable synthetic persistence.
 
 ### Security Note
 - Two temporary credentials were exposed by local command-output harness mistakes and immediately rotated. No secret was written to Git, sanitized evidence, or Project Brain.
+
+## Session 021 — 2026-08-08
+
+### Objective
+Complete ST1-007 and execute ST1-008 for the synthetic certification-to-Certified-Knowledge path.
+
+### Completed
+- Verified ST1-007 concurrency: two simultaneous certification requests produced exactly one `200` and one `409`, with one durable audit event.
+- Verified `human_review_required` and `rejected` records return `409 not_eligible`; repeated certification returns `409 already_certified`; missing or malformed actor input returns `400 actor_id_required`.
+- Re-verified that the runtime role is not superuser and has no DELETE privilege on records, certification audit events, or knowledge projection rows.
+- Added the additive Certified Knowledge projection migration and projected only certified synthetic records. The deterministic repeat inserted zero rows.
+- Verified the projection has no non-certified source, preserves audit/source provenance, and remains present after an application restart.
+- Created sanitized ST1-007 and ST1-008 evidence; no credentials, raw SQL output, or raw records were versioned.
+
+### Next Session
+Execute ST1-009: add deterministic, loopback-only retrieval of Certified Knowledge with source and certification provenance.
+
+## Session 022 — 2026-08-08
+
+### Objective
+Execute ST1-009: add deterministic, loopback-only Certified Knowledge retrieval.
+
+### Completed
+- Backed up the deployed ingestion-service source, deployed the scoped retrieval endpoint, rebuilt only the loopback service, and performed a controlled restart.
+- Verified stable retrieval of three synthetic Certified Knowledge items with source fingerprint and certification provenance only.
+- Verified repeated request equality, explicit no-match behavior (`200` with zero items), bounded-query rejection (`400 invalid_query`), exact result fields, and equivalent behavior after restart.
+
+### Decision Gate
+The next critical-path operation requires an explicit AI/RAG integration decision: model/runtime, embedding/vector ownership, credential location, and private consumption path. No model, embedding, Qdrant collection, Dify configuration, or credential is inferred or changed.
+
+## Session 023 — 2026-08-08
+
+### Objective
+Execute the approved ST1-010 decision and complete the first synthetic Certified AI/RAG vertical slice.
+
+### Completed
+- Performed read-only preflights: existing Dify has one valid generation capability and one valid embedding capability; Qdrant had no Enterprise AI collection collision.
+- Added explicit `source_record_id` to the isolated Certified Knowledge projection, backfilled the three synthetic rows, and retained the existing authoritative PostgreSQL lifecycle boundary.
+- Created a private internal Docker network between Dify and the loopback ingestion service without publishing a new port.
+- Created and idempotently upserted the isolated `enterprise_ai_certified_knowledge_v1` Qdrant collection from the controlled Certified Knowledge endpoint only.
+- Verified that all three Qdrant point identities exactly match controlled Certified Knowledge, while four candidates, three human-review records, and three rejected records remain excluded.
+- Generated one Dify answer grounded in retrieved Certified Knowledge with structured provenance, and verified an unrelated query yields `insufficient_certified_evidence` without generation.
+
+### Constraints Honored
+- No provider credential, raw ingestion record, real organizational data, public endpoint, new Dify instance, unrelated Qdrant collection, destructive operation, or database deletion was used.
+
+### Next Session
+Await explicit approval for real-data onboarding or a separately scoped, non-production product enhancement. The first synthetic trusted vertical slice is complete.

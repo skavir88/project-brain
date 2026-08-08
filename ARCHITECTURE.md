@@ -25,6 +25,16 @@ Human review/HITL is a branch from Quality Gates for sensitive cases.
 - No claim of production readiness, HA, backup, monitoring, or security hardening is permitted without recorded evidence.
 - The need for accessible regional image/package mirrors is `planned` and requires a later decision backed by operational evidence.
 
+## Verified Synthetic MVP Runtime — 2026-08-08
+The loopback-only ingestion service on `rdapp` persists synthetic Stage 1 records to the isolated `enterprise_ai_ingestion_mvp.ingestion` schema on `rddb` through a restricted runtime role. Its verified lifecycle is `ingestion record → credibility disposition → explicit certification → append-only certification audit → deterministic Certified Knowledge projection`. Only `certified` records are eligible for the projection; each projection retains source fingerprint, certification-event reference, actor, timestamp, policy version, and provenance. This is not a public service, production deployment, Qdrant integration, or AI/RAG integration.
+
+The same loopback-only service now has verified deterministic retrieval over Certified Knowledge only. It returns the knowledge identifier/text plus source fingerprint and certification provenance, with a bounded query and stable ordering. It does not expose canonical raw ingestion records or invoke an embedding model, Qdrant, Dify, or an AI model.
+
+## Verified Certified AI/RAG Vertical Slice — 2026-08-08
+The existing Dify API runtime on `rdapp` privately consumes the controlled Certified Knowledge retrieval service across an internal Docker network. It uses its already configured generation and embedding capabilities to derive vectors for the isolated `enterprise_ai_certified_knowledge_v1` collection on the existing Qdrant service at `rdvector`. The index is derived only from Certified Knowledge; PostgreSQL remains the authority for certification and provenance.
+
+The answer path embeds the query, searches only that isolated collection, applies a minimum evidence score, invokes Dify generation only when eligible knowledge is retrieved, and returns source/certification provenance with the answer. No eligible result yields `insufficient_certified_evidence` without generation. The path is private and synthetic-only; it creates no public endpoint and does not make Qdrant, Dify, or PostgreSQL public.
+
 ## Observed Service Placement — 2026-08-06
 The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, a Dify SSRF proxy, and two unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
 

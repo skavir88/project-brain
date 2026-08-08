@@ -1,31 +1,65 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-008
+- Task ID: ST1-012
 - Stage: Stage 1 — Product Implementation
 - Status: Ready
 - Owner: Enterprise AI Project Operator
 
 ## Objective
-Create and verify a deterministic durable Certified Knowledge projection from persisted `certified` records only, retaining source fingerprint and certification provenance.
+Prepare the approval gate for any post-synthetic MVP work; do not onboard real organizational data.
+
+## Rationale
+The first synthetic Certified AI/RAG vertical slice is verified. Any next step involving real data, broader access, or production characteristics requires a new, explicit scope decision.
+
+## Preconditions
+- ST1-010/ST1-011 evidence remains available and the synthetic-only constraint remains active.
+- The architecture owner provides a separately scoped next product objective without disclosing a secret in this repository.
 
 ## Scope
-- Add only isolated PostgreSQL schema objects and local service code needed for projection.
-- Exclude `certification_candidate`, `human_review_required`, `rejected`, and raw records.
-- Use synthetic data, loopback deployment, additive migration, and no new credentials.
+- Record only the approved next-scope decision and define one atomic follow-up task.
 
 ## Out of Scope
-- Qdrant, embeddings, RAG, Dify, n8n, UI, external exposure, real data, destructive operations, and changes to certification semantics.
+- Real-data onboarding, credential changes, public exposure, production deployment, destructive operations, architecture expansion, and changes to certification semantics.
+
+## Files to Inspect
+- `CURRENT_STATE.md`
+- `ARCHITECTURE.md`
+- `DECISIONS.md`
+- `evidence/sanitized/2026-08-08-st1-009-certified-knowledge-retrieval.json`
+
+## Files Allowed to Change
+- `DECISIONS.md`
+- `ARCHITECTURE.md`
+- `CURRENT_STATE.md`
+- `SESSION_LOG.md`
+- `CHANGELOG.md`
+- `NEXT_TASK.md`
+
+## Execution Steps
+1. Record the narrowest approved private AI/RAG integration decision.
+2. Confirm that no secret, public exposure, or unapproved runtime change is part of the decision record.
+3. Define exactly one implementation-oriented follow-up task.
 
 ## Acceptance Criteria
-- Only persisted `certified` records create knowledge projections.
-- Projection retains source fingerprint, certification event provenance, lifecycle/version metadata, and deterministic text representation.
-- Non-certified states are excluded by database constraint/query behavior.
+- A recorded approval defines the next product objective without exposing a secret.
+- The follow-up task is atomic, reversible where applicable, and does not imply production readiness.
 
 ## Verification Commands
 ```bash
 git diff --check
 ```
 
+## Evidence Required
+- A decision record and one atomic follow-up task.
+
 ## Rollback
-Use only a rollback scoped to newly created ST1-008 isolated objects if required; do not affect existing objects.
+Documentation-only decision task; no infrastructure rollback applies.
+
+## Completion Updates
+- `DECISIONS.md`
+- `ARCHITECTURE.md`
+- `CURRENT_STATE.md`
+- `SESSION_LOG.md`
+- `CHANGELOG.md`
+- `NEXT_TASK.md`

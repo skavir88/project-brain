@@ -1,0 +1,26 @@
+{
+  "task_id": "ST1-009",
+  "synthetic_only": true,
+  "endpoint_scope": "loopback_only",
+  "retrieval_status": 200,
+  "result_count": 3,
+  "deterministic_repeat": true,
+  "exact_result_fields": [
+    "knowledge_id",
+    "source_fingerprint",
+    "source_record_id",
+    "certification_event_id",
+    "knowledge_text",
+    "provenance",
+    "certifying_actor",
+    "certification_timestamp",
+    "certification_policy_version"
+  ],
+  "raw_ingestion_record_returned": false,
+  "empty_query_result_status": 200,
+  "empty_query_result_count": 0,
+  "invalid_query_status": 400,
+  "invalid_query_error": "invalid_query",
+  "application_restart_preserves_semantics": true,
+  "secrets_recorded": false
+}

@@ -53,3 +53,20 @@ This decision authorizes no persistence, final certification, LLM judgment, qual
 Status: Accepted
 
 The existing PostgreSQL service on `rddb` is the approved isolated persistence target for the ingestion/data-credibility MVP. The logical database is `enterprise_ai_ingestion_mvp`, its application schema is `ingestion`, and its runtime role is `enterprise_ai_ingestion_runtime`. Runtime secrets are stored only outside Git at the approved `/etc/enterprise-ai/secrets/ingestion-db.env` reference. This decision does not authorize final certification, unrelated database changes, or reuse of Dify objects.
+
+## DEC-011 — Controlled Synthetic Certification Lifecycle
+Status: Accepted
+
+Final certification is an explicit, actor-driven operation for synthetic MVP records only. It atomically permits only `certification_candidate` to `certified`, persists the timestamp, actor identifier, and policy version, and appends one durable audit event. Repeated certification of an already certified record returns `already_certified`; other lifecycle states are not eligible. No automatic certification, revocation, or change to the Stage 1 credibility-gate semantics is authorized.
+
+## DEC-012 — Certified Knowledge Projection Boundary
+Status: Accepted
+
+Certified Knowledge is a deterministic, durable projection of persisted `certified` records only. Each projection preserves the source fingerprint, certification audit-event reference, actor, timestamp, policy version, and provenance needed for traceability. The projection is idempotent by source fingerprint and excludes candidates, human-review records, rejected records, and raw-record representation. Embeddings, Qdrant, Dify, and AI/RAG consumption remain separate tasks.
+
+## DEC-013 — First Certified AI/RAG Vertical Slice
+Status: Accepted
+
+The existing Dify deployment on `rdapp` is the sole AI/RAG runtime for the first synthetic vertical slice. It uses existing valid `openai_api_compatible` generation and embedding capabilities without exposing provider credentials. The existing Qdrant service on `rdvector` owns the additive, isolated `enterprise_ai_certified_knowledge_v1` derived index; PostgreSQL remains authoritative for eligibility, certification, audit, and provenance.
+
+Dify consumes only the private Controlled Certified Knowledge retrieval path. The derived index is populated only from that path and carries knowledge identity, source identity/fingerprint, certification metadata, and provenance. A Qdrant vector never establishes certification. The answer wrapper returns structured provenance and deterministically returns `insufficient_certified_evidence` when no result reaches the minimum score (`0.70`). No public endpoint, real data, provider credential, new Dify instance, or unrelated Qdrant collection is authorized by this decision.

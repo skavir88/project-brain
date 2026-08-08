@@ -9,6 +9,7 @@ from hashlib import sha256
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import Lock
+from urllib.parse import parse_qs, urlparse
 
 import psycopg
 
@@ -58,14 +59,54 @@ class IngestionHandler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
-        if self.path != "/health":
+        parsed_path = urlparse(self.path)
+        if parsed_path.path == "/health":
+            self.send_json(
+                HTTPStatus.OK,
+                {"service": "enterprise-ai-ingestion", "status": "ok"},
+            )
+            return
+
+        if parsed_path.path != "/v1/knowledge":
             self.send_error(HTTPStatus.NOT_FOUND)
             return
 
-        self.send_json(
-            HTTPStatus.OK,
-            {"service": "enterprise-ai-ingestion", "status": "ok"},
-        )
+        query_values = parse_qs(parsed_path.query, keep_blank_values=True).get("query", [""])
+        if len(query_values) != 1 or len(query_values[0]) > 128:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_query"})
+            return
+        if not persistence_enabled():
+            self.send_json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": "knowledge_retrieval_unavailable"})
+            return
+
+        query = query_values[0].strip()
+        with psycopg.connect(
+            host=os.environ["INGESTION_DB_HOST"], port=os.environ.get("INGESTION_DB_PORT", "5432"),
+            dbname=os.environ["INGESTION_DB_NAME"], user=os.environ["INGESTION_DB_USER"], password=os.environ["INGESTION_DB_PASSWORD"],
+        ) as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """SELECT knowledge_id, source_fingerprint, source_record_id, certification_event_id, knowledge_text,
+                              provenance, certifying_actor, certification_timestamp,
+                              certification_policy_version
+                       FROM ingestion.certified_knowledge_items
+                       WHERE knowledge_text ILIKE %s
+                       ORDER BY knowledge_id
+                       LIMIT 10""",
+                    (f"%{query}%",),
+                )
+                rows = cursor.fetchall()
+        items = [
+            {
+                "knowledge_id": row[0], "source_fingerprint": row[1],
+                "source_record_id": row[2], "certification_event_id": row[3],
+                "knowledge_text": row[4], "provenance": row[5],
+                "certifying_actor": row[6], "certification_timestamp": row[7].isoformat(),
+                "certification_policy_version": row[8],
+            }
+            for row in rows
+        ]
+        self.send_json(HTTPStatus.OK, {"query": query, "count": len(items), "items": items})
 
     def do_POST(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
         if self.path.startswith("/v1/records/") and self.path.endswith("/certify"):

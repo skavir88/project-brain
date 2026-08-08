@@ -1,1 +1,21 @@
-{"task_id":"ST1-007","synthetic_only":true,"transition":"certification_candidate_to_certified","actor_required":true,"audit_append_only":true,"persisted_timestamp":true,"persisted_policy":"st1-007-v1","repeat_behavior":"already_certified_conflict","restart_survives":true,"runtime_delete_privilege":false,"secrets_recorded":false}
+{
+  "task_id": "ST1-007",
+  "synthetic_only": true,
+  "transition": "certification_candidate_to_certified",
+  "actor_required": true,
+  "audit_append_only": true,
+  "persisted_timestamp": true,
+  "persisted_policy": "st1-007-v1",
+  "repeat_behavior": "already_certified_conflict",
+  "concurrent_statuses": [200, 409],
+  "concurrent_audit_events": 1,
+  "human_review_required_behavior": "409_not_eligible",
+  "rejected_behavior": "409_not_eligible",
+  "missing_actor_behavior": "400_actor_id_required",
+  "malformed_request_behavior": "400_actor_id_required",
+  "restart_survives": true,
+  "runtime_superuser": false,
+  "runtime_record_delete_privilege": false,
+  "runtime_audit_delete_privilege": false,
+  "secrets_recorded": false
+}

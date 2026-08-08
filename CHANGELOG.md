@@ -4,6 +4,9 @@
 
 ### Added
 - Controlled synthetic certification lifecycle and append-only audit persistence.
+- Deterministic, durable Certified Knowledge projection for persisted synthetic certified records only.
+- Loopback-only deterministic Certified Knowledge retrieval with source and certification provenance.
+- Private synthetic Certified Knowledge → Qdrant → Dify grounded-answer vertical slice with structured provenance and no-evidence behavior.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
 - Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
 
@@ -24,6 +27,10 @@
 - Added and verified a process-local synthetic duplicate gate that returns a conflict for repeated fingerprints and clears on service restart.
 - Recorded DEC-009 and added the verified deterministic MVP Data Credibility Gate with transient candidate, review, and rejection dispositions; no final certification or persistence was introduced.
 - Added isolated PostgreSQL-backed durable persistence for synthetic ingestion credibility results and restart-safe duplicate control.
+- Verified controlled certification concurrency, invalid-state handling, restart persistence, and least-privilege runtime access.
+- Recorded DEC-011 and DEC-012, and verified the Certified Knowledge projection boundary, idempotency, traceability, and restart persistence.
+- Added and verified bounded deterministic Certified Knowledge retrieval without raw-record exposure, embeddings, or AI/RAG invocation.
+- Recorded DEC-013, added explicit source-record identity to Certified Knowledge, and verified the isolated Qdrant derived index and Dify grounded-answer path.
 
 ## 2026-08-06
 
