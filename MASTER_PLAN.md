@@ -26,7 +26,9 @@ Status: In progress — local runtime and ST1-001 implementation baseline verifi
 
 Objective: deliver the smallest safe, demonstrable vertical slice of the approved product direction without real organizational data or production deployment.
 
-ST1-001 through ST1-005 verified the local synthetic intake, validation, canonicalization, duplicate gate, and deterministic credibility dispositions. ST1-006 added isolated durable PostgreSQL persistence, ST1-007 added controlled certification plus an append-only audit trail, ST1-008 added an idempotent Certified Knowledge projection restricted to certified records, ST1-009 added deterministic retrieval with source/certification provenance, and ST1-010/ST1-011 verified the first private Dify/Qdrant grounded-answer vertical slice. The next critical-path step is an explicit real-data onboarding and production-boundary approval; no real data is authorized.
+ST1-001 through ST1-005 verified the local synthetic intake, validation, canonicalization, duplicate gate, and deterministic credibility dispositions. ST1-006 added isolated durable PostgreSQL persistence, ST1-007 added controlled certification plus an append-only audit trail, ST1-008 added an idempotent Certified Knowledge projection restricted to certified records, ST1-009 added deterministic retrieval with source/certification provenance, and ST1-010/ST1-011 verified the first private Dify/Qdrant grounded-answer vertical slice. DEC-014 authorizes one bounded real business pilot; ST1-013 must first verify only the selected read-only file-share folder and its metadata constraints.
+
+ST1-013 verified read-only pilot-folder access and a partial metadata inventory. The next gate is intentionally narrow: select a bounded initial document subset and explicit supported-format/extraction allowlist before any real file content is read or ingested.
 
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

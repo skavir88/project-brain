@@ -70,3 +70,10 @@ Status: Accepted
 The existing Dify deployment on `rdapp` is the sole AI/RAG runtime for the first synthetic vertical slice. It uses existing valid `openai_api_compatible` generation and embedding capabilities without exposing provider credentials. The existing Qdrant service on `rdvector` owns the additive, isolated `enterprise_ai_certified_knowledge_v1` derived index; PostgreSQL remains authoritative for eligibility, certification, audit, and provenance.
 
 Dify consumes only the private Controlled Certified Knowledge retrieval path. The derived index is populated only from that path and carries knowledge identity, source identity/fingerprint, certification metadata, and provenance. A Qdrant vector never establishes certification. The answer wrapper returns structured provenance and deterministically returns `insufficient_certified_evidence` when no result reaches the minimum score (`0.70`). No public endpoint, real data, provider credential, new Dify instance, or unrelated Qdrant collection is authorized by this decision.
+
+## DEC-014 — First Real Business Pilot
+Status: Accepted
+
+The first real Enterprise AI pilot is limited to one explicitly approved, read-only organizational file-share folder representing one bounded project dataset. Folder membership never establishes credibility or certification. Files must pass the existing ingestion, quality, human-review, certification, Certified Knowledge, retrieval, Qdrant, and Dify boundaries before contributing to an executive answer.
+
+The pilot answers the CEO question, “What is the latest status of this project?”, only with certified evidence and structured provenance. “Latest” derives from controlled source/provenance and certification metadata, never filesystem ordering alone. Conflicts remain visible or route through the existing review policy. No automatic certification, whole-share crawl, write access, public exposure, production UI, or organizational-wide RBAC is authorized. Real file content may be accessed only after the exact bounded path and read-only access are verified by ST1-013.

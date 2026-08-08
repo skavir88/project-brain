@@ -1,60 +1,62 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-012
+- Task ID: ST1-014
 - Stage: Stage 1 — Product Implementation
 - Status: Ready
 - Owner: Enterprise AI Project Operator
 
 ## Objective
-Prepare the approval gate for any post-synthetic MVP work; do not onboard real organizational data.
+Approve the bounded initial real-content subset and format allowlist for the first pilot ingestion batch.
 
 ## Rationale
-The first synthetic Certified AI/RAG vertical slice is verified. Any next step involving real data, broader access, or production characteristics requires a new, explicit scope decision.
+ST1-013 confirmed read-only access but found a large, heterogeneous, partial-inventory dataset. Reading real content without a narrower subset and format policy would exceed the pilot boundary.
 
 ## Preconditions
-- ST1-010/ST1-011 evidence remains available and the synthetic-only constraint remains active.
-- The architecture owner provides a separately scoped next product objective without disclosing a secret in this repository.
+- ST1-013 sanitized evidence is available.
+- The architecture owner selects one subfolder or other deterministic bounded subset and an allowlist of formats to inspect first.
 
 ## Scope
-- Record only the approved next-scope decision and define one atomic follow-up task.
+- Record one explicit subset boundary and supported-format/content-extraction policy.
+- Define one atomic content-read task that remains read-only and does not auto-certify real records.
 
 ## Out of Scope
-- Real-data onboarding, credential changes, public exposure, production deployment, destructive operations, architecture expansion, and changes to certification semantics.
+- Reading document contents, ingestion, persistence of real content, certification, Qdrant indexing, Dify use, write access, recursive expansion through links/mounts, credential changes, public exposure, and destructive operations.
 
 ## Files to Inspect
 - `CURRENT_STATE.md`
 - `ARCHITECTURE.md`
 - `DECISIONS.md`
-- `evidence/sanitized/2026-08-08-st1-009-certified-knowledge-retrieval.json`
+- `evidence/sanitized/2026-08-08-st1-013-real-file-share-pilot-preflight.json`
 
 ## Files Allowed to Change
 - `DECISIONS.md`
-- `ARCHITECTURE.md`
+- `evidence/sanitized/<dated-st1-014-subset-decision>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
 
 ## Execution Steps
-1. Record the narrowest approved private AI/RAG integration decision.
-2. Confirm that no secret, public exposure, or unapproved runtime change is part of the decision record.
-3. Define exactly one implementation-oriented follow-up task.
+1. Record the approved subset boundary without exposing raw business content.
+2. Record the extraction allowlist and explicitly excluded/risky types.
+3. Define the smallest read-only content-extraction task, including content-sanitization and human-review limits.
 
 ## Acceptance Criteria
-- A recorded approval defines the next product objective without exposing a secret.
-- The follow-up task is atomic, reversible where applicable, and does not imply production readiness.
+- The subset and allowlist are explicit enough to prevent a whole-folder crawl.
+- The resulting task contains no auto-certification path and no secret.
 
 ## Verification Commands
 ```bash
 git diff --check
+# No implementation command is authorized until the subset/allowlist decision is recorded.
 ```
 
 ## Evidence Required
-- A decision record and one atomic follow-up task.
+- Recorded subset/allowlist decision and one atomic follow-up task.
 
 ## Rollback
-Documentation-only decision task; no infrastructure rollback applies.
+Documentation-only decision task; no rollback applies.
 
 ## Completion Updates
 - `DECISIONS.md`

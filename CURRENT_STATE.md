@@ -64,4 +64,9 @@
 - ST1-006 durable PostgreSQL persistence is verified on `rddb` for synthetic data only. The isolated database `enterprise_ai_ingestion_mvp`, schema `ingestion`, and least-privilege runtime role exist; the runtime secret is outside Git at `/etc/enterprise-ai/secrets/ingestion-db.env` on `rddb` and `rdapp` with mode `600`. Candidate, review, and rejection dispositions persist; duplicate detection survives application restart. Evidence: `evidence/sanitized/2026-08-08-st1-006-durable-persistence.json`.
 
 ## Next Operational Target
-The synthetic Certified AI/RAG vertical slice is complete. Real organizational data onboarding, public exposure, and production readiness remain unapproved.
+The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one bounded real-data pilot only after ST1-013 verifies the exact read-only folder path, access, inventory metadata, and privacy constraints. Public exposure and production readiness remain unapproved.
+
+## ST1-013 Real File-Share Pilot Preflight
+- SMB port reachability and read-only enumeration of the approved pilot folder are `verified` through the existing local Windows SMB session. No credential was persisted, no file content was read, and no write was attempted.
+- The metadata-only inventory is `partial`: at least 53,441 files, 14,145 directories, and 255,633,940,993 bytes were observed. 422 directories produced transient metadata errors (`ObjectNotFound=149`, `ReadError=273`); all counts are lower bounds and do not establish a complete inventory.
+- The dataset includes office documents and also archives, CAD files, executables, a mailstore, project-planning formats, videos, temporary/system artifacts, and shortcuts. No file content or filename/path is retained in evidence. Filesystem timestamps are not authoritative “latest” evidence. Evidence: `evidence/sanitized/2026-08-08-st1-013-real-file-share-pilot-preflight.json`.

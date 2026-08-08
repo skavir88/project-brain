@@ -35,6 +35,11 @@ The existing Dify API runtime on `rdapp` privately consumes the controlled Certi
 
 The answer path embeds the query, searches only that isolated collection, applies a minimum evidence score, invokes Dify generation only when eligible knowledge is retrieved, and returns source/certification provenance with the answer. No eligible result yields `insufficient_certified_evidence` without generation. The path is private and synthetic-only; it creates no public endpoint and does not make Qdrant, Dify, or PostgreSQL public.
 
+## Declared Real-Data Pilot Boundary
+One explicitly selected, read-only organizational file-share folder may enter the verified trust path only after a bounded preflight. The pilot flow is `file discovery → ingestion → validation/canonicalization/duplicate control → provenance/quality → human review → explicit certification → Certified Knowledge → derived Qdrant index → Dify answer with provenance`. File content, filesystem ordering, and folder membership are never certification evidence by themselves. The exact source path, host access method, and file inventory remain unknown until ST1-013.
+
+ST1-013 verified access through the control workstation only and established a partial metadata inventory. The folder is substantially larger than an initial safe ingestion batch and contains several unsupported/risky format categories. Real content remains outside the platform until an approved bounded subset and allowlist-based extraction policy are selected. No file-share mount is configured on Enterprise AI hosts.
+
 ## Observed Service Placement — 2026-08-06
 The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, a Dify SSRF proxy, and two unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
 
