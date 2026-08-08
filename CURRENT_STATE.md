@@ -1,7 +1,7 @@
 # Current State
 
 ## Current Stage
-`Stage 0 — Complete; Stage 1 transition approval pending`.
+`Stage 1 — Product Implementation (active)`.
 
 ## Status Model
 - `planned`: intended but not configured.
@@ -46,8 +46,13 @@
 - Raw host evidence must be collected locally, reviewed, and sanitized before any repository use.
 
 ## Stage 0 Outcome
-- Stage 0 is complete and ready for the Stage 1 transition approval gate, as recorded in `evidence/sanitized/2026-08-08-stage0-transition-readiness.json`.
+- Stage 0 is complete; the Stage 1 transition was explicitly approved on 2026-08-08.
 - Known limitations are documented and do not authorize production claims: two unclassified `rdapp` containers, Qdrant reported version, unauthenticated Redis readiness, and unobserved sampled Qdrant activity.
 
+## Stage 1 Implementation Evidence
+- A local-only, health-only ingestion-service skeleton is `configured` under `implementation/ingestion-service/`. It has no data ingestion, persistence, external backend, credential, or remote-host behavior.
+- The local service health contract is `verified` on 2026-08-08: `GET /health` returned HTTP `200` and the expected non-sensitive service/status fields. Evidence is `evidence/sanitized/2026-08-08-st1-001-local-ingestion-skeleton.json`.
+- Docker Compose validation is `blocked`, not verified: the control workstation has no `docker`, `podman`, or `nerdctl` command, and no installed WSL distribution. No software was installed to bypass this limitation.
+
 ## Next Operational Target
-Await explicit approval for the Stage 0 → Stage 1 transition; no Stage 1 implementation is authorized yet.
+Complete the remaining Docker Compose validation for `ST1-001` after a Compose-capable local runtime is made available through an approved control-workstation change.

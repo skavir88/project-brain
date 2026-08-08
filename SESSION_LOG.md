@@ -220,3 +220,24 @@ Stage 0 is complete and ready for Stage 1 transition approval. Known limitations
 
 ### Next Session
 Await explicit approval at the Stage 0 → Stage 1 transition gate before executing `ST1-001`.
+
+## Session 013 — 2026-08-08
+
+### Objective
+Execute ST1-001 after the explicit Stage 1 transition approval.
+
+### Completed
+- Recorded the approved transition from Stage 0 to active Stage 1 product implementation.
+- Created a local-only, health-only ingestion-service skeleton with a Python standard-library endpoint and loopback-only Docker Compose declaration.
+- Verified the endpoint contract locally: HTTP `200`, `service=enterprise-ai-ingestion`, and `status=ok`.
+- Checked for existing compatible local Compose runtimes without installing software.
+
+### Blocker
+Docker Compose validation could not run: `docker`, `podman`, and `nerdctl` are unavailable, and WSL has no installed distribution. This is recorded as `blocked`, not as successful Compose validation. The control workstation is not a declared host, so no Docker Desktop, WSL, or alternative runtime was installed.
+
+### Constraints Honored
+- No remote host, organizational data, secret, database, container, public endpoint, or infrastructure service was changed.
+- The local service process was stopped after health verification.
+
+### Next Session
+Complete the remaining ST1-001 Compose validation only after an approved Compose-capable runtime is available on the control workstation.

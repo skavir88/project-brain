@@ -3,44 +3,42 @@
 ## Metadata
 - Task ID: ST1-001
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — Stage transition approval required
-- Owner: Product/architecture owner
+- Status: Blocked — local Docker Compose runtime unavailable
+- Owner: Enterprise AI Project Operator
 
 ## Goal
-Create a local, non-production ingestion-service implementation workspace with a health-only endpoint and Docker Compose validation, establishing the first executable Enterprise AI product artifact without using organizational data.
+Complete Docker Compose validation for the already created local, non-production ingestion-service skeleton, then record the final ST1-001 result without deploying it.
 
-## Transition Gate
-Stage 0 is complete. Execution of this task requires explicit approval to enter Stage 1 because `AI_CONTEXT.md` and `PROJECT.md` keep Stage 1 out of scope until transition approval.
+## Current Evidence
+- Stage 1 transition approval was received on 2026-08-08.
+- The health-only endpoint is verified with HTTP `200`; see `evidence/sanitized/2026-08-08-st1-001-local-ingestion-skeleton.json`.
+- The control workstation has no Docker, Podman, nerdctl, or installed WSL distribution; consequently `docker compose ... config` cannot run.
 
-## Scope After Approval
-- Create only local implementation artifacts in this repository or an explicitly approved implementation workspace.
-- Use a health-only ingestion-service skeleton and Docker Compose validation.
-- Do not connect to organizational data, deploy to declared hosts, expose public endpoints, or claim production readiness.
+## Scope
+- Run `docker compose -f implementation/ingestion-service/compose.yaml config` after a Compose-capable local runtime is available.
+- Record only sanitized command status and no raw runtime output.
+- Do not deploy the skeleton, connect to organizational data, or modify declared hosts.
 
 ## Forbidden Operations
 - No remote deployment, database provisioning, real-data ingestion, secret creation, public exposure, destructive operation, or Stage 1 scope expansion beyond the approved health-only skeleton.
+- No Docker Desktop, WSL, or other control-workstation runtime installation without separate approval because the control workstation is not a declared host.
 
 ## Inputs
-- `PROJECT.md`
-- `ARCHITECTURE.md`
-- `MASTER_PLAN.md`
-- `DESIGN_SYSTEM.md`
-- `evidence/sanitized/2026-08-08-stage0-transition-readiness.json`
+- `implementation/ingestion-service/compose.yaml`
+- `evidence/sanitized/2026-08-08-st1-001-local-ingestion-skeleton.json`
 
-## Verification After Approval
+## Verification Commands
 ```bash
+docker compose -f implementation/ingestion-service/compose.yaml config
 git diff --check
-# Run the implementation workspace health and Docker Compose validation commands defined by ST1-001.
 ```
 
 ## Evidence Requirements
-- Explicit Stage 1 transition approval.
-- Local health endpoint verification and Docker Compose validation output, sanitized before recording.
+- Successful Docker Compose configuration validation exit code and sanitized result.
 
 ## Rollback
-Remove only the newly created local implementation skeleton if review fails; do not affect Stage 0 infrastructure.
+No state-changing command is required. If a later implementation workspace change is rejected, remove only newly created local Stage 1 artifacts after explicit approval; do not affect Stage 0 infrastructure.
 
 ## Definition of Done
-- Stage transition approval is recorded.
-- Health-only service skeleton and Compose validation succeed locally.
+- Docker Compose configuration validation succeeds locally.
 - Project Brain is updated with the actual implementation evidence and one next atomic task.

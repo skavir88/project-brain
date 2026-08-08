@@ -31,4 +31,4 @@ Read this file first in every work session. The Project Brain has 10 authoritati
 - Resolve a material conflict through a recorded decision; do not silently choose a narrative.
 
 ## Stage Boundary
-Stage 0 is discovery, baseline, documentation, policy, and automation foundation only. Production deployment, HA/DR, real-data integration, complete product development, and Stage 1 work are out of scope unless explicitly tasked.
+Stage 0 is complete. Stage 1 product implementation is authorized only through the active atomic task. Production deployment, HA/DR, real-data integration, complete product development, and any scope beyond that task remain out of scope unless explicitly approved.

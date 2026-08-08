@@ -1,0 +1,30 @@
+{
+  "task_id": "ST1-001",
+  "collected_at_utc": "2026-08-08",
+  "scope": "local_non_production_health_only",
+  "stage_transition": {
+    "status": "approved",
+    "evidence_source": "explicit_user_approval"
+  },
+  "health_endpoint": {
+    "status": "verified",
+    "path": "/health",
+    "http_status": 200,
+    "response_contract": {
+      "service": "enterprise-ai-ingestion",
+      "status": "ok"
+    },
+    "process_stopped_after_verification": true
+  },
+  "compose_validation": {
+    "status": "blocked",
+    "reason": "no_compatible_local_compose_runtime",
+    "docker_cli": "unavailable",
+    "podman": "unavailable",
+    "nerdctl": "unavailable",
+    "wsl_distribution": "unavailable",
+    "runtime_installed_for_task": false
+  },
+  "remote_or_data_changes": false,
+  "secrets_recorded": false
+}

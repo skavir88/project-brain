@@ -3,3 +3,9 @@
 !/evidence/README.md
 !/evidence/sanitized/
 !/evidence/sanitized/*.json
+
+# Local, unsanitized Stage 1 service-test output.
+/implementation/**/.local-evidence/
+
+# Local, unsanitized Stage 1 service-test output.
+/implementation/**/.local-evidence/

@@ -4,6 +4,7 @@
 
 ### Added
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
+- Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
 
 ### Changed
 - Replaced the reachability task with a narrower active-connection-evidence task; no architecture conclusion was made from reachability alone.
@@ -14,6 +15,7 @@
 - Recorded sanitized local-Redis active-connection evidence without inferring configuration or non-use.
 - Recorded one Dify SSRF proxy classification, two non-critical unclassified containers, and the Stage 0 architecture decision gate.
 - Accepted current n8n placement on `rdapp`, closed Stage 0, and prepared the Stage 1 transition approval gate.
+- Recorded explicit Stage 1 transition approval; recorded local Docker Compose runtime availability as the remaining ST1-001 blocker without installing software or changing infrastructure.
 
 ## 2026-08-06
 
