@@ -1,0 +1,46 @@
+{
+  "task_id": "ST1-014",
+  "discovery_method": "metadata_only_name_and_aggregate_filtering",
+  "file_content_read": false,
+  "raw_paths_or_filenames_recorded": false,
+  "candidate_discovery_error_directory_count": 422,
+  "candidate_directory_count": 417,
+  "nonempty_candidate_count": 378,
+  "candidate_size_bands": {
+    "under_20_documents": 299,
+    "from_20_to_100_documents_and_under_1gb": 55,
+    "over_100_documents_or_1gb": 24
+  },
+  "automatic_selection_permitted": false,
+  "selection_reason": "multiple bounded status-reporting candidates may represent materially different project-status periods",
+  "candidate_options": [
+    {
+      "source_alias": "status_candidate_a",
+      "metadata_match_class": "status_reporting",
+      "allowed_document_count": 19,
+      "allowed_total_bytes": 6797296,
+      "extension_distribution": {".pdf": 19},
+      "oldest_last_write_utc": "2024-02-21T09:45:54.0000000Z",
+      "newest_last_write_utc": "2024-02-21T09:51:32.0000000Z"
+    },
+    {
+      "source_alias": "status_candidate_b",
+      "metadata_match_class": "status_reporting",
+      "allowed_document_count": 19,
+      "allowed_total_bytes": 23606611,
+      "extension_distribution": {".pdf": 18, ".xlsx": 1},
+      "oldest_last_write_utc": "2023-07-01T12:25:34.0000000Z",
+      "newest_last_write_utc": "2024-05-15T13:20:06.0000000Z"
+    },
+    {
+      "source_alias": "status_candidate_c",
+      "metadata_match_class": "status_reporting",
+      "allowed_document_count": 19,
+      "allowed_total_bytes": 30418264,
+      "extension_distribution": {".pdf": 19},
+      "oldest_last_write_utc": "2023-08-31T05:52:36.0000000Z",
+      "newest_last_write_utc": "2024-05-15T13:26:50.0000000Z"
+    }
+  ],
+  "secrets_recorded": false
+}

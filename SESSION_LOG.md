@@ -451,3 +451,16 @@ Execute ST1-013 Real File-Share Pilot Preflight using the approved read-only SMB
 ### Limitation and Next Gate
 - 422 directories returned transient metadata errors, so the aggregate inventory is partial. The observed lower bound is too large and heterogeneous for an unbounded first ingestion.
 - ST1-014 requires an architecture-owner decision selecting one smaller bounded subset and a supported-format/extraction allowlist before any real content access.
+
+## Session 026 — 2026-08-08
+
+### Objective
+Execute ST1-014 metadata-only discovery for a bounded initial real-content subset.
+
+### Completed
+- Applied the approved `.pdf`, `.docx`, and `.xlsx` allowlist to metadata-only discovery; no allowlisted file content was read.
+- Found 417 metadata-named candidate directories, with 55 subsets meeting the technical 20–100-document and ≤1GB target.
+- Produced three non-sensitive status-reporting candidate summaries with aggregate size, extension distribution, and filesystem timestamp range.
+
+### Decision Gate
+Multiple candidate subsets can represent different project-status periods. The source alias must be selected by the architecture owner before any real content reading; filesystem dates alone are not authority evidence.

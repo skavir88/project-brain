@@ -30,5 +30,7 @@ ST1-001 through ST1-005 verified the local synthetic intake, validation, canonic
 
 ST1-013 verified read-only pilot-folder access and a partial metadata inventory. The next gate is intentionally narrow: select a bounded initial document subset and explicit supported-format/extraction allowlist before any real file content is read or ingested.
 
+ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

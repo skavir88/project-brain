@@ -9,6 +9,7 @@
 - Private synthetic Certified Knowledge → Qdrant → Dify grounded-answer vertical slice with structured provenance and no-evidence behavior.
 - DEC-014 and the bounded read-only real business-pilot preflight task.
 - Sanitized ST1-013 real file-share metadata-only preflight evidence.
+- Sanitized ST1-014 metadata-only real-content subset discovery evidence.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
 - Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
 
@@ -35,6 +36,7 @@
 - Recorded DEC-013, added explicit source-record identity to Certified Knowledge, and verified the isolated Qdrant derived index and Dify grounded-answer path.
 - Authorized one bounded real business pilot while retaining explicit certification and human-review boundaries.
 - Recorded partial read-only pilot-folder inventory, format-risk categories, and the bounded-subset gate before real content access.
+- Recorded three non-sensitive status-reporting candidate summaries and stopped before content access pending business selection.
 
 ## 2026-08-06
 

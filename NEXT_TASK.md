@@ -3,7 +3,7 @@
 ## Metadata
 - Task ID: ST1-014
 - Stage: Stage 1 — Product Implementation
-- Status: Ready
+- Status: Blocked — user selection required
 - Owner: Enterprise AI Project Operator
 
 ## Objective
@@ -13,8 +13,8 @@ Approve the bounded initial real-content subset and format allowlist for the fir
 ST1-013 confirmed read-only access but found a large, heterogeneous, partial-inventory dataset. Reading real content without a narrower subset and format policy would exceed the pilot boundary.
 
 ## Preconditions
-- ST1-013 sanitized evidence is available.
-- The architecture owner selects one subfolder or other deterministic bounded subset and an allowlist of formats to inspect first.
+- ST1-013 and ST1-014 sanitized evidence is available.
+- The architecture owner selects one listed status-reporting source alias or provides another explicitly bounded subset.
 
 ## Scope
 - Record one explicit subset boundary and supported-format/content-extraction policy.
@@ -28,6 +28,7 @@ ST1-013 confirmed read-only access but found a large, heterogeneous, partial-inv
 - `ARCHITECTURE.md`
 - `DECISIONS.md`
 - `evidence/sanitized/2026-08-08-st1-013-real-file-share-pilot-preflight.json`
+- `evidence/sanitized/2026-08-08-st1-014-subset-discovery.json`
 
 ## Files Allowed to Change
 - `DECISIONS.md`

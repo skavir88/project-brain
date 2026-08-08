@@ -40,6 +40,8 @@ One explicitly selected, read-only organizational file-share folder may enter th
 
 ST1-013 verified access through the control workstation only and established a partial metadata inventory. The folder is substantially larger than an initial safe ingestion batch and contains several unsupported/risky format categories. Real content remains outside the platform until an approved bounded subset and allowlist-based extraction policy are selected. No file-share mount is configured on Enterprise AI hosts.
 
+ST1-014 discovered multiple bounded allowlisted status-reporting candidates using names and metadata only. Because a folder/subset selection can alter the executive meaning of “latest status,” no candidate is automatically selected and content remains unread until the architecture owner chooses a source alias.
+
 ## Observed Service Placement — 2026-08-06
 The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, a Dify SSRF proxy, and two unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
 
