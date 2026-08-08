@@ -1,0 +1,26 @@
+{
+  "task_id": "ST1-001",
+  "collected_at_utc": "2026-08-08",
+  "scope": "local_control_workstation_only",
+  "operating_system": {
+    "product": "Windows 10 Enterprise",
+    "build": "26200",
+    "hypervisor_detected": true
+  },
+  "administrative_session": false,
+  "runtime_availability": {
+    "docker": "unavailable",
+    "podman": "unavailable",
+    "nerdctl": "unavailable",
+    "wsl_distribution": "unavailable"
+  },
+  "approved_wsl_prerequisite_attempt": {
+    "command": "wsl --install --no-distribution",
+    "exit_code": 1,
+    "component_installed": false,
+    "reboot_initiated": false,
+    "status": "blocked_administrative_elevation_required"
+  },
+  "remote_changes": false,
+  "secrets_recorded": false
+}

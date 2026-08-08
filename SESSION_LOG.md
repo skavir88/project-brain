@@ -241,3 +241,99 @@ Docker Compose validation could not run: `docker`, `podman`, and `nerdctl` are u
 
 ### Next Session
 Complete the remaining ST1-001 Compose validation only after an approved Compose-capable runtime is available on the control workstation.
+
+## Session 014 — 2026-08-08
+
+### Objective
+Install the approved local Docker Desktop/WSL2 runtime to complete ST1-001 Compose validation.
+
+### Preflight Evidence
+- The control workstation is Windows 10 Enterprise build `26200`; a hypervisor is detected.
+- Docker, Podman, nerdctl, and WSL distributions are unavailable.
+- The current Codex session is not administrative.
+
+### Result
+- Executed the approved `wsl --install --no-distribution` command; it exited `1` without installing a component.
+- No Docker Desktop installation was attempted because its required WSL2 prerequisite is unavailable.
+- No reboot was initiated or requested by the command, and no remote Enterprise AI host was touched.
+
+### Blocker
+An elevated Windows session is required to enable the WSL2 prerequisite. After elevation, rerun the active ST1-001 task; if a reboot becomes necessary, stop before reboot and request its separate approval.
+
+## Session 015 — 2026-08-08
+
+### Objective
+Complete ST1-001 local Docker Desktop/WSL2 and Docker Compose validation.
+
+### Completed
+- Re-ran the runtime preflight: Docker Client and Server version `29.6.2`, Docker Desktop `4.85.0`, and Docker Compose `v5.3.1` all returned successfully in the `desktop-linux` context.
+- Verified that the selected Docker context uses the local Windows named-pipe transport, not an insecure Docker TCP endpoint.
+- Ran the exact required command: `docker compose -f implementation/ingestion-service/compose.yaml config`; it exited `0`.
+
+### Constraints Honored
+- No reboot, remote-host change, container deployment, data ingestion, secret, public exposure, or destructive operation occurred.
+- The Compose declaration remains loopback-only for its published service port.
+
+### Next Session
+Execute ST1-002: implement the smallest local synthetic-record intake and structural-validation slice.
+
+## Session 016 — 2026-08-08
+
+### Objective
+Execute ST1-002: create and verify the local synthetic-record intake and structural-validation slice.
+
+### Completed
+- Added `POST /v1/records` with structural checks for non-empty string `source_id`, non-empty string `record_id`, and object `payload`.
+- Verified a valid synthetic request returns HTTP `202` with an accepted result and no validation errors.
+- Verified an invalid synthetic request returns HTTP `422` with machine-readable validation errors.
+- Verified Python syntax, Compose configuration, image build, loopback-only container startup, running Compose status, and controlled `docker compose stop`.
+
+### Verification Notes
+- An initial PowerShell test harness sent incorrectly escaped JSON; the service correctly returned HTTP `400 invalid_json`.
+- A subsequent PowerShell assertion could not read the consumed HTTP-error body. A Python standard-library client then verified both final status/body contracts directly. These harness issues did not require a service rollback or configuration change.
+
+### Constraints Honored
+- No record persistence, remote host, organizational data, secret, external backend, public exposure, destructive Docker operation, or infrastructure change occurred.
+- The test container was stopped after verification; no remove/prune command was used.
+
+### Next Session
+Execute ST1-003: add deterministic canonicalization and a content fingerprint for accepted synthetic records without retaining deduplication state.
+
+## Session 017 — 2026-08-08
+
+### Objective
+Execute ST1-003: add and verify deterministic canonicalization and content fingerprinting.
+
+### Completed
+- Canonicalized surrounding whitespace in valid synthetic `source_id` and `record_id` values.
+- Generated a SHA-256 fingerprint from stable JSON serialization of the canonical record.
+- Verified two semantically equivalent synthetic records produce the same 64-character fingerprint.
+- Verified invalid requests retain their `422` validation response and do not include a fingerprint.
+- Verified Python syntax, Compose configuration, image build, loopback-only container lifecycle, running status, and controlled stop.
+
+### Constraints Honored
+- No record, fingerprint, deduplication state, secret, organizational data, remote host, public endpoint, or persistent storage was created.
+- The test container was stopped after verification; no remove/prune command was used.
+
+### Next Session
+Execute ST1-004: add a process-local duplicate gate for synthetic fingerprints, cleared on restart and never persisted.
+
+## Session 018 — 2026-08-08
+
+### Objective
+Execute ST1-004: add and verify a process-local synthetic duplicate gate.
+
+### Completed
+- Added a synchronized in-memory fingerprint set that starts empty with the service process.
+- Verified the first valid synthetic record returns HTTP `202` and `duplicate=false`.
+- Verified an equivalent repeat returns HTTP `409`, `duplicate=true`, and the same fingerprint.
+- Verified invalid input returns HTTP `422` and does not enter duplicate state.
+- Verified a controlled Compose stop/start clears the state: the same valid record returned HTTP `202` again.
+- Verified Python syntax, Compose configuration, image build, loopback-only startup, Compose status, and controlled stops.
+
+### Constraints Honored
+- No state was written to disk, Docker volumes, external services, or remote hosts.
+- No organizational data, secret, destructive Docker operation, public exposure, or infrastructure change occurred.
+
+### Decision Gate
+The next product step requires a minimum Quality Gate and Certified Data policy. Existing Project Brain documents define those concepts but not the rule(s), review behavior, or output semantics needed to implement them truthfully.

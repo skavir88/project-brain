@@ -1,44 +1,65 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-001
+- Task ID: ST1-005
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — local Docker Compose runtime unavailable
-- Owner: Enterprise AI Project Operator
+- Status: Blocked — minimum Quality Gate and Certified Data policy decision required
+- Owner: Product/architecture owner
 
-## Goal
-Complete Docker Compose validation for the already created local, non-production ingestion-service skeleton, then record the final ST1-001 result without deploying it.
+## Objective
+Approve the smallest non-production policy that determines whether a synthetic record which passes structural validation and the process-local duplicate gate may be reported as a certification candidate, requires Human-In-The-Loop review, or is rejected.
 
-## Current Evidence
-- Stage 1 transition approval was received on 2026-08-08.
-- The health-only endpoint is verified with HTTP `200`; see `evidence/sanitized/2026-08-08-st1-001-local-ingestion-skeleton.json`.
-- The control workstation has no Docker, Podman, nerdctl, or installed WSL distribution; consequently `docker compose ... config` cannot run.
+## Rationale
+The verified local slice now reaches `Ingestion → Structural Validation → Normalization → Deduplication`. The next required flow components, Quality Gates and Certified Data/Knowledge, have no approved acceptance rule, review behavior, or output semantics. Implementing those choices without an owner decision would invent material product requirements.
 
-## Scope
-- Run `docker compose -f implementation/ingestion-service/compose.yaml config` after a Compose-capable local runtime is available.
-- Record only sanitized command status and no raw runtime output.
-- Do not deploy the skeleton, connect to organizational data, or modify declared hosts.
+## Preconditions
+- ST1-002, ST1-003, and ST1-004 evidence is available under `evidence/sanitized/`.
+- The request is limited to synthetic, local, non-production behavior.
 
-## Forbidden Operations
-- No remote deployment, database provisioning, real-data ingestion, secret creation, public exposure, destructive operation, or Stage 1 scope expansion beyond the approved health-only skeleton.
-- No Docker Desktop, WSL, or other control-workstation runtime installation without separate approval because the control workstation is not a declared host.
+## Decision Required
+- Select one disposition for a structurally valid, unique synthetic record: `certification_candidate`, `human_review_required`, or `rejected`.
+- Specify any additional minimum quality checks beyond structural validity and duplicate absence, or explicitly confirm that no additional check applies to this MVP slice.
+- Specify whether a candidate result may be represented only as a transient response or requires a durable audit/certification record. Durable storage is out of scope until separately approved.
 
-## Inputs
-- `implementation/ingestion-service/compose.yaml`
-- `evidence/sanitized/2026-08-08-st1-001-local-ingestion-skeleton.json`
+## Scope After Decision
+- Implement only the selected local, synthetic, non-production response semantics.
+- Keep loopback-only Compose deployment and no persistence unless a separate storage decision is approved.
+
+## Out of Scope
+- Real organizational data, persistent certification/audit storage, external backends, remote deployment, public exposure, quality-score methodology not selected by the owner, destructive operations, and architecture expansion.
+
+## Files to Inspect
+- `PROJECT.md`
+- `ARCHITECTURE.md`
+- `DECISIONS.md`
+- `CURRENT_STATE.md`
+- `evidence/sanitized/2026-08-08-st1-002-synthetic-intake-validation.json`
+- `evidence/sanitized/2026-08-08-st1-003-canonicalization-fingerprint.json`
+- `evidence/sanitized/2026-08-08-st1-004-process-local-duplicate-gate.json`
+
+## Files Allowed to Change
+- `DECISIONS.md`
+- `CURRENT_STATE.md`
+- `MASTER_PLAN.md`
+- `SESSION_LOG.md`
+- `CHANGELOG.md`
+- `NEXT_TASK.md`
+- `implementation/ingestion-service/`
+- `evidence/sanitized/`
 
 ## Verification Commands
 ```bash
-docker compose -f implementation/ingestion-service/compose.yaml config
 git diff --check
 ```
 
-## Evidence Requirements
-- Successful Docker Compose configuration validation exit code and sanitized result.
+## Evidence Required
+- Explicit product-owner decision with the selected disposition and any quality criteria.
+- If implementation follows, sanitized local response and Compose verification output.
 
 ## Rollback
-No state-changing command is required. If a later implementation workspace change is rejected, remove only newly created local Stage 1 artifacts after explicit approval; do not affect Stage 0 infrastructure.
+No implementation change is authorized until the decision is recorded. Any later local response-only change must have an ignored timestamped backup and no persistent data.
 
 ## Definition of Done
-- Docker Compose configuration validation succeeds locally.
-- Project Brain is updated with the actual implementation evidence and one next atomic task.
+- The policy decision is recorded in `DECISIONS.md`.
+- The next atomic implementation task reflects only the approved policy.
+- No unapproved quality, certification, HITL, persistence, or architecture behavior is introduced.

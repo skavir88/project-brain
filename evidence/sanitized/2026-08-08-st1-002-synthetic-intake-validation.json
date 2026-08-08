@@ -1,0 +1,31 @@
+{
+  "task_id": "ST1-002",
+  "collected_at_utc": "2026-08-08",
+  "scope": "local_loopback_synthetic_only",
+  "endpoint": "/v1/records",
+  "structural_contract": {
+    "source_id": "non_empty_string",
+    "record_id": "non_empty_string",
+    "payload": "object"
+  },
+  "verification": {
+    "python_compile_exit_code": 0,
+    "compose_config_exit_code": 0,
+    "compose_build_exit_code": 0,
+    "compose_start_exit_code": 0,
+    "compose_ps_exit_code": 0,
+    "compose_stop_exit_code": 0,
+    "health_http_status": 200,
+    "valid_synthetic_http_status": 202,
+    "invalid_synthetic_http_status": 422,
+    "final_contract_test_client": "python_standard_library"
+  },
+  "intermediate_harness_findings": [
+    "malformed_test_json_received_expected_http_400",
+    "powershell_http_error_body_not_available_for_assertion"
+  ],
+  "published_port_scope": "loopback_only",
+  "record_persistence": false,
+  "remote_changes": false,
+  "secrets_recorded": false
+}

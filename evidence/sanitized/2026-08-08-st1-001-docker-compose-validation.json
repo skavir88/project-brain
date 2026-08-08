@@ -1,0 +1,23 @@
+{
+  "task_id": "ST1-001",
+  "collected_at_utc": "2026-08-08",
+  "scope": "local_control_workstation_only",
+  "docker_runtime": {
+    "status": "verified",
+    "context": "desktop-linux",
+    "client_version": "29.6.2",
+    "server_version": "29.6.2",
+    "desktop_version": "4.85.0",
+    "compose_version": "v5.3.1",
+    "context_transport": "local_named_pipe",
+    "insecure_tcp_configured_in_selected_context": false
+  },
+  "compose_validation": {
+    "status": "verified",
+    "command_exit_code": 0,
+    "service_names": ["ingestion-service"],
+    "published_port_scope": "loopback_only"
+  },
+  "remote_changes": false,
+  "secrets_recorded": false
+}

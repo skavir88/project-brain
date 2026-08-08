@@ -16,6 +16,11 @@
 - Recorded one Dify SSRF proxy classification, two non-critical unclassified containers, and the Stage 0 architecture decision gate.
 - Accepted current n8n placement on `rdapp`, closed Stage 0, and prepared the Stage 1 transition approval gate.
 - Recorded explicit Stage 1 transition approval; recorded local Docker Compose runtime availability as the remaining ST1-001 blocker without installing software or changing infrastructure.
+- Recorded the approved but unsuccessful WSL prerequisite attempt from a non-administrative control-workstation session; no component installation or reboot occurred.
+- Verified Docker Desktop/WSL2 local runtime availability and successful ST1-001 Docker Compose configuration validation.
+- Added and verified the local synthetic-record intake and structural-validation slice; Compose testing was loopback-only and left the service stopped.
+- Added and verified deterministic identifier canonicalization and SHA-256 content fingerprints for accepted synthetic records.
+- Added and verified a process-local synthetic duplicate gate that returns a conflict for repeated fingerprints and clears on service restart.
 
 ## 2026-08-06
 

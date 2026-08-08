@@ -1,0 +1,31 @@
+{
+  "task_id": "ST1-004",
+  "collected_at_utc": "2026-08-08",
+  "scope": "local_loopback_synthetic_only",
+  "duplicate_gate": {
+    "state_location": "process_memory_only",
+    "state_at_service_start": "empty",
+    "persistence": false,
+    "first_valid_http_status": 202,
+    "first_valid_duplicate": false,
+    "equivalent_repeat_http_status": 409,
+    "equivalent_repeat_duplicate": true,
+    "fingerprints_match": true,
+    "after_controlled_restart_http_status": 202,
+    "after_controlled_restart_duplicate": false
+  },
+  "invalid_input": {
+    "http_status": 422,
+    "entered_duplicate_state": false
+  },
+  "verification": {
+    "python_compile_exit_code": 0,
+    "compose_config_exit_code": 0,
+    "compose_build_start_exit_code": 0,
+    "compose_ps_exit_code": 0,
+    "compose_stop_exit_code": 0
+  },
+  "published_port_scope": "loopback_only",
+  "remote_changes": false,
+  "secrets_recorded": false
+}

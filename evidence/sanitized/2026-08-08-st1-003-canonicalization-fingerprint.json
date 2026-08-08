@@ -1,0 +1,30 @@
+{
+  "task_id": "ST1-003",
+  "collected_at_utc": "2026-08-08",
+  "scope": "local_loopback_synthetic_only",
+  "canonicalization": {
+    "source_id": "trim_surrounding_whitespace",
+    "record_id": "trim_surrounding_whitespace"
+  },
+  "fingerprint": {
+    "algorithm": "SHA-256",
+    "input": "stable_json_of_canonical_record",
+    "output_length": 64,
+    "equivalent_synthetic_records_match": true
+  },
+  "verification": {
+    "python_compile_exit_code": 0,
+    "compose_config_exit_code": 0,
+    "compose_build_start_exit_code": 0,
+    "compose_ps_exit_code": 0,
+    "compose_stop_exit_code": 0,
+    "valid_synthetic_http_status": 202,
+    "invalid_synthetic_http_status": 422,
+    "invalid_response_contains_fingerprint": false
+  },
+  "published_port_scope": "loopback_only",
+  "record_persistence": false,
+  "deduplication_state": false,
+  "remote_changes": false,
+  "secrets_recorded": false
+}
