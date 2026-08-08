@@ -1,27 +1,31 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-007
+- Task ID: ST1-008
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — certification lifecycle policy decision required
-- Owner: Product/architecture owner
+- Status: Ready
+- Owner: Enterprise AI Project Operator
 
 ## Objective
-Approve the minimum controlled transition from persisted `certification_candidate` to final `certified` data/knowledge.
+Create and verify a deterministic durable Certified Knowledge projection from persisted `certified` records only, retaining source fingerprint and certification provenance.
 
-## Rationale
-ST1-006 now persists candidate/review/rejection states durably. Final certification semantics, authorization, evidence requirements, and human-review behavior are not yet approved and must not be inferred.
-
-## Decision Required
-- Define who or what may transition a candidate to `certified`.
-- Define minimum evidence and audit fields required for that transition.
-- Confirm whether the first MVP transition is manual/HITL only.
+## Scope
+- Add only isolated PostgreSQL schema objects and local service code needed for projection.
+- Exclude `certification_candidate`, `human_review_required`, `rejected`, and raw records.
+- Use synthetic data, loopback deployment, additive migration, and no new credentials.
 
 ## Out of Scope
-- Automatic certification, public UI, external AI/RAG integration, real data, destructive changes, and credential changes.
+- Qdrant, embeddings, RAG, Dify, n8n, UI, external exposure, real data, destructive operations, and changes to certification semantics.
 
-## Evidence Required
-- Explicit lifecycle decision recorded in `DECISIONS.md`.
+## Acceptance Criteria
+- Only persisted `certified` records create knowledge projections.
+- Projection retains source fingerprint, certification event provenance, lifecycle/version metadata, and deterministic text representation.
+- Non-certified states are excluded by database constraint/query behavior.
 
-## Definition of Done
-- One approved, atomic implementation task for the controlled certification transition is created.
+## Verification Commands
+```bash
+git diff --check
+```
+
+## Rollback
+Use only a rollback scoped to newly created ST1-008 isolated objects if required; do not affect existing objects.
