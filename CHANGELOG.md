@@ -22,6 +22,7 @@
 - Added and verified deterministic identifier canonicalization and SHA-256 content fingerprints for accepted synthetic records.
 - Added and verified a process-local synthetic duplicate gate that returns a conflict for repeated fingerprints and clears on service restart.
 - Recorded DEC-009 and added the verified deterministic MVP Data Credibility Gate with transient candidate, review, and rejection dispositions; no final certification or persistence was introduced.
+- Added isolated PostgreSQL-backed durable persistence for synthetic ingestion credibility results and restart-safe duplicate control.
 
 ## 2026-08-06
 

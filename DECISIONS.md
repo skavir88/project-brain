@@ -48,3 +48,8 @@ For local synthetic records only, structural validity and duplicate absence are 
 The minimum gate requires a usable `provenance.source_reference`. Its absence routes an otherwise processable record to `human_review_required` with `provenance_insufficient`. If `observed_at` is present, it must be an ISO-8601 timestamp with timezone and must not be in the future; failure is `rejected` with `temporal_validity_failed`. If `payload.source_id` is present, it must match canonical `source_id`; failure is `rejected` with `consistency_check_failed`.
 
 This decision authorizes no persistence, final certification, LLM judgment, quality scoring, external integration, real organizational data, or remote deployment. The resulting disposition and reason codes are transient local responses only.
+
+## DEC-010 — Isolated PostgreSQL Persistence for the MVP
+Status: Accepted
+
+The existing PostgreSQL service on `rddb` is the approved isolated persistence target for the ingestion/data-credibility MVP. The logical database is `enterprise_ai_ingestion_mvp`, its application schema is `ingestion`, and its runtime role is `enterprise_ai_ingestion_runtime`. Runtime secrets are stored only outside Git at the approved `/etc/enterprise-ai/secrets/ingestion-db.env` reference. This decision does not authorize final certification, unrelated database changes, or reuse of Dify objects.

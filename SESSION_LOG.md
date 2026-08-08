@@ -362,3 +362,16 @@ Execute ST1-005 using the approved initial MVP Data Credibility Gate policy.
 
 ### Next Session
 ST1-006 requires the approved durable persistence target and scoped credential-creation authority before any PostgreSQL database, role, schema, migration, or secret file is created.
+
+## Session 020 — 2026-08-08
+
+### Objective
+Execute ST1-006 durable synthetic persistence.
+
+### Completed
+- Created the approved isolated PostgreSQL database, schema, role, additive table/indexes, and restricted runtime secret references.
+- Deployed the ingestion service on `rdapp` with loopback-only exposure and verified PostgreSQL-backed candidate/review/rejection persistence.
+- Verified duplicate protection survives application restart and the runtime role has INSERT but not DELETE privilege.
+
+### Security Note
+- Two temporary credentials were exposed by local command-output harness mistakes and immediately rotated. No secret was written to Git, sanitized evidence, or Project Brain.

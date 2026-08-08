@@ -1,0 +1,10 @@
+services:
+  ingestion-service:
+    build:
+      context: /opt/enterprise-ai/ingestion-service
+    env_file:
+      - /etc/enterprise-ai/secrets/ingestion-db.env
+    ports:
+      - "127.0.0.1:8081:8080"
+    extra_hosts:
+      - "rddb:172.20.190.61"

@@ -10,9 +10,38 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import Lock
 
+import psycopg
+
 
 seen_fingerprints: set[str] = set()
 fingerprint_lock = Lock()
+
+
+def persistence_enabled() -> bool:
+    return all(os.environ.get(name) for name in ("INGESTION_DB_HOST", "INGESTION_DB_NAME", "INGESTION_DB_USER", "INGESTION_DB_PASSWORD"))
+
+
+def reserve_persisted_record(record: dict[str, object], fingerprint: str, disposition: str, reason_code: str | None, quality_gate: str) -> bool:
+    """Persist one synthetic result; false means the unique fingerprint already exists."""
+    if not persistence_enabled():
+        with fingerprint_lock:
+            if fingerprint in seen_fingerprints:
+                return False
+            seen_fingerprints.add(fingerprint)
+            return True
+    with psycopg.connect(
+        host=os.environ["INGESTION_DB_HOST"], port=os.environ.get("INGESTION_DB_PORT", "5432"),
+        dbname=os.environ["INGESTION_DB_NAME"], user=os.environ["INGESTION_DB_USER"], password=os.environ["INGESTION_DB_PASSWORD"],
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """INSERT INTO ingestion.credibility_records
+                (record_fingerprint, canonical_record, provenance, source_id, record_id, observed_at, disposition, reason_code, quality_gate_outcome, lifecycle_state)
+                VALUES (%s, %s::jsonb, %s::jsonb, %s, %s, %s, %s, %s, %s, %s)
+                ON CONFLICT (record_fingerprint) DO NOTHING RETURNING record_fingerprint""",
+                (fingerprint, json.dumps(record), json.dumps(record.get("provenance")), record["source_id"], record["record_id"], record.get("observed_at"), disposition, reason_code, quality_gate, disposition),
+            )
+            return cursor.fetchone() is not None
 
 
 class IngestionHandler(BaseHTTPRequestHandler):
@@ -39,6 +68,20 @@ class IngestionHandler(BaseHTTPRequestHandler):
         )
 
     def do_POST(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
+        if self.path.startswith("/v1/records/") and self.path.endswith("/certify"):
+            fingerprint = self.path.removeprefix("/v1/records/").removesuffix("/certify").strip("/")
+            try:
+                actor = json.loads(self.rfile.read(int(self.headers.get("Content-Length", "")))).get("actor_id")
+            except (ValueError, json.JSONDecodeError):
+                actor = None
+            if not isinstance(actor, str) or not actor.strip() or not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "actor_id_required"}); return
+            with psycopg.connect(host=os.environ["INGESTION_DB_HOST"], port=os.environ.get("INGESTION_DB_PORT", "5432"), dbname=os.environ["INGESTION_DB_NAME"], user=os.environ["INGESTION_DB_USER"], password=os.environ["INGESTION_DB_PASSWORD"]) as c:
+                with c.cursor() as q:
+                    q.execute("""WITH transitioned AS (UPDATE ingestion.credibility_records SET lifecycle_state='certified', certification_timestamp=now(), certification_actor=%s, certification_policy_version='st1-007-v1' WHERE record_fingerprint=%s AND lifecycle_state='certification_candidate' RETURNING record_fingerprint) INSERT INTO ingestion.certification_audit_events(record_fingerprint,previous_lifecycle_state,new_lifecycle_state,certification_timestamp,actor_identifier,policy_version) SELECT record_fingerprint,'certification_candidate','certified',now(),%s,'st1-007-v1' FROM transitioned RETURNING record_fingerprint""", (actor.strip(), fingerprint, actor.strip()))
+                    if q.fetchone(): self.send_json(HTTPStatus.OK, {"disposition":"certified","actor_id":actor.strip(),"policy_version":"st1-007-v1"}); return
+                    q.execute("SELECT lifecycle_state FROM ingestion.credibility_records WHERE record_fingerprint=%s", (fingerprint,)); row=q.fetchone()
+                    self.send_json(HTTPStatus.CONFLICT if row else HTTPStatus.NOT_FOUND, {"error":"already_certified" if row and row[0]=='certified' else "not_eligible" if row else "not_found"}); return
         if self.path != "/v1/records":
             self.send_error(HTTPStatus.NOT_FOUND)
             return
@@ -74,21 +117,11 @@ class IngestionHandler(BaseHTTPRequestHandler):
 
         canonical_record = canonicalize_record(record)
         fingerprint = fingerprint_record(canonical_record)
-        with fingerprint_lock:
-            if fingerprint in seen_fingerprints:
-                self.send_json(
-                    HTTPStatus.CONFLICT,
-                    {
-                        "accepted": False,
-                        "duplicate": True,
-                        "fingerprint": fingerprint,
-                        "disposition": "rejected",
-                        "reason_code": "duplicate_detected",
-                    },
-                )
-                return
-
         disposition, reason_code = evaluate_quality_gate(canonical_record)
+        quality_gate = "passed" if disposition == "certification_candidate" else "review_required" if disposition == "human_review_required" else "failed"
+        if not reserve_persisted_record(canonical_record, fingerprint, disposition, reason_code, quality_gate):
+            self.send_json(HTTPStatus.CONFLICT, {"accepted": False, "duplicate": True, "fingerprint": fingerprint, "disposition": "rejected", "reason_code": "duplicate_detected"})
+            return
         if disposition == "rejected":
             self.send_json(
                 HTTPStatus.UNPROCESSABLE_ENTITY,
@@ -101,21 +134,6 @@ class IngestionHandler(BaseHTTPRequestHandler):
                 },
             )
             return
-
-        with fingerprint_lock:
-            if fingerprint in seen_fingerprints:
-                self.send_json(
-                    HTTPStatus.CONFLICT,
-                    {
-                        "accepted": False,
-                        "duplicate": True,
-                        "fingerprint": fingerprint,
-                        "disposition": "rejected",
-                        "reason_code": "duplicate_detected",
-                    },
-                )
-                return
-            seen_fingerprints.add(fingerprint)
 
         if disposition == "human_review_required":
             self.send_json(
