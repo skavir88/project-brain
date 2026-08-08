@@ -1,0 +1,1 @@
+{"task_id":"ST1-007","synthetic_only":true,"transition":"certification_candidate_to_certified","actor_required":true,"audit_append_only":true,"persisted_timestamp":true,"persisted_policy":"st1-007-v1","repeat_behavior":"already_certified_conflict","restart_survives":true,"runtime_delete_privilege":false,"secrets_recorded":false}

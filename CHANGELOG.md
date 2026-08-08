@@ -3,6 +3,7 @@
 ## 2026-08-08
 
 ### Added
+- Controlled synthetic certification lifecycle and append-only audit persistence.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
 - Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
 

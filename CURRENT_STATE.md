@@ -50,6 +50,7 @@
 - Known limitations are documented and do not authorize production claims: two unclassified `rdapp` containers, Qdrant reported version, unauthenticated Redis readiness, and unobserved sampled Qdrant activity.
 
 ## Stage 1 Implementation Evidence
+- ST1-007 certification lifecycle is verified for synthetic data: explicit actor-driven `certification_candidate` to `certified`, persisted timestamp/actor/policy `st1-007-v1`, append-only audit event, restart survival, and runtime roles without DELETE privilege.
 - The local ingestion-service began as a health-only skeleton under `implementation/ingestion-service/`; its current verified synthetic behavior is documented below. It has no persistence, external backend, credential, or remote-host behavior.
 - The local service health contract is `verified` on 2026-08-08: `GET /health` returned HTTP `200` and the expected non-sensitive service/status fields. Evidence is `evidence/sanitized/2026-08-08-st1-001-local-ingestion-skeleton.json`.
 - Docker Desktop with the WSL2 backend is `verified` as operational for local development on 2026-08-08: Docker Client/Server and Compose commands exited `0` in the `desktop-linux` context. The selected context uses a local Windows named pipe, not an insecure Docker TCP endpoint. The exact Compose configuration validation for the local ingestion skeleton also exited `0`; evidence is `evidence/sanitized/2026-08-08-st1-001-docker-compose-validation.json`.
