@@ -1,0 +1,44 @@
+{
+  "task_id": "ET0-004",
+  "timestamp_utc": "2026-08-08T08:01:42Z",
+  "mode": "read_only_runtime_connectivity_verification",
+  "host": "rdapp",
+  "containers_tested": [
+    {"category": "dify_worker_1", "runtime_state": "running", "network_attachment_status": "ok", "network_attachment_count": 3, "network_attachment_exit_code": 0},
+    {"category": "dify_api_1", "runtime_state": "running", "network_attachment_status": "ok", "network_attachment_count": 3, "network_attachment_exit_code": 0},
+    {"category": "dify_worker_2", "runtime_state": "running", "network_attachment_status": "ok", "network_attachment_count": 2, "network_attachment_exit_code": 0}
+  ],
+  "checks": {
+    "preflight": {"status": "ok", "exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0}},
+    "container_discovery": {"status": "ok", "exit_code": 0, "containers_tested_count": 3},
+    "dns_or_resolution": {
+      "rddb": {"status": "ok", "method": "getent", "exit_code": 0, "successful_container_count": 3},
+      "rdvector": {"status": "ok", "method": "getent", "exit_code": 0, "successful_container_count": 3}
+    },
+    "tcp_connectivity": {
+      "rddb:5432": {"status": "ok", "method": "python3_socket_connect", "exit_code": 0, "successful_container_count": 3},
+      "rddb:6379": {"status": "ok", "method": "python3_socket_connect", "exit_code": 0, "successful_container_count": 3},
+      "rdvector:6333": {"status": "ok", "method": "python3_socket_connect", "exit_code": 0, "successful_container_count": 3},
+      "rdvector:6334": {"status": "ok", "method": "python3_socket_connect", "exit_code": 0, "successful_container_count": 3}
+    },
+    "local_http": {
+      "rdapp_local_entrypoint": {"status": "ok", "method": "curl_status_only", "http_status": 307, "exit_code": 0}
+    }
+  },
+  "constraints_observed": {
+    "env_values_read": false,
+    "config_files_read": false,
+    "raw_tcp_data_captured": false,
+    "secrets_recorded": false,
+    "changes_made_to_runtime": false,
+    "high_risk_operations_performed": false
+  },
+  "summary": {
+    "overall_status": "pass",
+    "notes": [
+      "All tested Dify runtime components resolved the declared backend names and completed TCP handshakes to every required endpoint.",
+      "A 307 local HTTP status confirms the local entrypoint responded; no response body, header, cookie, or authorization data was captured.",
+      "Reachability does not prove that Dify is configured to use these backends."
+    ]
+  }
+}

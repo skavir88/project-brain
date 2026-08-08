@@ -29,3 +29,8 @@ Human review/HITL is a branch from Quality Gates for sensitive cases.
 The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, and three unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
 
 This observation conflicts with the declared automation-host responsibility because n8n was observed on `rdapp`. It does not alter declared responsibilities or prove backend integration. The follow-up task gathers read-only runtime evidence before any architecture decision.
+
+## Dify Runtime Reachability — 2026-08-08
+Three running Dify API/worker components on `rdapp` resolved the declared `rddb` and `rdvector` names and completed TCP handshakes to PostgreSQL, Redis, Qdrant HTTP, and Qdrant gRPC endpoints. The local entrypoint returned HTTP `307` to a status-only request.
+
+This verifies network reachability from Dify runtime containers only. It does not prove Dify configuration targets, authentication, data access, or that the external services are the actively used backends.

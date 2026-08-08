@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-08
+
+### Added
+- Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
+
+### Changed
+- Replaced the reachability task with a narrower active-connection-evidence task; no architecture conclusion was made from reachability alone.
+
 ## 2026-08-06
 
 ### Added

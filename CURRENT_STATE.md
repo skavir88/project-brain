@@ -23,6 +23,9 @@
 - Docker CLI and Docker Compose command availability are `verified` on every declared host. The baseline observed running-container counts were `rddb=2`, `rdapp=12`, `rdvector=1`, `rdautomation=0`, and `rdmonitor=0`; service identity required the subsequent sanitized inventory.
 - The sanitized service inventory is `verified` in `evidence/sanitized/2026-08-06-stage0-service-inventory.json`. It observed running PostgreSQL and Redis containers on `rddb`, Qdrant on `rdvector`, and Dify `1.16.0` API/web components, Nginx, Redis, n8n, and additional unclassified containers on `rdapp`.
 - A placement divergence is observed: n8n is running on `rdapp`, while `rdautomation` has no running containers. This is evidence, not an approved architecture change.
+- Dify runtime connectivity from `rdapp` is `verified` in `evidence/sanitized/2026-08-08-et0-004-dify-runtime-connectivity.json`: three running Dify API/worker components resolved `rddb` and `rdvector`, and each completed TCP handshakes to `rddb:5432`, `rddb:6379`, `rdvector:6333`, and `rdvector:6334`.
+- The local `rdapp` HTTP entrypoint is `verified` as responding with HTTP `307` through a status-only request. No response data was recorded.
+- Runtime reachability does not prove Dify configuration targets, authentication success, data access, or actual backend usage.
 - Full service versions, port values, dependencies, configuration targets, security posture, backup, HA, and monitoring remain unverified.
 
 ## Declared, Not Verified
@@ -37,4 +40,4 @@
 - Raw host evidence must be collected locally, reviewed, and sanitized before any repository use.
 
 ## Next Operational Target
-Verify runtime connection evidence for Dify components on `rdapp` against the declared external data backends without exposing configuration values.
+Collect sanitized runtime-connection evidence for active Dify connections to declared backend IPs; do not infer backend usage from reachability alone.

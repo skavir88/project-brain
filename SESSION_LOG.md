@@ -90,3 +90,25 @@ n8n is observed on `rdapp`, not the declared `rdautomation` host. No service was
 
 ### Next Session
 Execute `ET0-004` in `NEXT_TASK.md` to gather sanitized runtime-connection evidence for Dify external backend usage.
+
+## Session 005 — 2026-08-08
+
+### Objective
+Execute ET0-004: read-only runtime connectivity verification from Dify components on `rdapp` to declared data backends.
+
+### Completed
+- Ran the mandatory `rdapp` preflight; all commands exited `0`.
+- Identified three running Dify API/worker runtime components without recording container IDs, names, images, labels, or environment values.
+- Confirmed each component has Docker network attachments, resolved `rddb` and `rdvector` with `getent`, and completed Python socket connections to PostgreSQL, Redis, Qdrant HTTP, and Qdrant gRPC endpoints.
+- Verified the local HTTP entrypoint with a status-only request; it returned `307`.
+- Created `evidence/sanitized/2026-08-08-et0-004-dify-runtime-connectivity.json`.
+
+### Constraints Honored
+- No environment values, config files, raw TCP data, response bodies, headers, secrets, logs, or container identifiers were recorded.
+- No runtime, Docker, service, network, credential, data, or filesystem change was made; no high-risk gate was encountered.
+
+### Interpretation
+The checks prove Dify-runtime reachability to the declared endpoints, not configured backend usage, authentication, or data access.
+
+### Next Session
+Execute `ET0-005` in `NEXT_TASK.md` to collect sanitized active-connection evidence before drawing any conclusion about backend usage.
