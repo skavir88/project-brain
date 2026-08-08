@@ -1,0 +1,15 @@
+{
+  "task_id": "ET0-010",
+  "timestamp_utc": "2026-08-08T08:31:19Z",
+  "mode": "read_only_rdapp_container_classification",
+  "host": "rdapp",
+  "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+  "container_discovery": {"status": "ok", "exit_code": 0},
+  "classification_results": [
+    {"category": "dify_ssrf_proxy", "runtime_state": "running", "container_count": 1},
+    {"category": "other_unclassified", "runtime_state": "running", "container_count": 2}
+  ],
+  "remaining_unclassified_count": 2,
+  "constraints_observed": {"docker_inspect_used": false, "env_values_read": false, "config_files_read": false, "container_ids_recorded": false, "container_names_recorded": false, "image_paths_recorded": false, "changes_made_to_runtime": false, "high_risk_operations_performed": false},
+  "summary": {"overall_status": "partial", "notes": ["One formerly unclassified container is classified as Dify SSRF proxy.", "Two containers remain unclassified because safe discovery metadata is insufficient for a reliable category."]}
+}

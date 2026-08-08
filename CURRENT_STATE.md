@@ -22,10 +22,16 @@
 - The read-only collector is `verified` on every declared host. The reviewed summary is `evidence/sanitized/2026-08-05-stage0-host-baseline-summary.json`; raw JSON remains outside Git on the remote hosts.
 - Docker CLI and Docker Compose command availability are `verified` on every declared host. The baseline observed running-container counts were `rddb=2`, `rdapp=12`, `rdvector=1`, `rdautomation=0`, and `rdmonitor=0`; service identity required the subsequent sanitized inventory.
 - The sanitized service inventory is `verified` in `evidence/sanitized/2026-08-06-stage0-service-inventory.json`. It observed running PostgreSQL and Redis containers on `rddb`, Qdrant on `rdvector`, and Dify `1.16.0` API/web components, Nginx, Redis, n8n, and additional unclassified containers on `rdapp`.
+- `evidence/sanitized/2026-08-08-et0-010-rdapp-container-classification.json` classifies one of those containers as a running Dify SSRF proxy. Two `rdapp` containers remain `other_unclassified`; this is a known limitation because safe discovery metadata is insufficient for reliable classification.
 - A placement divergence is observed: n8n is running on `rdapp`, while `rdautomation` has no running containers. This is evidence, not an approved architecture change.
 - Dify runtime connectivity from `rdapp` is `verified` in `evidence/sanitized/2026-08-08-et0-004-dify-runtime-connectivity.json`: three running Dify API/worker components resolved `rddb` and `rdvector`, and each completed TCP handshakes to `rddb:5432`, `rddb:6379`, `rdvector:6333`, and `rdvector:6334`.
 - The local `rdapp` HTTP entrypoint is `verified` as responding with HTTP `307` through a status-only request. No response data was recorded.
 - Runtime reachability does not prove Dify configuration targets, authentication success, data access, or actual backend usage.
+- Active Dify runtime connections to `rddb:5432` and `rddb:6379` are `verified` in `evidence/sanitized/2026-08-08-et0-005-dify-active-backend-connections.json`; each was observed from two of three sampled Dify API/worker components.
+- No active Dify runtime connection to `rdvector:6333` or `rdvector:6334` was observed during the sample. This remains `unknown` and is not evidence that Qdrant is unused.
+- No active Dify runtime connection to the Redis container on `rdapp` was observed in `evidence/sanitized/2026-08-08-et0-009-local-redis-active-connection.json`. This remains `unknown`, but the observed `rddb` Redis connections are the only active Redis backend evidence currently recorded.
+- Declared backend service health is recorded in `evidence/sanitized/2026-08-08-et0-006-declared-backend-health.json`: PostgreSQL readiness is `verified` with reported version `16.14`; Redis returned `auth_required` to an unauthenticated PING and reported version `7.4.9`; Qdrant returned HTTP `200` to a status-only local health request but its version remains `not_available` through safe commands.
+- Declared critical local listeners are `verified` in `evidence/sanitized/2026-08-08-et0-007-critical-listener-inventory.json`: `rddb:5432`, `rddb:6379`, `rdvector:6333`, `rdvector:6334`, and `rdapp:80` were observed without recording bind addresses or raw listener data.
 - Full service versions, port values, dependencies, configuration targets, security posture, backup, HA, and monitoring remain unverified.
 
 ## Declared, Not Verified
@@ -40,4 +46,4 @@
 - Raw host evidence must be collected locally, reviewed, and sanitized before any repository use.
 
 ## Next Operational Target
-Collect sanitized runtime-connection evidence for active Dify connections to declared backend IPs; do not infer backend usage from reachability alone.
+Resolve the architecture decision for the observed n8n placement on `rdapp` versus the declared `rdautomation` responsibility before the Stage 0 transition gate.

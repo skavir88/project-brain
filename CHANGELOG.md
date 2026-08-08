@@ -7,6 +7,12 @@
 
 ### Changed
 - Replaced the reachability task with a narrower active-connection-evidence task; no architecture conclusion was made from reachability alone.
+- Recorded direct runtime evidence for PostgreSQL/Redis connections and retained Qdrant usage as unknown after no active connection was observed.
+- Recorded safe backend health/version evidence and documented unauthenticated Redis and Qdrant-version limitations.
+- Recorded observed critical listeners and scheduled a Stage 0 completion review.
+- Recorded the Stage 0 Completion Review outcome as further safe evidence work required before the architecture transition gate.
+- Recorded sanitized local-Redis active-connection evidence without inferring configuration or non-use.
+- Recorded one Dify SSRF proxy classification, two non-critical unclassified containers, and the Stage 0 architecture decision gate.
 
 ## 2026-08-06
 

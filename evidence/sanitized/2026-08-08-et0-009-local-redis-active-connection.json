@@ -1,0 +1,16 @@
+{
+  "task_id": "ET0-009",
+  "timestamp_utc": "2026-08-08T08:29:36Z",
+  "mode": "read_only_local_redis_active_connection_verification",
+  "host": "rdapp",
+  "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+  "container_discovery": {"status": "ok", "exit_code": 0, "dify_components_tested": 3, "redis_container_found": true},
+  "components": [
+    {"category": "dify_worker_1", "proc_read_exit_code": 0, "local_redis_connection": {"status": "not_observed", "method": "selected_network_template_and_proc_tcp", "exit_code": 0}},
+    {"category": "dify_api_1", "proc_read_exit_code": 0, "local_redis_connection": {"status": "not_observed", "method": "selected_network_template_and_proc_tcp", "exit_code": 0}},
+    {"category": "dify_worker_2", "proc_read_exit_code": 0, "local_redis_connection": {"status": "not_observed", "method": "selected_network_template_and_proc_tcp", "exit_code": 0}}
+  ],
+  "aggregate_local_redis_connection": {"status": "not_observed", "observed_component_count": 0, "tested_component_count": 3, "redis_network_attachment_count": 1, "selected_network_template_exit_code": 0},
+  "constraints_observed": {"env_values_read": false, "config_files_read": false, "docker_inspect_used": "selected_network_address_template_only", "raw_network_addresses_captured": false, "raw_proc_data_captured": false, "secrets_recorded": false, "changes_made_to_runtime": false, "high_risk_operations_performed": false},
+  "summary": {"overall_status": "partial", "notes": ["No sampled Dify component had an observed active connection to the local rdapp Redis container.", "This is unknown, not evidence that local Redis is unused."]}
+}

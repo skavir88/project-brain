@@ -1,0 +1,26 @@
+{
+  "task_id": "ET0-006",
+  "timestamp_utc": "2026-08-08T08:22:14Z",
+  "mode": "read_only_declared_backend_health_verification",
+  "hosts": [
+    {
+      "host_id": "rddb",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "container_discovery_exit_code": 0,
+      "services": [
+        {"category": "postgresql", "container_discovery_status": "ok", "health_status": "ok", "health_method": "pg_isready", "health_exit_code": 0, "version_status": "available", "version": "16.14", "version_exit_code": 0},
+        {"category": "redis", "container_discovery_status": "ok", "health_status": "auth_required", "health_method": "redis_cli_ping", "health_exit_code": 0, "version_status": "available", "version": "7.4.9", "version_exit_code": 0}
+      ]
+    },
+    {
+      "host_id": "rdvector",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "container_discovery_exit_code": 0,
+      "services": [
+        {"category": "qdrant", "container_discovery_status": "ok", "health_status": "ok", "health_method": "host_curl_status_only", "health_http_status": 200, "health_exit_code": 0, "version_status": "not_available", "version": "not_recorded", "version_exit_code": 127}
+      ]
+    }
+  ],
+  "constraints_observed": {"env_values_read": false, "config_files_read": false, "docker_inspect_used": false, "database_queries_executed": false, "data_modified": false, "changes_made_to_runtime": false, "secrets_recorded": false, "high_risk_operations_performed": false},
+  "summary": {"overall_status": "partial", "notes": ["PostgreSQL readiness and reported version were verified.", "Redis requires authentication for PING; no credential was used.", "Qdrant health returned HTTP 200; a safe reported-version command was not available."]}
+}

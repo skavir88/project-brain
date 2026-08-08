@@ -1,0 +1,21 @@
+{
+  "task_id": "ET0-005",
+  "timestamp_utc": "2026-08-08T08:19:10Z",
+  "mode": "read_only_active_runtime_connection_verification",
+  "host": "rdapp",
+  "container_discovery": {"status": "ok", "exit_code": 0, "containers_tested": 3},
+  "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+  "components": [
+    {"category": "dify_worker_1", "proc_read_exit_code": 0, "active_connections": {"rddb:5432": "observed", "rddb:6379": "observed", "rdvector:6333": "not_observed", "rdvector:6334": "not_observed"}},
+    {"category": "dify_api_1", "proc_read_exit_code": 0, "active_connections": {"rddb:5432": "observed", "rddb:6379": "not_observed", "rdvector:6333": "not_observed", "rdvector:6334": "not_observed"}},
+    {"category": "dify_worker_2", "proc_read_exit_code": 0, "active_connections": {"rddb:5432": "not_observed", "rddb:6379": "observed", "rdvector:6333": "not_observed", "rdvector:6334": "not_observed"}}
+  ],
+  "aggregate_active_connections": {
+    "rddb:5432": {"status": "observed", "observed_component_count": 2, "tested_component_count": 3},
+    "rddb:6379": {"status": "observed", "observed_component_count": 2, "tested_component_count": 3},
+    "rdvector:6333": {"status": "not_observed", "observed_component_count": 0, "tested_component_count": 3},
+    "rdvector:6334": {"status": "not_observed", "observed_component_count": 0, "tested_component_count": 3}
+  },
+  "constraints_observed": {"env_values_read": false, "config_files_read": false, "docker_inspect_used": false, "raw_proc_data_captured": false, "secrets_recorded": false, "changes_made_to_runtime": false, "high_risk_operations_performed": false},
+  "summary": {"overall_status": "partial", "notes": ["Active TCP connections to PostgreSQL and Redis on rddb were observed.", "No active Qdrant connection was observed during this sample; this is unknown, not evidence of non-use."]}
+}

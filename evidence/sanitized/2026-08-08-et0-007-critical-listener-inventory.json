@@ -1,0 +1,32 @@
+{
+  "task_id": "ET0-007",
+  "timestamp_utc": "2026-08-08T08:24:59Z",
+  "mode": "read_only_critical_listener_inventory",
+  "hosts": [
+    {
+      "host_id": "rddb",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "listener_checks": [
+        {"endpoint": "rddb:5432", "status": "observed", "method": "ss_lnt", "exit_code": 0},
+        {"endpoint": "rddb:6379", "status": "observed", "method": "ss_lnt", "exit_code": 0}
+      ]
+    },
+    {
+      "host_id": "rdvector",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "listener_checks": [
+        {"endpoint": "rdvector:6333", "status": "observed", "method": "ss_lnt", "exit_code": 0},
+        {"endpoint": "rdvector:6334", "status": "observed", "method": "ss_lnt", "exit_code": 0}
+      ]
+    },
+    {
+      "host_id": "rdapp",
+      "preflight_exit_codes": {"hostname": 0, "whoami": 0, "pwd": 0, "date_utc": 0, "disk": 0, "memory": 0, "docker_version": 0, "docker_compose_version": 0},
+      "listener_checks": [
+        {"endpoint": "rdapp:80", "status": "observed", "method": "ss_lnt", "exit_code": 0}
+      ]
+    }
+  ],
+  "constraints_observed": {"raw_listener_output_captured": false, "bind_addresses_recorded": false, "process_identifiers_recorded": false, "changes_made_to_runtime": false, "high_risk_operations_performed": false},
+  "summary": {"overall_status": "pass", "notes": ["All five declared critical local listeners were observed."]}
+}

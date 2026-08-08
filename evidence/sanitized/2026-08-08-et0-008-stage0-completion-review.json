@@ -1,0 +1,22 @@
+{
+  "task_id": "ET0-008",
+  "timestamp_utc": "2026-08-08T08:30:00Z",
+  "mode": "stage_0_completion_review",
+  "areas": [
+    {"area": "infrastructure_baseline", "classification": "verified", "evidence": ["2026-08-05-stage0-host-baseline-summary.json"], "reason": "All five declared hosts completed collector and SSH verification."},
+    {"area": "host_roles", "classification": "decision_required", "evidence": ["2026-08-06-stage0-service-inventory.json"], "reason": "n8n is observed on rdapp while rdautomation has no running containers."},
+    {"area": "actual_service_placement", "classification": "partial", "evidence": ["2026-08-06-stage0-service-inventory.json"], "reason": "Observed categories are recorded; three rdapp containers remain unclassified."},
+    {"area": "required_service_versions", "classification": "partial", "evidence": ["2026-08-06-stage0-service-inventory.json", "2026-08-08-et0-006-declared-backend-health.json"], "reason": "Dify, PostgreSQL, and Redis versions are recorded; Qdrant, Nginx, and n8n versions remain unavailable or unrecorded."},
+    {"area": "critical_listeners", "classification": "verified", "evidence": ["2026-08-08-et0-007-critical-listener-inventory.json"], "reason": "All five declared local critical listeners were observed."},
+    {"area": "dify_backend_reachability", "classification": "verified", "evidence": ["2026-08-08-et0-004-dify-runtime-connectivity.json"], "reason": "Dify runtime resolved and connected to every declared backend endpoint."},
+    {"area": "dify_backend_active_usage", "classification": "partial", "evidence": ["2026-08-08-et0-005-dify-active-backend-connections.json"], "reason": "Active PostgreSQL and external Redis connections were observed; Qdrant had no observed active connection and local rdapp Redis usage is not yet classified."},
+    {"area": "backend_health", "classification": "partial", "evidence": ["2026-08-08-et0-006-declared-backend-health.json"], "reason": "PostgreSQL and Qdrant health are verified; Redis requires authentication for the safe probe."},
+    {"area": "secrets_and_configuration_policy", "classification": "verified", "evidence": ["AI_CONTEXT.md", "DECISIONS.md", "evidence/README.md"], "reason": "Secrets policy, raw-evidence exclusion, and scoped SSH policy are documented and enforced by repository checks."},
+    {"area": "verification_tooling", "classification": "verified", "evidence": ["scripts/collect-host-baseline.sh", "SESSION_LOG.md"], "reason": "Command-based collector, non-interactive SSH, sanitization, and repository safety checks are verified."},
+    {"area": "project_brain_governance", "classification": "verified", "evidence": ["AI_CONTEXT.md", "MASTER_PLAN.md", "DECISIONS.md", "SESSION_LOG.md"], "reason": "Atomic task, evidence, decision, and change-recording rules are active."},
+    {"area": "stage_0_transition", "classification": "further_safe_task_needed", "evidence": ["2026-08-08-et0-005-dify-active-backend-connections.json"], "reason": "Local rdapp Redis active usage can be assessed without config access; n8n placement remains an architecture decision after that evidence is collected."}
+  ],
+  "outcome": "further_safe_task_needed",
+  "next_safe_task": "ET0-009",
+  "constraints_observed": {"remote_connections_made": false, "runtime_changes_made": false, "stage_1_authorized": false, "production_ready_claim_made": false}
+}
