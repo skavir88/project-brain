@@ -39,3 +39,12 @@ The Autonomous Implementation Agent may execute the active atomic task on declar
 Status: Accepted
 
 n8n observed on `rdapp` is accepted as part of the current Enterprise AI MVP application/runtime placement. `rdapp` may host Dify runtime components, Nginx, n8n, and supporting application-runtime components. `rdautomation` is reserved for future automation/workflow scale-out or isolation. This does not require n8n to remain on `rdapp` permanently; a future migration requires evidence of a concrete need and a separately approved architecture change. No n8n migration, restart, reconfiguration, or runtime change is authorized by this decision.
+
+## DEC-009 — Initial MVP Data Credibility Gate
+Status: Accepted
+
+For local synthetic records only, structural validity and duplicate absence are necessary but not sufficient for credibility eligibility. A record may be a `certification_candidate` only after structural validation, duplicate control, and the deterministic quality gate pass; this state is eligible for later certification and is never final `certified` status.
+
+The minimum gate requires a usable `provenance.source_reference`. Its absence routes an otherwise processable record to `human_review_required` with `provenance_insufficient`. If `observed_at` is present, it must be an ISO-8601 timestamp with timezone and must not be in the future; failure is `rejected` with `temporal_validity_failed`. If `payload.source_id` is present, it must match canonical `source_id`; failure is `rejected` with `consistency_check_failed`.
+
+This decision authorizes no persistence, final certification, LLM judgment, quality scoring, external integration, real organizational data, or remote deployment. The resulting disposition and reason codes are transient local responses only.

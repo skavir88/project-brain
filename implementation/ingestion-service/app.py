@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+from datetime import datetime, timezone
 from hashlib import sha256
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -49,7 +50,12 @@ class IngestionHandler(BaseHTTPRequestHandler):
         except (ValueError, json.JSONDecodeError):
             self.send_json(
                 HTTPStatus.BAD_REQUEST,
-                {"accepted": False, "error": "invalid_json"},
+                {
+                    "accepted": False,
+                    "error": "invalid_json",
+                    "disposition": "rejected",
+                    "reason_code": "structural_validation_failed",
+                },
             )
             return
 
@@ -57,7 +63,12 @@ class IngestionHandler(BaseHTTPRequestHandler):
         if errors:
             self.send_json(
                 HTTPStatus.UNPROCESSABLE_ENTITY,
-                {"accepted": False, "validation_errors": errors},
+                {
+                    "accepted": False,
+                    "validation_errors": errors,
+                    "disposition": "rejected",
+                    "reason_code": "structural_validation_failed",
+                },
             )
             return
 
@@ -71,10 +82,55 @@ class IngestionHandler(BaseHTTPRequestHandler):
                         "accepted": False,
                         "duplicate": True,
                         "fingerprint": fingerprint,
+                        "disposition": "rejected",
+                        "reason_code": "duplicate_detected",
+                    },
+                )
+                return
+
+        disposition, reason_code = evaluate_quality_gate(canonical_record)
+        if disposition == "rejected":
+            self.send_json(
+                HTTPStatus.UNPROCESSABLE_ENTITY,
+                {
+                    "accepted": False,
+                    "duplicate": False,
+                    "fingerprint": fingerprint,
+                    "disposition": disposition,
+                    "reason_code": reason_code,
+                },
+            )
+            return
+
+        with fingerprint_lock:
+            if fingerprint in seen_fingerprints:
+                self.send_json(
+                    HTTPStatus.CONFLICT,
+                    {
+                        "accepted": False,
+                        "duplicate": True,
+                        "fingerprint": fingerprint,
+                        "disposition": "rejected",
+                        "reason_code": "duplicate_detected",
                     },
                 )
                 return
             seen_fingerprints.add(fingerprint)
+
+        if disposition == "human_review_required":
+            self.send_json(
+                HTTPStatus.ACCEPTED,
+                {
+                    "accepted": True,
+                    "duplicate": False,
+                    "quality_gate": "review_required",
+                    "disposition": disposition,
+                    "reason_code": reason_code,
+                    "canonical_record": canonical_record,
+                    "fingerprint": fingerprint,
+                },
+            )
+            return
 
         self.send_json(
             HTTPStatus.ACCEPTED,
@@ -82,6 +138,8 @@ class IngestionHandler(BaseHTTPRequestHandler):
                 "accepted": True,
                 "duplicate": False,
                 "validation_errors": [],
+                "quality_gate": "passed",
+                "disposition": "certification_candidate",
                 "canonical_record": canonical_record,
                 "fingerprint": fingerprint,
             },
@@ -124,6 +182,50 @@ def fingerprint_record(record: dict[str, object]) -> str:
 
     canonical_json = json.dumps(record, sort_keys=True, separators=(",", ":"))
     return sha256(canonical_json.encode("utf-8")).hexdigest()
+
+
+def evaluate_quality_gate(record: dict[str, object]) -> tuple[str, str | None]:
+    """Apply only the approved deterministic MVP credibility checks."""
+
+    observed_at = record.get("observed_at")
+    if observed_at is not None:
+        if not is_valid_observed_at(observed_at):
+            return "rejected", "temporal_validity_failed"
+
+    payload = record["payload"]
+    assert isinstance(payload, dict)
+    payload_source_id = payload.get("source_id")
+    if payload_source_id is not None and (
+        not isinstance(payload_source_id, str)
+        or payload_source_id.strip() != record["source_id"]
+    ):
+        return "rejected", "consistency_check_failed"
+
+    provenance = record.get("provenance")
+    if not isinstance(provenance, dict):
+        return "human_review_required", "provenance_insufficient"
+    source_reference = provenance.get("source_reference")
+    if not isinstance(source_reference, str) or not source_reference.strip():
+        return "human_review_required", "provenance_insufficient"
+
+    return "certification_candidate", None
+
+
+def is_valid_observed_at(value: object) -> bool:
+    """Accept only timezone-aware, non-future ISO-8601 timestamps when supplied."""
+
+    if not isinstance(value, str) or not value.strip():
+        return False
+    normalized = value.strip()
+    if normalized.endswith("Z"):
+        normalized = f"{normalized[:-1]}+00:00"
+    try:
+        parsed = datetime.fromisoformat(normalized)
+    except ValueError:
+        return False
+    if parsed.tzinfo is None:
+        return False
+    return parsed.astimezone(timezone.utc) <= datetime.now(timezone.utc)
 
 
 def main() -> None:

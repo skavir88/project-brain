@@ -1,65 +1,68 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-005
+- Task ID: ST1-006
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — minimum Quality Gate and Certified Data policy decision required
+- Status: Blocked — durable persistence target and credential-creation approval required
 - Owner: Product/architecture owner
 
 ## Objective
-Approve the smallest non-production policy that determines whether a synthetic record which passes structural validation and the process-local duplicate gate may be reported as a certification candidate, requires Human-In-The-Loop review, or is rejected.
+Approve the smallest durable PostgreSQL persistence target and scoped runtime credential required to extend the verified local synthetic credibility gate into a persistent MVP vertical slice.
 
 ## Rationale
-The verified local slice now reaches `Ingestion → Structural Validation → Normalization → Deduplication`. The next required flow components, Quality Gates and Certified Data/Knowledge, have no approved acceptance rule, review behavior, or output semantics. Implementing those choices without an owner decision would invent material product requirements.
-
-## Preconditions
-- ST1-002, ST1-003, and ST1-004 evidence is available under `evidence/sanitized/`.
-- The request is limited to synthetic, local, non-production behavior.
+The local flow now reaches `Ingestion → Structural Validation → Normalization → Deduplication → Credibility Gate → certification_candidate`. The next critical-path component is durable persistence for canonical records, fingerprints, dispositions, and later certification workflow. Selecting a database target and creating a runtime credential are material persistent/credential changes and cannot be inferred safely.
 
 ## Decision Required
-- Select one disposition for a structurally valid, unique synthetic record: `certification_candidate`, `human_review_required`, or `rejected`.
-- Specify any additional minimum quality checks beyond structural validity and duplicate absence, or explicitly confirm that no additional check applies to this MVP slice.
-- Specify whether a candidate result may be represented only as a transient response or requires a durable audit/certification record. Durable storage is out of scope until separately approved.
+- Confirm whether the declared PostgreSQL service on `rddb` is the approved MVP persistence target for this ingestion service.
+- Approve creation of a new, isolated non-production database/schema and least-privilege runtime role for the MVP; do not reuse or disclose an existing credential.
+- Approve a runtime secret reference outside Git (for example, `/etc/enterprise-ai/secrets/ingestion-db.env`) with restricted permissions.
+- Confirm that a new migration may create tables/indexes only and must not alter or delete existing data.
 
-## Scope After Decision
-- Implement only the selected local, synthetic, non-production response semantics.
-- Keep loopback-only Compose deployment and no persistence unless a separate storage decision is approved.
+## Scope After Approval
+- Use only `enterprise-ai-rddb` and `enterprise-ai-rdapp` aliases from `inventory/hosts.yaml`.
+- Perform documented remote preflight, inspect only safe PostgreSQL service identity/health metadata, and create timestamped backups before configuration or migration changes.
+- Create only the approved new database/schema/role, a local Git-safe migration artifact, and a root-owned runtime secret file outside Git.
+- Deploy the local ingestion service to `rdapp` only after the migration and connection verification succeed; no public exposure.
 
 ## Out of Scope
-- Real organizational data, persistent certification/audit storage, external backends, remote deployment, public exposure, quality-score methodology not selected by the owner, destructive operations, and architecture expansion.
+- Existing database/schema/table alteration or deletion, data deletion, credential reuse or disclosure, public exposure, firewall/network changes, Dify/n8n/Qdrant changes, final certification, real organizational data, destructive migration, or production claim.
 
 ## Files to Inspect
-- `PROJECT.md`
 - `ARCHITECTURE.md`
 - `DECISIONS.md`
 - `CURRENT_STATE.md`
-- `evidence/sanitized/2026-08-08-st1-002-synthetic-intake-validation.json`
-- `evidence/sanitized/2026-08-08-st1-003-canonicalization-fingerprint.json`
-- `evidence/sanitized/2026-08-08-st1-004-process-local-duplicate-gate.json`
+- `inventory/hosts.yaml`
+- `implementation/ingestion-service/`
+- `evidence/sanitized/2026-08-08-st1-005-data-credibility-gate.json`
 
-## Files Allowed to Change
-- `DECISIONS.md`
+## Files Allowed to Change After Approval
+- `implementation/ingestion-service/`
+- `deploy/`
+- `migrations/`
 - `CURRENT_STATE.md`
 - `MASTER_PLAN.md`
+- `ARCHITECTURE.md`
+- `DECISIONS.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `implementation/ingestion-service/`
 - `evidence/sanitized/`
 
-## Verification Commands
+## Verification Commands After Approval
 ```bash
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rddb '<read-only-preflight>'
+ssh -o BatchMode=yes -o ConnectTimeout=10 enterprise-ai-rdapp '<read-only-preflight>'
 git diff --check
 ```
 
 ## Evidence Required
-- Explicit product-owner decision with the selected disposition and any quality criteria.
-- If implementation follows, sanitized local response and Compose verification output.
+- Explicit target/credential/migration approval.
+- Sanitized remote preflight, database creation/migration, restricted-secret-file metadata, and application-to-PostgreSQL connection results.
 
 ## Rollback
-No implementation change is authorized until the decision is recorded. Any later local response-only change must have an ignored timestamped backup and no persistent data.
+No persistent change is authorized before approval. After approval, use only an approved rollback migration for newly created isolated objects; never delete or alter pre-existing objects without a separate destructive-operation approval.
 
 ## Definition of Done
-- The policy decision is recorded in `DECISIONS.md`.
-- The next atomic implementation task reflects only the approved policy.
-- No unapproved quality, certification, HITL, persistence, or architecture behavior is introduced.
+- The required target and credential approval is recorded in `DECISIONS.md`.
+- The next atomic implementation task contains exact non-destructive database and deployment scope.
+- No remote persistent or credential change occurs before explicit approval.

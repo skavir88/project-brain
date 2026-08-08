@@ -21,6 +21,7 @@
 - Added and verified the local synthetic-record intake and structural-validation slice; Compose testing was loopback-only and left the service stopped.
 - Added and verified deterministic identifier canonicalization and SHA-256 content fingerprints for accepted synthetic records.
 - Added and verified a process-local synthetic duplicate gate that returns a conflict for repeated fingerprints and clears on service restart.
+- Recorded DEC-009 and added the verified deterministic MVP Data Credibility Gate with transient candidate, review, and rejection dispositions; no final certification or persistence was introduced.
 
 ## 2026-08-06
 

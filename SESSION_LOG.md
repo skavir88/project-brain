@@ -337,3 +337,28 @@ Execute ST1-004: add and verify a process-local synthetic duplicate gate.
 
 ### Decision Gate
 The next product step requires a minimum Quality Gate and Certified Data policy. Existing Project Brain documents define those concepts but not the rule(s), review behavior, or output semantics needed to implement them truthfully.
+
+## Session 019 — 2026-08-08
+
+### Objective
+Execute ST1-005 using the approved initial MVP Data Credibility Gate policy.
+
+### Completed
+- Recorded DEC-009, preserving the distinction between `certification_candidate` and final certification.
+- Added deterministic completeness/provenance, temporal, and internal-consistency checks only for fields supported by the local synthetic contract.
+- Verified a valid unique record with usable provenance returns HTTP `202` and `certification_candidate`.
+- Verified insufficient provenance returns HTTP `202`, `human_review_required`, and `provenance_insufficient`.
+- Verified a future supplied timestamp returns HTTP `422`, `rejected`, and `temporal_validity_failed`.
+- Verified structural invalid and duplicate records retain HTTP `422` and `409` with `structural_validation_failed` and `duplicate_detected` respectively.
+- Verified Python syntax, Compose configuration, loopback-only build/start/status, and controlled stop.
+
+### Verification Notes
+- The first duplicate test used two syntactically different timestamp strings (`Z` and `+00:00`), which are distinct inputs under the current identifier-only canonicalization contract and therefore produced distinct fingerprints. The final duplicate test used the same canonical input representation and verified the expected `409` result. No unapproved timestamp canonicalization was added.
+
+### Constraints Honored
+- No result was represented as final certification.
+- No data, quality decision, duplicate state, audit record, credential, external backend, remote host, or persistent storage was created.
+- The test container was stopped after verification; no remove/prune command was used.
+
+### Next Session
+ST1-006 requires the approved durable persistence target and scoped credential-creation authority before any PostgreSQL database, role, schema, migration, or secret file is created.

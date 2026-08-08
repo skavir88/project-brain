@@ -1,0 +1,51 @@
+{
+  "task_id": "ST1-005",
+  "collected_at_utc": "2026-08-08",
+  "policy_decision": "DEC-009",
+  "scope": "local_loopback_synthetic_only",
+  "quality_gate": {
+    "minimum_provenance": "provenance.source_reference",
+    "temporal_check": "supplied_observed_at_must_be_timezone_aware_iso8601_and_not_future",
+    "consistency_check": "supplied_payload_source_id_must_match_canonical_source_id",
+    "llm_or_probabilistic_scoring": false
+  },
+  "verification": {
+    "candidate": {
+      "http_status": 202,
+      "disposition": "certification_candidate",
+      "quality_gate": "passed",
+      "final_certification_represented": false
+    },
+    "insufficient_provenance": {
+      "http_status": 202,
+      "disposition": "human_review_required",
+      "reason_code": "provenance_insufficient"
+    },
+    "temporal_failure": {
+      "http_status": 422,
+      "disposition": "rejected",
+      "reason_code": "temporal_validity_failed"
+    },
+    "structural_failure": {
+      "http_status": 422,
+      "disposition": "rejected",
+      "reason_code": "structural_validation_failed"
+    },
+    "duplicate": {
+      "http_status": 409,
+      "disposition": "rejected",
+      "reason_code": "duplicate_detected"
+    },
+    "python_compile_exit_code": 0,
+    "compose_config_exit_code": 0,
+    "compose_build_start_exit_code": 0,
+    "compose_ps_exit_code": 0,
+    "compose_stop_exit_code": 0
+  },
+  "intermediate_harness_finding": "timestamp_representation_is_not_canonicalized_beyond_identifier_fields",
+  "published_port_scope": "loopback_only",
+  "persistence": false,
+  "final_certification": false,
+  "remote_changes": false,
+  "secrets_recorded": false
+}
