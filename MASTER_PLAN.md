@@ -1,7 +1,7 @@
 # Master Plan
 
 ## Stage 0 — Project Discovery, Baseline and Automation Foundation
-Status: Active
+Status: Complete — Stage 1 transition approval pending
 
 Objectives:
 - Record the actual infrastructure baseline, host roles, services, versions, ports, dependencies, and unknowns.
@@ -15,9 +15,9 @@ Quality gates:
 - `NEXT_TASK.md` contains only one atomic, testable task.
 
 ### Completion Review — 2026-08-08
-Outcome: `decision_required`
+Outcome: `ready_for_stage_transition_approval`
 
-Verified evidence covers the infrastructure baseline, SSH automation, service placement categories, critical listeners, Dify runtime reachability, PostgreSQL/Redis active-connection evidence, verification tooling, and Project Brain governance. Local `rdapp` Redis usage remains unknown after the safe probe, while active external `rddb` Redis usage is observed. Stage 0 cannot transition until the observed n8n placement on `rdapp` versus the declared `rdautomation` responsibility is resolved by an architecture decision. Two `rdapp` containers are recorded as a non-critical known limitation because safe discovery metadata cannot classify them reliably.
+Verified evidence covers the infrastructure baseline, SSH automation, service placement categories, critical listeners, Dify runtime reachability, PostgreSQL/Redis active-connection evidence, verification tooling, Project Brain governance, and the accepted n8n placement. Two `rdapp` containers, Qdrant reported version, Redis unauthenticated readiness, and sampled Qdrant active-use evidence remain known limitations; none blocks starting non-production product implementation. Stage 1 remains outside scope until the transition gate is explicitly approved.
 
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

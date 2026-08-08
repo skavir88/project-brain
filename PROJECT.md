@@ -12,7 +12,7 @@ Enterprise AI is an organizational platform for controlled, traceable, and evide
 - Preserve lineage, audit trail, certified datasets/knowledge, and controlled AI, RAG, automation, reporting, and observability use.
 
 ## Current Stage
-`Stage 0 — Project Discovery, Baseline and Automation Foundation`
+`Stage 0 — Complete; Stage 1 transition approval pending`
 
 ## Repository Role
 This repository is the Project Brain: the controlled source of truth for project context, decisions, status, plans, tasks, and verification evidence policy. It is not a runtime application or evidence store for secrets.
@@ -20,4 +20,4 @@ This repository is the Project Brain: the controlled source of truth for project
 ## Stage 0 Boundary
 In scope: infrastructure discovery, host/service inventory, repository and automation foundation, verification tooling, configuration/secrets policy, and Stage 0 Definition of Done.
 
-Out of scope unless explicitly tasked: production deployment, HA, complete DR, full UI, full validation engine, real organizational data, and Stage 1 or later implementation.
+Out of scope unless explicitly approved at the Stage 1 transition gate: production deployment, HA, complete DR, full UI, full validation engine, real organizational data, and Stage 1 or later implementation.

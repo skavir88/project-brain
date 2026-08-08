@@ -34,3 +34,8 @@ Each declared host uses a dedicated local Enterprise AI SSH key and a stable ali
 Status: Accepted
 
 The Autonomous Implementation Agent may execute the active atomic task on declared hosts when its scope, rollback, and verification are explicit. It must run preflight, make backups before important changes, sanitize evidence, and update Project Brain. High-risk destructive, SSH, network, reboot, credential, broad-sudo, or public-exposure operations remain approval-gated.
+
+## DEC-008 — Accept n8n Placement on rdapp for the MVP
+Status: Accepted
+
+n8n observed on `rdapp` is accepted as part of the current Enterprise AI MVP application/runtime placement. `rdapp` may host Dify runtime components, Nginx, n8n, and supporting application-runtime components. `rdautomation` is reserved for future automation/workflow scale-out or isolation. This does not require n8n to remain on `rdapp` permanently; a future migration requires evidence of a concrete need and a separately approved architecture change. No n8n migration, restart, reconfiguration, or runtime change is authorized by this decision.

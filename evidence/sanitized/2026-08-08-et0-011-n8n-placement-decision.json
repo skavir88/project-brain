@@ -1,0 +1,12 @@
+{
+  "task_id": "ET0-011",
+  "timestamp_utc": "2026-08-08T08:40:00Z",
+  "mode": "architecture_decision_record",
+  "decision": "accept_observed_n8n_placement_on_rdapp_for_current_mvp",
+  "decision_status": "accepted",
+  "runtime_changes_made": false,
+  "migration_authorized": false,
+  "rdapp_responsibilities": ["Dify runtime components", "Nginx", "n8n", "supporting application-runtime components"],
+  "rdautomation_role": "reserved_for_future_automation_workflow_scale_out_or_isolation",
+  "future_migration_triggers": ["resource contention", "independent scaling", "security or isolation requirements", "availability requirements", "maintenance separation", "significant automation workload", "approved architecture change"]
+}

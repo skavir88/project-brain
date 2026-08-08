@@ -204,3 +204,19 @@ Further safe inspection is not required to resolve the material remaining issue:
 
 ### Next Session
 Complete `ET0-011` in `NEXT_TASK.md` after the architecture owner selects a placement outcome.
+
+## Session 012 — 2026-08-08
+
+### Objective
+Execute ET0-011: record the architecture-owner decision for observed n8n placement and finalize the Stage 0 transition review.
+
+### Completed
+- Accepted observed n8n placement on `rdapp` for the current Enterprise AI MVP without making any n8n migration, restart, configuration, or runtime change.
+- Reserved `rdautomation` for future automation/workflow scale-out or isolation.
+- Recorded DEC-008 and created the final Stage 0 transition-readiness evidence.
+
+### Stage 0 Outcome
+Stage 0 is complete and ready for Stage 1 transition approval. Known limitations are documented, evidence-backed, and non-blocking for non-production implementation; no production readiness claim is made.
+
+### Next Session
+Await explicit approval at the Stage 0 → Stage 1 transition gate before executing `ST1-001`.

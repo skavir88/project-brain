@@ -13,6 +13,7 @@
 - Recorded the Stage 0 Completion Review outcome as further safe evidence work required before the architecture transition gate.
 - Recorded sanitized local-Redis active-connection evidence without inferring configuration or non-use.
 - Recorded one Dify SSRF proxy classification, two non-critical unclassified containers, and the Stage 0 architecture decision gate.
+- Accepted current n8n placement on `rdapp`, closed Stage 0, and prepared the Stage 1 transition approval gate.
 
 ## 2026-08-06
 

@@ -1,53 +1,46 @@
 # Next Task
 
 ## Metadata
-- Task ID: ET0-011
-- Stage: Stage 0 — Project Discovery, Baseline and Automation Foundation
-- Status: Blocked — architecture decision required
-- Owner: Architecture owner
+- Task ID: ST1-001
+- Stage: Stage 1 — Product Implementation
+- Status: Blocked — Stage transition approval required
+- Owner: Product/architecture owner
 
 ## Goal
-Resolve the discrepancy between observed n8n on `rdapp` and the declared `rdautomation` responsibility, so Stage 0 can complete its architecture transition gate.
+Create a local, non-production ingestion-service implementation workspace with a health-only endpoint and Docker Compose validation, establishing the first executable Enterprise AI product artifact without using organizational data.
 
-## Decision Required
-Select exactly one outcome:
+## Transition Gate
+Stage 0 is complete. Execution of this task requires explicit approval to enter Stage 1 because `AI_CONTEXT.md` and `PROJECT.md` keep Stage 1 out of scope until transition approval.
 
-1. **Accept observed placement:** record n8n as an `rdapp` responsibility and revise the declared `rdautomation` role.
-2. **Move n8n to `rdautomation`:** authorize a separate scoped migration/deployment task with explicit data, downtime, backup, rollback, and verification controls.
-3. **Exclude observed n8n from Enterprise AI scope:** record it as an unrelated existing service and retain `rdautomation` as the planned Enterprise AI automation host.
-
-## Scope
-- Allowed hosts: none until an outcome is selected.
-- Allowed operations after selection: Project Brain decision/state/architecture documentation only. Any n8n move requires a new separately approved task.
+## Scope After Approval
+- Create only local implementation artifacts in this repository or an explicitly approved implementation workspace.
+- Use a health-only ingestion-service skeleton and Docker Compose validation.
+- Do not connect to organizational data, deploy to declared hosts, expose public endpoints, or claim production readiness.
 
 ## Forbidden Operations
-- No remote connection, service move, restart, deployment, Docker change, data access, configuration read, credential access, or network change.
-- Do not infer the architecture outcome from observed placement.
+- No remote deployment, database provisioning, real-data ingestion, secret creation, public exposure, destructive operation, or Stage 1 scope expansion beyond the approved health-only skeleton.
 
 ## Inputs
+- `PROJECT.md`
 - `ARCHITECTURE.md`
-- `CURRENT_STATE.md`
-- `DECISIONS.md`
 - `MASTER_PLAN.md`
-- `evidence/sanitized/2026-08-06-stage0-service-inventory.json`
-- `evidence/sanitized/2026-08-08-et0-008-stage0-completion-review.json`
+- `DESIGN_SYSTEM.md`
+- `evidence/sanitized/2026-08-08-stage0-transition-readiness.json`
 
-## Verification
+## Verification After Approval
 ```bash
 git diff --check
-rg -n -i "(password\s*[:=]|api[_-]?key\s*[:=]|secret\s*[:=]|token\s*[:=]|private[_-]?key\s*[:=])" -g "!evidence/**" .
-rg -n -i "[A]randi|Phase 0[.]5|[G]apGPT|[.]ai/" -g "*.md" -g "*.txt" .
+# Run the implementation workspace health and Docker Compose validation commands defined by ST1-001.
 ```
 
 ## Evidence Requirements
-- Explicit architecture-owner outcome.
-- Updated decision, architecture, state, changelog, session log, and exactly one next task.
+- Explicit Stage 1 transition approval.
+- Local health endpoint verification and Docker Compose validation output, sanitized before recording.
 
 ## Rollback
-Revert only Project Brain documentation changes if the selected outcome is entered incorrectly. No infrastructure action is authorized by this task.
+Remove only the newly created local implementation skeleton if review fails; do not affect Stage 0 infrastructure.
 
 ## Definition of Done
-- One outcome is recorded without ambiguity.
-- No unauthorized n8n infrastructure action is performed.
-- Stage 0 Completion Review is updated with the resulting transition classification.
-- Final repository safety checks pass.
+- Stage transition approval is recorded.
+- Health-only service skeleton and Compose validation succeed locally.
+- Project Brain is updated with the actual implementation evidence and one next atomic task.

@@ -9,7 +9,7 @@ The topology below is **declared** project context. Host reachability, Docker/Co
 | `rddb` | `172.20.190.61` | PostgreSQL and durable data services |
 | `rdapp` | `172.20.190.62` | Dify, Nginx, and application services |
 | `rdvector` | `172.20.190.63` | Qdrant and vector services |
-| `rdautomation` | `172.20.190.64` | n8n and workflow automation |
+| `rdautomation` | `172.20.190.64` | Reserved for future automation/workflow scale-out or isolation |
 | `rdmonitor` | `172.20.190.65` | Monitoring, logging, and observability |
 
 The declared virtualization platform is VMware and declared server OS is Ubuntu Linux. Docker CLI and Docker Compose command availability are `verified` on all five declared hosts by the 2026-08-05 baseline collection; VMware, service deployment, service versions, and configuration remain unverified.
@@ -28,7 +28,7 @@ Human review/HITL is a branch from Quality Gates for sensitive cases.
 ## Observed Service Placement — 2026-08-06
 The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, a Dify SSRF proxy, and two unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
 
-This observation conflicts with the declared automation-host responsibility because n8n was observed on `rdapp`. It does not alter declared responsibilities or prove backend integration. The Stage 0 transition gate now requires an explicit architecture-owner decision before any placement change or documentation realignment.
+The observed n8n placement on `rdapp` is accepted for the current Enterprise AI MVP architecture. `rdapp` may host Dify runtime components, Nginx, n8n, and supporting application-runtime components. `rdautomation` remains reserved for future scale-out or isolation; no migration is authorized or required now.
 
 ## Dify Runtime Reachability — 2026-08-08
 Three running Dify API/worker components on `rdapp` resolved the declared `rddb` and `rdvector` names and completed TCP handshakes to PostgreSQL, Redis, Qdrant HTTP, and Qdrant gRPC endpoints. The local entrypoint returned HTTP `307` to a status-only request.
