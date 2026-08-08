@@ -10,6 +10,8 @@
 - DEC-014 and the bounded read-only real business-pilot preflight task.
 - Sanitized ST1-013 real file-share metadata-only preflight evidence.
 - Sanitized ST1-014 metadata-only real-content subset discovery evidence.
+- Sanitized partial real-content extraction evidence for the selected `status_candidate_b` subset.
+- Local-only deterministic extraction and review-package utilities for bounded real content.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
 - Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
 
@@ -37,6 +39,7 @@
 - Authorized one bounded real business pilot while retaining explicit certification and human-review boundaries.
 - Recorded partial read-only pilot-folder inventory, format-risk categories, and the bounded-subset gate before real content access.
 - Recorded three non-sensitive status-reporting candidate summaries and stopped before content access pending business selection.
+- Recorded DEC-015 and partial read-only extraction: 18 of 19 selected documents succeeded; one XLSX requires format-resolution and human review.
 
 ## 2026-08-06
 

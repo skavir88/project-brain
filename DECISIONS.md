@@ -77,3 +77,10 @@ Status: Accepted
 The first real Enterprise AI pilot is limited to one explicitly approved, read-only organizational file-share folder representing one bounded project dataset. Folder membership never establishes credibility or certification. Files must pass the existing ingestion, quality, human-review, certification, Certified Knowledge, retrieval, Qdrant, and Dify boundaries before contributing to an executive answer.
 
 The pilot answers the CEO question, “What is the latest status of this project?”, only with certified evidence and structured provenance. “Latest” derives from controlled source/provenance and certification metadata, never filesystem ordering alone. Conflicts remain visible or route through the existing review policy. No automatic certification, whole-share crawl, write access, public exposure, production UI, or organizational-wide RBAC is authorized. Real file content may be accessed only after the exact bounded path and read-only access are verified by ST1-013.
+
+## DEC-015 — Initial Real-Content Subset
+Status: Accepted
+
+The initial real-content pilot subset is the user-selected source alias `status_candidate_b`. Its fixed boundary is 19 documents: 18 PDF and 1 XLSX, with an aggregate metadata size of 23,606,611 bytes. Only that bounded subset may be read, and only by read-only extractors for the approved PDF/XLSX formats. The source path and document names remain local operational data and are never recorded in versioned evidence.
+
+The selection is a scope boundary, not evidence that the folder is authoritative, current, credible, or certified. Extracted facts remain unreviewed and uncertified. No real content may enter PostgreSQL, Certified Knowledge, Qdrant, Dify, or any external AI service until the existing human-review and explicit-certification path is completed.

@@ -1,0 +1,50 @@
+{
+  "evidence_type": "sanitized_real_content_extraction_summary",
+  "task_id": "ST1-014",
+  "captured_at_utc": "2026-08-08",
+  "source_alias": "status_candidate_b",
+  "approved_subset": {
+    "document_count": 19,
+    "extension_distribution": {
+      ".pdf": 18,
+      ".xlsx": 1
+    },
+    "aggregate_size_bytes": 23606611,
+    "content_access": "read_only",
+    "raw_paths_and_filenames_in_evidence": false
+  },
+  "extraction": {
+    "completed_document_count": 18,
+    "failed_document_count": 1,
+    "failure_categories": {
+      "BadZipFile": 1
+    },
+    "unique_content_fingerprint_count": 12,
+    "possible_sensitivity_categories": {
+      "possible_phone_number": 1
+    },
+    "raw_text_and_provenance_location": "local_operator_runtime_outside_git",
+    "source_modified": false
+  },
+  "deterministic_review_preparation": {
+    "review_item_count": 3,
+    "review_documents_with_items": 1,
+    "topic_category_counts": {
+      "status": 3
+    },
+    "duplicate_fingerprint_group_count": 6,
+    "all_review_items_have_required_provenance_fields": true,
+    "canonicalization": "deterministic whitespace_and_casefold_comparison_form",
+    "credibility_disposition": "human_review_required_for_all_real_claims",
+    "llm_used": false,
+    "certification_performed": false,
+    "review_package_location": "local_operator_runtime_outside_git"
+  },
+  "boundary": {
+    "real_content_persisted_to_project_database": false,
+    "real_content_sent_to_qdrant": false,
+    "real_content_sent_to_dify_or_external_ai": false,
+    "real_content_certified": false,
+    "result": "partial_extraction_requires_human_resolution"
+  }
+}

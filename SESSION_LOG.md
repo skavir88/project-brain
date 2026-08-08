@@ -464,3 +464,16 @@ Execute ST1-014 metadata-only discovery for a bounded initial real-content subse
 
 ### Decision Gate
 Multiple candidate subsets can represent different project-status periods. The source alias must be selected by the architecture owner before any real content reading; filesystem dates alone are not authority evidence.
+
+## Session 027 — 2026-08-08
+
+### Objective
+Execute the approved bounded, read-only ST1-014 real-content extraction for `status_candidate_b` and prepare deterministic material for human review.
+
+### Completed
+- Recorded DEC-015: 19 selected documents (18 PDF, 1 XLSX), 23,606,611 aggregate metadata bytes; no raw source path or name entered versioned evidence.
+- Extracted 18 documents on the control workstation only, produced 12 content fingerprints, identified six duplicate-fingerprint groups, and created three redacted, unreviewed status-review items in a local runtime package outside Git. Each item passed deterministic required-provenance validation, received a canonical comparison fingerprint, and was forced to `human_review_required`.
+- Used no LLM and made no source-file, remote-host, database, Qdrant, Dify, Certified Knowledge, or certification change for real content.
+
+### Blocker
+- One selected XLSX failed deterministic OOXML extraction with `BadZipFile`. The corpus is partial; its format/access exception and the resulting human review are required before real facts can move into the trust path.

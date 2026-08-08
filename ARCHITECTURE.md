@@ -42,6 +42,11 @@ ST1-013 verified access through the control workstation only and established a p
 
 ST1-014 discovered multiple bounded allowlisted status-reporting candidates using names and metadata only. Because a folder/subset selection can alter the executive meaning of “latest status,” no candidate is automatically selected and content remains unread until the architecture owner chooses a source alias.
 
+## Selected Real-Content Boundary — 2026-08-08
+DEC-015 selected the local operational alias `status_candidate_b` for the first controlled extraction. The bounded corpus contains 19 documents (18 PDF, 1 XLSX) and 23,606,611 aggregate metadata bytes. Extraction occurs only on the control workstation, read-only, with raw text and source references retained outside Git. It is not a remote deployment, data-store ingestion, or AI/RAG integration.
+
+Eighteen documents were extractable; the selected XLSX raised `BadZipFile` under deterministic OOXML extraction. Real content remains outside PostgreSQL, Certified Knowledge, Qdrant, Dify, and external AI services. The remaining path is human review, explicit certification, and only then controlled projection/retrieval; the unsupported/invalid spreadsheet requires resolution before the subset can be treated as complete.
+
 ## Observed Service Placement — 2026-08-06
 The sanitized service inventory verifies running PostgreSQL and Redis containers on `rddb`; Qdrant on `rdvector`; and Dify `1.16.0` API/web components, Nginx, Redis, n8n, a Dify SSRF proxy, and two unclassified containers on `rdapp`. `rdautomation` and `rdmonitor` had no running containers at collection time.
 
