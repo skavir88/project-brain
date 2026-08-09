@@ -1,0 +1,43 @@
+{
+  "schema_version": "st1-021-targeted-enrichment-v1",
+  "selection_alias": "status_oriented_candidate_1",
+  "scope": "read-only visual and structured review of only the four ST1-020 NEEDS_MORE_EVIDENCE candidates within the selected corpus",
+  "reviewed_source_page_count": 3,
+  "reviewed_source_categories": [
+    "financial change estimate",
+    "site-support contract-cost table",
+    "project change log"
+  ],
+  "change_log_page_2": {
+    "visible_row_count": 12,
+    "status_counts": {
+      "open": 4,
+      "in_progress": 5,
+      "closed": 3
+    },
+    "impact_flagged_row_counts": {
+      "scope": 5,
+      "time": 11,
+      "cost": 11
+    },
+    "last_updated_value_present": false,
+    "currentness_or_authority_verified": false
+  },
+  "financial_change_estimate": {
+    "document_level_date_present": true,
+    "value_field_count": 3,
+    "reporting_period_or_currentness_verified": false,
+    "document_authority_verified": false
+  },
+  "site_support_cost_table": {
+    "contractual_date_fields_present": true,
+    "contractual_cost_fields_present": true,
+    "status_reporting_relevance_verified": false,
+    "current_or_open_obligation_status_verified": false
+  },
+  "new_certification_executed": false,
+  "real_content_persisted_to_platform": false,
+  "external_ai_or_model_used": false,
+  "raw_content_or_locators_versioned": false,
+  "outcome": "The selected corpus cannot establish a trustworthy current executive status; a dated, authoritative project-status source and a current Change Log are specifically required."
+}

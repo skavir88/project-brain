@@ -571,3 +571,17 @@ Execute ST1-019 for the explicitly selected `status_oriented_candidate_1` corpus
 
 ### Next Gate
 - The designated reviewer must decide each local candidate as `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`. No candidate may be certified automatically.
+
+## Session 035 — 2026-08-09
+
+### Objective
+Record ST1-020 Human Review decisions and execute one bounded ST1-021 evidence-enrichment pass for the four unresolved candidates.
+
+### Completed
+- Recorded the reviewer’s complete decision set exactly: zero `APPROVE`, four `NEEDS_MORE_EVIDENCE`, 11 `REJECT`, and zero `CONFLICT`. No certification was attempted or executed.
+- Excluded the 11 rejected external/educational sources from future project-status candidate generation.
+- Reviewed only the three relevant PDF pages locally. The visible Change Log table contains 12 rows: four open, five in progress, and three closed; five, 11, and 11 visible rows respectively carry Scope, Time, and Cost impact flags.
+- The Change Log has no populated last-updated value. The financial page has a document date and monetary fields but no proof of reporting period/currentness/authority; the site-support table has contractual dates/costs but no verified executive-status relevance.
+
+### Outcome
+- The selected corpus cannot support a trustworthy current executive answer. No additional content was opened after this bounded pass. The next source must be a dated, authoritative project-status report and/or a populated current Change Log.

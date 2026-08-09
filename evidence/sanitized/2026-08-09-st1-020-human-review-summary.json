@@ -1,0 +1,16 @@
+{
+  "schema_version": "st1-020-sanitized-human-review-summary-v1",
+  "selection_alias": "status_oriented_candidate_1",
+  "review_candidate_count": 15,
+  "reviewer": "explicit_user_decision",
+  "decision_counts": {
+    "APPROVE": 0,
+    "CONFLICT": 0,
+    "NEEDS_MORE_EVIDENCE": 4,
+    "REJECT": 11
+  },
+  "certification_executed": false,
+  "unresolved_candidate_count": 4,
+  "rejected_external_or_educational_candidate_count": 11,
+  "raw_content_or_locator_versioned": false
+}
