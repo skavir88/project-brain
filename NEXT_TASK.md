@@ -1,71 +1,80 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-032
+- Task ID: ST1-033
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting Human Review
-- Owner: Designated business reviewer
+- Status: Blocked
+- Owner: Enterprise AI Project Operator
 
 ## Objective
-Obtain explicit decisions for the revised, same-ID ST1-030 candidates after ST1-031 established their worksheet-backed plan/actual semantics for reporting week `1402/06/25–1402/06/31`.
+Restore the already configured embedding capability sufficiently to complete the pending, unchanged-policy Qdrant index and grounded RAG verification for the ten certified ST1-032 Weekly Action-Plan observations.
 
 ## Rationale
-The prior review correctly found that numerical values without schema semantics were insufficient. ST1-031 now provides field labels, units where populated, formula relationships, row-level plan dates, and deterministic variance. Source authority, currentness, and completion semantics remain unverified and require Human Review.
+Certification, audit persistence, projection, provenance, and least privilege are verified. The only remaining ST1-032 gate is downstream vectorization: the configured embedding runtime returned an error twice. A successful controlled retry must not weaken the approved retrieval policy or alter certification semantics.
 
 ## Preconditions
-- The local-only revised package contains exactly the ten pre-existing candidate IDs.
-- Every card retains source alias, row provenance, labelled field mapping, reporting week, uncertainty, and a non-completion boundary.
-- The reviewer must use exactly `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT` for every ID.
+- DEC-022 and `st1-032-source-attributed-v1` exist.
+- Exactly ten approved records, audit events, and Certified Knowledge projections are verified.
+- The Dify API and plugin runtime are running on declared `rdapp`.
+- No credential, provider, network, or Dify configuration change is made without any separately required approval.
 
 ## Scope
-- Render and record decisions for the existing ten IDs only.
-- Preserve source-attributed `1402/06/25–1402/06/31` reporting-week semantics if any item is approved.
-- Prepare one subsequent controlled-certification task only for explicitly approved IDs.
+- Read-only health/diagnostic checks of the existing configured embedding capability.
+- One controlled re-index and one period-bound grounded RAG retry using the existing `enterprise_ai_certified_knowledge_v1` collection and unchanged `0.70` threshold, only after embedding health is evidenced.
+- Sanitized status/evidence and Project Brain updates.
 
 ## Out of Scope
-- Automatic certification; new source discovery; further extraction; changing ST1-023/ST1-026 records; treating actual progress as completion; treating this historical reporting week as current status; platform persistence of unapproved claims.
+- Credential, provider, Dify, network, firewall, DNS, or model configuration changes; threshold reduction; source discovery/extraction; certification changes; public exposure; deletion of Qdrant points or collections.
 
-## Files to Inspect
-- `CURRENT_STATE.md`
-- `DECISIONS.md`
-- `evidence/sanitized/2026-08-09-st1-031-workbook-schema-enrichment.json`
+## Allowed Hosts
+- `enterprise-ai-rdapp`
+- `enterprise-ai-rdvector` only through the existing Dify/Qdrant integration path.
 
-## Files Allowed to Change
-- `CURRENT_STATE.md`
-- `SESSION_LOG.md`
-- `CHANGELOG.md`
-- `NEXT_TASK.md`
-- `DECISIONS.md`, only if a new approval/certification semantic decision is needed
-- `evidence/sanitized/`, aggregate-only
+## Allowed Operations
+- SSH `BatchMode=yes` preflight and read-only logs/status checks.
+- Existing controlled bridge invocation after health preflight.
+- Repository documentation and aggregate-only sanitized evidence updates.
+
+## Forbidden Operations
+- Secret inspection or disclosure; provider credential changes; Qdrant collection deletion; threshold/prompt-policy weakening; new real-content extraction; destructive database operations.
+
+## Inputs
+- `implementation/dify-rag-bridge/run_certified_rag.py`
+- `evidence/sanitized/2026-08-09-st1-032-weekly-action-plan-certification.json`
+- Existing configured Dify embedding and generation capability.
 
 ## Execution Steps
-1. Render the existing revised package; do not regenerate IDs or extract new source content.
-2. Record each explicit reviewer decision exactly.
-3. Keep rejected/unresolved items outside certification and platform persistence.
-4. Create exactly one atomic follow-up task based on the complete decision set.
-
-## Acceptance Criteria
-- Ten explicit reviewer decisions are recorded.
-- No certification precedes explicit approval.
-- Any approved item preserves reporting week, source attribution, field semantics, provenance, and non-currentness boundary.
-- Sanitized evidence contains no raw source content, locator, or formula output.
+1. Verify declared-host preflight and Dify/plugin runtime availability without recording sensitive configuration.
+2. Run a minimal existing embedding health invocation; record only exit status/category.
+3. If it succeeds, run the existing certified-knowledge index bridge and a period-bound grounded RAG query without changing threshold or policy.
+4. Verify provenance fields and historical/source-attributed framing; record only aggregate non-secret results.
+5. If the health invocation fails, retain the exact blocked state and do not mutate configuration.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-09-st1-031-workbook-schema-enrichment.json > /dev/null
+ssh -o BatchMode=yes enterprise-ai-rdapp "docker ps --format '{{.Names}}'"
+ssh -o BatchMode=yes enterprise-ai-rdapp "cat /opt/enterprise-ai/dify-rag-bridge/run_certified_rag.py | docker exec -i dify-api python3 - index"
+python -m json.tool evidence/sanitized/2026-08-09-st1-032-weekly-action-plan-certification.json > /dev/null
 git diff --check
 ```
 
-## Evidence Required
-- Local-only revised review package and decision state.
-- Sanitized aggregate decision summary after review.
+## Evidence Requirements
+- Sanitized embedding health outcome.
+- On success: indexed item count, unchanged threshold, grounded-answer/provenance count and historical framing result.
+- On failure: non-secret error category, exit code, and confirmation that no policy/configuration changed.
 
 ## Rollback
-Human Review is append-only. No source, infrastructure, certification, or platform state is changed before an explicit approval and separately verified certification task.
+This task does not alter configuration. A failed health or bridge invocation requires no rollback. Do not delete or recreate an existing Qdrant collection.
+
+## Definition of Done
+- Existing embedding health is reproducibly blocked after three controlled attempts without configuration change.
+- If healthy, the ten ST1-032 projections are indexed and a provenance-backed source-attributed RAG answer is verified at the unchanged threshold.
+- If blocked, the exact non-secret limitation and safe next gate are recorded; no certification, source, or policy boundary is weakened.
+- Project Brain, sanitized evidence, JSON validation, secret scan, legacy scan, and `git diff --check` are updated.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only when required
+- `DECISIONS.md`, only if a new decision is required

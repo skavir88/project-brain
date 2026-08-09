@@ -690,3 +690,16 @@ Record ST1-030 Human Review decisions and execute bounded ST1-031 worksheet-sche
 
 ### Next Gate
 - The reviewer must decide the revised ST1-032 candidates. No certification, currentness claim, or new source discovery is authorized before explicit decisions.
+
+## Session 044 — 2026-08-09
+
+### Objective
+Apply the ten explicit ST1-032 approvals through the controlled certification lifecycle and verify the source-attributed Certified Knowledge to RAG path.
+
+### Completed
+- Recorded all ten reviewer decisions as `APPROVE` and recorded DEC-022 to preserve reporting-week, plan/actual, provenance, formula-backed, and non-currentness semantics.
+- Deployed the narrowly scoped ingestion-service policy allow-list change after a timestamped remote backup and health verification. All ten approved records transitioned atomically under `st1-032-source-attributed-v1`.
+- Database verification observed ten certified records, ten matching append-only audit events, ten Certified Knowledge projections, zero remaining non-certified records under that policy, a non-superuser runtime role, and zero DELETE grants on the relevant tables.
+
+### Blocker
+- The controlled Qdrant re-index and Dify grounded-answer run could not obtain an embedding because the already configured embedding capability returned the same runtime error on three attempts. No threshold was lowered, no credential was disclosed, and the failed index attempts wrote no new points. ST1-032 remains blocked only at the downstream provider-backed index/RAG verification boundary; configuration/credential repair is separately approval-gated.

@@ -127,3 +127,12 @@ Status: Accepted
 The approved pilot root may be enumerated through a local, resumable SQLite metadata index to make bounded source discovery repeatable without routine full SMB traversal. The index is runtime operational data outside Git and may contain only discovery metadata: source-relative locator, filename, extension, size, filesystem timestamps, parent relationship, metadata fingerprint, and enumeration status/error.
 
 Indexing is read-only, bounded-concurrency, does not open document content, hash content, follow reparse points, change source ACLs, or create source files. Raw inventory, locators, and filenames are never versioned. The local index is neither Certified Knowledge nor evidence of project truth, authority, currentness, or certification. Any selected corpus still requires the existing bounded extraction, Human Review, and controlled-certification gates.
+
+## DEC-022 — Source-Attributed Certification for ST1-032 Weekly Action-Plan Observations
+Status: Accepted
+
+The designated reviewer explicitly approved exactly the ten revised ST1-032 candidates. The existing controlled lifecycle may certify only those records under policy `st1-032-source-attributed-v1`. Each Certified Knowledge statement must retain the equivalent meaning: “According to the Action Plan for reporting week `1402/06/25–1402/06/31`, [activity] had the reported cumulative planned and actual progress values.”
+
+The labelled workbook reporting week is distinct from each row’s planned start/finish dates, source formula evaluation, an event-effective date, and the certification timestamp. Deterministically derived variance is `cumulative actual progress − cumulative contractor plan progress`, expressed in percentage points, and is not by itself a completion, delay, stoppage, authority, or currentness finding. Formula-backed aggregate values retain that status in provenance.
+
+This decision does not establish that a reported condition remains true today, that a planned action was completed, that the source is globally authoritative, or that the reporting week is the latest organizational status. The verified timeline may include this source-attributed reporting week only; `current_status=insufficient_certified_evidence` remains mandatory pending independently established sufficiently recent authoritative evidence.
