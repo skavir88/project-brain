@@ -52,5 +52,7 @@ ST1-036/ST1-037 exhausted two later metadata-selected boundaries without a trust
 
 ST1-039 is complete with a source gap. The bounded local metadata index and targeted document-control inspection did not identify the underlying authoritative periodic progress source required for the CEO-status question. The next critical path is a single business locator for the normal project-team filing location of the latest periodic progress, dashboard, schedule, or status report; it is not another broad discovery cycle.
 
+The ST1-040 self-discovery override supersedes that human-locator gate. It ranked the completed runtime-local index and qualified one small family with source-attributed engineering/procurement evidence later than the existing certified timeline. The family does not establish a complete authoritative CEO-status snapshot; three Human Review candidates are the next gate, with no automatic certification or currentness change.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

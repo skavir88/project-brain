@@ -105,3 +105,4 @@
 - Recorded standing-authorized ST1-036/ST1-037 bounded extraction: one insufficient partial boundary and one 34-document corpus with 15 local-only Human Review candidates; no real content entered platform services.
 - Recorded all 15 ST1-038 Human Review decisions as `NEEDS_MORE_EVIDENCE`, with zero certification eligibility.
 - Closed ST1-039 as `complete_with_source_gap`; recorded the bounded metadata-only source-gap search and a sanitized CEO-status evidence specification without weakening trust or retrieval policy.
+- Recorded ST1-040 controlled self-discovery: ranked runtime-local metadata families, qualified one bounded family with local extraction/Persian OCR, and prepared three local-only Human Review candidates without certification or platform persistence.

@@ -1,0 +1,37 @@
+{
+  "schema_version": "st1-040-self-discovery-and-qualification-v1",
+  "authorization": "controlled self-discovery inside the approved pilot root",
+  "metadata_discovery": {
+    "index_rows_queried": 52981,
+    "directory_status_counts": {"completed": 13610, "error": 524},
+    "source_families_ranked": 663,
+    "ranking_method": ["directory and filename lexical signals", "format", "apparent cadence/date-version signals", "negative legal/tender/claim context penalty", "bounded-family preference"],
+    "new_smb_traversal": false,
+    "content_opened_during_discovery": false
+  },
+  "qualification": {
+    "winning_family_entries": 22,
+    "winning_family_pdf_entries": 21,
+    "winning_family_non_document_entries": 1,
+    "winning_family_aggregate_size_bytes": 19460012,
+    "direct_extraction": {"attempted": 21, "succeeded": 21, "failed": 0},
+    "bounded_local_ocr": {"pdfs": 5, "maximum_pages_per_pdf": 8, "succeeded": 5, "failed": 0, "languages": ["fas"]},
+    "substantive_human_review_candidates": 3,
+    "candidate_categories": ["engineering issue and required action", "procurement inspection observation", "documented follow-up action"],
+    "newest_internal_document_date_observed": "1403/03/16"
+  },
+  "currentness_interpretation": {
+    "latest_verified_status_period_change": false,
+    "current_status": "insufficient_certified_evidence",
+    "reason": "the bounded family contains source-attributed engineering/procurement observations, not a coherent authoritative executive status snapshot with overall progress, plan/actual, schedule, blockers, forecast, and decision coverage"
+  },
+  "boundaries": {
+    "raw_locator_or_filename_versioned": false,
+    "raw_organizational_content_versioned": false,
+    "source_modified": false,
+    "external_model_use": false,
+    "platform_persistence": false,
+    "automatic_certification": false,
+    "existing_certification_or_knowledge_modified": false
+  }
+}
