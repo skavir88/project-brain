@@ -1,0 +1,13 @@
+{
+  "schema_version": "st1-028-local-metadata-index-v1",
+  "generated_utc": "2026-08-09T00:00:00Z",
+  "scope": "approved pilot root only; local metadata enumeration",
+  "index_storage": "local SQLite outside Git",
+  "content_access_during_indexing": false,
+  "source_modification": false,
+  "directory_status_counts": {"completed": 13610, "error": 524, "pending": 0},
+  "enumerated_file_rows": 52981,
+  "resumability_verified": true,
+  "discovery_query": {"runs_without_new_smb_traversal": true, "candidate_count": 20, "selected_alias": "indexed_currentness_candidate_1", "selected_metadata_signature_before_revalidation": {"document_count": 40, "extension_distribution": {".docx": 1, ".pdf": 20, ".xlsx": 19}, "aggregate_size_bytes": 394542104}},
+  "limitations": ["524 directories recorded enumeration errors; index completion means no pending work, not that every directory was accessible.", "Filesystem metadata is a discovery signal only and is not project-status, authority, or currentness evidence.", "Raw locators, filenames, metadata rows, and local extraction output remain outside Git."]
+}

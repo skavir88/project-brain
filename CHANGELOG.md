@@ -94,3 +94,5 @@
 ### Added
 - Declared host inventory manifest, read-only local baseline collector, and raw-evidence Git exclusion.
 - Evidence-first status model and Stage 0 governance decisions.
+- Added DEC-021 and a resumable, local-only metadata discovery index for the approved pilot root; recorded aggregate index completion and errors without versioning raw inventory.
+- Selected a bounded metadata-ranked currentness candidate, revalidated its availability, and completed local read-only extraction of its stable 32-entry subset. Prepared ten local-only Human Review candidates with a later internal `1402/06` period signal; no certification or platform persistence occurred.

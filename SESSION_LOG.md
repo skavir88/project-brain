@@ -664,3 +664,16 @@ Execute ST1-027 metadata-only discovery for a bounded source potentially newer t
 ### Limitation
 - The bounded metadata-only traversal exceeded 120 seconds before a complete runtime result could be written. It will not be repeated as an unrestricted scan. This is a discovery-performance limitation, not evidence that a newer source does or does not exist.
 - Further progress requires a narrow operator-supplied bounded locator or a faster indexed local metadata result.
+## Session 042 — 2026-08-09
+
+### Objective
+Execute approved ST1-028 resumable metadata-only discovery indexing and continue through one clear bounded candidate.
+
+### Completed
+- Created a local-only SQLite discovery index with checkpoints; it reached zero pending directories after 13,610 completed directories and 524 recorded enumeration errors. The index contains 52,981 enumerated file-metadata rows. No document content was opened during indexing and no raw inventory was versioned.
+- A local query without new SMB traversal found 20 bounded candidates. The highest-ranked candidate had a 40-entry allowlisted signature (20 PDF, 19 XLSX, one DOCX; 394,542,104 bytes) and was selected solely as a discovery boundary.
+- Metadata revalidation found eight unavailable entries, so extraction halted before content access, then continued only with the matching stable 32-entry subset. Deterministic local extraction completed with zero errors: 250 PDF pages, nine DOCX segments, and 3,082,328 XLSX cells.
+- The extracted workbook material contains a later internal `1402/06` period signal. A local-only package with ten substantive, provenance-backed Human Review candidates was created. No claim was certified, persisted to platform services, or sent to an external model.
+
+### Next Gate
+- The designated reviewer must decide each ST1-030 candidate as `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`. The internal period signal cannot be treated as current/latest status or certified evidence without explicit review.

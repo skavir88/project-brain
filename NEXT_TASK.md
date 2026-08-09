@@ -1,64 +1,69 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-028
+- Task ID: ST1-030
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — bounded locator or indexed metadata result required
-- Owner: Designated business reviewer / operator
+- Status: Awaiting Human Review
+- Owner: Designated business reviewer
 
 ## Objective
-Provide one bounded source-relative folder locator, or one indexed metadata result, for a plausible project-status/reporting source that may contain an internal document date later than `1402/02/27`.
+Obtain one explicit Human Review disposition for each of the ten local-only, provenance-backed observations extracted from `indexed_currentness_candidate_1` for internal period signal `1402/06`.
 
 ## Rationale
-The approved pilot root is reachable, but a metadata-only traversal that excluded all exhausted corpora exceeded the 120-second bounded limit without producing a safe candidate result. Repeating it would be an unbounded performance loop.
+The bounded corpus contains substantive planned-versus-actual row-level observations that may extend the verified timeline beyond the source issue date `1402/02/27`. Their document authority, exact column semantics, factual correctness, event-effective dates, and currentness remain unverified; they cannot be certified automatically.
 
 ## Preconditions
-- The source must remain under the approved pilot root.
-- The source must be a bounded PDF, DOCX, and/or XLSX folder set.
-- No source content, filename, path, or credential is to be entered into versioned evidence.
+- The local Human Review package exists outside Git at the control-workstation runtime location.
+- Each card presents the minimum necessary content, source alias, local locator, sheet/row provenance, uncertainty, and proposed disposition.
+- Review decisions must be explicit and use only `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`.
 
 ## Scope
-- The operator may use local Windows Explorer or an indexed metadata search to identify one containing folder with project-status, progress, monthly/weekly report, management report, project controls, or schedule/reporting signals.
-- Supply only the selected folder locator directly in the conversation; it will be retained only in local runtime state.
-- The agent will validate its metadata signature before any content access.
+- Present exactly the ten ST1-030 review cards to the designated reviewer locally.
+- Record the reviewer’s exact dispositions in local review state and sanitized aggregate evidence.
+- If and only if items are explicitly approved, prepare one subsequent controlled-certification task preserving source attribution, `1402/06` period semantics, modality, provenance, reviewer/actor, policy, and non-currentness boundary.
 
 ## Out of Scope
-- Repeating an unrestricted recursive traversal, opening content before a bounded candidate is validated, modifying source data, certification, platform persistence, external-model use, or public exposure.
+- Automatic certification; treating plans as completed outcomes; treating `1402/06` as current/latest status; content access outside the selected stable corpus; source modification; external-model use; platform persistence of unapproved claims; retrieval-policy changes.
 
 ## Files to Inspect
+- `AI_CONTEXT.md`
 - `CURRENT_STATE.md`
-- `evidence/sanitized/2026-08-09-st1-027-newer-source-discovery.json`
+- `DECISIONS.md`
+- `evidence/sanitized/2026-08-09-st1-029-indexed-currentness-extraction.json`
 
 ## Files Allowed to Change
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only if a bounded source is explicitly selected
+- `DECISIONS.md`, only if approved certification semantics require a new recorded decision
+- `evidence/sanitized/`, aggregate-only
 
 ## Execution Steps
-1. Receive one bounded locator or indexed metadata candidate from the operator.
-2. Validate its containment, allowlisted extension distribution, count, size, and metadata without opening content.
-3. Create exactly one bounded read-only extraction task only when the signature is safe and the candidate may extend the timeline.
+1. Read the local-only ST1-030 review package; do not place excerpts or locators in Git.
+2. Display each card to the designated reviewer with the required provenance and uncertainty.
+3. Record the reviewer’s exact disposition; do not infer a decision.
+4. Exclude rejected/unapproved claims from certification and platform persistence.
+5. Create exactly one atomic follow-up task matching the actual decision outcome.
 
 ## Acceptance Criteria
-- The source is bounded and within the approved pilot root.
-- No content is opened before metadata validation.
-- The operator input and raw locator remain outside Git and sanitized evidence.
-- Exactly one atomic next task follows validation.
+- All ten decisions are explicit and attributable to the designated reviewer.
+- No unapproved claim is certified, projected, indexed, or supplied to Dify.
+- Any later certification task preserves source-attributed, historical/non-current semantics.
+- Sanitized evidence contains only counts and policy/result metadata, never raw source content or locators.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-09-st1-027-newer-source-discovery.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-029-indexed-currentness-extraction.json > /dev/null
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized bounded-discovery timeout record.
-- Runtime-local candidate locator and sanitized aggregate metadata signature.
+- Local-only review package and decision state.
+- Sanitized aggregate decision summary after review.
 
 ## Rollback
-Read-only locator validation; no source, platform, or infrastructure state is changed.
+Human Review is an append-only decision event. No source, infrastructure, platform, or certification state is changed before an explicit approval and a separately verified controlled-certification task.
 
 ## Completion Updates
 - `CURRENT_STATE.md`

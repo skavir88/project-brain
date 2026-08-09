@@ -152,20 +152,31 @@ def main() -> int:
     parser.add_argument("--runtime-discovery", type=Path, default=runtime_file("st1-018-status-discovery.json"))
     parser.add_argument("--candidate-alias", default="status_oriented_candidate_1")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--selection-manifest", type=Path)
+    parser.add_argument("--root", type=Path)
     args = parser.parse_args()
-    discovery = json.loads(args.runtime_discovery.read_text(encoding="utf-8"))
-    candidate = next((x for x in discovery["top_candidates"] if x["alias"] == args.candidate_alias), None)
-    if not candidate:
-        raise RuntimeError("selected candidate is absent from local discovery state")
-    if args.candidate_alias not in EXPECTED_BY_ALIAS:
-        raise RuntimeError("candidate alias is not an approved extraction boundary")
-    expected_extensions, expected_count, expected_total = EXPECTED_BY_ALIAS[args.candidate_alias]
+    if args.selection_manifest:
+        candidate = json.loads(args.selection_manifest.read_text(encoding="utf-8"))
+        required = {"alias", "relative_locator", "files", "selection_signature"}
+        if not required <= set(candidate):
+            raise RuntimeError("local selection manifest is incomplete")
+        expected_extensions = candidate["selection_signature"]["extension_distribution"]
+        expected_count = int(candidate["selection_signature"]["document_count"])
+        expected_total = int(candidate["selection_signature"]["aggregate_size_bytes"])
+    else:
+        discovery = json.loads(args.runtime_discovery.read_text(encoding="utf-8"))
+        candidate = next((x for x in discovery["top_candidates"] if x["alias"] == args.candidate_alias), None)
+        if not candidate:
+            raise RuntimeError("selected candidate is absent from local discovery state")
+        if args.candidate_alias not in EXPECTED_BY_ALIAS:
+            raise RuntimeError("candidate alias is not an approved extraction boundary")
+        expected_extensions, expected_count, expected_total = EXPECTED_BY_ALIAS[args.candidate_alias]
     files = candidate["files"]
     counts = Counter(x["extension"].lower() for x in files)
     total = sum(int(x["size_bytes"]) for x in files)
     if len(files) != expected_count or dict(counts) != expected_extensions or total != expected_total:
         raise RuntimeError("selected corpus signature does not match the approved extraction boundary")
-    subset = Path(PILOT_ROOT) / candidate["relative_locator"]
+    subset = (args.root or Path(PILOT_ROOT)) / candidate["relative_locator"]
     if not subset.is_dir():
         raise RuntimeError("selected runtime locator is unavailable; extraction was not attempted")
     tessdata = Path(os.environ.get("LOCALAPPDATA", "")) / "EnterpriseAI" / "tessdata"
@@ -197,7 +208,7 @@ def main() -> int:
             segments = []
             error = {"type": type(exc).__name__, "message": str(exc)}
         documents.append({"source_relative_locator": item["relative_locator"], "extension": ext, "size_bytes": item["size_bytes"], "sha256": sha256_file(source), "segments": segments, "extraction_error": error})
-    output_path = args.output or runtime_file(f"st1-025-{args.candidate_alias}-extraction.json")
+    output_path = args.output or runtime_file(f"{candidate['alias']}-extraction.json")
     output = {"schema_version": "bounded-status-extraction-v2", "generated_utc": datetime.now(UTC).isoformat(), "selection_alias": candidate["alias"], "selection_signature": {"document_count": len(files), "extension_distribution": dict(counts), "aggregate_size_bytes": total}, "documents": documents, "aggregate": aggregate}
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     safe = {"selection_alias": candidate["alias"], "document_count": len(documents), "extension_distribution": dict(counts), "aggregate": aggregate, "extraction_error_count": sum(x["extraction_error"] is not None for x in documents), "output_written_outside_git": True}

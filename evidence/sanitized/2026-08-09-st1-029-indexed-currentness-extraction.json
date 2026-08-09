@@ -1,0 +1,12 @@
+{
+  "schema_version": "st1-029-indexed-currentness-extraction-v1",
+  "generated_utc": "2026-08-09T00:00:00Z",
+  "selection_alias": "indexed_currentness_candidate_1",
+  "selection_boundary": "local runtime locator only; read-only",
+  "indexed_signature_before_revalidation": {"document_count": 40, "extension_distribution": {".docx": 1, ".pdf": 20, ".xlsx": 19}, "aggregate_size_bytes": 394542104},
+  "stable_extraction_signature": {"document_count": 32, "extension_distribution": {".docx": 1, ".pdf": 16, ".xlsx": 15}, "aggregate_size_bytes": 329531603},
+  "preflight_unavailable_entries": 8,
+  "extraction": {"error_count": 0, "pdf_pages": 250, "pdf_direct_text_pages": 250, "pdf_ocr_pages": 0, "docx_segments": 9, "xlsx_cells": 3082328},
+  "outcome": {"internal_later_period_signal": "1402/06", "human_review_candidates": 10, "automatic_certification": false, "platform_persistence": false, "external_model_use": false},
+  "limitations": ["The eight unavailable entries made the original discovery signature stale; they were excluded before content extraction.", "The later internal period signal, workbook labels, and planned-versus-actual fields do not establish authority, currentness, factual correctness, or certification.", "Candidate content, source locators, and excerpts are retained only in the local Human Review package."]
+}

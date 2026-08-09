@@ -121,3 +121,9 @@ Status: Accepted
 `status_oriented_candidate_3` is selected for one bounded, read-only local extraction pass because its workbook content contains a recurring daily-status structure, internal reporting dates, a project identifier, and activity/issue rows with cell provenance. Its fixed discovery signature is ten XLSX workbooks totaling 1,163,077 metadata bytes; raw locators remain only in local runtime state.
 
 The selection is evidence of source relevance signals only. It does not establish approval authority, organization-wide completeness, recency beyond the extracted internal reporting period, factual correctness, or executive “latest-status” semantics. All extracted real information remains unreviewed and uncertified; no platform persistence, AI/RAG use, or automatic certification is authorized.
+## DEC-021 — Local Metadata Discovery Index
+Status: Accepted
+
+The approved pilot root may be enumerated through a local, resumable SQLite metadata index to make bounded source discovery repeatable without routine full SMB traversal. The index is runtime operational data outside Git and may contain only discovery metadata: source-relative locator, filename, extension, size, filesystem timestamps, parent relationship, metadata fingerprint, and enumeration status/error.
+
+Indexing is read-only, bounded-concurrency, does not open document content, hash content, follow reparse points, change source ACLs, or create source files. Raw inventory, locators, and filenames are never versioned. The local index is neither Certified Knowledge nor evidence of project truth, authority, currentness, or certification. Any selected corpus still requires the existing bounded extraction, Human Review, and controlled-certification gates.
