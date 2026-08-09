@@ -100,3 +100,5 @@
 - Recorded DEC-022 and all ten explicit ST1-032 `APPROVE` decisions; atomically certified and projected only the approved weekly Action-Plan observations with source-attributed reporting-week semantics.
 - Recorded the downstream embedding-provider runtime blocker during controlled Qdrant/Dify verification. No retrieval threshold or policy was weakened and no credential detail was versioned.
 - Added sanitized ST1-033 provider diagnostics: Dify/plugin, provider-network, Qdrant, and independent-generation checks are healthy; the remaining fault is limited to the embedding capability and has no safe automatic configuration repair.
+- Recorded approved Option 1 existing-provider recovery: a controlled `dify-plugin-daemon` restart restored embedding without credential, model, provider, schema, threshold, or trusted-data changes. Verified 32 isolated Qdrant points and source-attributed ST1-032 RAG provenance at the unchanged threshold.
+- Added sanitized ST1-035 local metadata-only selection of one bounded newer-source candidate. No SMB traversal or content access occurred; the selected source remains a discovery boundary pending content-access approval.

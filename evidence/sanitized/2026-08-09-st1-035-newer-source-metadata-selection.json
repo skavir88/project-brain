@@ -1,0 +1,29 @@
+{
+  "schema_version": "st1-035-newer-source-metadata-selection-v1",
+  "scope": "read-only query of the completed runtime-local metadata index",
+  "index": {
+    "available": true,
+    "completed_directories": 13610,
+    "error_directories": 524,
+    "new_smb_traversal": false,
+    "document_content_opened": false
+  },
+  "query": {
+    "metadata_cutoff_utc": "2023-09-23T00:00:00Z",
+    "candidate_count": 16,
+    "selection_rule": "choose the deepest nested candidate sharing the highest-ranked complete aggregate signature",
+    "selected_candidate_alias": "metadata-695d19f1b3ce5979",
+    "document_count": 58,
+    "aggregate_size_bytes": 41524545,
+    "extension_distribution": {".pdf": 55, ".xlsx": 3},
+    "metadata_date_range": ["2023-09-26T10:41:48+00:00", "2024-12-07T18:04:39.198290+00:00"],
+    "metadata_signal_count": 3
+  },
+  "boundaries": {
+    "filesystem_dates_are_project_status_evidence": false,
+    "source_authority_established": false,
+    "currentness_established": false,
+    "content_access_authorized": false,
+    "raw_locator_or_filename_versioned": false
+  }
+}

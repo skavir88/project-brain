@@ -715,3 +715,28 @@ Perform the approved read-only ST1-033 diagnostic of the provider-backed embeddi
 
 ### Decision Gate
 - No safe automatic recovery is evidenced. Replacing/validating the dedicated embedding credential, or changing the embedding model/provider, requires explicit approval and an interactive secret-entry or model-compatibility decision. Existing trusted data and retrieval policy remain unchanged.
+
+## Session 046 — 2026-08-09
+
+### Objective
+Execute approved ST1-034 Option 1 recovery using the existing embedding provider, model, credential reference, collection schema, and retrieval policy.
+
+### Completed
+- Confirmed the Dify/plugin runtime had been running without recent restart and observed no sanitized authentication/model-unavailable log category. Performed a controlled restart of only `dify-plugin-daemon`; no database, Qdrant, credential, model, provider, or trusted-state change occurred.
+- The same embedding invocation then succeeded with the configured model and 3072-dimensional vectors. Idempotent indexing produced 32 collection points: the prior 22 and ten ST1-032 source-attributed Certified Knowledge items.
+- Verified ten ST1-032 audit events, ten corresponding Certified Knowledge items, zero Certified Knowledge items sourced from non-certified records, and ten matching Qdrant points. A source/period/activity-bound grounded answer returned two provenance references above the unchanged 0.70 threshold and preserved historical framing.
+
+### Boundary
+- A broader executive-style query returned `insufficient_certified_evidence` at the unchanged threshold. This conservative result is retained; no policy adjustment was made to force broader negative-variance synthesis. Current status remains insufficiently certified.
+
+## Session 047 — 2026-08-09
+
+### Objective
+Execute ST1-035 local-only metadata discovery for a source potentially newer than the verified `1402/06/25–1402/06/31` reporting week.
+
+### Completed
+- Queried the existing completed SQLite discovery index only; no SMB traversal, source-content access, hashing, copying, persistence, or external-model use occurred.
+- From 16 metadata candidates, selected `metadata-695d19f1b3ce5979` as the deepest nested candidate with the highest-ranked full aggregate signature: 58 allowlisted documents (55 PDF, three XLSX) and 41,524,545 metadata bytes.
+
+### Decision Gate
+- Selection is a bounded discovery result only. Filesystem metadata cannot establish project-status dates, authority, or currentness. Content access for this new corpus needs explicit approval before extraction.

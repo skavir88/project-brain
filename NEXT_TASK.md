@@ -1,66 +1,54 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-034
+- Task ID: ST1-036
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting Approval
-- Owner: Project owner / credential custodian
+- Status: Awaiting Content-Access Approval
+- Owner: Designated business reviewer
 
 ## Objective
-Authorize one bounded remediation path for the dedicated embedding capability so the verified ST1-032 Certified Knowledge can be indexed and retrieved without changing trusted certification data or retrieval policy.
+Obtain explicit read-only content-access approval for the bounded `metadata-695d19f1b3ce5979` corpus, so it can be assessed for internally dated evidence later than the verified reporting week `1402/06/25–1402/06/31`.
 
 ## Rationale
-ST1-033 proved that the failure occurs before Qdrant, while Dify/plugin dispatch, provider network reachability, Qdrant, and generation are healthy. The embedding model is registered and has a credential reference, but read-only evidence cannot distinguish an upstream embedding API fault from credential validity, quota, or model-availability conditions.
+ST1-035 selected a single bounded discovery candidate through the approved local metadata index. Metadata can define scope only: it cannot establish authority, reporting date, factual correctness, certification, or current project status. Opening the new organizational corpus requires an explicit business content-access gate.
 
-## Preconditions
-- `evidence/sanitized/2026-08-09-st1-033-embedding-provider-diagnostic.json` is reviewed.
-- Existing certification, audit, Certified Knowledge, Qdrant collection, and `0.70` threshold remain unchanged.
-- No credential value has been exposed or copied.
+## Candidate Boundary
+- Source alias: `metadata-695d19f1b3ce5979`
+- Documents: 58
+- Allowlisted formats: 55 PDF, three XLSX
+- Aggregate metadata size: 41,524,545 bytes
+- Metadata range: 2023-09-26 through 2024-12-07 UTC (discovery metadata only)
+- Source locator: runtime-local only; not versioned or displayed.
 
-## Required Approval
-Choose exactly one bounded path:
+## Required Decision
+Choose exactly one:
 
-1. **Provider recovery** — wait for/provider-side confirmation that the existing embedding endpoint/model is healthy, then re-run ST1-033 unchanged.
-2. **Interactive credential validation/replacement** — authorize an operator to enter a replacement credential through the existing Dify secret-entry UI for the existing embedding model only. The secret must never enter chat, command arguments, Git, logs, or evidence.
-3. **Model/provider change review** — request a separate architecture/data-compatibility decision identifying the proposed already-configured compatible embedding model, vector dimension, and required re-index plan.
+1. `APPROVE_CONTENT_ACCESS` — authorize read-only local extraction for this exact corpus and only `.pdf`/`.xlsx` files.
+2. `REJECT_CONTENT_ACCESS` — retain the corpus unopened and stop currentness discovery at this boundary.
 
-## Scope
-- Decision and, only after approval, the single selected remediation path.
-- Preserve all existing trusted data and policy boundaries.
+## Scope if Approved
+- Read-only deterministic local extraction and bounded local OCR only where required.
+- Preserve PDF page and XLSX workbook/sheet/cell provenance where practical.
+- Build only substantive, source-attributed Human Review candidates; do not auto-certify or send content to an external model.
 
 ## Out of Scope
-- Changing certification/audit/Certified Knowledge records; deleting Qdrant data; reducing retrieval threshold; exposing credentials; unrelated provider changes; new real-content extraction.
-
-## Allowed Hosts
-- `enterprise-ai-rdapp`
-- `enterprise-ai-rdvector` only through the existing controlled index path after approved recovery.
-
-## Verification
-After the selected path succeeds:
-
-```bash
-ssh -o BatchMode=yes enterprise-ai-rdapp "cat /opt/enterprise-ai/dify-rag-bridge/run_certified_rag.py | docker exec -i dify-api python3 - index"
-```
-
-- Verify unchanged `0.70` threshold, idempotent ST1-032 indexing, end-to-end provenance, source-attributed reporting period, and non-currentness boundary.
+- Any source outside the fixed 58-document boundary; SMB writes; broad traversal; source modification; automatic certification; PostgreSQL/Qdrant/Dify persistence of unreviewed real content; filesystem-date currentness claims.
 
 ## Evidence Requirements
-- Sanitized selected-path outcome only.
-- No secret, encrypted configuration, authorization header, raw source content, or locator.
+- Exact decision and selected boundary aggregate only.
+- On approval, sanitized extraction counts/provenance coverage only; no raw content, locator, filename, or secret.
 
 ## Rollback
-- Provider recovery: no state change.
-- Credential replacement: use the Dify UI to restore the prior secret reference if the operator has retained it; no secret is handled by the agent.
-- Model/provider change: do not proceed without a separately approved compatibility and re-index rollback plan.
+Read-only extraction makes no source change. Local raw extraction artifacts remain outside Git and can be retained solely under runtime-local controls.
 
 ## Definition of Done
-- A single approved path is executed safely.
-- Or the approval requirement is explicitly retained with the diagnostic evidence and no trusted state change.
-- Project Brain, sanitized evidence, JSON validation, secret scan, legacy scan, and `git diff --check` are updated.
+- One explicit content-access decision is recorded.
+- No document content is opened before `APPROVE_CONTENT_ACCESS`.
+- Project Brain and sanitized evidence are updated and one next atomic task is prepared.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only if a model/provider architecture decision is approved
+- `DECISIONS.md`, only if a new source-selection decision is required

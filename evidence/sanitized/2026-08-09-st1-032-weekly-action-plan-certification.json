@@ -5,6 +5,6 @@
   "certification": {"policy_version": "st1-032-source-attributed-v1", "certified_records": 10, "append_only_audit_events": 10, "noncertified_records_under_policy": 0, "automatic_certification": false},
   "certified_knowledge": {"projected_items": 10, "source_attributed_reporting_period": "1402/06/25-1402/06/31", "current_status": "insufficient_certified_evidence"},
   "runtime_privilege": {"runtime_role_superuser": false, "delete_grants_on_credibility_or_audit_tables": 0},
-  "rag_verification": {"retrieval_threshold": 0.7, "qdrant_indexing": "blocked", "grounded_generation": "blocked", "embedding_attempts": 3, "blocker_category": "configured_embedding_provider_runtime_error", "credential_or_provider_detail_recorded": false, "policy_weakened": false},
+  "rag_verification": {"retrieval_threshold": 0.7, "qdrant_indexing": "verified", "grounded_generation": "verified_for_period_and_activity_bound_query", "generic_executive_query_result": "insufficient_certified_evidence_at_unchanged_threshold", "embedding_attempts_before_recovery": 3, "credential_or_provider_detail_recorded": false, "policy_weakened": false},
   "privacy": {"raw_source_content_versioned": false, "source_locator_versioned": false, "credential_versioned": false}
 }

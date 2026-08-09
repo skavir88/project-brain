@@ -1,0 +1,44 @@
+{
+  "schema_version": "st1-034-existing-provider-recovery-v1",
+  "selected_path": "OPTION_1_EXISTING_PROVIDER_RECOVERY",
+  "trusted_state": {
+    "certification_or_audit_changed": false,
+    "certified_knowledge_regenerated": false,
+    "embedding_credential_changed": false,
+    "embedding_model_changed": false,
+    "provider_changed": false,
+    "qdrant_schema_changed": false,
+    "retrieval_threshold": 0.7
+  },
+  "recovery": {
+    "affected_component_only": "dify-plugin-daemon",
+    "controlled_restart_completed": true,
+    "component_running_after_restart": true,
+    "embedding_invocation_after_restart": "succeeded",
+    "root_cause": "not_determined; recovered after controlled component restart"
+  },
+  "index_and_invariants": {
+    "embedding_model_identifier": "text-embedding-3-large",
+    "vector_dimension": 3072,
+    "certified_knowledge_items_indexed_idempotently": 32,
+    "qdrant_total_points": 32,
+    "qdrant_st1_032_points": 10,
+    "st1_032_certified_knowledge_items": 10,
+    "st1_032_audit_events": 10,
+    "knowledge_from_noncertified_records": 0
+  },
+  "rag": {
+    "period_and_activity_bound_query": "grounded_answer",
+    "provenance_count": 2,
+    "highest_retrieval_score": 0.832888,
+    "historical_reporting_period_framing_preserved": true,
+    "currentness_overstatement_observed": false,
+    "generic_executive_query_result": "insufficient_certified_evidence",
+    "threshold_weakened": false
+  },
+  "privacy": {
+    "raw_organizational_content_versioned": false,
+    "source_locator_versioned": false,
+    "secret_or_credential_versioned": false
+  }
+}
