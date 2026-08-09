@@ -11,6 +11,8 @@
 - Sanitized ST1-013 real file-share metadata-only preflight evidence.
 - Sanitized ST1-014 metadata-only real-content subset discovery evidence.
 - Sanitized partial real-content extraction evidence for the selected `status_candidate_b` subset.
+- Sanitized ST1-015 real human-review preparation evidence.
+- Sanitized ST1-016 human-review outcomes and bounded evidence-improvement evidence.
 - Local-only deterministic extraction and review-package utilities for bounded real content.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
 - Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
@@ -40,6 +42,8 @@
 - Recorded partial read-only pilot-folder inventory, format-risk categories, and the bounded-subset gate before real content access.
 - Recorded three non-sensitive status-reporting candidate summaries and stopped before content access pending business selection.
 - Recorded DEC-015 and partial read-only extraction: 18 of 19 selected documents succeeded; one XLSX requires format-resolution and human review.
+- Recorded the XLSX diagnosis as incomplete due to unavailable current SMB access, rather than inferring corruption from `BadZipFile`; prepared three local redacted candidates for explicit human decisions.
+- Recorded three explicit `NEEDS_MORE_EVIDENCE` decisions with zero certification, and corrected the local-only subset-locator design for future extraction runs.
 
 ## 2026-08-06
 

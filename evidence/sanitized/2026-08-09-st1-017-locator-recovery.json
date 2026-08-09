@@ -1,0 +1,19 @@
+{
+  "evidence_type": "sanitized_targeted_subset_locator_recovery",
+  "task_id": "ST1-017",
+  "captured_at_utc": "2026-08-09",
+  "scope": "approved_pilot_root_only",
+  "executed_root_unc_leading_backslash_count": 2,
+  "executed_root_test_path": true,
+  "search_method": [
+    "exact_anchor_filename_metadata_search",
+    "unicode_normalized_anchor_filename_metadata_search"
+  ],
+  "anchor_match_count": 0,
+  "validated_subset_count": 0,
+  "content_opened": false,
+  "source_modified": false,
+  "whole_share_recursive_discovery_repeated": false,
+  "result": "locator_not_recovered; previous_zero_match_result_valid; operator_folder_path_required_before_bounded_ocr",
+  "raw_paths_or_filenames_in_evidence": false
+}

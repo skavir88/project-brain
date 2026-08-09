@@ -477,3 +477,58 @@ Execute the approved bounded, read-only ST1-014 real-content extraction for `sta
 
 ### Blocker
 - One selected XLSX failed deterministic OOXML extraction with `BadZipFile`. The corpus is partial; its format/access exception and the resulting human review are required before real facts can move into the trust path.
+
+## Session 028 — 2026-08-08
+
+### Objective
+Execute ST1-015 read-only XLSX diagnosis and prepare the three real candidates for meaningful human review.
+
+### Completed
+- Rebuilt and verified the local redacted review package. Each of the three candidates now has a stable ID, proposed claim, source/local-location provenance, fingerprint, source timestamp metadata, supporting redacted evidence, uncertainty, and one of four explicit permitted reviewer decisions.
+- Enforced `human_review_required` and `unreviewed_not_certified` on every real candidate. No LLM, platform persistence, certification, Qdrant, or Dify operation used real content.
+
+### Limitation
+- The existing approved SMB session was absent in this execution context (zero active SMB connections), so read-only XLSX signature/format diagnosis could not run. `BadZipFile` is retained as an extraction result only and is not treated as proof of corruption. The corpus remains incomplete pending a later non-interactive or operator-restored read-only session.
+
+## Session 029 — 2026-08-08
+
+### Objective
+Resume ST1-015 after the operator confirmed the existing SMB authorization remains valid, and present the real candidates for human decision.
+
+### Completed
+- Verified the SMB share root is reachable and rebuilt the local review package with reversible UTF-8 mojibake recovery, yielding readable local Persian review text without AI use.
+- Verified three unique stable candidate IDs and all required review fields; candidates remain unreviewed and uncertified.
+
+### Limitation
+- A metadata-only exact-subset locator ran for 300 seconds without completion. The XLSX was not opened, its signature remains unknown, and the prior `BadZipFile` result remains non-diagnostic. No source content beyond the approved boundary was read or changed.
+- An ancestor-aware metadata locator was also allowed to run for 604 seconds and did not complete. This is a discovery-performance limitation only; it does not establish any XLSX format, corruption, encryption, or content condition.
+
+## Session 030 — 2026-08-09
+
+### Objective
+Record the explicit first real Human Review outcomes and improve bounded evidence extraction from the already approved 18 PDFs.
+
+### Completed
+- Recorded exactly three `NEEDS_MORE_EVIDENCE` decisions, attributed to the user, in a local-only audit artifact. No candidate was certified.
+- Installed a local-only Tesseract dependency and Persian OCR language data outside Git; no organizational content was sent externally. OCR was not run because the legacy extraction artifact lacks the selected-subset relative locator.
+- Ran deterministic page-level extraction over existing local text. Of 102 pages, only nine had text. After semantic duplicate and false-positive removal, two non-date-qualified financial observations remain; no evidence supports physical progress, schedule, risk, action, decision, or a reporting period.
+- Updated future extractor behavior to retain the selected subset's relative locator and selection signature only in local runtime output.
+
+### Outcome and Limitation
+- The current extracted text is insufficient to answer the CEO question. This is insufficient extracted evidence, not a failure conclusion about the source corpus.
+- The current selected-subset locator is a provenance defect. The XLSX format remains unknown and the PDF scans cannot be re-opened for local OCR until the exact already-approved subset relative path is recovered without another whole-share crawl.
+
+## Session 031 — 2026-08-09
+
+### Objective
+Recover the selected subset locator using the approved pilot root and the known anchor filename without opening content.
+
+### Completed
+- Performed exact and Unicode-normalized targeted filename metadata searches only under the approved root. Both returned zero anchor matches.
+- Did not open document content, hash files, modify source data, persist raw paths to Git, or repeat whole-share recursive discovery.
+
+### Blocker
+- The selected subset cannot be validated or re-opened for OCR until the operator supplies the containing folder path from a local Explorer/PowerShell lookup. This is a locator/provenance limitation, not a conclusion about the corpus or XLSX format.
+
+### Path Audit
+- Verified the actual executed root has two leading UNC backslashes and passes `Test-Path`. The prior zero-match outcome was not caused by a single-backslash path; any such rendering was transcript-only.

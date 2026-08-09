@@ -31,14 +31,25 @@ PHONE = re.compile(r"\b\+?\d[\d\s-]{8,}\b")
 NATIONAL_ID = re.compile(r"\b\d{10}\b")
 
 
+def repair_utf8_mojibake(text: str) -> str:
+    """Recover UTF-8 text that a PDF extractor exposed as Windows-1252 bytes."""
+    if not any(marker in text for marker in ("Ø", "Ù", "â€")):
+        return text
+    try:
+        repaired = text.encode("cp1252").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return text
+    return repaired
+
+
 def redact(text: str) -> str:
     text = EMAIL.sub("[REDACTED_EMAIL]", text)
     text = PHONE.sub("[REDACTED_PHONE]", text)
     return NATIONAL_ID.sub("[REDACTED_IDENTIFIER]", text)
 
 
-def stable_claim_id(fingerprint: str, location: str, category: str) -> str:
-    material = f"{fingerprint}|{location}|{category}".encode("utf-8")
+def stable_claim_id(reference: str, fingerprint: str, location: str, line_number: int, category: str) -> str:
+    material = f"{reference}|{fingerprint}|{location}|{line_number}|{category}".encode("utf-8")
     return "review-" + hashlib.sha256(material).hexdigest()[:16]
 
 
@@ -52,7 +63,7 @@ def candidate_lines(text: str) -> list[tuple[int, str]]:
     results: list[tuple[int, str]] = []
     for line_number, line in enumerate(text.splitlines(), start=1):
         page += line.count("\f")
-        clean = line.replace("\f", " ").strip()
+        clean = repair_utf8_mojibake(line.replace("\f", " ").strip())
         if clean:
             results.append((page, clean))
     return results
@@ -75,29 +86,46 @@ def main() -> int:
         fingerprint = record["content_fingerprint"]
         duplicate_groups[fingerprint].append(record["source_relative_reference"])
         document_hits = 0
-        for page, line in candidate_lines(record.get("text", "")):
+        for line_number, (page, line) in enumerate(candidate_lines(record.get("text", "")), start=1):
             for category, pattern in TOPIC_PATTERNS.items():
                 if pattern.search(line):
                     excerpt = redact(line[:MAX_EXCERPT_CHARS])
                     redaction_markers += excerpt.count("[REDACTED_")
                     location = f"pdf_page:{page}" if record.get("document_type") == ".pdf" else f"text_line:{page}"
                     review_items.append({
-                        "review_item_id": stable_claim_id(fingerprint, location, category),
+                        "review_item_id": stable_claim_id(
+                            record["source_relative_reference"], fingerprint, location, line_number, category
+                        ),
                         "source_alias": record["source_alias"],
                         "source_relative_reference": record["source_relative_reference"],
                         "source_timestamp_utc": record["source_timestamp_utc"],
+                        "reporting_date": "not_deterministically_extracted",
                         "content_fingerprint": fingerprint,
                         "document_type": record["document_type"],
                         "extraction_method": record["extraction"]["method"],
                         "source_location": location,
+                        "source_line_number": line_number,
                         "topic_category": category,
                         "redacted_excerpt": excerpt,
+                        "proposed_project_status_claim": excerpt,
                         "canonical_claim_fingerprint": hashlib.sha256(
                             canonicalize_excerpt(excerpt).encode("utf-8")
                         ).hexdigest(),
                         "structural_validation": "passed_required_provenance_fields_present",
                         "credibility_disposition": "human_review_required",
                         "credibility_reason": "real_content_requires_explicit_human_review",
+                        "detected_conflicts_or_uncertainty": [
+                            "filesystem_timestamp_is_not_authoritative",
+                            "no_cross_document_conflict_resolution_performed",
+                            "reporting_date_not_deterministically_extracted",
+                        ],
+                        "proposed_disposition": "NEEDS_MORE_EVIDENCE",
+                        "reviewer_allowed_decisions": [
+                            "APPROVE",
+                            "REJECT",
+                            "NEEDS_MORE_EVIDENCE",
+                            "CONFLICT",
+                        ],
                         "review_status": "unreviewed_not_certified",
                     })
                     category_counts[category] += 1

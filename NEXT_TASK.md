@@ -1,67 +1,71 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-015
+- Task ID: ST1-017
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — human review and format-resolution decision required
+- Status: Blocked — exact approved subset locator required
 - Owner: Enterprise AI Project Operator
 
 ## Objective
-Resolve the failed selected XLSX extraction and obtain a human-review decision for the local, redacted real-status evidence package before any real record can enter the certification lifecycle.
+Recover the exact relative locator of the already approved `status_candidate_b` subset from an existing approved operational artifact or the authorized operator, then run local read-only OCR only over its 18 PDFs.
 
 ## Rationale
-ST1-014 completed bounded, read-only extraction for 18 of 19 selected documents but one XLSX failed as `BadZipFile`. The three deterministic review items are unreviewed and folder/file metadata does not establish their authority, accuracy, or currentness.
+ST1-016 proved that currently retained text extraction is insufficient for the CEO project-status question. The prior local runtime artifact kept per-document relative references but not the subset relative path from the approved SMB root; broad recursive rediscovery of the 255+ GB share is excluded.
 
 ## Preconditions
-- DEC-015 and `evidence/sanitized/2026-08-08-st1-014-real-content-extraction.json` are available.
-- A designated business reviewer can access the local runtime review package and the original selected documents through approved read-only source access.
+- The approved SMB share root is read-only accessible.
+- The operator provides, or an existing local operational artifact contains, the exact subset-relative path under that root.
+- The subset still matches the approved signature: 19 documents, 18 PDF, 1 XLSX, 23,606,611 aggregate bytes.
 
 ## Scope
-- Determine whether the single failed XLSX is a valid OOXML workbook, a renamed/legacy/unsupported format, or an inaccessible/corrupt source; record only a sanitized outcome.
-- Review each local review item against its original source and decide whether it is unsupported, needs clarification, or may be submitted as a certification candidate through the existing controlled process.
+- Validate the supplied/recovered locator against the approved aggregate signature.
+- Run local, read-only, page-level Persian OCR on only the 18 PDF documents after signature validation.
+- Build a local-only substantive review package and sanitized aggregate evidence.
 
 ## Out of Scope
-- Broadening the subset, reading other source files, modifying source files, automatic certification, real-content persistence to PostgreSQL, Qdrant/Dify/AI use, public exposure, credentials, remote-host changes, and destructive operations.
+- Whole-share recursive discovery, sibling folders, content outside the validated subset, source modification, external AI/model use, automatic certification, real-content persistence, XLSX repair, Qdrant/Dify use, remote-host changes, credentials, public exposure, and destructive operations.
 
 ## Files to Inspect
-- `DECISIONS.md`
 - `CURRENT_STATE.md`
-- `evidence/sanitized/2026-08-08-st1-014-real-content-extraction.json`
-- Local operator runtime review package and the bounded source document only.
+- `DECISIONS.md`
+- `evidence/sanitized/2026-08-09-st1-016-human-review-and-evidence-improvement.json`
+- `evidence/sanitized/2026-08-09-st1-017-locator-recovery.json`
+- Local runtime artifacts only.
 
 ## Files Allowed to Change
-- `evidence/sanitized/<dated-st1-015-review-resolution>.json`
+- `scripts/<bounded-ocr-utility>.py`
+- `evidence/sanitized/<dated-st1-017-ocr-summary>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md` only if review changes product or architecture policy.
 
 ## Execution Steps
-1. Perform a read-only format diagnosis of the failed selected XLSX without recording its name, path, or content in Git.
-2. Have the designated reviewer assess each local review item against its original source and record only a sanitized decision and provenance-reference count.
-3. Do not submit any record to certification unless the reviewer explicitly approves it and the existing policy requirements are met.
+1. Obtain an exact approved subset-relative locator from the operator's local Explorer/PowerShell lookup; do not repeat whole-share discovery.
+2. Validate count, extension distribution, and aggregate size before opening a source document.
+3. OCR only the validated 18 PDFs locally using Persian-capable Tesseract.
+4. Create only substantive, provenance-backed, human-review-required candidates; do not certify.
 
 ## Acceptance Criteria
-- The XLSX failure has a sanitized, reproducible disposition.
-- Every candidate item has a human-review outcome.
-- No real content, secret, raw filename/path, or uncertified claim enters Git, PostgreSQL, Qdrant, Dify, or an external AI service.
+- The exact subset locator is validated by the approved signature before OCR.
+- OCR does not read outside the bounded PDFs or send content externally.
+- Candidate evidence includes page provenance and content-supported dates where available.
+- No real data reaches PostgreSQL, Qdrant, Dify, or external AI.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-08-st1-014-real-content-extraction.json > /dev/null
+python -m py_compile scripts/extract_real_pilot_subset.py scripts/build_substantive_real_pilot_review_package.py
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized XLSX-format result and aggregate human-review outcomes.
+- Sanitized locator-validation and OCR aggregate results; raw OCR content remains outside Git.
 
 ## Rollback
-Read-only review task; discard local runtime review artifacts if policy requires. No source or platform state is changed.
+Local read-only task; delete only generated local runtime artifacts if required by policy. No source or platform state changes.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only when required

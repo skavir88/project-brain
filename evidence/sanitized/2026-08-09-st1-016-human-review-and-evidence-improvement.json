@@ -1,0 +1,41 @@
+{
+  "evidence_type": "sanitized_real_human_review_and_evidence_improvement",
+  "task_id": "ST1-016",
+  "captured_at_utc": "2026-08-09",
+  "human_review": {
+    "candidate_count": 3,
+    "decision_counts": {"NEEDS_MORE_EVIDENCE": 3},
+    "approved_for_certification_count": 0,
+    "certification_performed": false,
+    "decision_actor_identifier": "user",
+    "raw_audit_location": "local_operator_runtime_outside_git"
+  },
+  "bounded_evidence_improvement": {
+    "approved_pdf_document_count": 18,
+    "pdf_page_count": 102,
+    "text_bearing_page_count": 9,
+    "substantive_candidate_count": 2,
+    "candidate_category_counts": {"financial_progress": 2},
+    "content_supported_reporting_or_effective_date_count": 0,
+    "content_supported_physical_progress_count": 0,
+    "content_supported_schedule_or_milestone_count": 0,
+    "content_supported_delay_risk_issue_action_decision_count": 0,
+    "result": "existing_text_extraction_is_insufficient_for_ceo_project_status_answer",
+    "llm_used": false,
+    "certification_performed": false,
+    "raw_review_package_location": "local_operator_runtime_outside_git"
+  },
+  "xlsx_and_locator": {
+    "xlsx_coverage": "unresolved_explicit_limitation",
+    "actual_xlsx_format": "unknown",
+    "locator_defect": "previous_local_extraction_output_preserved_document_relative_references_but_not_the_selected_subset_relative_reference_from_the_approved_share_root",
+    "future_fix": "collector_now_persists_selected_subset_relative_reference_and_selection_signature_only_in_local_runtime_output",
+    "whole_share_recursive_rediscovery": "not_repeated_by_policy"
+  },
+  "boundaries": {
+    "source_modified": false,
+    "real_content_persisted_to_postgresql": false,
+    "real_content_sent_to_qdrant_or_dify": false,
+    "raw_content_or_confidential_paths_in_evidence": false
+  }
+}

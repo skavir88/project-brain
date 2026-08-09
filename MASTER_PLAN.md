@@ -34,5 +34,9 @@ ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the tec
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.
 
+ST1-015 prepared the three successful real candidates for human decision without persisting real data. The XLSX remains unresolved because the approved SMB source was not reachable in the current session; `BadZipFile` is insufficient to infer corruption. The next critical-path gate is human review of the prepared candidates.
+
+ST1-016 recorded `NEEDS_MORE_EVIDENCE` for all three first-pass candidates and confirmed that existing extracted text from the 18 approved PDFs is inadequate for the CEO project-status use case. The practical next step is bounded local OCR only after the exact selected-subset relative locator is recovered; broad share rediscovery is explicitly excluded.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

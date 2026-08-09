@@ -1,0 +1,45 @@
+{
+  "evidence_type": "sanitized_real_human_review_preparation",
+  "task_id": "ST1-015",
+  "captured_at_utc": "2026-08-08",
+  "xlsx_diagnosis": {
+    "prior_extraction_result": "BadZipFile",
+    "current_source_access": "share_root_reachable; exact_subset_metadata_resolution_timed_out",
+    "active_smb_connection_count": "not_used_as_access_authority",
+    "exact_subset_metadata_resolution_timeout_seconds": 604,
+    "exact_subset_metadata_resolution_method": "ancestor_aware_status_directory_traversal",
+    "signature_or_actual_format": "unknown_not_inferred",
+    "source_modified": false,
+    "credentials_requested_or_persisted": false,
+    "conclusion": "diagnosis_incomplete_due_to_metadata_resolution_timeout;_BadZipFile_alone_does_not_prove_corruption"
+  },
+  "review_package": {
+    "candidate_count": 3,
+    "unique_stable_candidate_id_count": 3,
+    "required_review_fields_present_for_all_candidates": true,
+    "candidate_fields": [
+      "stable_candidate_id",
+      "proposed_project_status_claim",
+      "source_alias_and_local_reference",
+      "source_location",
+      "source_timestamp_metadata",
+      "reporting_date_status",
+      "supporting_redacted_evidence",
+      "provenance_fingerprint",
+      "review_reason",
+      "uncertainty",
+      "proposed_disposition"
+    ],
+    "all_candidates_require_human_review": true,
+    "allowed_decisions": ["APPROVE", "REJECT", "NEEDS_MORE_EVIDENCE", "CONFLICT"],
+    "package_location": "local_operator_runtime_outside_git",
+    "raw_content_or_filename_in_evidence": false
+  },
+  "boundaries": {
+    "llm_used": false,
+    "real_content_persisted_to_postgresql": false,
+    "real_content_sent_to_qdrant_or_dify": false,
+    "certification_performed": false,
+    "pilot_corpus_status": "incomplete_pending_xlsx_diagnosis"
+  }
+}

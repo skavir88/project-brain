@@ -193,7 +193,15 @@ def main() -> int:
             failures[type(error).__name__] += 1
     output = Path(output_value)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps({"records": records}, ensure_ascii=False), encoding="utf-8")
+    output.write_text(json.dumps({
+        "selected_subset_relative_reference": selected.relative_to(root).as_posix(),
+        "selection_signature": {
+            "document_count": 19,
+            "aggregate_size_bytes": 23606611,
+            "extension_distribution": {".pdf": 18, ".xlsx": 1},
+        },
+        "records": records,
+    }, ensure_ascii=False), encoding="utf-8")
     summary = {
         "source_alias": "status_candidate_b",
         "approved_document_count": len(files),
