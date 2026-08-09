@@ -703,3 +703,15 @@ Apply the ten explicit ST1-032 approvals through the controlled certification li
 
 ### Blocker
 - The controlled Qdrant re-index and Dify grounded-answer run could not obtain an embedding because the already configured embedding capability returned the same runtime error on three attempts. No threshold was lowered, no credential was disclosed, and the failed index attempts wrote no new points. ST1-032 remains blocked only at the downstream provider-backed index/RAG verification boundary; configuration/credential repair is separately approval-gated.
+
+## Session 045 — 2026-08-09
+
+### Objective
+Perform the approved read-only ST1-033 diagnostic of the provider-backed embedding failure.
+
+### Completed
+- Verified the registered embedding model identifier, presence of an embedding-specific credential reference, Dify API/plugin availability, provider DNS/TLS/HTTP reachability, Qdrant health/collection availability, and independently successful generation capability. No credential value, header, encrypted configuration, or source content was inspected.
+- The controlled embedding invocation still fails before Qdrant interaction. The available evidence classifies it as a provider API/runtime failure or embedding-specific credential/model issue; it does not prove credential invalidity or model incompatibility.
+
+### Decision Gate
+- No safe automatic recovery is evidenced. Replacing/validating the dedicated embedding credential, or changing the embedding model/provider, requires explicit approval and an interactive secret-entry or model-compatibility decision. Existing trusted data and retrieval policy remain unchanged.

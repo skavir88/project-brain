@@ -1,75 +1,61 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-033
+- Task ID: ST1-034
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked
-- Owner: Enterprise AI Project Operator
+- Status: Awaiting Approval
+- Owner: Project owner / credential custodian
 
 ## Objective
-Restore the already configured embedding capability sufficiently to complete the pending, unchanged-policy Qdrant index and grounded RAG verification for the ten certified ST1-032 Weekly Action-Plan observations.
+Authorize one bounded remediation path for the dedicated embedding capability so the verified ST1-032 Certified Knowledge can be indexed and retrieved without changing trusted certification data or retrieval policy.
 
 ## Rationale
-Certification, audit persistence, projection, provenance, and least privilege are verified. The only remaining ST1-032 gate is downstream vectorization: the configured embedding runtime returned an error twice. A successful controlled retry must not weaken the approved retrieval policy or alter certification semantics.
+ST1-033 proved that the failure occurs before Qdrant, while Dify/plugin dispatch, provider network reachability, Qdrant, and generation are healthy. The embedding model is registered and has a credential reference, but read-only evidence cannot distinguish an upstream embedding API fault from credential validity, quota, or model-availability conditions.
 
 ## Preconditions
-- DEC-022 and `st1-032-source-attributed-v1` exist.
-- Exactly ten approved records, audit events, and Certified Knowledge projections are verified.
-- The Dify API and plugin runtime are running on declared `rdapp`.
-- No credential, provider, network, or Dify configuration change is made without any separately required approval.
+- `evidence/sanitized/2026-08-09-st1-033-embedding-provider-diagnostic.json` is reviewed.
+- Existing certification, audit, Certified Knowledge, Qdrant collection, and `0.70` threshold remain unchanged.
+- No credential value has been exposed or copied.
+
+## Required Approval
+Choose exactly one bounded path:
+
+1. **Provider recovery** — wait for/provider-side confirmation that the existing embedding endpoint/model is healthy, then re-run ST1-033 unchanged.
+2. **Interactive credential validation/replacement** — authorize an operator to enter a replacement credential through the existing Dify secret-entry UI for the existing embedding model only. The secret must never enter chat, command arguments, Git, logs, or evidence.
+3. **Model/provider change review** — request a separate architecture/data-compatibility decision identifying the proposed already-configured compatible embedding model, vector dimension, and required re-index plan.
 
 ## Scope
-- Read-only health/diagnostic checks of the existing configured embedding capability.
-- One controlled re-index and one period-bound grounded RAG retry using the existing `enterprise_ai_certified_knowledge_v1` collection and unchanged `0.70` threshold, only after embedding health is evidenced.
-- Sanitized status/evidence and Project Brain updates.
+- Decision and, only after approval, the single selected remediation path.
+- Preserve all existing trusted data and policy boundaries.
 
 ## Out of Scope
-- Credential, provider, Dify, network, firewall, DNS, or model configuration changes; threshold reduction; source discovery/extraction; certification changes; public exposure; deletion of Qdrant points or collections.
+- Changing certification/audit/Certified Knowledge records; deleting Qdrant data; reducing retrieval threshold; exposing credentials; unrelated provider changes; new real-content extraction.
 
 ## Allowed Hosts
 - `enterprise-ai-rdapp`
-- `enterprise-ai-rdvector` only through the existing Dify/Qdrant integration path.
+- `enterprise-ai-rdvector` only through the existing controlled index path after approved recovery.
 
-## Allowed Operations
-- SSH `BatchMode=yes` preflight and read-only logs/status checks.
-- Existing controlled bridge invocation after health preflight.
-- Repository documentation and aggregate-only sanitized evidence updates.
+## Verification
+After the selected path succeeds:
 
-## Forbidden Operations
-- Secret inspection or disclosure; provider credential changes; Qdrant collection deletion; threshold/prompt-policy weakening; new real-content extraction; destructive database operations.
-
-## Inputs
-- `implementation/dify-rag-bridge/run_certified_rag.py`
-- `evidence/sanitized/2026-08-09-st1-032-weekly-action-plan-certification.json`
-- Existing configured Dify embedding and generation capability.
-
-## Execution Steps
-1. Verify declared-host preflight and Dify/plugin runtime availability without recording sensitive configuration.
-2. Run a minimal existing embedding health invocation; record only exit status/category.
-3. If it succeeds, run the existing certified-knowledge index bridge and a period-bound grounded RAG query without changing threshold or policy.
-4. Verify provenance fields and historical/source-attributed framing; record only aggregate non-secret results.
-5. If the health invocation fails, retain the exact blocked state and do not mutate configuration.
-
-## Verification Commands
 ```bash
-ssh -o BatchMode=yes enterprise-ai-rdapp "docker ps --format '{{.Names}}'"
 ssh -o BatchMode=yes enterprise-ai-rdapp "cat /opt/enterprise-ai/dify-rag-bridge/run_certified_rag.py | docker exec -i dify-api python3 - index"
-python -m json.tool evidence/sanitized/2026-08-09-st1-032-weekly-action-plan-certification.json > /dev/null
-git diff --check
 ```
 
+- Verify unchanged `0.70` threshold, idempotent ST1-032 indexing, end-to-end provenance, source-attributed reporting period, and non-currentness boundary.
+
 ## Evidence Requirements
-- Sanitized embedding health outcome.
-- On success: indexed item count, unchanged threshold, grounded-answer/provenance count and historical framing result.
-- On failure: non-secret error category, exit code, and confirmation that no policy/configuration changed.
+- Sanitized selected-path outcome only.
+- No secret, encrypted configuration, authorization header, raw source content, or locator.
 
 ## Rollback
-This task does not alter configuration. A failed health or bridge invocation requires no rollback. Do not delete or recreate an existing Qdrant collection.
+- Provider recovery: no state change.
+- Credential replacement: use the Dify UI to restore the prior secret reference if the operator has retained it; no secret is handled by the agent.
+- Model/provider change: do not proceed without a separately approved compatibility and re-index rollback plan.
 
 ## Definition of Done
-- Existing embedding health is reproducibly blocked after three controlled attempts without configuration change.
-- If healthy, the ten ST1-032 projections are indexed and a provenance-backed source-attributed RAG answer is verified at the unchanged threshold.
-- If blocked, the exact non-secret limitation and safe next gate are recorded; no certification, source, or policy boundary is weakened.
+- A single approved path is executed safely.
+- Or the approval requirement is explicitly retained with the diagnostic evidence and no trusted state change.
 - Project Brain, sanitized evidence, JSON validation, secret scan, legacy scan, and `git diff --check` are updated.
 
 ## Completion Updates
@@ -77,4 +63,4 @@ This task does not alter configuration. A failed health or bridge invocation req
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only if a new decision is required
+- `DECISIONS.md`, only if a model/provider architecture decision is approved
