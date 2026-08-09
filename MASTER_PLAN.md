@@ -38,5 +38,7 @@ ST1-015 prepared the three successful real candidates for human decision without
 
 ST1-016 recorded `NEEDS_MORE_EVIDENCE` for all three first-pass candidates and confirmed that existing extracted text from the 18 approved PDFs is inadequate for the CEO project-status use case. The practical next step is bounded local OCR only after the exact selected-subset relative locator is recovered; broad share rediscovery is explicitly excluded.
 
+ST1-017 recovered the exact selected subset through operator-provided bounded roots, validated the 19-entry signature, and completed local Persian OCR on all 18 PDFs. OCR did not yield report dates, physical progress, schedule, delay, risk, action, management decision, or status evidence; only two undated financial observations remain. This selected subset cannot answer the CEO project-status question. Selecting any new source requires a new explicit bounded business decision.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

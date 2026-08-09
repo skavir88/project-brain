@@ -532,3 +532,16 @@ Recover the selected subset locator using the approved pilot root and the known 
 
 ### Path Audit
 - Verified the actual executed root has two leading UNC backslashes and passes `Test-Path`. The prior zero-match outcome was not caused by a single-backslash path; any such rendering was transcript-only.
+
+## Session 032 — 2026-08-09
+
+### Objective
+Use operator-provided bounded roots to recover the selected subset, then complete read-only XLSX diagnosis and local Persian OCR.
+
+### Completed
+- Found exactly one subset by allowlisted descendant metadata signature and stored its raw relative locators only in local runtime state.
+- Validated 19 entries (18 PDF, 1 XLSX, 23,606,611 bytes), diagnosed the XLSX as non-OOXML and temporary-lock/unstable, and did not parse it.
+- Ran local-only Persian OCR over 75 scanned pages; all 18 PDFs completed with 84 pages, 82 text-bearing pages, and zero extraction failures. No external AI/model, source modification, platform persistence, or certification occurred.
+
+### Outcome
+- OCR produced no substantive evidence supporting report dates, physical progress, schedule, delay, risk, action, management decision, or project-status statements. The final local review package has only two undated financial observations; this selected subset cannot support the CEO project-status question.

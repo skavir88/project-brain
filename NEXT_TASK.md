@@ -1,70 +1,66 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-017
+- Task ID: ST1-018
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — exact approved subset locator required
-- Owner: Enterprise AI Project Operator
+- Status: Blocked — explicit bounded replacement-source decision required
+- Owner: Architecture owner / business reviewer
 
 ## Objective
-Recover the exact relative locator of the already approved `status_candidate_b` subset from an existing approved operational artifact or the authorized operator, then run local read-only OCR only over its 18 PDFs.
+Select one new bounded, read-only source subset that is expected to contain authoritative project-status reporting, or explicitly conclude that no additional real-data source is authorized for the pilot.
 
 ## Rationale
-ST1-016 proved that currently retained text extraction is insufficient for the CEO project-status question. The prior local runtime artifact kept per-document relative references but not the subset relative path from the approved SMB root; broad recursive rediscovery of the 255+ GB share is excluded.
+ST1-017 fully processed the selected `status_candidate_b` subset with local Persian OCR. It yielded only two undated financial observations and cannot support the CEO question. Broadening or selecting another subset would change the business meaning of the pilot and requires an explicit decision.
 
 ## Preconditions
-- The approved SMB share root is read-only accessible.
-- The operator provides, or an existing local operational artifact contains, the exact subset-relative path under that root.
-- The subset still matches the approved signature: 19 documents, 18 PDF, 1 XLSX, 23,606,611 aggregate bytes.
+- `evidence/sanitized/2026-08-09-st1-017-bounded-ocr-and-review.json` is available.
+- Any proposed replacement is described with non-sensitive aggregate metadata, exact read-only boundary, format allowlist, and business rationale.
 
 ## Scope
-- Validate the supplied/recovered locator against the approved aggregate signature.
-- Run local, read-only, page-level Persian OCR on only the 18 PDF documents after signature validation.
-- Build a local-only substantive review package and sanitized aggregate evidence.
+- Review the existing candidate summaries or provide one explicitly bounded replacement source.
+- Record the decision and create one subsequent extraction task only after approval.
 
 ## Out of Scope
-- Whole-share recursive discovery, sibling folders, content outside the validated subset, source modification, external AI/model use, automatic certification, real-content persistence, XLSX repair, Qdrant/Dify use, remote-host changes, credentials, public exposure, and destructive operations.
+- Automatic corpus expansion, reading new content, certification, source modification, external AI/model use, real-content persistence, Qdrant/Dify use, remote-host changes, credentials, public exposure, and destructive operations.
 
 ## Files to Inspect
 - `CURRENT_STATE.md`
 - `DECISIONS.md`
-- `evidence/sanitized/2026-08-09-st1-016-human-review-and-evidence-improvement.json`
-- `evidence/sanitized/2026-08-09-st1-017-locator-recovery.json`
-- Local runtime artifacts only.
+- `evidence/sanitized/2026-08-08-st1-014-subset-discovery.json`
+- `evidence/sanitized/2026-08-09-st1-017-bounded-ocr-and-review.json`
 
 ## Files Allowed to Change
-- `scripts/<bounded-ocr-utility>.py`
-- `evidence/sanitized/<dated-st1-017-ocr-summary>.json`
+- `DECISIONS.md`
+- `evidence/sanitized/<dated-st1-018-source-decision>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
 
 ## Execution Steps
-1. Obtain an exact approved subset-relative locator from the operator's local Explorer/PowerShell lookup; do not repeat whole-share discovery.
-2. Validate count, extension distribution, and aggregate size before opening a source document.
-3. OCR only the validated 18 PDFs locally using Persian-capable Tesseract.
-4. Create only substantive, provenance-backed, human-review-required candidates; do not certify.
+1. Select exactly one bounded source with a documented business rationale for the CEO project-status question.
+2. Record its explicit read-only boundary, format policy, and expected reporting value.
+3. Create the next atomic content-access task; do not read the new source in this decision task.
 
 ## Acceptance Criteria
-- The exact subset locator is validated by the approved signature before OCR.
-- OCR does not read outside the bounded PDFs or send content externally.
-- Candidate evidence includes page provenance and content-supported dates where available.
-- No real data reaches PostgreSQL, Qdrant, Dify, or external AI.
+- The decision does not infer authority from filename or timestamp alone.
+- The new boundary prevents a whole-share crawl and excludes unsupported formats.
+- No real content is read, stored, certified, or sent to any AI service during this task.
 
 ## Verification Commands
 ```bash
-python -m py_compile scripts/extract_real_pilot_subset.py scripts/build_substantive_real_pilot_review_package.py
+python -m json.tool evidence/sanitized/2026-08-09-st1-017-bounded-ocr-and-review.json > /dev/null
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized locator-validation and OCR aggregate results; raw OCR content remains outside Git.
+- Sanitized replacement-source decision with no raw paths or filenames.
 
 ## Rollback
-Local read-only task; delete only generated local runtime artifacts if required by policy. No source or platform state changes.
+Decision-only task; no source or platform state changes.
 
 ## Completion Updates
+- `DECISIONS.md`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`

@@ -1,0 +1,44 @@
+{
+  "evidence_type": "sanitized_bounded_local_ocr_and_real_review_summary",
+  "task_id": "ST1-017",
+  "captured_at_utc": "2026-08-09",
+  "locator": {
+    "selection_method": "operator_provided_candidate_roots_with_allowlisted_descendant_metadata_signature",
+    "validated_subset_count": 1,
+    "document_count": 19,
+    "extension_distribution": {".pdf": 18, ".xlsx": 1},
+    "aggregate_size_bytes": 23606611,
+    "raw_relative_locators": "local_operator_runtime_outside_git"
+  },
+  "xlsx_diagnosis": {
+    "signature_class": "unknown_non_ooxml",
+    "magic_prefix_hex": "065A6172796162202020202020202020",
+    "content_parse_attempted": false,
+    "observed_entry_state": "temporary_lock_or_unstable",
+    "result": "not_usable_as_business_content"
+  },
+  "local_pdf_ocr": {
+    "validated_pdf_document_count": 18,
+    "pdf_page_count": 84,
+    "text_bearing_page_count": 82,
+    "local_persian_ocr_page_count": 75,
+    "extraction_failure_count": 0,
+    "external_ai_or_model_used": false,
+    "source_modified": false
+  },
+  "human_review_package": {
+    "substantive_candidate_count": 2,
+    "candidate_category_counts": {"financial_progress": 2},
+    "content_supported_reporting_or_effective_date_count": 0,
+    "ocr_added_substantive_status_claim_count": 0,
+    "ceo_project_status_answer_supported": false,
+    "reason": "no_content_supported_reporting_date_physical_progress_schedule_delay_risk_action_or_management_status_evidence",
+    "certification_performed": false,
+    "raw_package_location": "local_operator_runtime_outside_git"
+  },
+  "boundaries": {
+    "real_content_persisted_to_postgresql": false,
+    "real_content_sent_to_qdrant_or_dify": false,
+    "raw_content_or_paths_in_evidence": false
+  }
+}
