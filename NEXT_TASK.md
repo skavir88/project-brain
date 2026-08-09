@@ -1,67 +1,70 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-022
+- Task ID: ST1-023
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — explicit bounded source selection required
-- Owner: Architecture owner / designated business reviewer
+- Status: Ready — Human Review required
+- Owner: Designated business reviewer
 
 ## Objective
-Select exactly one additional bounded source that can establish current, authoritative evidence for the CEO project-status question, without reopening rejected educational sources or broadly rediscovering the file share.
+Obtain one explicit Human Review disposition for each of the 12 local-only, internally dated ST1-022 status candidates. Do not certify any candidate in this task.
 
 ## Rationale
-ST1-021 extracted the maximum bounded value from `status_oriented_candidate_1`: the visible Change Log has useful status counts and impact flags, but its update date is blank and authority/currentness are unverified. The financial and site-support pages similarly lack the reporting context needed for an executive answer.
+The selected source provides a dated activity snapshot and row-level provenance, but it does not itself prove authority, currentness beyond the extracted period, completeness, or executive-status semantics. Human review is therefore required before any real claim can approach the certification boundary.
 
 ## Preconditions
-- `evidence/sanitized/2026-08-09-st1-020-human-review-summary.json` and `evidence/sanitized/2026-08-09-st1-021-targeted-evidence-enrichment.json` validate.
-- The new source is within the already approved pilot root and is available through the existing read-only SMB session.
-- The user supplies or explicitly selects one bounded candidate/locator; no broad recursive SMB crawl is authorized.
+- `%LOCALAPPDATA%\EnterpriseAI\runtime\st1-022-human-review-package.json` exists and contains exactly 12 candidates.
+- `evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json` validates.
+- Candidate excerpts and locators remain local-only.
 
 ## Scope
-- Record one explicit bounded source-selection decision for a dated, authoritative project-status report or a populated current Change Log.
-- Validate metadata signature and read-only accessibility only.
-- Preserve raw locators only in local runtime state.
+- Display every candidate locally with its reporting period, project/source reference, workbook/sheet/row/cell provenance, minimal supporting excerpt, uncertainty, and permitted disposition.
+- Record only explicit `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT` decisions in local runtime audit state.
+- Produce a sanitized aggregate decision summary.
 
 ## Out of Scope
-- Content reading before selection, broad SMB traversal, reopening any rejected educational/external source, automatic authority inference, certification, platform persistence, Qdrant/Dify/external model use, source modification, remote-host changes, credentials, public exposure, and destructive operations.
+- Certification, automatic approval, source modification, corpus expansion, broad SMB traversal, platform persistence, Qdrant/Dify/external-model use, remote-host changes, credentials, public exposure, and destructive operations.
 
 ## Files to Inspect
 - `CURRENT_STATE.md`
 - `DECISIONS.md`
-- `evidence/sanitized/2026-08-09-st1-020-human-review-summary.json`
-- `evidence/sanitized/2026-08-09-st1-021-targeted-evidence-enrichment.json`
+- `evidence/sanitized/2026-08-09-st1-022-dated-status-source-selection.json`
+- `evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json`
+- Local-only review package.
 
 ## Files Allowed to Change
-- `DECISIONS.md`, only if a new source-selection decision is required
-- `evidence/sanitized/<dated-st1-022-source-selection>.json`
+- `evidence/sanitized/<dated-st1-023-human-review-summary>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
+- `DECISIONS.md`, only when genuinely required
 
 ## Execution Steps
-1. Confirm the selected source has a document-level reporting/effective date and a plausible authority relationship before opening content.
-2. Record its bounded metadata signature and preserve its raw locator locally only.
-3. Create one read-only extraction task limited to that source; do not read content in this task.
+1. Validate the package schema, uniqueness, and candidate count without publishing raw content.
+2. Present all 12 cards in deterministic batches; request exactly one permitted disposition per card.
+3. Persist only explicit decisions locally and verify the complete set.
+4. If any candidate is approved, create one narrow, approval-gated certification-preparation task; otherwise create one evidence-gap task based on the actual outcomes.
 
 ## Acceptance Criteria
-- Exactly one explicit source is selected or a source-access blocker is recorded.
-- The source is bounded, read-only, and targeted to the missing executive-status dimensions.
-- No source is assumed authoritative merely from its name or filesystem timestamp.
-- No rejected educational/external source is reopened.
+- Exactly 12 explicit, attributable decisions exist; none is inferred.
+- No candidate is certified or persisted to platform services.
+- Sanitized evidence has counts only and contains no real excerpts or raw locators.
+- One atomic next task follows actual review outcomes.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-09-st1-020-human-review-summary.json > /dev/null
-python -m json.tool evidence/sanitized/2026-08-09-st1-021-targeted-evidence-enrichment.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-022-dated-status-source-selection.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json > /dev/null
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized source-selection metadata and local-only raw locator state.
+- Local-only review package and decision audit.
+- Sanitized aggregate decision summary.
 
 ## Rollback
-Decision-only and metadata-only task; no source or platform state changes occur.
+Decision-only; remove only a mistaken local runtime decision artifact. No source or platform state changes occur.
 
 ## Completion Updates
 - `CURRENT_STATE.md`

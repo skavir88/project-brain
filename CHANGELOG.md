@@ -17,6 +17,7 @@
 - Sanitized ST1-018 status-oriented metadata discovery evidence.
 - Sanitized ST1-019 explicit source-selection and bounded extraction/review summaries.
 - Sanitized ST1-020 Human Review decision summary and ST1-021 bounded evidence-enrichment summary.
+- Sanitized ST1-022 dated status-source selection and local extraction/review summaries.
 - Local-only deterministic PDF/DOCX/XLSX extraction and Human Review packaging utilities for the selected corpus.
 - Local-only deterministic extraction and review-package utilities for bounded real content.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
@@ -53,6 +54,7 @@
 - Replaced generic bounded-subfolder selection with business-question-driven source discovery and retained human selection where metadata candidates have different business meanings.
 - Recorded the explicit selection of `status_oriented_candidate_1`; completed local-only extraction within its fixed boundary and retained all real content, provenance locators, and review excerpts outside Git.
 - Recorded zero approvals from ST1-020; excluded 11 rejected educational/external candidates and bounded the final enrichment pass to the four unresolved project-related candidates.
+- Selected a recurring internally dated daily-status source, deduplicated copied-forward snapshots, and prepared only time-contextualized row-level candidates for Human Review.
 
 ## 2026-08-06
 

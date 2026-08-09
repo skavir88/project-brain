@@ -46,5 +46,7 @@ ST1-019 records the user’s selection of `status_oriented_candidate_1` as a bou
 
 ST1-020 recorded a complete Human Review with zero approvals. ST1-021 then performed a single bounded enrichment pass over the four unresolved sources. It found a visible Change Log row/status snapshot but no populated update date or authority/currentness evidence. The selected corpus is insufficient; the next critical path requires a specifically selected dated, authoritative project-status source rather than further reprocessing.
 
+ST1-022 selected and extracted an internally dated daily-status workbook series. The source provides a time-contextualized historical activity snapshot and reviewable row provenance, but its authority and currentness beyond the greatest extracted reporting period remain unverified. ST1-023 is the mandatory Human Review gate; no real claim may advance without an explicit reviewer decision.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

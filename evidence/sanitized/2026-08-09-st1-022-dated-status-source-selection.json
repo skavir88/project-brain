@@ -1,0 +1,22 @@
+{
+  "schema_version": "st1-022-dated-status-source-selection-v1",
+  "task_id": "ST1-022",
+  "selected_source_alias": "status_oriented_candidate_3",
+  "selection_basis": [
+    "explicit project-status candidate label from bounded metadata discovery",
+    "internally dated daily-status workbook series",
+    "project identifier present in dated workbook content",
+    "activity and issue row structure with sheet/cell provenance"
+  ],
+  "source_signature": {
+    "document_count": 10,
+    "extension_distribution": {
+      ".xlsx": 10
+    },
+    "aggregate_size_bytes": 1163077
+  },
+  "content_access": "read-only local extraction limited to this selected source",
+  "authority_or_currentness_verified": false,
+  "raw_locator_versioned": false,
+  "certification_executed": false
+}

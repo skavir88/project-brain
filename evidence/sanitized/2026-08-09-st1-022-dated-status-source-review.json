@@ -1,0 +1,25 @@
+{
+  "schema_version": "st1-022-sanitized-dated-status-review-summary-v1",
+  "selection_alias": "status_oriented_candidate_3",
+  "source_signature": {
+    "document_count": 10,
+    "extension_distribution": {
+      ".xlsx": 10
+    },
+    "aggregate_size_bytes": 1163077
+  },
+  "internally_dated_daily_status_snapshot_count": 49,
+  "deduplicated_snapshot_count": 26,
+  "selected_internal_reporting_period": "1401/10/10–1401/10/16",
+  "review_candidate_count": 12,
+  "review_category_distribution": {
+    "stoppage": 3,
+    "slow_progress": 1,
+    "design_change": 1,
+    "material_shortage": 7
+  },
+  "project_identifier_present": true,
+  "currentness_or_approval_authority_verified": false,
+  "certification_executed": false,
+  "raw_content_or_locators_versioned": false
+}

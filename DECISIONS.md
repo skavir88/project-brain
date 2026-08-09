@@ -91,3 +91,10 @@ Status: Accepted
 The user explicitly selected `status_oriented_candidate_1` for one read-only, local extraction pass. Its fixed discovery boundary is 18 entries: seven PDF, four DOCX, and seven XLSX, totaling 20,923,849 metadata bytes. The runtime-local locator is the only permissible source locator; no broad SMB rediscovery is authorized.
 
 This selection is neither an authority determination nor evidence of correctness, recency, completeness, credibility, or “latest-status” semantics. Filesystem metadata dates are not project-status facts. Extracted organizational material remains local, unreviewed, and uncertified; it must not enter PostgreSQL, Certified Knowledge, Qdrant, Dify, or an external model before the approved human-review and certification path.
+
+## DEC-017 — ST1-022 Internally Dated Status-Source Selection
+Status: Accepted
+
+`status_oriented_candidate_3` is selected for one bounded, read-only local extraction pass because its workbook content contains a recurring daily-status structure, internal reporting dates, a project identifier, and activity/issue rows with cell provenance. Its fixed discovery signature is ten XLSX workbooks totaling 1,163,077 metadata bytes; raw locators remain only in local runtime state.
+
+The selection is evidence of source relevance signals only. It does not establish approval authority, organization-wide completeness, recency beyond the extracted internal reporting period, factual correctness, or executive “latest-status” semantics. All extracted real information remains unreviewed and uncertified; no platform persistence, AI/RAG use, or automatic certification is authorized.

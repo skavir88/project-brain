@@ -585,3 +585,16 @@ Record ST1-020 Human Review decisions and execute one bounded ST1-021 evidence-e
 
 ### Outcome
 - The selected corpus cannot support a trustworthy current executive answer. No additional content was opened after this bounded pass. The next source must be a dated, authoritative project-status report and/or a populated current Change Log.
+
+## Session 036 — 2026-08-09
+
+### Objective
+Execute approved ST1-022 discovery and bounded read-only extraction for one internally dated status-oriented source.
+
+### Completed
+- Used existing runtime-local discovery state; no new broad SMB traversal occurred. Selected `status_oriented_candidate_3` for its daily-status structure, internal dates, project identifier, and row-level activity/issue fields.
+- Extracted ten XLSX workbooks locally only. Found 49 internally dated daily-status snapshots and 26 distinct content snapshots after copy-forward deduplication.
+- The latest extracted internal reporting period is `1401/10/10–1401/10/16`. Built 12 substantive, dated, row-level Human Review candidates with stoppage, slow-progress, design-change, and material-shortage categories.
+
+### Limitation and Next Gate
+- The series does not prove approval authority, completeness, or currentness beyond its internal reporting period. The 12 items remain unreviewed and uncertified; ST1-023 requires exact Human Review dispositions.
