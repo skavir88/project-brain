@@ -677,3 +677,16 @@ Execute approved ST1-028 resumable metadata-only discovery indexing and continue
 
 ### Next Gate
 - The designated reviewer must decide each ST1-030 candidate as `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`. The internal period signal cannot be treated as current/latest status or certified evidence without explicit review.
+## Session 043 — 2026-08-09
+
+### Objective
+Record ST1-030 Human Review decisions and execute bounded ST1-031 worksheet-schema enrichment without broadening the source boundary.
+
+### Completed
+- Recorded all ten reviewer dispositions exactly as `NEEDS_MORE_EVIDENCE`; no candidate is eligible for certification and no real content entered a platform service.
+- Inspected only the selected workbook and `Maroon 03 - C` sheet, including its header hierarchy, 148 merged ranges, formula-backed target fields, and the ten existing review rows. No source was modified and no external model was used.
+- Verified distinct header groups for Activities Plan Volume, Activities Actual Volume, Contractor Plan Progress%, Actual Progress, date-plan fields, and weekly volume. The labelled reporting week is `1402/06/25–1402/06/31`; row date-plan fields are not substituted for it.
+- Created a revised runtime-local Human Review package retaining all ten existing IDs and adding explicit field/value mapping plus deterministic plan-versus-actual percentage-point variance where labelled source fields support it. It does not treat actual progress as completed scope or current project status.
+
+### Next Gate
+- The reviewer must decide the revised ST1-032 candidates. No certification, currentness claim, or new source discovery is authorized before explicit decisions.

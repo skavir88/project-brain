@@ -1,0 +1,38 @@
+{
+  "schema_version": "st1-031-workbook-schema-enrichment-v1",
+  "scope": "same approved workbook and sheet only; read-only local analysis",
+  "sheet_alias": "Maroon 03 - C",
+  "review_decisions": {"needs_more_evidence": 10, "approved": 0, "certification_eligible": 0},
+  "schema_evidence": {
+    "header_hierarchy_verified": true,
+    "merged_ranges_observed": 148,
+    "target_rows": 10,
+    "target_formula_cells": 1556,
+    "progress_field_groups": [
+      "Contractor Plan Progress%: Last Period, This Period, Cumulative",
+      "Actual Progress: Last Period, This Period, Cumulative"
+    ],
+    "volume_field_groups": [
+      "Activities Plan Volume: BOQ, Last Period, This Period, Cumulative",
+      "Activities Actual Volume: This Period, Cumulative",
+      "weekly volume: until previous week, this week, until this week"
+    ]
+  },
+  "reporting_period_semantics": {
+    "reporting_week": "1402/06/25–1402/06/31",
+    "evidence": "Workbook labels identify start and end of week; individual row date-plan fields are separate planned start/finish dates.",
+    "persian_calendar_date_role": "1402/06/31 is the workbook-labelled end of the reporting week, not inferred from filesystem metadata."
+  },
+  "outcome": {
+    "same_candidate_ids_preserved": true,
+    "revised_local_review_candidates": 10,
+    "automatic_certification": false,
+    "platform_persistence": false,
+    "external_model_use": false
+  },
+  "limitations": [
+    "Workbook schema does not establish source authority or present-day currentness.",
+    "Actual Progress is a labelled source field and is not interpreted as proof that an action was completed.",
+    "Raw workbook values, formulas, locators, and revised review cards remain outside Git."
+  ]
+}
