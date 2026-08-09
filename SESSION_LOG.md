@@ -545,3 +545,29 @@ Use operator-provided bounded roots to recover the selected subset, then complet
 
 ### Outcome
 - OCR produced no substantive evidence supporting report dates, physical progress, schedule, delay, risk, action, management decision, or project-status statements. The final local review package has only two undated financial observations; this selected subset cannot support the CEO project-status question.
+
+## Session 033 — 2026-08-09
+
+### Objective
+Perform metadata-only, business-question-driven discovery for a replacement bounded status-reporting corpus.
+
+### Completed
+- Scanned metadata only within the approved pilot root. No document content was opened or modified; raw locators are local runtime state only.
+- Found 14 technically bounded candidates and summarized the top three without filenames or paths.
+
+### Decision Gate
+- Two planning-oriented series and an explicit project-status spreadsheet series have materially different business meaning. Their names and metadata dates cannot establish authority or latest status, so no automatic selection or content access is authorized.
+
+## Session 034 — 2026-08-09
+
+### Objective
+Execute ST1-019 for the explicitly selected `status_oriented_candidate_1` corpus only.
+
+### Completed
+- Recorded DEC-016 and validated the existing runtime-local source boundary without a new SMB discovery: 18 entries, seven PDF, four DOCX, seven XLSX, and 20,923,849 metadata bytes.
+- Performed deterministic read-only local extraction. Seven PDFs yielded 80 pages (78 direct-text pages); three readable DOCX files yielded 211 paragraph/table segments; seven XLSX files yielded 2,146 non-empty sheet/cell segments.
+- One zero-byte DOCX failed OOXML parsing with `BadZipFile`; it is a bounded coverage limitation, not an inference about source content or an authorization to broaden the corpus.
+- Created a local-only package of 15 provenance-backed Human Review candidates. Candidate excerpts and source locators are outside Git; the sanitized summary contains only aggregates. No certification, platform persistence, external model use, or source-file modification occurred.
+
+### Next Gate
+- The designated reviewer must decide each local candidate as `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`. No candidate may be certified automatically.

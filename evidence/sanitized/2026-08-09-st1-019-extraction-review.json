@@ -1,0 +1,33 @@
+{
+  "schema_version": "st1-019-sanitized-review-summary-v1",
+  "selection_alias": "status_oriented_candidate_1",
+  "source_signature": {
+    "document_count": 18,
+    "extension_distribution": {
+      ".pdf": 7,
+      ".docx": 4,
+      ".xlsx": 7
+    },
+    "aggregate_size_bytes": 20923849
+  },
+  "extraction_aggregate": {
+    "pdf_pages": 80,
+    "pdf_direct_text_pages": 78,
+    "pdf_ocr_pages": 0,
+    "docx_segments": 211,
+    "xlsx_cells": 2146
+  },
+  "review_candidate_count": 15,
+  "review_category_distribution": {
+    "financial_progress": 4,
+    "schedule": 3,
+    "action_decision": 1,
+    "delay_risk_issue": 7
+  },
+  "date_supported_candidate_count": 1,
+  "value_supported_candidate_count": 15,
+  "candidate_conflict_check_count": 0,
+  "local_package_only": true,
+  "certification_executed": false,
+  "external_ai_or_platform_persistence": false
+}

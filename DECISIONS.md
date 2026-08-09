@@ -84,3 +84,10 @@ Status: Accepted
 The initial real-content pilot subset is the user-selected source alias `status_candidate_b`. Its fixed boundary is 19 documents: 18 PDF and 1 XLSX, with an aggregate metadata size of 23,606,611 bytes. Only that bounded subset may be read, and only by read-only extractors for the approved PDF/XLSX formats. The source path and document names remain local operational data and are never recorded in versioned evidence.
 
 The selection is a scope boundary, not evidence that the folder is authoritative, current, credible, or certified. Extracted facts remain unreviewed and uncertified. No real content may enter PostgreSQL, Certified Knowledge, Qdrant, Dify, or any external AI service until the existing human-review and explicit-certification path is completed.
+
+## DEC-016 — ST1-019 Status-Oriented Corpus Selection
+Status: Accepted
+
+The user explicitly selected `status_oriented_candidate_1` for one read-only, local extraction pass. Its fixed discovery boundary is 18 entries: seven PDF, four DOCX, and seven XLSX, totaling 20,923,849 metadata bytes. The runtime-local locator is the only permissible source locator; no broad SMB rediscovery is authorized.
+
+This selection is neither an authority determination nor evidence of correctness, recency, completeness, credibility, or “latest-status” semantics. Filesystem metadata dates are not project-status facts. Extracted organizational material remains local, unreviewed, and uncertified; it must not enter PostgreSQL, Certified Knowledge, Qdrant, Dify, or an external model before the approved human-review and certification path.

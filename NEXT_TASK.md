@@ -1,67 +1,75 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-018
+- Task ID: ST1-020
 - Stage: Stage 1 — Product Implementation
-- Status: Blocked — explicit bounded replacement-source decision required
-- Owner: Architecture owner / business reviewer
+- Status: Ready — Human Review required
+- Owner: Designated business reviewer
 
 ## Objective
-Select one new bounded, read-only source subset that is expected to contain authoritative project-status reporting, or explicitly conclude that no additional real-data source is authorized for the pilot.
+Obtain an explicit disposition for each of the 15 local-only, substantive ST1-019 review candidates; certify no candidate unless the reviewer explicitly approves it.
 
 ## Rationale
-ST1-017 fully processed the selected `status_candidate_b` subset with local Persian OCR. It yielded only two undated financial observations and cannot support the CEO question. Broadening or selecting another subset would change the business meaning of the pilot and requires an explicit decision.
+The selected bounded corpus produced provenance-backed potential status evidence, but source authority, context, conflicts, and factual correctness cannot be established by deterministic extraction. Human review is the mandatory credibility gate before any real organizational claim can enter the certification path.
 
 ## Preconditions
-- `evidence/sanitized/2026-08-09-st1-017-bounded-ocr-and-review.json` is available.
-- Any proposed replacement is described with non-sensitive aggregate metadata, exact read-only boundary, format allowlist, and business rationale.
+- Local-only package `%LOCALAPPDATA%\EnterpriseAI\runtime\st1-019-human-review-package.json` exists.
+- `evidence/sanitized/2026-08-09-st1-019-extraction-review.json` validates.
+- Review occurs locally; candidate excerpts and source locators are not copied into Git, evidence, logs, or external services.
 
 ## Scope
-- Review the existing candidate summaries or provide one explicitly bounded replacement source.
-- Record the decision and create one subsequent extraction task only after approval.
+- Present each local review card with claim, source alias/reference, precise page/paragraph/table/cell location, minimum local supporting excerpt, date/value when extracted, uncertainty, and conflict references.
+- Record the reviewer’s exact `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT` decision in local runtime audit state.
+- Create a sanitized aggregate decision summary without raw content, filenames, locators, credentials, or source excerpts.
 
 ## Out of Scope
-- Automatic corpus expansion, reading new content, certification, source modification, external AI/model use, real-content persistence, Qdrant/Dify use, remote-host changes, credentials, public exposure, and destructive operations.
+- Automatic certification, source modification, corpus expansion, SMB rediscovery, platform persistence, PostgreSQL/Qdrant/Dify use, external AI/model use, remote-host changes, public exposure, credentials, or destructive operations.
 
 ## Files to Inspect
 - `CURRENT_STATE.md`
 - `DECISIONS.md`
-- `evidence/sanitized/2026-08-08-st1-014-subset-discovery.json`
-- `evidence/sanitized/2026-08-09-st1-017-bounded-ocr-and-review.json`
+- `evidence/sanitized/2026-08-09-st1-019-source-selection.json`
+- `evidence/sanitized/2026-08-09-st1-019-extraction-review.json`
+- Local-only runtime review package.
 
 ## Files Allowed to Change
-- `DECISIONS.md`
-- `evidence/sanitized/<dated-st1-018-source-decision>.json`
+- `evidence/sanitized/<dated-st1-020-human-review-summary>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
+- `DECISIONS.md`, only if a new architectural decision is genuinely required.
 
 ## Execution Steps
-1. Select exactly one bounded source with a documented business rationale for the CEO project-status question.
-2. Record its explicit read-only boundary, format policy, and expected reporting value.
-3. Create the next atomic content-access task; do not read the new source in this decision task.
+1. Validate the sanitized summary and local-only package schema without publishing real content.
+2. Display each review card locally and request exactly one permitted disposition from the designated reviewer.
+3. Persist each explicit decision only in local runtime audit state; do not infer a decision.
+4. If any item is explicitly approved, create one narrow next task for controlled certification of only that item; otherwise create one evidence-gap or conflict-resolution task based on the actual decisions.
+5. Update Project Brain and sanitized aggregate evidence.
 
 ## Acceptance Criteria
-- The decision does not infer authority from filename or timestamp alone.
-- The new boundary prevents a whole-share crawl and excludes unsupported formats.
-- No real content is read, stored, certified, or sent to any AI service during this task.
+- All 15 decisions are explicit and attributable; no decision is inferred.
+- No unapproved real candidate is certified or persisted to platform services.
+- Sanitized evidence contains decisions/counts only, never raw organizational content or source locators.
+- A single atomic next task is created from the actual review outcome.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-09-st1-017-bounded-ocr-and-review.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-019-source-selection.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-019-extraction-review.json > /dev/null
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized replacement-source decision with no raw paths or filenames.
+- Local-only review package and audit state.
+- Sanitized decision-count summary with no real content.
 
 ## Rollback
-Decision-only task; no source or platform state changes.
+Decision-only activity: remove only the local runtime decision artifact if a data-entry mistake is identified; no source or platform state changes occur.
 
 ## Completion Updates
-- `DECISIONS.md`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
+- `DECISIONS.md`, only when required

@@ -14,6 +14,9 @@
 - Sanitized ST1-015 real human-review preparation evidence.
 - Sanitized ST1-016 human-review outcomes and bounded evidence-improvement evidence.
 - Sanitized ST1-017 bounded locator recovery, local OCR, XLSX diagnosis, and Human Review summary.
+- Sanitized ST1-018 status-oriented metadata discovery evidence.
+- Sanitized ST1-019 explicit source-selection and bounded extraction/review summaries.
+- Local-only deterministic PDF/DOCX/XLSX extraction and Human Review packaging utilities for the selected corpus.
 - Local-only deterministic extraction and review-package utilities for bounded real content.
 - Sanitized ET0-004 runtime connectivity evidence from Dify components on `rdapp` to the declared data backend endpoints.
 - Local-only Stage 1 ingestion-service health skeleton and sanitized verification evidence.
@@ -46,6 +49,8 @@
 - Recorded the XLSX diagnosis as incomplete due to unavailable current SMB access, rather than inferring corruption from `BadZipFile`; prepared three local redacted candidates for explicit human decisions.
 - Recorded three explicit `NEEDS_MORE_EVIDENCE` decisions with zero certification, and corrected the local-only subset-locator design for future extraction runs.
 - Validated the operator-provided `status_candidate_b` subset, completed local Persian OCR, and recorded that this corpus cannot support the CEO project-status question.
+- Replaced generic bounded-subfolder selection with business-question-driven source discovery and retained human selection where metadata candidates have different business meanings.
+- Recorded the explicit selection of `status_oriented_candidate_1`; completed local-only extraction within its fixed boundary and retained all real content, provenance locators, and review excerpts outside Git.
 
 ## 2026-08-06
 

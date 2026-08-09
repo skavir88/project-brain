@@ -1,0 +1,46 @@
+{
+  "evidence_type": "sanitized_status_oriented_metadata_discovery",
+  "task_id": "ST1-018",
+  "captured_at_utc": "2026-08-09",
+  "scope": "approved_pilot_root_only",
+  "content_opened": false,
+  "source_modified": false,
+  "metadata_discovery_error_count": 7886,
+  "inventory_interpretation": "partial_due_to_metadata_errors",
+  "status_oriented_technical_candidate_count": 14,
+  "selection": "human_selection_required",
+  "selection_reason": "top_bounded_candidates_have_materially_different_apparent_series_purposes; metadata_does_not_establish_authority_or_latest_status",
+  "top_candidates": [
+    {
+      "alias": "status_oriented_candidate_1",
+      "apparent_document_series_purpose": ["planning"],
+      "document_count": 18,
+      "extension_distribution": {".docx": 4, ".pdf": 7, ".xlsx": 7},
+      "aggregate_size_bytes": 20923849,
+      "oldest_last_write_utc": "2022-12-26T06:09:41.890751+00:00",
+      "newest_last_write_utc": "2024-04-09T12:50:41.398104+00:00",
+      "why_relevant": "bounded_planning_series_may_include_schedule_or_baseline_information"
+    },
+    {
+      "alias": "status_oriented_candidate_2",
+      "apparent_document_series_purpose": ["planning"],
+      "document_count": 21,
+      "extension_distribution": {".docx": 1, ".pdf": 15, ".xlsx": 5},
+      "aggregate_size_bytes": 90763372,
+      "oldest_last_write_utc": "2023-06-06T15:36:25.123131+00:00",
+      "newest_last_write_utc": "2023-06-24T07:22:26.422509+00:00",
+      "why_relevant": "bounded_planning_series_may_include_schedule_or_actual_comparison_information"
+    },
+    {
+      "alias": "status_oriented_candidate_3",
+      "apparent_document_series_purpose": ["project_status"],
+      "document_count": 10,
+      "extension_distribution": {".xlsx": 10},
+      "aggregate_size_bytes": 1163077,
+      "oldest_last_write_utc": "2022-11-12T03:50:26.115463+00:00",
+      "newest_last_write_utc": "2023-01-07T07:39:33.690116+00:00",
+      "why_relevant": "explicit_project_status_name_signal_but_older_metadata_range_and_spreadsheet_only"
+    }
+  ],
+  "raw_locators": "runtime_local_outside_git"
+}

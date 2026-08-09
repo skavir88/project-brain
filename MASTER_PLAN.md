@@ -40,5 +40,9 @@ ST1-016 recorded `NEEDS_MORE_EVIDENCE` for all three first-pass candidates and c
 
 ST1-017 recovered the exact selected subset through operator-provided bounded roots, validated the 19-entry signature, and completed local Persian OCR on all 18 PDFs. OCR did not yield report dates, physical progress, schedule, delay, risk, action, management decision, or status evidence; only two undated financial observations remain. This selected subset cannot answer the CEO project-status question. Selecting any new source requires a new explicit bounded business decision.
 
+ST1-018 performed business-question-driven metadata discovery. Three materially different bounded series require user selection before content access: two planning-oriented series and one explicit project-status spreadsheet series. No new source content was read.
+
+ST1-019 records the user’s selection of `status_oriented_candidate_1` as a bounded, read-only source only. Local deterministic extraction and review preparation may proceed strictly within its 18-file signature; the selection itself establishes neither source authority nor latest-status semantics.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

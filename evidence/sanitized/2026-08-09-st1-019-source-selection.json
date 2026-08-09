@@ -1,0 +1,24 @@
+{
+  "schema_version": "st1-019-source-selection-v1",
+  "task_id": "ST1-019",
+  "selected_source_alias": "status_oriented_candidate_1",
+  "selection_authority": "explicit user selection",
+  "selection_scope": "read-only extraction limited to the existing runtime-local locator and its discovered 18-file boundary",
+  "selection_signature": {
+    "document_count": 18,
+    "extension_distribution": {
+      ".pdf": 7,
+      ".docx": 4,
+      ".xlsx": 7
+    },
+    "aggregate_size_bytes": 20923849,
+    "metadata_date_range_utc": {
+      "oldest": "2022-12-26T06:09:41.890751+00:00",
+      "newest": "2024-04-09T12:50:41.398104+00:00"
+    }
+  },
+  "authority_or_latest_status_established": false,
+  "raw_locator_versioned": false,
+  "content_opened_during_selection": false,
+  "certification_executed": false
+}
