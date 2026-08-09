@@ -1,54 +1,29 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-036
+- Task ID: ST1-038
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting Content-Access Approval
+- Status: Awaiting Human Review
 - Owner: Designated business reviewer
 
 ## Objective
-Obtain explicit read-only content-access approval for the bounded `metadata-695d19f1b3ce5979` corpus, so it can be assessed for internally dated evidence later than the verified reporting week `1402/06/25–1402/06/31`.
+Obtain one explicit disposition for each of the 15 existing local-only ST1-037 currentness-review candidates.
 
-## Rationale
-ST1-035 selected a single bounded discovery candidate through the approved local metadata index. Metadata can define scope only: it cannot establish authority, reporting date, factual correctness, certification, or current project status. Opening the new organizational corpus requires an explicit business content-access gate.
-
-## Candidate Boundary
-- Source alias: `metadata-695d19f1b3ce5979`
-- Documents: 58
-- Allowlisted formats: 55 PDF, three XLSX
-- Aggregate metadata size: 41,524,545 bytes
-- Metadata range: 2023-09-26 through 2024-12-07 UTC (discovery metadata only)
-- Source locator: runtime-local only; not versioned or displayed.
-
-## Required Decision
-Choose exactly one:
-
-1. `APPROVE_CONTENT_ACCESS` — authorize read-only local extraction for this exact corpus and only `.pdf`/`.xlsx` files.
-2. `REJECT_CONTENT_ACCESS` — retain the corpus unopened and stop currentness discovery at this boundary.
-
-## Scope if Approved
-- Read-only deterministic local extraction and bounded local OCR only where required.
-- Preserve PDF page and XLSX workbook/sheet/cell provenance where practical.
-- Build only substantive, source-attributed Human Review candidates; do not auto-certify or send content to an external model.
+## Scope
+- Render and record only the existing candidate IDs from the local `st1-037-human-review-package.json`.
+- Preserve source-attributed date, provenance, field semantics, uncertainty, and non-currentness boundaries for any approval.
 
 ## Out of Scope
-- Any source outside the fixed 58-document boundary; SMB writes; broad traversal; source modification; automatic certification; PostgreSQL/Qdrant/Dify persistence of unreviewed real content; filesystem-date currentness claims.
+- Regeneration/extraction; automatic certification; platform persistence; source discovery; changing review IDs; interpreting planned dates as achieved events or actual values as present-day completion.
+
+## Required Decisions
+For every displayed ID, choose exactly one: `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`.
 
 ## Evidence Requirements
-- Exact decision and selected boundary aggregate only.
-- On approval, sanitized extraction counts/provenance coverage only; no raw content, locator, filename, or secret.
-
-## Rollback
-Read-only extraction makes no source change. Local raw extraction artifacts remain outside Git and can be retained solely under runtime-local controls.
+- Local append-only decision state and aggregate sanitized count only.
+- No raw source content, locator, filename, or secret enters versioned artifacts.
 
 ## Definition of Done
-- One explicit content-access decision is recorded.
-- No document content is opened before `APPROVE_CONTENT_ACCESS`.
-- Project Brain and sanitized evidence are updated and one next atomic task is prepared.
-
-## Completion Updates
-- `CURRENT_STATE.md`
-- `SESSION_LOG.md`
-- `CHANGELOG.md`
-- `NEXT_TASK.md`
-- `DECISIONS.md`, only if a new source-selection decision is required
+- All 15 decisions are explicit and recorded.
+- Only approved claims may be prepared for a separate controlled-certification task.
+- Project Brain and sanitized evidence are updated with one atomic next task.

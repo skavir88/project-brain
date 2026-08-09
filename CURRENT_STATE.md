@@ -187,3 +187,8 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 - The completed runtime-local discovery index was queried read-only with no new SMB traversal or document-content access. It found 16 metadata candidates after the discovery cutoff and selected `metadata-695d19f1b3ce5979` by the deepest-nested complete-signature rule.
 - The selected boundary has 58 allowlisted documents (55 PDF, three XLSX) totaling 41,524,545 metadata bytes. Its filesystem metadata range is later than the existing certified reporting week, but filesystem dates do not establish document date, authority, correctness, or currentness.
 - Content access is not yet authorized. The source locator remains only in the runtime-local index; the next task is a bounded content-access selection gate. Evidence: `evidence/sanitized/2026-08-09-st1-035-newer-source-metadata-selection.json`.
+
+## ST1-036/ST1-037 Standing Currentness Discovery and Extraction
+- The first 58-document boundary revalidated to 11 stable files; deterministic extraction found no review-worthy internally dated substantive status evidence. It is insufficient for currentness review, not evidence that the broader source is empty.
+- The local index then selected a distinct 38-document boundary. Thirty-four stable files were extracted locally without errors: 31 XLSX, one DOCX, and two PDF. No new SMB traversal occurred.
+- Screening found internal date candidates in 22 documents and prepared 15 local-only substantive Human Review candidates. They remain unreviewed, uncertified, outside platform services, and do not establish authority, current status, completion, delay, or resolution. Evidence: `evidence/sanitized/2026-08-09-st1-036-037-currentness-extraction.json`.
