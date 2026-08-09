@@ -92,6 +92,22 @@ The user explicitly selected `status_oriented_candidate_1` for one read-only, lo
 
 This selection is neither an authority determination nor evidence of correctness, recency, completeness, credibility, or “latest-status” semantics. Filesystem metadata dates are not project-status facts. Extracted organizational material remains local, unreviewed, and uncertified; it must not enter PostgreSQL, Certified Knowledge, Qdrant, Dify, or an external model before the approved human-review and certification path.
 
+## DEC-018 — Historical Certification Semantics for the First Real Claims
+Status: Accepted
+
+The designated reviewer explicitly approved the 12 ST1-023 candidates. This is a narrow exception to the synthetic-only scope of DEC-011 for those exact, provenance-preserving records. They are certified as historical, source-attributed observations for reporting period `1401/10/10–1401/10/16`, using policy `st1-023-historical-v1` and an explicit reviewer/actor identity.
+
+Each Certified Knowledge statement must retain the equivalent meaning: “According to the approved project activity report for reporting period `1401/10/10–1401/10/16`, [condition] was reported.” It must retain workbook, sheet, row/cell provenance, certification actor, timestamp, and policy version.
+
+Certification does not establish that any observation remains true today, that the workbook is the latest or globally authoritative source, or that an issue continued after the stated reporting period. The system must report `latest_verified_status_period=1401/10/10–1401/10/16` and `current_status=insufficient_certified_evidence` for a current/latest-status request until newer explicitly dated and certified evidence exists.
+
+## DEC-019 — ST1-025 Bounded Currentness-Corpus Selection
+Status: Accepted
+
+The business reviewer explicitly approved read-only content access for `status_oriented_candidate_2`: 21 bounded documents (15 PDF, five XLSX, one DOCX), with aggregate metadata size 90,763,372 bytes. The local runtime locator is retained outside Git. This decision authorizes deterministic local extraction and Human Review preparation only.
+
+The selection, its planning metadata label, filesystem metadata dates, and any internal workbook date do not establish authority, correctness, currentness today, or certification. New real claims remain outside PostgreSQL, Certified Knowledge, Qdrant, and Dify until explicit Human Review and controlled certification.
+
 ## DEC-017 — ST1-022 Internally Dated Status-Source Selection
 Status: Accepted
 

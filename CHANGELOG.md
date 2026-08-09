@@ -55,6 +55,11 @@
 - Recorded the explicit selection of `status_oriented_candidate_1`; completed local-only extraction within its fixed boundary and retained all real content, provenance locators, and review excerpts outside Git.
 - Recorded zero approvals from ST1-020; excluded 11 rejected educational/external candidates and bounded the final enrichment pass to the four unresolved project-related candidates.
 - Selected a recurring internally dated daily-status source, deduplicated copied-forward snapshots, and prepared only time-contextualized row-level candidates for Human Review.
+- Recorded DEC-018 and certified 12 explicitly approved real observations as historical, source-attributed claims only; projected only those claims to Certified Knowledge and the isolated Qdrant index.
+- Recorded the real-data RAG threshold result: the current `0.70` minimum score preserves `insufficient_certified_evidence` and no historical grounded answer is yet verified.
+- Verified a provenance-backed real historical answer with the unchanged `0.70` policy when the query explicitly bound the approved reporting period; current/latest status remains unsupported.
+- Added sanitized ST1-024 metadata-only currentness discovery; no new source was selected or opened because the sole later-metadata candidate is planning-labelled and lacks verified reporting-date/authority semantics.
+- Recorded DEC-019 and completed bounded, read-only ST1-025 extraction of the approved currentness corpus; prepared seven local-only, provenance-backed Human Review candidates without certification or platform persistence.
 
 ## 2026-08-06
 

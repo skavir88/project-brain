@@ -118,4 +118,25 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 - DEC-017 selects `status_oriented_candidate_3` for bounded read-only extraction. It has ten XLSX workbooks (1,163,077 metadata bytes) and content signals of a recurring internally dated daily-status series with a project identifier and row-level activity/issue fields.
 - Local deterministic extraction found 49 internally dated daily-status snapshots and 26 distinct content snapshots after copy-forward deduplication. The greatest extracted internal reporting period is `1401/10/10–1401/10/16`; no filename or filesystem timestamp was used to derive it.
 - A local-only package contains 12 substantive, time-contextualized row-level review candidates: three stoppage, one slow-progress, one design-change, and seven material-shortage items. Each preserves workbook/sheet/row/cell provenance. Generic procedures, headings, isolated values, and rejected prior educational sources are excluded.
+
+## ST1-023 Historical Real-Claim Certification and Projection
+- The designated reviewer explicitly approved all 12 ST1-023 candidates. All 12 are now `verified` as certified historical observations under `st1-023-historical-v1`; database verification observed 12 certified lifecycle records, 12 corresponding audit events, and 12 Certified Knowledge projections.
+- The approved claims retain their reporting period `1401/10/10–1401/10/16`, source workbook/sheet/row/cell provenance, reviewer/actor, certification timestamp, and policy. They are not certified as current facts, latest organizational status, or globally authoritative project status (DEC-018).
+- The isolated Qdrant Certified Knowledge collection contains 15 items after indexing: the prior three synthetic items plus 12 real historical items. Rejected and unapproved real claims remain excluded.
+- A real-data RAG query with an explicit historical reporting-period boundary returned a `grounded_answer` with two certified provenance references and scores `0.739319` and `0.717147`, both above the approved `0.70` minimum. The first real Certified Knowledge → Qdrant → Dify/RAG historical path is `verified`; no threshold or retrieval-policy change was made.
+- This verified answer remains historical only. A current/latest-status request must return the equivalent of `latest_verified_status_period=1401/10/10–1401/10/16` and `current_status=insufficient_certified_evidence` until newer explicitly dated and certified evidence exists.
+- Sanitized evidence: `evidence/sanitized/2026-08-09-st1-023-historical-certification-and-rag.json`.
+
+## ST1-022 Status Boundary
+- The following pre-ST1-023 scope statement is superseded only for the 12 explicitly approved DEC-018 observations; all other real organizational content remains outside platform persistence.
+
+## ST1-024 Currentness-Source Metadata Discovery
+- The approved pilot root is reachable through read-only SMB access. No document content was opened, copied, hashed, or persisted during the discovery pass.
+- Existing runtime-local metadata identifies one bounded later-metadata candidate, `status_oriented_candidate_2`: 21 allowlisted documents (15 PDF, five XLSX, one DOCX), 90,763,372 bytes, and a metadata range of 2023-06-06 through 2023-06-24. Its metadata label is `planning`, not `project_status`.
+- Filesystem metadata does not establish a reporting period, authority, currentness, or source suitability. Content access is therefore blocked pending explicit business selection; no claim about a newer project status is made. Evidence: `evidence/sanitized/2026-08-09-st1-024-currentness-discovery.json`.
+
+## ST1-025 Approved Currentness-Corpus Extraction
+- DEC-019 records explicit read-only access approval for `status_oriented_candidate_2`. Its fixed boundary is 21 documents (15 PDF, five XLSX, one DOCX; 90,763,372 bytes). Deterministic local extraction completed with zero extraction errors: 183 PDF pages (all direct text), nine DOCX segments, and 1,063,842 XLSX cells. No source was modified.
+- Internal workbook evidence includes a document issue date `1402/02/27`, later than the prior certified historical period. This is an internal document date only; it does not establish event-effective date, authority, present currentness, or certification.
+- A local-only Human Review package contains seven substantive, provenance-backed candidates: one stoppage, two design-related observations, one issue, and three material/resource constraints. One deterministic duplicate/copy-forward note was represented once. No candidate is certified or persisted to platform services. Evidence: `evidence/sanitized/2026-08-09-st1-025-currentness-corpus-extraction.json`.
 - The source’s authority/currentness beyond that internal period remains `unknown`; it cannot yet establish a current executive answer. No real content was certified or persisted to PostgreSQL, Qdrant, Dify, Certified Knowledge, or an external model. Evidence: `evidence/sanitized/2026-08-09-st1-022-dated-status-source-selection.json` and `evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json`.

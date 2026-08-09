@@ -23,7 +23,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-EXPECTED = {".pdf": 7, ".docx": 4, ".xlsx": 7}
+EXPECTED_BY_ALIAS = {
+    "status_oriented_candidate_1": ({".pdf": 7, ".docx": 4, ".xlsx": 7}, 18, 20_923_849),
+    "status_oriented_candidate_2": ({".pdf": 15, ".docx": 1, ".xlsx": 5}, 21, 90_763_372),
+}
 PILOT_ROOT = r"\\172.20.190.4\pns\06- طرح ها و پروژهها\0624 پروژه ايستگاه مارون 3 و 5 و رامشير"
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 S = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
@@ -147,17 +150,21 @@ def pdf_segments(path: Path, tessdata: Path | None) -> tuple[list[dict], dict]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Extract the user-selected ST1-019 corpus locally and read-only.")
     parser.add_argument("--runtime-discovery", type=Path, default=runtime_file("st1-018-status-discovery.json"))
-    parser.add_argument("--output", type=Path, default=runtime_file("st1-019-status-extraction.json"))
+    parser.add_argument("--candidate-alias", default="status_oriented_candidate_1")
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     discovery = json.loads(args.runtime_discovery.read_text(encoding="utf-8"))
-    candidate = next((x for x in discovery["top_candidates"] if x["alias"] == "status_oriented_candidate_1"), None)
+    candidate = next((x for x in discovery["top_candidates"] if x["alias"] == args.candidate_alias), None)
     if not candidate:
         raise RuntimeError("selected candidate is absent from local discovery state")
+    if args.candidate_alias not in EXPECTED_BY_ALIAS:
+        raise RuntimeError("candidate alias is not an approved extraction boundary")
+    expected_extensions, expected_count, expected_total = EXPECTED_BY_ALIAS[args.candidate_alias]
     files = candidate["files"]
     counts = Counter(x["extension"].lower() for x in files)
     total = sum(int(x["size_bytes"]) for x in files)
-    if len(files) != 18 or dict(counts) != EXPECTED or total != 20_923_849:
-        raise RuntimeError("selected corpus signature does not match the approved ST1-019 boundary")
+    if len(files) != expected_count or dict(counts) != expected_extensions or total != expected_total:
+        raise RuntimeError("selected corpus signature does not match the approved extraction boundary")
     subset = Path(PILOT_ROOT) / candidate["relative_locator"]
     if not subset.is_dir():
         raise RuntimeError("selected runtime locator is unavailable; extraction was not attempted")
@@ -190,8 +197,9 @@ def main() -> int:
             segments = []
             error = {"type": type(exc).__name__, "message": str(exc)}
         documents.append({"source_relative_locator": item["relative_locator"], "extension": ext, "size_bytes": item["size_bytes"], "sha256": sha256_file(source), "segments": segments, "extraction_error": error})
-    output = {"schema_version": "st1-019-extraction-v1", "generated_utc": datetime.now(UTC).isoformat(), "selection_alias": candidate["alias"], "selection_signature": {"document_count": len(files), "extension_distribution": dict(counts), "aggregate_size_bytes": total}, "documents": documents, "aggregate": aggregate}
-    args.output.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    output_path = args.output or runtime_file(f"st1-025-{args.candidate_alias}-extraction.json")
+    output = {"schema_version": "bounded-status-extraction-v2", "generated_utc": datetime.now(UTC).isoformat(), "selection_alias": candidate["alias"], "selection_signature": {"document_count": len(files), "extension_distribution": dict(counts), "aggregate_size_bytes": total}, "documents": documents, "aggregate": aggregate}
+    output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     safe = {"selection_alias": candidate["alias"], "document_count": len(documents), "extension_distribution": dict(counts), "aggregate": aggregate, "extraction_error_count": sum(x["extraction_error"] is not None for x in documents), "output_written_outside_git": True}
     print(json.dumps(safe, ensure_ascii=True))
     return 0

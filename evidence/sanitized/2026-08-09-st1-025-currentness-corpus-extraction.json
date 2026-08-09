@@ -1,0 +1,32 @@
+{
+  "task_id": "ST1-025",
+  "selection_alias": "status_oriented_candidate_2",
+  "content_access": "approved_read_only",
+  "source_modified": false,
+  "document_count": 21,
+  "extension_distribution": {
+    ".pdf": 15,
+    ".xlsx": 5,
+    ".docx": 1
+  },
+  "aggregate_size_bytes": 90763372,
+  "extraction_error_count": 0,
+  "pdf_pages": 183,
+  "pdf_direct_text_pages": 183,
+  "pdf_ocr_pages": 0,
+  "docx_segments": 9,
+  "xlsx_cells": 1063842,
+  "newer_internal_document_date_observed": "1402/02/27",
+  "prior_certified_reporting_period": "1401/10/10–1401/10/16",
+  "substantive_human_review_candidate_count": 7,
+  "candidate_category_counts": {
+    "stoppage": 1,
+    "design_change": 2,
+    "issue": 1,
+    "material_shortage": 3
+  },
+  "automatic_certification": false,
+  "raw_content_versioned": false,
+  "raw_locator_versioned": false,
+  "current_status_established": false
+}

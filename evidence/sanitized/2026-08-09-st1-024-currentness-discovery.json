@@ -1,0 +1,20 @@
+{
+  "task_id": "ST1-024",
+  "operation": "read_only_metadata_discovery",
+  "pilot_root_accessible": true,
+  "document_content_read": false,
+  "raw_locator_versioned": false,
+  "known_later_metadata_candidate_count": 1,
+  "candidate_alias": "status_oriented_candidate_2",
+  "candidate_document_count": 21,
+  "candidate_extension_distribution": {
+    ".docx": 1,
+    ".pdf": 15,
+    ".xlsx": 5
+  },
+  "candidate_aggregate_size_bytes": 90763372,
+  "candidate_metadata_date_range": "2023-06-06 through 2023-06-24",
+  "candidate_metadata_label": "planning",
+  "candidate_status_authority_or_internal_date_verified": false,
+  "selection_outcome": "business_selection_required"
+}

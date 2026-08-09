@@ -597,4 +597,44 @@ Execute approved ST1-022 discovery and bounded read-only extraction for one inte
 - The latest extracted internal reporting period is `1401/10/10–1401/10/16`. Built 12 substantive, dated, row-level Human Review candidates with stoppage, slow-progress, design-change, and material-shortage categories.
 
 ### Limitation and Next Gate
-- The series does not prove approval authority, completeness, or currentness beyond its internal reporting period. The 12 items remain unreviewed and uncertified; ST1-023 requires exact Human Review dispositions.
+- The series does not prove approval authority, completeness, or currentness beyond its internal reporting period. At the close of this session the 12 items remained unreviewed and uncertified; ST1-023 required exact Human Review dispositions.
+
+## Session 037 — 2026-08-09
+
+### Objective
+Record the complete ST1-023 Human Review outcome, apply controlled historical certification, and verify the first real Certified Knowledge/RAG path.
+
+### Completed
+- Recorded exactly 12 explicit `APPROVE` decisions from the designated reviewer. The resulting records were certified through the existing atomic lifecycle with actor identity and policy `st1-023-historical-v1`.
+- Database verification observed 12 certified real historical records, 12 matching append-only audit events, and 12 Certified Knowledge projections. Only those approved records were projected.
+- Indexed the Certified Knowledge collection on the isolated Enterprise AI Qdrant path. The collection contains 15 items: 12 approved historical real observations and the prior three synthetic controls.
+- Recorded DEC-018 to retain source attribution, reporting-period semantics, reviewer/actor, certification timestamp/policy, and the explicit non-currentness boundary. No raw organizational content, source locator, credential, or unapproved/rejected claim entered versioned evidence.
+
+### Retrieval Result
+- Generic historical queries initially returned `insufficient_certified_evidence`, but a period-bound historical query retrieved two certified observations at `0.739319` and `0.717147`, exceeding the approved DEC-013 minimum. Dify returned a grounded answer with only those two provenance references.
+- No threshold or retrieval-policy change was made. The result is explicitly historical and does not support a current/latest-status answer. The next task addresses the separate currentness gap through bounded metadata-only discovery.
+
+## Session 038 — 2026-08-09
+
+### Objective
+Execute ST1-024 bounded metadata-only discovery for a source that may extend the verified status timeline beyond the approved historical reporting period.
+
+### Completed
+- Verified the approved SMB pilot root is reachable and reused runtime-local discovery metadata. No document content was read, copied, hashed, or sent to an external model.
+- Identified one bounded later-metadata candidate with 21 allowlisted documents and a 2023-06 metadata range. Its discovery label is `planning`, so its internal reporting period, project-status relevance, and authority are not established.
+
+### Decision Gate
+- Opening this candidate would be a new real-content corpus selection with materially different business semantics from the already certified daily-status series. Explicit business selection is required before content access. No current/latest-status claim is supported.
+
+## Session 039 — 2026-08-09
+
+### Objective
+Execute ST1-025 for the explicitly approved bounded currentness corpus and prepare substantive newer-date Human Review material.
+
+### Completed
+- Recorded DEC-019 and validated the fixed 21-document signature before extraction. Read-only local extraction completed with zero failures; 183 PDF pages, nine DOCX segments, and 1,063,842 XLSX cells were processed. OCR was unnecessary because every PDF page had direct text.
+- Workbook-local issue-date evidence of `1402/02/27` was found. It is later than the prior certified reporting period but is not asserted to be an event-effective date, authority signal, or current project status.
+- Created a local-only package of seven substantive candidates with workbook/sheet/cell provenance and one explicit duplicate/copy-forward relationship. No source content, filename, raw locator, credential, certification, or platform persistence entered versioned artifacts.
+
+### Next Gate
+- The designated Human Reviewer must decide each candidate. No new claim is eligible for certification until its explicit decision is recorded.

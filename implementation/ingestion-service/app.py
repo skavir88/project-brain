@@ -92,7 +92,7 @@ class IngestionHandler(BaseHTTPRequestHandler):
                        FROM ingestion.certified_knowledge_items
                        WHERE knowledge_text ILIKE %s
                        ORDER BY knowledge_id
-                       LIMIT 10""",
+                       LIMIT 100""",
                     (f"%{query}%",),
                 )
                 rows = cursor.fetchall()
@@ -112,15 +112,17 @@ class IngestionHandler(BaseHTTPRequestHandler):
         if self.path.startswith("/v1/records/") and self.path.endswith("/certify"):
             fingerprint = self.path.removeprefix("/v1/records/").removesuffix("/certify").strip("/")
             try:
-                actor = json.loads(self.rfile.read(int(self.headers.get("Content-Length", "")))).get("actor_id")
+                request = json.loads(self.rfile.read(int(self.headers.get("Content-Length", ""))))
+                actor = request.get("actor_id")
+                policy_version = request.get("policy_version", "st1-007-v1")
             except (ValueError, json.JSONDecodeError):
-                actor = None
-            if not isinstance(actor, str) or not actor.strip() or not persistence_enabled():
+                actor, policy_version = None, None
+            if not isinstance(actor, str) or not actor.strip() or policy_version not in {"st1-007-v1", "st1-023-historical-v1"} or not persistence_enabled():
                 self.send_json(HTTPStatus.BAD_REQUEST, {"error": "actor_id_required"}); return
             with psycopg.connect(host=os.environ["INGESTION_DB_HOST"], port=os.environ.get("INGESTION_DB_PORT", "5432"), dbname=os.environ["INGESTION_DB_NAME"], user=os.environ["INGESTION_DB_USER"], password=os.environ["INGESTION_DB_PASSWORD"]) as c:
                 with c.cursor() as q:
-                    q.execute("""WITH transitioned AS (UPDATE ingestion.credibility_records SET lifecycle_state='certified', certification_timestamp=now(), certification_actor=%s, certification_policy_version='st1-007-v1' WHERE record_fingerprint=%s AND lifecycle_state='certification_candidate' RETURNING record_fingerprint) INSERT INTO ingestion.certification_audit_events(record_fingerprint,previous_lifecycle_state,new_lifecycle_state,certification_timestamp,actor_identifier,policy_version) SELECT record_fingerprint,'certification_candidate','certified',now(),%s,'st1-007-v1' FROM transitioned RETURNING record_fingerprint""", (actor.strip(), fingerprint, actor.strip()))
-                    if q.fetchone(): self.send_json(HTTPStatus.OK, {"disposition":"certified","actor_id":actor.strip(),"policy_version":"st1-007-v1"}); return
+                    q.execute("""WITH transitioned AS (UPDATE ingestion.credibility_records SET lifecycle_state='certified', certification_timestamp=now(), certification_actor=%s, certification_policy_version=%s WHERE record_fingerprint=%s AND lifecycle_state='certification_candidate' RETURNING record_fingerprint) INSERT INTO ingestion.certification_audit_events(record_fingerprint,previous_lifecycle_state,new_lifecycle_state,certification_timestamp,actor_identifier,policy_version) SELECT record_fingerprint,'certification_candidate','certified',now(),%s,%s FROM transitioned RETURNING record_fingerprint""", (actor.strip(), policy_version, fingerprint, actor.strip(), policy_version))
+                    if q.fetchone(): self.send_json(HTTPStatus.OK, {"disposition":"certified","actor_id":actor.strip(),"policy_version":policy_version}); return
                     q.execute("SELECT lifecycle_state FROM ingestion.credibility_records WHERE record_fingerprint=%s", (fingerprint,)); row=q.fetchone()
                     self.send_json(HTTPStatus.CONFLICT if row else HTTPStatus.NOT_FOUND, {"error":"already_certified" if row and row[0]=='certified' else "not_eligible" if row else "not_found"}); return
         if self.path != "/v1/records":

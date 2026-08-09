@@ -1,61 +1,59 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-023
+- Task ID: ST1-026
 - Stage: Stage 1 — Product Implementation
 - Status: Ready — Human Review required
 - Owner: Designated business reviewer
 
 ## Objective
-Obtain one explicit Human Review disposition for each of the 12 local-only, internally dated ST1-022 status candidates. Do not certify any candidate in this task.
+Obtain one explicit Human Review disposition for each of the seven ST1-025 newer-document candidates before any new real claim can enter certification.
 
 ## Rationale
-The selected source provides a dated activity snapshot and row-level provenance, but it does not itself prove authority, currentness beyond the extracted period, completeness, or executive-status semantics. Human review is therefore required before any real claim can approach the certification boundary.
+ST1-025 found internal workbook issue-date evidence later than the historical certified period and prepared seven substantive candidates. The document date alone does not prove event-effective date, authority, currentness, or factual correctness.
 
 ## Preconditions
-- `%LOCALAPPDATA%\EnterpriseAI\runtime\st1-022-human-review-package.json` exists and contains exactly 12 candidates.
-- `evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json` validates.
+- `%LOCALAPPDATA%\EnterpriseAI\runtime\st1-025-human-review-package.json` exists with exactly seven candidates.
+- DEC-019 and ST1-025 sanitized evidence validate.
 - Candidate excerpts and locators remain local-only.
 
 ## Scope
-- Display every candidate locally with its reporting period, project/source reference, workbook/sheet/row/cell provenance, minimal supporting excerpt, uncertainty, and permitted disposition.
-- Record only explicit `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT` decisions in local runtime audit state.
-- Produce a sanitized aggregate decision summary.
+- Display each candidate with its ID, claim, internal document date/type, category, affected work package, workbook/sheet/cell provenance, minimal evidence, uncertainty, and duplicate/copy-forward status.
+- Record exactly one explicit disposition per candidate: `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`.
+- Produce only a sanitized aggregate decision summary.
 
 ## Out of Scope
-- Certification, automatic approval, source modification, corpus expansion, broad SMB traversal, platform persistence, Qdrant/Dify/external-model use, remote-host changes, credentials, public exposure, and destructive operations.
+- Automatic approval, certification, source modification, corpus expansion, platform persistence, Qdrant/Dify use, external-model use, credentials, or public exposure.
 
 ## Files to Inspect
 - `CURRENT_STATE.md`
 - `DECISIONS.md`
-- `evidence/sanitized/2026-08-09-st1-022-dated-status-source-selection.json`
-- `evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json`
-- Local-only review package.
+- `evidence/sanitized/2026-08-09-st1-025-currentness-corpus-extraction.json`
+- Local-only ST1-025 Human Review package.
 
 ## Files Allowed to Change
-- `evidence/sanitized/<dated-st1-023-human-review-summary>.json`
+- `evidence/sanitized/<dated-st1-026-human-review-summary>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only when genuinely required
+- `DECISIONS.md`, only when required
 
 ## Execution Steps
-1. Validate the package schema, uniqueness, and candidate count without publishing raw content.
-2. Present all 12 cards in deterministic batches; request exactly one permitted disposition per card.
-3. Persist only explicit decisions locally and verify the complete set.
-4. If any candidate is approved, create one narrow, approval-gated certification-preparation task; otherwise create one evidence-gap task based on the actual outcomes.
+1. Validate the package schema, candidate uniqueness, and complete provenance without publishing raw content.
+2. Present all seven review cards and obtain one explicit permitted disposition per card.
+3. Persist the attributable decisions locally and verify the complete decision set.
+4. Create exactly one next task based on actual outcomes; only approved candidates may become eligible for controlled certification.
 
 ## Acceptance Criteria
-- Exactly 12 explicit, attributable decisions exist; none is inferred.
+- Exactly seven explicit, attributable decisions are recorded; none is inferred.
 - No candidate is certified or persisted to platform services.
-- Sanitized evidence has counts only and contains no real excerpts or raw locators.
+- Sanitized evidence contains aggregate outcomes only and no source content or raw locator.
 - One atomic next task follows actual review outcomes.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-09-st1-022-dated-status-source-selection.json > /dev/null
-python -m json.tool evidence/sanitized/2026-08-09-st1-022-dated-status-source-review.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-025-currentness-corpus-extraction.json > /dev/null
 git diff --check
 ```
 
