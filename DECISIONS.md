@@ -108,6 +108,13 @@ The business reviewer explicitly approved read-only content access for `status_o
 
 The selection, its planning metadata label, filesystem metadata dates, and any internal workbook date do not establish authority, correctness, currentness today, or certification. New real claims remain outside PostgreSQL, Certified Knowledge, Qdrant, and Dify until explicit Human Review and controlled certification.
 
+## DEC-020 — Source-Attributed Certification for ST1-026 Action-Plan Observations
+Status: Accepted
+
+The designated reviewer explicitly approved all seven ST1-026 candidates. The existing controlled lifecycle may certify only these records under policy `st1-026-source-attributed-v1`. Each statement must preserve the source-attributed form: “According to the Action Plan issued on `1402/02/27`, [condition or plan] was reported.”
+
+The document issue date is distinct from an event/effective date, a planned future date, and the certification timestamp. Where the event date is not independently established it must remain unknown; future-looking wording must remain a plan, not an achieved outcome. This decision does not establish current truth, completion, unresolved continuation, latest organizational status, or global authority.
+
 ## DEC-017 — ST1-022 Internally Dated Status-Source Selection
 Status: Accepted
 

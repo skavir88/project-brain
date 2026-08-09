@@ -81,6 +81,7 @@ def main() -> int:
     if not root_value or not output_value:
         raise SystemExit("EAI_PILOT_ROOT and EAI_STATUS_DISCOVERY_RUNTIME_OUTPUT are required")
     root = Path(root_value)
+    excluded_locators = set(json.loads(os.environ.get("EAI_EXCLUDED_RELATIVE_LOCATORS", "[]")))
     candidate_meta: dict[Path, dict] = {}
     files: list[tuple[Path, os.stat_result, int, list[str]]] = []
     errors = 0
@@ -108,6 +109,8 @@ def main() -> int:
 
     ranked: list[dict] = []
     for directory, meta in candidate_meta.items():
+        if directory.relative_to(root).as_posix() in excluded_locators:
+            continue
         rows = [(path, stat, score, labels) for path, stat, score, labels in files if path == directory or directory in path.parents]
         count = len(rows)
         size = sum(stat.st_size for _, stat, _, _ in rows)

@@ -172,7 +172,7 @@ def answer(question: str) -> None:
         })
         context_parts.append(item["knowledge_text"])
     messages = [
-        SystemPromptMessage(content="Answer only from the supplied Certified Knowledge context. If it is insufficient, reply exactly insufficient_certified_evidence."),
+        SystemPromptMessage(content="Answer only from the supplied Certified Knowledge context. If it is insufficient, reply exactly insufficient_certified_evidence. Preserve source-attributed temporal semantics exactly: never present a context observation as current, never convert a planned action into completion, and retain the source issue/reporting date and equivalent 'According to ... was reported' framing in every material answer."),
         UserPromptMessage(content=f"Certified Knowledge context:\n{'\n'.join(context_parts)}\n\nQuestion: {question}"),
     ]
     result = llm.invoke_llm(messages, model_parameters={"max_tokens": 120}, stream=False)

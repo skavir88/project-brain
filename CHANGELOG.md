@@ -60,6 +60,8 @@
 - Verified a provenance-backed real historical answer with the unchanged `0.70` policy when the query explicitly bound the approved reporting period; current/latest status remains unsupported.
 - Added sanitized ST1-024 metadata-only currentness discovery; no new source was selected or opened because the sole later-metadata candidate is planning-labelled and lacks verified reporting-date/authority semantics.
 - Recorded DEC-019 and completed bounded, read-only ST1-025 extraction of the approved currentness corpus; prepared seven local-only, provenance-backed Human Review candidates without certification or platform persistence.
+- Recorded DEC-020 and certified seven explicitly approved Action Plan observations as source-attributed historical statements; verified projection, isolated Qdrant indexing, provenance-backed RAG, unchanged retrieval threshold, and historical/modality framing.
+- Recorded the bounded ST1-027 metadata-only discovery timeout after excluding exhausted corpora; no content was opened and no absence-of-source conclusion was made.
 
 ## 2026-08-06
 

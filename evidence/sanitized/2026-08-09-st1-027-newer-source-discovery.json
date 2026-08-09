@@ -1,0 +1,13 @@
+{
+  "task_id": "ST1-027",
+  "operation": "metadata_only_discovery",
+  "pilot_root_accessible": true,
+  "exhausted_candidate_locator_count_excluded": 3,
+  "document_content_read": false,
+  "source_modified": false,
+  "discovery_completed": false,
+  "timeout_seconds": 120,
+  "runtime_output_written": false,
+  "result": "inconclusive_due_to_bounded_discovery_timeout",
+  "raw_locator_versioned": false
+}

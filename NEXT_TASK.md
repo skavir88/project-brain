@@ -1,68 +1,64 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-026
+- Task ID: ST1-028
 - Stage: Stage 1 — Product Implementation
-- Status: Ready — Human Review required
-- Owner: Designated business reviewer
+- Status: Blocked — bounded locator or indexed metadata result required
+- Owner: Designated business reviewer / operator
 
 ## Objective
-Obtain one explicit Human Review disposition for each of the seven ST1-025 newer-document candidates before any new real claim can enter certification.
+Provide one bounded source-relative folder locator, or one indexed metadata result, for a plausible project-status/reporting source that may contain an internal document date later than `1402/02/27`.
 
 ## Rationale
-ST1-025 found internal workbook issue-date evidence later than the historical certified period and prepared seven substantive candidates. The document date alone does not prove event-effective date, authority, currentness, or factual correctness.
+The approved pilot root is reachable, but a metadata-only traversal that excluded all exhausted corpora exceeded the 120-second bounded limit without producing a safe candidate result. Repeating it would be an unbounded performance loop.
 
 ## Preconditions
-- `%LOCALAPPDATA%\EnterpriseAI\runtime\st1-025-human-review-package.json` exists with exactly seven candidates.
-- DEC-019 and ST1-025 sanitized evidence validate.
-- Candidate excerpts and locators remain local-only.
+- The source must remain under the approved pilot root.
+- The source must be a bounded PDF, DOCX, and/or XLSX folder set.
+- No source content, filename, path, or credential is to be entered into versioned evidence.
 
 ## Scope
-- Display each candidate with its ID, claim, internal document date/type, category, affected work package, workbook/sheet/cell provenance, minimal evidence, uncertainty, and duplicate/copy-forward status.
-- Record exactly one explicit disposition per candidate: `APPROVE`, `REJECT`, `NEEDS_MORE_EVIDENCE`, or `CONFLICT`.
-- Produce only a sanitized aggregate decision summary.
+- The operator may use local Windows Explorer or an indexed metadata search to identify one containing folder with project-status, progress, monthly/weekly report, management report, project controls, or schedule/reporting signals.
+- Supply only the selected folder locator directly in the conversation; it will be retained only in local runtime state.
+- The agent will validate its metadata signature before any content access.
 
 ## Out of Scope
-- Automatic approval, certification, source modification, corpus expansion, platform persistence, Qdrant/Dify use, external-model use, credentials, or public exposure.
+- Repeating an unrestricted recursive traversal, opening content before a bounded candidate is validated, modifying source data, certification, platform persistence, external-model use, or public exposure.
 
 ## Files to Inspect
 - `CURRENT_STATE.md`
-- `DECISIONS.md`
-- `evidence/sanitized/2026-08-09-st1-025-currentness-corpus-extraction.json`
-- Local-only ST1-025 Human Review package.
+- `evidence/sanitized/2026-08-09-st1-027-newer-source-discovery.json`
 
 ## Files Allowed to Change
-- `evidence/sanitized/<dated-st1-026-human-review-summary>.json`
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
 - `NEXT_TASK.md`
-- `DECISIONS.md`, only when required
+- `DECISIONS.md`, only if a bounded source is explicitly selected
 
 ## Execution Steps
-1. Validate the package schema, candidate uniqueness, and complete provenance without publishing raw content.
-2. Present all seven review cards and obtain one explicit permitted disposition per card.
-3. Persist the attributable decisions locally and verify the complete decision set.
-4. Create exactly one next task based on actual outcomes; only approved candidates may become eligible for controlled certification.
+1. Receive one bounded locator or indexed metadata candidate from the operator.
+2. Validate its containment, allowlisted extension distribution, count, size, and metadata without opening content.
+3. Create exactly one bounded read-only extraction task only when the signature is safe and the candidate may extend the timeline.
 
 ## Acceptance Criteria
-- Exactly seven explicit, attributable decisions are recorded; none is inferred.
-- No candidate is certified or persisted to platform services.
-- Sanitized evidence contains aggregate outcomes only and no source content or raw locator.
-- One atomic next task follows actual review outcomes.
+- The source is bounded and within the approved pilot root.
+- No content is opened before metadata validation.
+- The operator input and raw locator remain outside Git and sanitized evidence.
+- Exactly one atomic next task follows validation.
 
 ## Verification Commands
 ```bash
-python -m json.tool evidence/sanitized/2026-08-09-st1-025-currentness-corpus-extraction.json > /dev/null
+python -m json.tool evidence/sanitized/2026-08-09-st1-027-newer-source-discovery.json > /dev/null
 git diff --check
 ```
 
 ## Evidence Required
-- Local-only review package and decision audit.
-- Sanitized aggregate decision summary.
+- Sanitized bounded-discovery timeout record.
+- Runtime-local candidate locator and sanitized aggregate metadata signature.
 
 ## Rollback
-Decision-only; remove only a mistaken local runtime decision artifact. No source or platform state changes occur.
+Read-only locator validation; no source, platform, or infrastructure state is changed.
 
 ## Completion Updates
 - `CURRENT_STATE.md`

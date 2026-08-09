@@ -638,3 +638,29 @@ Execute ST1-025 for the explicitly approved bounded currentness corpus and prepa
 
 ### Next Gate
 - The designated Human Reviewer must decide each candidate. No new claim is eligible for certification until its explicit decision is recorded.
+
+## Session 040 — 2026-08-09
+
+### Objective
+Record the complete ST1-026 Human Review outcome and run controlled source-attributed certification, projection, indexing, and RAG verification.
+
+### Completed
+- Recorded exactly seven explicit `APPROVE` decisions. All seven records passed the existing eligibility gate, then were atomically certified under `st1-026-source-attributed-v1` with seven matching append-only audit events and seven Certified Knowledge projections.
+- Re-indexed the isolated Certified Knowledge collection to 22 items. Runtime least privilege remains verified: the runtime role is not superuser and has no DELETE privilege on either credibility records or certification audit events.
+- Verified a source/period-bound real RAG answer at `0.726631` without lowering the `0.70` threshold. Updated the RAG prompt so generated material retains source attribution, issue/reporting date, historical framing, and future-plan modality.
+
+### Currentness Boundary
+- `1402/02/27` is a verified Action Plan issue date only. It neither establishes an event-effective date nor proves current/latest project status. The next task searches metadata-only for a bounded source that may be newer than this issue date.
+
+## Session 041 — 2026-08-09
+
+### Objective
+Execute ST1-027 metadata-only discovery for a bounded source potentially newer than the verified Action Plan issue date.
+
+### Completed
+- Verified that the approved pilot root remains reachable through read-only SMB access and excluded the three exhausted corpus locators from selection.
+- No source content was opened, copied, hashed, persisted, or sent to an external model.
+
+### Limitation
+- The bounded metadata-only traversal exceeded 120 seconds before a complete runtime result could be written. It will not be repeated as an unrestricted scan. This is a discovery-performance limitation, not evidence that a newer source does or does not exist.
+- Further progress requires a narrow operator-supplied bounded locator or a faster indexed local metadata result.

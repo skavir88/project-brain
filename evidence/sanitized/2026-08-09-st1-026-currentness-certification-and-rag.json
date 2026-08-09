@@ -1,0 +1,27 @@
+{
+  "task_id": "ST1-026",
+  "review_decisions": {
+    "APPROVE": 7,
+    "REJECT": 0,
+    "NEEDS_MORE_EVIDENCE": 0,
+    "CONFLICT": 0
+  },
+  "certification_policy_version": "st1-026-source-attributed-v1",
+  "certified_source_attributed_observation_count": 7,
+  "append_only_audit_event_count": 7,
+  "certified_knowledge_projection_count": 7,
+  "qdrant_indexed_certified_knowledge_items": 22,
+  "required_provenance_projection_count": 7,
+  "runtime_role_is_superuser": false,
+  "runtime_delete_records_privilege": false,
+  "runtime_delete_audit_privilege": false,
+  "retrieval_threshold": 0.7,
+  "rag_query_result": "grounded_answer",
+  "rag_provenance_count": 1,
+  "rag_retrieval_score": 0.726631,
+  "source_attributed_historical_framing_preserved": true,
+  "retrieval_policy_weakened": false,
+  "raw_content_versioned": false,
+  "raw_locator_versioned": false,
+  "current_status": "insufficient_certified_evidence"
+}
