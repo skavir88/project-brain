@@ -753,3 +753,17 @@ Execute ST1-035 local-only metadata discovery for a source potentially newer tha
 
 ### Decision Gate
 - Selection is a bounded discovery result only. Filesystem metadata cannot establish project-status dates, authority, or currentness. Content access for this new corpus needs explicit approval before extraction.
+
+## Session 049 — 2026-08-09
+
+### Objective
+Record ST1-038 Human Review outcomes and resolve ST1-039 through a bounded, metadata-only source-gap search.
+
+### Completed
+- Recorded the 15 supplied decisions exactly as `NEEDS_MORE_EVIDENCE`; the local append-only review state reports zero approvals and zero certification-eligible records. No certification or platform persistence was attempted.
+- Closed ST1-039 as `complete_with_source_gap`. The Time Schedule & Progress Report reference resolved only to document-control metadata, not an underlying substantive progress report.
+- Queried the existing 52,981-row local metadata index with 23 Persian/English status-source name and directory terms. The search opened no document content and performed no new SMB traversal. Its top metadata matches were tender/legal/claim related, duplicated, legacy, or otherwise ambiguous, so none was selected automatically as an authoritative current-status source.
+
+### Boundary and Next Gate
+- The required CEO-status source class must provide internally supported reporting period, authority/ownership, status/progress semantics, material blockers/constraints, forecast or milestones, and actions/decisions. The current pilot evidence does not close those gaps.
+- `current_status=insufficient_certified_evidence` remains unchanged. The next atomic task requests one business locator for the normal filing location of the project's latest periodic progress, dashboard, schedule, or status report; it does not authorize another broad crawl.

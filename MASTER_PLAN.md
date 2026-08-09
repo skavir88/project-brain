@@ -48,5 +48,9 @@ ST1-020 recorded a complete Human Review with zero approvals. ST1-021 then perfo
 
 ST1-022 selected and extracted an internally dated daily-status workbook series. The source provides a time-contextualized historical activity snapshot and reviewable row provenance, but its authority and currentness beyond the greatest extracted reporting period remain unverified. ST1-023 is the mandatory Human Review gate; no real claim may advance without an explicit reviewer decision.
 
+ST1-036/ST1-037 exhausted two later metadata-selected boundaries without a trustworthy current-status result. ST1-038 recorded `NEEDS_MORE_EVIDENCE` for all 15 associated candidates; none may enter the certification path.
+
+ST1-039 is complete with a source gap. The bounded local metadata index and targeted document-control inspection did not identify the underlying authoritative periodic progress source required for the CEO-status question. The next critical path is a single business locator for the normal project-team filing location of the latest periodic progress, dashboard, schedule, or status report; it is not another broad discovery cycle.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

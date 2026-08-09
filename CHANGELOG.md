@@ -103,3 +103,5 @@
 - Recorded approved Option 1 existing-provider recovery: a controlled `dify-plugin-daemon` restart restored embedding without credential, model, provider, schema, threshold, or trusted-data changes. Verified 32 isolated Qdrant points and source-attributed ST1-032 RAG provenance at the unchanged threshold.
 - Added sanitized ST1-035 local metadata-only selection of one bounded newer-source candidate. No SMB traversal or content access occurred; the selected source remains a discovery boundary pending content-access approval.
 - Recorded standing-authorized ST1-036/ST1-037 bounded extraction: one insufficient partial boundary and one 34-document corpus with 15 local-only Human Review candidates; no real content entered platform services.
+- Recorded all 15 ST1-038 Human Review decisions as `NEEDS_MORE_EVIDENCE`, with zero certification eligibility.
+- Closed ST1-039 as `complete_with_source_gap`; recorded the bounded metadata-only source-gap search and a sanitized CEO-status evidence specification without weakening trust or retrieval policy.

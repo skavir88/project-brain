@@ -1,0 +1,12 @@
+{
+  "schema_version": "st1-038-039-source-gap-v1",
+  "review_outcome": {"candidate_count": 15, "decision_counts": {"APPROVE": 0, "REJECT": 0, "NEEDS_MORE_EVIDENCE": 15, "CONFLICT": 0}, "certification_eligible_count": 0, "certification_executed": false},
+  "st1_039_outcome": "complete_with_source_gap",
+  "current_status": "insufficient_certified_evidence",
+  "source_gap_specification": {
+    "required_ceo_snapshot_dimensions": ["reporting date or reporting period", "source authority or ownership", "overall project or site/discipline progress", "baseline/planned progress and actual progress", "schedule variance where source semantics support it", "major delayed or stopped activities", "unresolved blockers and constraints", "procurement/material, engineering/design, and construction constraints", "milestones or forecast", "major risks/issues", "actions, owners, and management decisions required", "relationship to the certified historical observations"],
+    "ranked_source_classes": ["periodic project progress report or approved project dashboard", "current schedule export/report with explicit baseline and actual semantics", "site/discipline progress report with reporting period and owner", "current action plan with explicit reporting period and outcome status", "progress measurement workbook with labelled baseline/plan/actual fields", "current procurement, engineering/document, or risk/issue/action status register"]
+  },
+  "bounded_metadata_locator_search": {"index_rows_queried": 52981, "name_and_directory_terms": 23, "metadata_rows_matched": 1670, "candidate_locations_considered": 494, "top_ranked_locations_presented_to_reviewer": 5, "content_opened": false, "new_smb_traversal": false, "result": "no candidate can be deterministically accepted as the authoritative current project-status source; top results are tender/legal/claim related, duplicated, legacy, or otherwise ambiguous"},
+  "boundaries": {"raw_locator_or_filename_versioned": false, "raw_organizational_content_versioned": false, "external_model_use": false, "platform_persistence": false, "automatic_certification": false, "retrieval_or_currentness_policy_weakened": false}
+}
