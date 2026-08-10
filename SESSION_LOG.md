@@ -821,3 +821,32 @@ Perform one bounded metadata-only locator search for likely authoritative projec
 ### Boundary and Next Gate
 - Directory/file metadata does not prove source authority, reporting period, truth, or currentness. The user explicitly prohibited content opening in this locator step.
 - The next task is one business confirmation before any separate bounded content-access task. The two pre-existing ST1-042 linkage-review candidates remain unmodified and awaiting explicit dispositions.
+
+## Session 054 â€” 2026-08-10
+
+### Objective
+Execute ST1-044 against the explicitly approved bounded management-report source and determine whether it provides a coherent management-level project-status snapshot.
+
+### Completed
+- Revalidated the exact 13-member source boundary. The five PDF/DOCX allowlisted files were available with matching metadata sizes and were extracted locally without error. Seven archives and one XLSB were excluded and never opened.
+- Used direct local extraction for all five files and full local Persian OCR for the single selected higher-quality 51-page scan. The alternate same-period scan was not OCRed. No source modification, SMB rediscovery, external-model use, platform persistence, or automatic certification occurred.
+- Prepared ten runtime-local, provenance-backed, management-level Human Review candidates covering historical plan/actual observations, discipline/site progress, drawing/procurement constraints, a package-specific supplier status, and one financial estimate. Two candidates preserve material scope/date conflicts rather than resolving them automatically.
+
+### Boundary and Next Gate
+- The internally dated source material is older than the certified `1402/06/25-1402/06/31` reporting period. It is potentially valuable historical management context but cannot establish current/latest status.
+- ST1-045 is the explicit Human Review gate for the ten existing candidate IDs. No candidate may be certified, projected, indexed, or used by Dify until a reviewer supplies an exact disposition.
+
+## Session 055 — 2026-08-10
+
+### Objective
+Apply the supplied ST1-045 dispositions through the controlled lifecycle, then continue the approved bounded currentness path to a new review package.
+
+### Completed
+- Recorded seven `APPROVE`, two `NEEDS_MORE_EVIDENCE`, and one `CONFLICT` disposition in local append-only review state. Under DEC-024, exactly seven narrow historical/source-attributed observations transitioned atomically to `certified` under `st1-045-management-report-historical-v1`; the two nonapproved and one conflicted items remained outside all trusted stores.
+- Verified seven matching audit events and seven Certified Knowledge projections. The restricted runtime role remains non-superuser and has zero relevant DELETE grants. Idempotent indexing increased the existing isolated Qdrant collection from 35 to 42 vectors at dimension 3072; the collection is green. A controlled RAG query at the unchanged `0.70` threshold returned `insufficient_certified_evidence`, so no unsupported answer was generated.
+- Queried the local metadata index, selected one bounded newer management-report family, and revalidated its 11 allowlisted PDF/XLSX members. Targeted local OOXML extraction from one internally dated workbook preserved cell-level provenance in runtime-local state. Eight non-allowlisted members were excluded without opening.
+- Prepared seven substantive local-only Human Review cards from the newer internally labelled report period. No source was modified, no new SMB crawl ran, and no real content was sent to platform services or an external model.
+
+### Boundary and Next Gate
+- The ST1-045 certified observations predate `1402/06/25–1402/06/31`; the certified timeline and `current_status=insufficient_certified_evidence` did not change.
+- The ST1-046 source has not been treated as authoritative or current. The next atomic task is Human Review of the seven existing ST1-046 cards. No certification is permitted without exact reviewer dispositions.

@@ -1,0 +1,45 @@
+{
+  "schema_version": "st1-046-newer-management-review-preparation-v1",
+  "task_id": "ST1-046",
+  "evidence_scope": "bounded local read-only extraction and Human Review preparation",
+  "source_family": {
+    "runtime_local_family_only": true,
+    "allowlisted_documents_revalidated": 11,
+    "document_types": {
+      "pdf": 2,
+      "xlsx": 9
+    },
+    "excluded_non_allowlisted_members": 8
+  },
+  "extraction": {
+    "target_workbook_structurally_inspected": true,
+    "targeted_sheets": 12,
+    "cell_provenance_preserved_runtime_local": true,
+    "internal_reporting_period_observed": true,
+    "period_is_later_than_latest_certified_period": true
+  },
+  "review_preparation": {
+    "substantive_candidates": 7,
+    "dispositions": {
+      "needs_human_review": 7,
+      "approved": 0,
+      "certified": 0
+    },
+    "candidate_package_runtime_local_only": true
+  },
+  "boundaries": {
+    "source_modified": false,
+    "new_smb_crawl": false,
+    "external_model_use": false,
+    "postgresql_persistence": false,
+    "certified_knowledge_persistence": false,
+    "qdrant_persistence": false,
+    "dify_persistence": false,
+    "automatic_certification": false,
+    "raw_content_or_locator_versioned": false
+  },
+  "currentness": {
+    "latest_verified_status_period_changed": false,
+    "current_status": "insufficient_certified_evidence"
+  }
+}

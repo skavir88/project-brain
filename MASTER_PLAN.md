@@ -30,6 +30,8 @@ ST1-001 through ST1-005 verified the local synthetic intake, validation, canonic
 
 ST1-013 verified read-only pilot-folder access and a partial metadata inventory. The next gate is intentionally narrow: select a bounded initial document subset and explicit supported-format/extraction allowlist before any real file content is read or ingested.
 
+ST1-045 completed controlled certification of seven explicitly approved historical management-report observations. It preserved the source-scope conflict and excluded all nonapproved items. ST1-046 then selected and read only one bounded, later internally dated management-report family under standing authorization. It produced seven runtime-local, provenance-backed Human Review candidates. The next gate is explicit Human Review; no candidate is certification-eligible until its exact disposition is supplied.
+
 ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.
@@ -57,6 +59,8 @@ The ST1-040 self-discovery override supersedes that human-locator gate. It ranke
 ST1-041 certified those three explicitly approved observations with strict source-attributed semantics. They extend the evidence timeline only in their narrow contexts; retrieval remains conservative at the unchanged threshold and current status remains insufficient. The critical path is targeted linkage/supersession discovery from those observations toward an authoritative overall status snapshot.
 
 ST1-043 executed one user-directed metadata-only locator search after no business filing locator was available. A bounded management-report candidate has the strongest name/hierarchy signals, but its content, authority, reporting period, and currentness remain unknown. The next gate is a single business confirmation before any separate bounded content-access task; existing ST1-042 Human Review candidates remain untouched.
+
+ST1-044 completed bounded local extraction after that confirmation. The source contains a historical management-level snapshot with plan/actual, discipline/site, constraint, and financial-context signals, but its newest internal date signals precede the already certified `1402/06/25-1402/06/31` period. A title/scope/date conflict remains explicit. Ten provenance-backed candidates await Human Review; no trust, currentness, or certification policy changed.
 
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

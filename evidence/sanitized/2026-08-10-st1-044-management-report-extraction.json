@@ -1,0 +1,40 @@
+{
+  "schema_version": "st1-044-management-report-extraction-v1",
+  "approved_source_token": "st1-043-e3aca7f9868040d6",
+  "selection_revalidation": {
+    "folder_file_count": 13,
+    "allowlisted_file_count": 5,
+    "allowlisted_files_available": 5,
+    "allowlisted_metadata_size_match_count": 5,
+    "direct_extraction_success_count": 5,
+    "direct_extraction_error_count": 0,
+    "excluded_extension_count": 8,
+    "archives_opened": false,
+    "xlsb_opened": false
+  },
+  "local_processing": {
+    "full_page_direct_pdf_extraction": true,
+    "full_page_local_ocr_source_count": 1,
+    "full_page_local_ocr_page_count": 51,
+    "alternate_same_period_scan_ocr": false,
+    "external_model_use": false,
+    "platform_persistence": false,
+    "automatic_certification": false
+  },
+  "source_assessment": {
+    "management_level_status_snapshot_found": true,
+    "internally_dated_snapshot_signals": ["1402/01/18", "1402/01/21", "1402/02/23"],
+    "latest_certified_status_period_unchanged": "1402/06/25-1402/06/31",
+    "newer_than_latest_certified_status_period": false,
+    "scope_or_date_conflict_detected": true,
+    "human_review_candidate_count": 10,
+    "current_status": "insufficient_certified_evidence"
+  },
+  "boundaries": {
+    "source_content_or_raw_locators_versioned": false,
+    "filesystem_metadata_used_as_status_evidence": false,
+    "certified_knowledge_changed": false,
+    "qdrant_changed": false,
+    "dify_changed": false
+  }
+}

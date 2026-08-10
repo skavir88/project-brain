@@ -1,0 +1,43 @@
+{
+  "schema_version": "st1-045-management-report-certification-v1",
+  "task_id": "ST1-045",
+  "human_review": {
+    "approved": 7,
+    "needs_more_evidence": 2,
+    "conflict": 1,
+    "certification_eligible": 7
+  },
+  "controlled_certification": {
+    "policy_version": "st1-045-management-report-historical-v1",
+    "records_certified": 7,
+    "append_only_audit_events": 7,
+    "certified_knowledge_projections": 7,
+    "nonapproved_or_conflicted_certified": 0
+  },
+  "least_privilege": {
+    "runtime_role_superuser": false,
+    "runtime_delete_grants": 0
+  },
+  "derived_index": {
+    "qdrant_points_before": 35,
+    "qdrant_points_after": 42,
+    "vector_dimension": 3072,
+    "collection_status": "green",
+    "idempotent_index_queue_remaining": 0
+  },
+  "retrieval": {
+    "minimum_score_threshold": 0.7,
+    "controlled_result": "insufficient_certified_evidence",
+    "threshold_weakened": false
+  },
+  "temporal_boundary": {
+    "latest_verified_status_period_changed": false,
+    "current_status": "insufficient_certified_evidence",
+    "historical_source_attribution_preserved": true
+  },
+  "sanitization": {
+    "raw_content_versioned": false,
+    "raw_locator_versioned": false,
+    "credentials_versioned": false
+  }
+}

@@ -3,6 +3,7 @@
 ## 2026-08-08
 
 ### Added
+- Sanitized ST1-045 controlled historical-management-report certification evidence and ST1-046 bounded newer-management-report review-preparation evidence.
 - Controlled synthetic certification lifecycle and append-only audit persistence.
 - Deterministic, durable Certified Knowledge projection for persisted synthetic certified records only.
 - Loopback-only deterministic Certified Knowledge retrieval with source and certification provenance.
@@ -109,3 +110,8 @@
 - Recorded DEC-023 and ST1-041 controlled certification of three approved source-attributed observations; verified append-only audit, Certified Knowledge projection, 35-point isolated Qdrant index, least privilege, and unchanged no-evidence retrieval policy.
 - Recorded ST1-042 targeted linkage discovery and two local-only Human Review candidates without automatic certification or platform persistence.
 - Added sanitized ST1-043 metadata-only authoritative-source locator evidence. It identifies one bounded management-report candidate by runtime-local token and records no raw locator or content.
+- Added sanitized ST1-044 bounded management-report extraction evidence. It records successful local-only extraction/OCR, the historical-date boundary, and the unreviewed source-scope/date conflict without versioning organizational content.
+
+### Changed
+- Recorded DEC-024 and controlled certification of seven approved ST1-044 historical observations; preserved two `NEEDS_MORE_EVIDENCE` records and one scope conflict outside trusted stores, and verified 42 isolated Qdrant points without weakening retrieval policy.
+- Completed bounded ST1-046 newer management-report extraction from a runtime-local family and prepared seven local-only, provenance-backed Human Review candidates without automatic certification or platform persistence.
