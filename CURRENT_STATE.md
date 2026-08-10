@@ -293,3 +293,8 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 ## ST1-060 SDAS v0.2 Append-Only Policy Status
 - An additive immutable policy-status-event table now provides the policy disable/rollback mechanism. A synthetic disabled-policy event was recorded and a real new policy-decision insert was rejected by the database trigger.
 - No policy row was overwritten, no certification changed, and no organizational content was processed. Evidence: `evidence/sanitized/2026-08-10-st1-060-policy-status-events.json`.
+
+## ST1-061 Native Real-Data Ingestion Pilot
+- One already-authorized bounded Maroon XLSX was recovered through metadata-only locator matching and read once, read-only, solely to capture native acquisition metadata and its original SHA-256. Its raw locator and content remain workstation-local.
+- A private source, acquisition event, deterministic metadata-manifest transformation, validation candidate, and append-only `human_required` policy decision were persisted. Authority is `not_verified`; business/effective time is `missing_not_inferred`.
+- The record remains `certification_candidate` and is not SDAS-assessed because it is not certified. Zero Certified Knowledge, Qdrant, external-AI, or certification changes occurred. Evidence: `evidence/sanitized/2026-08-10-st1-061-native-real-data-pilot.json`.

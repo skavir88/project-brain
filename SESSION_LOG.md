@@ -997,3 +997,15 @@ Implement the remaining append-only SDAS policy disable/rollback mechanism.
 
 ### Boundary and Next Gate
 - SDAS v0.2 private-pilot implementation is technically complete. The remaining gate is external business/authority evidence for any real currentness or lifecycle action.
+
+## Session 067 â€” 2026-08-10
+
+### Objective
+Run the approved bounded native real-data SDAS acquisition pilot.
+
+### Completed
+- Recovered one unique previously authorized XLSX locator using only existing corpus metadata, then captured a read-only native hash, acquisition timestamp, size/media type, locator fingerprint, actor identity, and deterministic metadata-manifest transformation lineage.
+- Persisted one private real-record candidate with `authority=not_verified` and missing business/effective time. Policy routed it to `human_required`; no certification, CK, Qdrant, external model, or public exposure occurred.
+
+### Boundary and Next Gate
+- The record is not SDAS-assessed because certification is intentionally absent. Any certification requires explicit Human Review; authority/currentness/reliance remain unestablished.

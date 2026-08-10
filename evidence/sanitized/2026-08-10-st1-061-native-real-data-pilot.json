@@ -1,0 +1,19 @@
+{
+  "task_id": "ST1-061",
+  "scope": "one previously authorized Maroon SMB XLSX; read-only",
+  "locator_recovery": "unique_high_confidence_match",
+  "native_chain": {
+    "source_registry": 1,
+    "acquisition_events": 1,
+    "transformations": 1,
+    "credibility_records": 1,
+    "policy_decisions": 1
+  },
+  "native_evidence": ["acquisition_timestamp", "original_sha256", "size", "media_type", "source_locator_fingerprint", "transformation_input_output_fingerprints", "service_actor", "tool_version"],
+  "source_identity_state": "registered_private_pilot_source",
+  "authority_state": "not_verified",
+  "business_effective_timestamp_state": "missing_not_inferred",
+  "policy": {"decision": "human_required", "reason_codes": ["authority_not_verified", "business_timestamp_missing"]},
+  "result": {"lifecycle_state": "certification_candidate", "sdas_level": "not_assessed_not_certified", "human_review_required_before_certification": true},
+  "boundary": {"automatic_certification": false, "certified_knowledge_items": 0, "assurance_envelopes": 0, "qdrant_changes": 0, "external_ai_processing": false, "public_exposure": false, "reliance_eligibility": "not_eligible", "current_status": "insufficient_certified_evidence"}
+}
