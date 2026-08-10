@@ -850,3 +850,30 @@ Apply the supplied ST1-045 dispositions through the controlled lifecycle, then c
 ### Boundary and Next Gate
 - The ST1-045 certified observations predate `1402/06/25–1402/06/31`; the certified timeline and `current_status=insufficient_certified_evidence` did not change.
 - The ST1-046 source has not been treated as authoritative or current. The next atomic task is Human Review of the seven existing ST1-046 cards. No certification is permitted without exact reviewer dispositions.
+
+## Session 056 — 2026-08-10
+
+### Objective
+Apply the seven explicit ST1-046 approvals through the controlled certification and Certified Knowledge lifecycle, then verify the existing Qdrant/Dify path.
+
+### Completed
+- Recorded seven exact `APPROVE` decisions in local append-only review state. Under DEC-025, exactly seven records transitioned atomically to `certified` under `st1-047-biweekly-management-report-v1`; seven matching append-only audit events and seven Certified Knowledge projections are verified. The runtime role remains non-superuser with zero relevant DELETE grants.
+- The verified source-attributed timeline advances to reporting period `1402/11/21–1402/12/05`. This is historical report evidence only; it does not establish current status, so `current_status=insufficient_certified_evidence` remains required.
+- Qdrant preflight observed 42 green points at vector dimension 3072. The unchanged embedding invocation timed out before index upsert. A controlled restart of only `dify-plugin-daemon` was followed by one controlled retry, which timed out without a Qdrant write. Post-check verified the collection remains green with exactly 42 points.
+
+### Boundary and Next Gate
+- No credential, embedding model/provider, vector dimensionality, collection schema, retrieval threshold, existing vector, or certification/audit record was changed. End-to-end RAG for this batch is not verified.
+- ST1-048 is limited to evidence-based diagnosis/recovery of the existing embedding runtime. If recovery requires credential replacement or a provider/model change, it must stop for the corresponding explicit approval.
+
+## Session 057 — 2026-08-10
+
+### Objective
+Diagnose the existing embedding-runtime timeout without changing credentials, provider/model configuration, Qdrant schema, or retrieval policy.
+
+### Completed
+- Confirmed the isolated Qdrant collection remains green at 42 points and vector dimension 3072 after the failed controlled index attempts. No partial write occurred.
+- Scanned bounded Dify/plugin log windows through a sanitized classifier. It observed an embedding-related authentication failure and no model-unavailable signal. This supplements, but does not replace, the controlled invocation-timeout evidence.
+
+### Boundary and Next Gate
+- The root cause is not proven; no credential was inspected, exported, replaced, or changed. No provider/model/schema/threshold/vector change was made.
+- A safe automatic recovery is unavailable. The next task requests one explicit credential-recovery approval for the existing provider; a provider/model change remains a separate decision.

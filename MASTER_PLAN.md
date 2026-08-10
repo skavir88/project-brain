@@ -32,6 +32,10 @@ ST1-013 verified read-only pilot-folder access and a partial metadata inventory.
 
 ST1-045 completed controlled certification of seven explicitly approved historical management-report observations. It preserved the source-scope conflict and excluded all nonapproved items. ST1-046 then selected and read only one bounded, later internally dated management-report family under standing authorization. It produced seven runtime-local, provenance-backed Human Review candidates. The next gate is explicit Human Review; no candidate is certification-eligible until its exact disposition is supplied.
 
+ST1-047 completed controlled certification and Certified Knowledge projection for all seven explicitly approved observations from the coherent bi-weekly reporting period `1402/11/21–1402/12/05`. The timeline advances only to that historical reporting period; present-day status remains insufficient. Index/RAG completion is blocked by the unchanged embedding invocation timing out with no Qdrant write. The next atomic task is bounded existing-provider runtime recovery; it may not change credentials, provider, model, vector schema, or threshold without separate approval.
+
+ST1-048 completed the permitted existing-runtime diagnosis. It observed an embedding-related authentication failure alongside the controlled timeout but did not inspect or change the credential. The remaining work is approval-gated credential recovery or, separately, an approved provider/model decision; no further blind retry is planned.
+
 ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.

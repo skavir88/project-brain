@@ -154,3 +154,12 @@ The designated reviewer explicitly approved exactly seven ST1-045 candidates. Th
 The approved observations are historical management context only: the `1402/01/18` management snapshot preserves reported plan/actual values and calculated Actual-minus-Plan variance without independently certifying delay; drawing shortages preserve source-stated reasons without continuation; and approved Centrifugal observations preserve source attribution, historical package scope, and unknown supplier-report date where applicable. They do not certify present status, continuing delay/blocker, completion, financial position, or corpus authority.
 
 The two `NEEDS_MORE_EVIDENCE` candidates and one explicit source-scope `CONFLICT` are excluded from lifecycle certification, Certified Knowledge, Qdrant, and Dify. The conflict must not be resolved from filename, folder, or surrounding storage location. These observations predate the verified `1402/06/25-1402/06/31` period, so `latest_verified_status_period` and `current_status=insufficient_certified_evidence` remain unchanged.
+
+## DEC-025 — Reporting-Period-Bounded Certification for ST1-047
+Status: Accepted
+
+The designated reviewer explicitly approved exactly seven ST1-046 candidates. The controlled lifecycle may certify only these observations under `st1-047-biweekly-management-report-v1`. Every projected statement must retain the equivalent meaning: “According to the approved bi-weekly report for reporting period `1402/11/21–1402/12/05`, [observation] was reported.”
+
+MDL Progress, Primavera Progress, and the Marun 5 engineering metric remain distinct source-defined measures. Their deterministic Actual-minus-Plan differences are descriptive values only, not completion, schedule-health, contractual-performance, delay, or ahead-of-schedule findings. Activity, constraint, procurement-concern, and payment-related execution-stoppage statements remain source-attributed to the reporting period; they do not establish responsibility, continuation, resolution, present status, or corpus authority.
+
+This coherent, internally identified and explicitly approved reporting period advances `latest_verified_status_period` to `1402/11/21–1402/12/05` after verification. It does not establish present-day status, so `current_status=insufficient_certified_evidence` remains mandatory. No new evidence can enter trusted stores without Human Review and controlled certification.

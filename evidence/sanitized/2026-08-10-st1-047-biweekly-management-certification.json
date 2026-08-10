@@ -1,0 +1,48 @@
+{
+  "schema_version": "st1-047-biweekly-management-certification-v1",
+  "task_id": "ST1-047",
+  "human_review": {
+    "approved": 7,
+    "other_dispositions": 0
+  },
+  "controlled_certification": {
+    "policy_version": "st1-047-biweekly-management-report-v1",
+    "records_certified": 7,
+    "append_only_audit_events": 7,
+    "certified_knowledge_projections": 7,
+    "nonapproved_records_certified": 0,
+    "reporting_period_preserved": true,
+    "source_attribution_preserved": true,
+    "currentness_not_established": true
+  },
+  "least_privilege": {
+    "runtime_role_superuser": false,
+    "runtime_delete_grants": 0
+  },
+  "timeline": {
+    "latest_verified_status_period": "1402/11/21–1402/12/05",
+    "current_status": "insufficient_certified_evidence"
+  },
+  "indexing": {
+    "qdrant_points_before": 42,
+    "qdrant_points_after": 42,
+    "vector_dimension": 3072,
+    "collection_status": "green",
+    "result": "blocked_embedding_invocation_timeout",
+    "partial_qdrant_write_observed": false,
+    "embedding_configuration_changed": false,
+    "credential_inspected_or_changed": false,
+    "controlled_plugin_daemon_restart_attempted": true,
+    "retry_result": "client_timeout_without_qdrant_write"
+  },
+  "retrieval": {
+    "minimum_score_threshold": 0.7,
+    "end_to_end_rag_verified": false,
+    "threshold_weakened": false
+  },
+  "sanitization": {
+    "raw_content_versioned": false,
+    "raw_locator_versioned": false,
+    "credentials_versioned": false
+  }
+}

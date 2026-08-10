@@ -1,0 +1,32 @@
+{
+  "schema_version": "st1-048-embedding-runtime-diagnostic-v1",
+  "task_id": "ST1-048",
+  "runtime": {
+    "dify_api_running": true,
+    "dify_plugin_daemon_running": true,
+    "qdrant_collection_status": "green",
+    "qdrant_points_count": 42,
+    "vector_dimension": 3072
+  },
+  "failure_classification": {
+    "controlled_embedding_invocation_timeout_observed": true,
+    "controlled_post_restart_retry_timed_out": true,
+    "embedding_related_authentication_failure_observed_in_sanitized_log_classification": true,
+    "embedding_related_model_unavailable_observed": false,
+    "root_cause_proven": false
+  },
+  "changes_not_made": {
+    "credential_inspected": false,
+    "credential_changed": false,
+    "provider_changed": false,
+    "model_changed": false,
+    "vector_schema_changed": false,
+    "retrieval_threshold_changed": false,
+    "existing_qdrant_vectors_changed": false
+  },
+  "conclusion": {
+    "safe_automatic_recovery_available": false,
+    "required_next_gate": "explicit credential recovery approval or a separately approved provider/model change",
+    "raw_logs_or_credentials_versioned": false
+  }
+}

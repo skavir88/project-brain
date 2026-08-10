@@ -3,6 +3,8 @@
 ## 2026-08-08
 
 ### Added
+- Sanitized ST1-048 existing embedding-runtime diagnostic evidence.
+- Sanitized ST1-047 bi-weekly management-report certification and embedding-blocker evidence.
 - Sanitized ST1-045 controlled historical-management-report certification evidence and ST1-046 bounded newer-management-report review-preparation evidence.
 - Controlled synthetic certification lifecycle and append-only audit persistence.
 - Deterministic, durable Certified Knowledge projection for persisted synthetic certified records only.
@@ -115,3 +117,5 @@
 ### Changed
 - Recorded DEC-024 and controlled certification of seven approved ST1-044 historical observations; preserved two `NEEDS_MORE_EVIDENCE` records and one scope conflict outside trusted stores, and verified 42 isolated Qdrant points without weakening retrieval policy.
 - Completed bounded ST1-046 newer management-report extraction from a runtime-local family and prepared seven local-only, provenance-backed Human Review candidates without automatic certification or platform persistence.
+- Recorded DEC-025 and certified/projected seven explicitly approved reporting-period-bounded management observations; retained the currentness boundary and recorded the non-mutating existing-embedding timeout blocker before Qdrant indexing.
+- Recorded the bounded ST1-048 diagnosis: embedding-related authentication failure was observed without credential inspection or change; Qdrant invariants remained intact and the next recovery path is approval-gated.
