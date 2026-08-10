@@ -126,3 +126,4 @@
 - Verified ST1-050 isolated index invariants and provenance-backed, period-bound historical RAG at threshold `0.70`; broad management retrieval remains conservatively insufficient.
 - Recorded ST1-051 metadata-only exhaustion: no post-1402/12 family has deterministic management-status, periodic-report, or project-control signals, so no content source was opened.
 - Completed ST1-052's one bounded metadata-only locator-recovery pass over the runtime-local index. It selected no source because no eligible project-wide continuation beyond the verified period could be established from metadata; added sanitized source-gap evidence and a source-owner gate.
+- Added the decision-gated Sahra Data Assurance Standard v0.1 proposal and pilot gap assessment. It documents assurance evidence requirements and downstream consumption provenance without changing existing certification, currentness, authority, retrieval, or runtime semantics.

@@ -930,3 +930,16 @@ Execute the one approved ST1-052 metadata-only business-locator recovery pass wi
 - The strong management-report hierarchy retained by the index is older. Package-specific folders with later filesystem metadata are not evidence of currentness and were not selected.
 - No document, certification, Certified Knowledge item, vector, credential, or remote service state changed. Sanitized evidence is `evidence/sanitized/2026-08-10-st1-052-business-locator-recovery.json`.
 - ST1-053 now requires the responsible project-control/reporting owner or authoritative source location; repeating metadata discovery is out of scope.
+
+## Session 062 — 2026-08-10
+
+### Objective
+Preserve the ST1-053 currentness source gap and prepare a decision-gated Sahra Data Assurance Standard v0.1 proposal using only existing certified pilot records as test evidence.
+
+### Completed
+- Documented the proposed machine-verifiable chain from Source through downstream consumption provenance, mandatory evidence fields, separate assurance-envelope lifecycle, proposed assurance levels, and the distinctions among certified, current, authoritative, and reliance-eligible data.
+- Performed a portfolio-level gap assessment against the 49 existing Certified Knowledge items. It records observed certification/audit/projection strengths and missing normalized acquisition, integrity, transformation, authority/currentness, supersession/revocation, and durable consumption evidence without inventing missing facts.
+
+### Boundary and Next Gate
+- No record, certification semantics, audit event, Certified Knowledge item, Qdrant point, RAG configuration, source file, database schema, or remote runtime changed.
+- `current_status=insufficient_certified_evidence` remains mandatory. SDAS is proposal-only in `docs/SDAS_V0_1_PROPOSAL.md`; ST1-054 is an explicit architecture/governance decision gate.

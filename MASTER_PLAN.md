@@ -44,6 +44,8 @@ ST1-051 exhausted the completed local metadata index for post-`1402/12` candidat
 
 ST1-052 completed the one approved business-locator recovery pass using only the same local metadata index. It found no deterministic project-wide source that can extend the verified period beyond `1402/12/05`; apparently later package-specific folders cannot establish report date, authority, or CEO-status semantics from metadata. The critical path is now a source-system owner or authoritative reporting location, not another discovery crawl.
 
+ST1-053 acknowledges that source gap and leaves it blocked pending business input. In parallel it creates the decision-gated SDAS v0.1 proposal: an additive assurance model for Source through downstream consumption provenance, with explicit gaps for the current 49-item pilot. It makes no currentness, authority, certification, or runtime change. The next gate is architecture/governance approval before any additive assurance implementation.
+
 ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.
