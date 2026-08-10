@@ -46,6 +46,8 @@ ST1-052 completed the one approved business-locator recovery pass using only the
 
 ST1-053 acknowledges that source gap and leaves it blocked pending business input. In parallel it creates the decision-gated SDAS v0.1 proposal: an additive assurance model for Source through downstream consumption provenance, with explicit gaps for the current 49-item pilot. It makes no currentness, authority, certification, or runtime change. The next gate is architecture/governance approval before any additive assurance implementation.
 
+ST1-055 implemented the approved SDAS v0.1 internal pilot with additive immutable assurance/consumption evidence tables. It back-assessed all 49 Certified Knowledge items only from persisted evidence, yielding `SDAS-1` / `assessed_partial` for all and zero reliance-eligible records. The next SDAS change is a decision gate; no v0.2 supersession/revocation, authority/currentness, reliance eligibility, or external rollout is implied.
+
 ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.

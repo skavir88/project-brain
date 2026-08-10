@@ -1,6 +1,6 @@
 # Sahra Data Assurance Standard v0.1 — Proposal
 
-Status: Proposed — decision gate required; no runtime semantics are changed by this document.
+Status: Accepted for internal experimental pilot validation — implementation is limited to ST1-055 and remains decision-gated for SDAS v0.2.
 
 ## Purpose and Boundary
 
@@ -9,9 +9,10 @@ been certified in Enterprise AI. It records the assurance evidence available
 for a claim; it does not create insurance, pricing, underwriting, legal
 guarantees, legal liability, source authority, or present-day truth.
 
-The existing 49 Certified Knowledge items are pilot evidence only. They are
-not automatically SDAS-compliant and must not be reclassified, revoked,
-superseded, or re-certified by this proposal.
+The existing 49 Certified Knowledge items are pilot evidence only. They were
+back-assessed under the approved pilot policy; this is not an automatic claim
+of full SDAS compliance, authority, currentness, or reliance eligibility. No
+item was re-certified, revoked, or superseded.
 
 ## Assurance Dimensions and Mandatory Evidence
 
@@ -161,7 +162,25 @@ evidence that a project condition is true.
 
 ## Decision Gate
 
-Implementation is prohibited until an architecture/governance decision
-accepts the selected dimensions, assurance levels, assurance-envelope owner,
-retention/privacy policy, supersession/revocation governance, and the exact
-scope of downstream consumption logging.
+ST1-054 accepted the limited v0.1 pilot. ST1-055 implemented an additive,
+append-only assurance envelope and consumption evidence path, then
+back-assessed all 49 Certified Knowledge items. The resulting distribution is
+49 `SDAS-1` / `assessed_partial`; none is `SDAS-2`, `SDAS-3`, authoritative,
+current, or reliance-eligible. See
+`evidence/sanitized/2026-08-10-st1-055-sdas-v0-1-pilot.json`.
+
+SDAS v0.2 still requires an architecture/governance decision before
+supersession/revocation transitions, reliance eligibility, external rollout,
+or any change to the existing certification/currentness semantics.
+
+## SDAS v0.2 Recommendations
+
+1. Select only one governed next scope: supersession/revocation, or an
+   authority/freshness assessment model. Do not combine them with reliance
+   eligibility in one migration.
+2. Define a retention and privacy policy for consumption-event hashes and
+   consumer identifiers before broadening RAG/automation logging.
+3. Add source acquisition and transformation evidence adapters for new
+   records first; never manufacture this chain for historical records.
+4. Require an independently approved authority and freshness policy before
+   considering any `SDAS-3` or reliance-eligibility predicate.

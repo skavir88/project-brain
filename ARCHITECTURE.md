@@ -68,11 +68,12 @@ PostgreSQL readiness on `rddb` is verified with reported version `16.14`. Redis 
 ## Critical Listener Evidence — 2026-08-08
 Sanitized `ss -lnt` evidence confirmed local listeners for declared PostgreSQL, Redis, Qdrant HTTP/gRPC, and the `rdapp` HTTP entrypoint. Bind addresses and raw listener output were not retained; this does not establish firewall exposure, TLS, or external reachability.
 
-## Proposed Sahra Data Assurance Standard v0.1 Boundary
+## Sahra Data Assurance Standard v0.1 Pilot Boundary
 
-SDAS v0.1 is a proposed additive assurance-envelope model around certified
-records, not a replacement for the verified lifecycle, a statement of legal
-assurance, or an automatic upgrade of current pilot data. Its proposed chain
+SDAS v0.1 is an accepted internal experimental, additive assurance-envelope
+model around certified records. It is not a replacement for the verified
+lifecycle, a statement of legal assurance, or an automatic upgrade of current
+pilot data. Its implemented pilot chain
 is `Source → Acquisition → identity/timestamp/integrity → extraction and
 validation → Human Review → certification/audit → Certified Knowledge →
 supersession/revocation state → consumption provenance`.
@@ -81,7 +82,11 @@ The proposal separates certified, current, authoritative, and
 reliance-eligible data. It preserves the currentness boundary: no historical
 or package-specific pilot observation establishes current project status, and
 `current_status=insufficient_certified_evidence` remains mandatory. The 49
-existing Certified Knowledge records are test evidence only; they have no
-automatic SDAS compliance classification. SDAS implementation requires a
-separate architecture/governance decision. Full proposal:
-`docs/SDAS_V0_1_PROPOSAL.md`.
+existing Certified Knowledge records are test evidence only. The back
+assessment created 49 `SDAS-1` / `assessed_partial` envelopes without marking
+any record current, authoritative, or reliance-eligible. Assurance and
+consumption event tables are append-only; their schema is additive and does
+not modify the certification lifecycle. SDAS v0.2 still requires a separate
+architecture/governance decision. Full proposal and evidence:
+`docs/SDAS_V0_1_PROPOSAL.md` and
+`evidence/sanitized/2026-08-10-st1-055-sdas-v0-1-pilot.json`.

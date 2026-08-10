@@ -16,10 +16,53 @@ import psycopg
 
 seen_fingerprints: set[str] = set()
 fingerprint_lock = Lock()
+SDAS_POLICY = "sdas-v0.1-pilot-assessment-v1"
+HEX64 = set("0123456789abcdef")
 
 
 def persistence_enabled() -> bool:
     return all(os.environ.get(name) for name in ("INGESTION_DB_HOST", "INGESTION_DB_NAME", "INGESTION_DB_USER", "INGESTION_DB_PASSWORD"))
+
+
+def database_connection() -> psycopg.Connection:
+    return psycopg.connect(
+        host=os.environ["INGESTION_DB_HOST"], port=os.environ.get("INGESTION_DB_PORT", "5432"),
+        dbname=os.environ["INGESTION_DB_NAME"], user=os.environ["INGESTION_DB_USER"], password=os.environ["INGESTION_DB_PASSWORD"],
+    )
+
+def is_hex64(value: object) -> bool:
+    return isinstance(value, str) and len(value) == 64 and set(value) <= HEX64
+
+
+def chained_event_hash(previous_hash: str | None, knowledge_id: str, event_type: str, policy: str, payload: dict[str, object]) -> str:
+    return sha256(json.dumps({"previous_event_hash": previous_hash, "knowledge_id": knowledge_id, "event_type": event_type, "policy": policy, "payload": payload}, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def build_sdas_assessment(row: tuple[object, ...]) -> dict[str, object]:
+    """Assess only evidence already persisted; absent evidence remains missing."""
+    provenance = row[6] if isinstance(row[6], dict) else {}
+    source_reference = provenance.get("source_reference") if isinstance(provenance, dict) else None
+    dimensions = {
+        "source_identity": "present" if row[7] and source_reference else "partial",
+        "acquisition": "missing",
+        "timestamp_semantics": "partial" if row[4] and row[9] else "missing",
+        "fingerprint_integrity": "partial",
+        "extraction_transformation": "missing",
+        "validation": "present" if row[10] else "missing",
+        "reviewer_identity_role": "partial" if row[11] else "missing",
+        "review_decision": "present",
+        "certification": "present" if row[4] and row[5] and row[11] else "partial",
+        "audit_linkage": "present" if row[12] else "missing",
+        "certified_knowledge_registration": "present",
+        "supersession_revocation_state": "missing",
+        "consumption_provenance": "missing",
+    }
+    # SDAS-1 is intentionally limited to the already verifiable traceable
+    # certification chain; it says nothing about authority, freshness, or use.
+    traceable = all(dimensions[key] == "present" for key in ("source_identity", "validation", "review_decision", "certification", "audit_linkage", "certified_knowledge_registration"))
+    level = "SDAS-1" if traceable else "SDAS-0"
+    gaps = sorted(key for key, status in dimensions.items() if status != "present")
+    return {"level": level, "state": "assessed_partial", "dimensions": dimensions, "gaps": gaps}
 
 
 def reserve_persisted_record(record: dict[str, object], fingerprint: str, disposition: str, reason_code: str | None, quality_gate: str) -> bool:
@@ -109,6 +152,10 @@ class IngestionHandler(BaseHTTPRequestHandler):
         self.send_json(HTTPStatus.OK, {"query": query, "count": len(items), "items": items})
 
     def do_POST(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
+        if self.path == "/v1/sdas/assess":
+            self.handle_sdas_assess(); return
+        if self.path == "/v1/sdas/consumption":
+            self.handle_sdas_consumption(); return
         if self.path.startswith("/v1/records/") and self.path.endswith("/certify"):
             fingerprint = self.path.removeprefix("/v1/records/").removesuffix("/certify").strip("/")
             try:
@@ -205,6 +252,91 @@ class IngestionHandler(BaseHTTPRequestHandler):
                 "fingerprint": fingerprint,
             },
         )
+
+    def request_json(self) -> dict[str, object] | None:
+        try:
+            length = int(self.headers.get("Content-Length", ""))
+            payload = json.loads(self.rfile.read(length))
+        except (ValueError, json.JSONDecodeError):
+            return None
+        return payload if isinstance(payload, dict) else None
+
+    def handle_sdas_assess(self) -> None:
+        request = self.request_json()
+        knowledge_id = request.get("knowledge_id") if request else None
+        actor = request.get("actor_id") if request else None
+        policy = request.get("assessment_policy_version") if request else None
+        if not persistence_enabled() or not is_hex64(knowledge_id) or not isinstance(actor, str) or not actor.strip() or policy != SDAS_POLICY:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_sdas_assessment_request"}); return
+        with database_connection() as connection:
+            with connection.cursor() as cursor:
+                cursor.execute("""SELECT k.knowledge_id,k.source_fingerprint,k.source_record_id,k.certification_event_id,
+                                  k.certification_timestamp,k.certification_policy_version,k.provenance,
+                                  r.source_id,r.observed_at,r.ingested_at,r.quality_gate_outcome,
+                                  r.certification_actor,a.event_id
+                           FROM ingestion.certified_knowledge_items k
+                           JOIN ingestion.credibility_records r ON r.record_fingerprint=k.source_fingerprint
+                           JOIN ingestion.certification_audit_events a ON a.event_id=k.certification_event_id
+                           WHERE k.knowledge_id=%s AND k.lifecycle_state='certified'""", (knowledge_id,))
+                row = cursor.fetchone()
+                if not row:
+                    self.send_json(HTTPStatus.NOT_FOUND, {"error": "certified_knowledge_not_found"}); return
+                assessment = build_sdas_assessment(row)
+                envelope_payload = {
+                    "knowledge_id": knowledge_id, "source_fingerprint": row[1], "policy": policy,
+                    "level": assessment["level"], "state": assessment["state"],
+                    "dimensions": assessment["dimensions"], "gaps": assessment["gaps"], "actor": actor.strip(),
+                }
+                envelope_fingerprint = fingerprint_record(envelope_payload)
+                cursor.execute("""INSERT INTO ingestion.sdas_assurance_envelopes
+                    (knowledge_id,source_fingerprint,assessment_policy_version,assurance_level,assurance_state,dimensions,gaps,assessed_by,envelope_fingerprint)
+                    VALUES (%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s,%s)
+                    ON CONFLICT (knowledge_id) DO NOTHING RETURNING knowledge_id""",
+                    (knowledge_id,row[1],policy,assessment["level"],assessment["state"],json.dumps(assessment["dimensions"]),json.dumps(assessment["gaps"]),actor.strip(),envelope_fingerprint))
+                if not cursor.fetchone():
+                    self.send_json(HTTPStatus.CONFLICT, {"error": "already_assessed"}); return
+                event_payload = {"envelope_fingerprint": envelope_fingerprint, "dimension_statuses": assessment["dimensions"]}
+                event_hash = chained_event_hash(None, knowledge_id, "assessed_partial", policy, event_payload)
+                cursor.execute("""INSERT INTO ingestion.sdas_assurance_events
+                    (knowledge_id,previous_state,new_state,actor_identifier,policy_version,reason_code,event_payload,previous_event_hash,event_hash)
+                    VALUES (%s,NULL,'assessed_partial',%s,%s,'pilot_back_assessment',%s::jsonb,NULL,%s)
+                    RETURNING event_id""", (knowledge_id,actor.strip(),policy,json.dumps(event_payload),event_hash))
+                event_id = cursor.fetchone()[0]
+        self.send_json(HTTPStatus.CREATED, {"knowledge_id": knowledge_id, "assurance_level": assessment["level"], "assurance_state": assessment["state"], "assessment_event_id": event_id})
+
+    def handle_sdas_consumption(self) -> None:
+        request = self.request_json()
+        if not request or not persistence_enabled():
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_consumption_request"}); return
+        ids = request.get("knowledge_ids")
+        required_strings = ("consumer_id", "purpose_class", "outcome_class", "retrieval_policy_version", "provenance_set_fingerprint", "output_fingerprint", "idempotency_key")
+        if (not isinstance(ids, list) or not ids or len(ids) > 10 or len(set(ids)) != len(ids)
+                or any(not is_hex64(value) for value in ids)
+                or any(not isinstance(request.get(name), str) or not request[name].strip() for name in required_strings)
+                or request["outcome_class"] not in {"grounded_answer", "insufficient_certified_evidence", "retrieval_only"}
+                or any(not is_hex64(request[name]) for name in ("provenance_set_fingerprint", "output_fingerprint", "idempotency_key"))):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_consumption_request"}); return
+        threshold = request.get("retrieval_threshold")
+        if not isinstance(threshold, (int, float)) or threshold < 0 or threshold > 1:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_consumption_request"}); return
+        inserted = 0
+        with database_connection() as connection:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT knowledge_id FROM ingestion.certified_knowledge_items WHERE knowledge_id = ANY(%s) AND lifecycle_state='certified'", (ids,))
+                if {row[0] for row in cursor.fetchall()} != set(ids):
+                    self.send_json(HTTPStatus.NOT_FOUND, {"error": "certified_knowledge_not_found"}); return
+                for knowledge_id in sorted(ids):
+                    cursor.execute("SELECT event_hash FROM ingestion.sdas_consumption_events WHERE knowledge_id=%s ORDER BY event_id DESC LIMIT 1", (knowledge_id,))
+                    previous = (cursor.fetchone() or [None])[0]
+                    event_payload = {"consumer_id": request["consumer_id"].strip(), "purpose_class": request["purpose_class"].strip(), "outcome_class": request["outcome_class"], "policy": request["retrieval_policy_version"].strip(), "threshold": float(threshold), "provenance_set_fingerprint": request["provenance_set_fingerprint"], "output_fingerprint": request["output_fingerprint"], "idempotency_key": request["idempotency_key"]}
+                    event_hash = chained_event_hash(previous, knowledge_id, "consumed", request["retrieval_policy_version"].strip(), event_payload)
+                    cursor.execute("""INSERT INTO ingestion.sdas_consumption_events
+                      (knowledge_id,consumer_identifier,purpose_class,outcome_class,retrieval_policy_version,retrieval_threshold,provenance_set_fingerprint,output_fingerprint,idempotency_key,previous_event_hash,event_hash)
+                      VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (knowledge_id,idempotency_key) DO NOTHING RETURNING event_id""",
+                      (knowledge_id,request["consumer_id"].strip(),request["purpose_class"].strip(),request["outcome_class"],request["retrieval_policy_version"].strip(),threshold,request["provenance_set_fingerprint"],request["output_fingerprint"],request["idempotency_key"],previous,event_hash))
+                    inserted += int(cursor.fetchone() is not None)
+        status = HTTPStatus.CREATED if inserted else HTTPStatus.CONFLICT
+        self.send_json(status, {"knowledge_count": len(ids), "inserted": inserted, "disposition": "consumption_recorded" if inserted else "duplicate_consumption"})
 
     def log_message(self, format: str, *args: object) -> None:
         """Avoid writing request paths or client information into default test output."""

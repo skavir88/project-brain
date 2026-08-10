@@ -943,3 +943,17 @@ Preserve the ST1-053 currentness source gap and prepare a decision-gated Sahra D
 ### Boundary and Next Gate
 - No record, certification semantics, audit event, Certified Knowledge item, Qdrant point, RAG configuration, source file, database schema, or remote runtime changed.
 - `current_status=insufficient_certified_evidence` remains mandatory. SDAS is proposal-only in `docs/SDAS_V0_1_PROPOSAL.md`; ST1-054 is an explicit architecture/governance decision gate.
+
+## Session 063 — 2026-08-10
+
+### Objective
+Implement the approved additive SDAS v0.1 internal pilot without changing existing certification, currentness, retrieval, or trust-boundary semantics.
+
+### Completed
+- Applied additive migrations for immutable SDAS assurance envelopes/events, downstream consumption events, and a database-enforced assurance transition guard. The current ingestion service was backed up, rebuilt, restarted only as part of its Compose service, and health-verified.
+- Back-assessed all 49 certified Knowledge records from persisted evidence only. Distribution: 49 `SDAS-1`, 49 `assessed_partial`, zero `SDAS-2`, zero `SDAS-3`, and zero reliance-eligible. Missing evidence remains represented as missing/partial.
+- Verified one provenance-backed private RAG consumption event, immutable/append-only event structure, zero runtime UPDATE/DELETE grants, malformed request rejection, duplicate consumption handling, denied direct mutation, and denied invalid lifecycle transition.
+
+### Boundary and Next Gate
+- No existing certification/audit/Certified Knowledge record was changed, no source was opened, and no public endpoint, credential, insurance, underwriting, pricing, coverage, or legal-policy feature was created.
+- `current_status=insufficient_certified_evidence` remains mandatory. ST1-056 is a decision gate before any SDAS v0.2 expansion.

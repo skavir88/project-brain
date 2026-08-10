@@ -35,6 +35,24 @@ A valid and unique record is not automatically credible or certified. The gate r
 
 Every non-candidate response contains a machine-readable `reason_code`. The gate uses no LLM, scoring model, durable audit record, or external service.
 
+## SDAS v0.1 pilot endpoints
+
+The isolated deployed service also exposes two private, additive endpoints for
+the internal SDAS pilot. They do not alter a record's certification lifecycle:
+
+- `POST /v1/sdas/assess` creates one immutable evidence-only assurance envelope
+  for an existing Certified Knowledge identifier under
+  `sdas-v0.1-pilot-assessment-v1`.
+- `POST /v1/sdas/consumption` appends sanitized downstream-use evidence for
+  existing Certified Knowledge identifiers. It accepts hashes and provenance
+  linkage, not raw prompts, answers, source content, credentials, or a
+  reliance decision.
+
+Both routes are available only through the loopback/private deployment path.
+Their tables are additive and append-only. `SDAS-1` expresses a traceable
+certification chain only; it does not mean current, authoritative, correct,
+or reliance-eligible.
+
 ## Docker Compose
 
 ```powershell

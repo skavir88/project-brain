@@ -1,36 +1,36 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-054
+- Task ID: ST1-056
 - Stage: Stage 1 — Product Implementation
 - Status: Awaiting architecture/governance decision
 - Owner: Designated business and architecture owner
 
 ## Objective
-Accept, revise, or reject the proposed Sahra Data Assurance Standard v0.1
-before any assurance-envelope semantics are implemented.
+Decide the bounded SDAS v0.2 scope before adding supersession/revocation,
+reliance eligibility, external rollout, or any legal/insurance semantics.
 
 ## Rationale
-- ST1-053's authoritative-source/currentness track remains blocked pending a business locator or reporting owner; `current_status=insufficient_certified_evidence` is unchanged.
-- SDAS v0.1 is documented as an additive proposal, with observed pilot gaps rather than invented evidence.
+- ST1-055 implemented and verified the approved additive v0.1 pilot: 49 SDAS-1 / `assessed_partial` envelopes, append-only assessment and consumption evidence, and no SDAS-3/reliance-eligible record.
+- The authoritative-source/currentness track remains independently blocked pending a business locator or reporting owner; `current_status=insufficient_certified_evidence` remains unchanged.
 
 ## Inputs
-- Decision on the SDAS v0.1 dimensions, target assurance level(s), governance owner, privacy/retention policy, meaning of `reliance-eligible`, supersession/revocation governance, and downstream consumption-event scope.
+- Explicit decision on whether SDAS v0.2 should address only one bounded topic: (a) governed supersession/revocation, (b) authority/freshness assessment, (c) reliance-eligibility definition, or (d) external organizational rollout.
 
 ## Allowed Hosts
 - None.
 
 ## Allowed Operations
-- Documentation review and, only after approval, a separately scoped additive implementation task.
+- Documentation review and a single separately approved, additive implementation task after the decision.
 
 ## Forbidden Operations
-- Database migration, backfill, modification of existing certification/audit/Certified Knowledge state, changes to currentness or retrieval policy, insurance/legal terms, or raw-data logging.
+- Automatic reliance eligibility, certification/currentness/retrieval-policy changes, destructive migration, public exposure, insurance/underwriting/coverage/pricing/legal-policy implementation, or raw organizational-content logging.
 
 ## Evidence Requirements
-- Explicit decision record referencing `docs/SDAS_V0_1_PROPOSAL.md` and the approved/rejected scope.
+- Explicit decision record, bounded scope, lifecycle/policy ownership, privacy/retention requirements, and rollback strategy.
 
 ## Rollback
-- None; the proposal changes no runtime state.
+- None; this decision-gate task changes no runtime state.
 
 ## Definition of Done
-- A decision is recorded and exactly one additive implementation or revision task is created; otherwise the proposal remains pending without runtime changes.
+- One bounded SDAS v0.2 implementation task or a documented decision to retain v0.1 pilot-only status.

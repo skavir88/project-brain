@@ -1,0 +1,49 @@
+{
+  "schema_version": "st1-055-sdas-v0-1-pilot-v1",
+  "task_id": "ST1-055",
+  "scope": "internal experimental pilot",
+  "certification_semantics_changed": false,
+  "currentness_policy_changed": false,
+  "retrieval_threshold_changed": false,
+  "public_exposure_created": false,
+  "certified_knowledge_input_count": 49,
+  "sdas_level_distribution": {"SDAS-1": 49},
+  "assurance_state_distribution": {"assessed_partial": 49},
+  "independent_predicates": {
+    "authority_state": "not_assessed",
+    "currentness_state": "not_assessed",
+    "reliance_eligibility_state": "not_eligible",
+    "record_count": 49
+  },
+  "reliance_eligible_records": 0,
+  "evidence_gap_matrix": {
+    "present": ["source_identity", "validation", "review_decision", "certification", "audit_linkage", "certified_knowledge_registration"],
+    "partial": ["timestamp_semantics", "fingerprint_integrity", "reviewer_identity_role"],
+    "missing": ["acquisition", "extraction_transformation", "supersession_revocation_state", "consumption_provenance_at_assessment_time"]
+  },
+  "chain_verification": {
+    "assessment_events": 49,
+    "unlinked_envelopes": 0,
+    "assessment_hash_chain_valid": true,
+    "consumption_hash_chain_valid": true,
+    "runtime_update_delete_grants": 0
+  },
+  "consumption_verification": {
+    "grounded_rag_consumption_events": 1,
+    "verification_retrieval_only_events": 1,
+    "raw_query_or_answer_versioned": false
+  },
+  "negative_tests": {
+    "malformed_request_status": 400,
+    "first_consumption_status": 201,
+    "duplicate_consumption_status": 409,
+    "direct_mutation_denied": true,
+    "invalid_transition_denied": true
+  },
+  "boundaries": [
+    "No existing certification, audit, or Certified Knowledge record was modified.",
+    "No record was marked authoritative, current, reliance-eligible, superseded, or revoked.",
+    "No insurance, underwriting, pricing, coverage, or legal-policy semantics were implemented."
+  ],
+  "next_gate": "Approve the SDAS v0.2 scope before supersession/revocation, reliance eligibility, or external organizational rollout."
+}

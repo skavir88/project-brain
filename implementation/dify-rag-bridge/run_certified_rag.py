@@ -9,6 +9,7 @@ Dify models through Dify's normal runtime.
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 import sys
 import uuid
@@ -33,6 +34,7 @@ KNOWLEDGE_SERVICE = "http://ingestion-service:8080"
 QDRANT_URL = "http://rdvector:6333"
 COLLECTION = "enterprise_ai_certified_knowledge_v1"
 MIN_CERTIFIED_EVIDENCE_SCORE = 0.70
+SDAS_CONSUMPTION_POLICY = "enterprise-ai-certified-rag-v1"
 REQUIRED_FIELDS = {
     "knowledge_id",
     "source_fingerprint",
@@ -98,6 +100,29 @@ def vectorize(model: Any, texts: list[str], input_type: EmbeddingInputType) -> l
 
 def point_id(knowledge_id: str) -> str:
     return str(uuid.UUID(knowledge_id[:32]))
+
+
+def stable_fingerprint(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+def record_consumption(question: str, answer_text: str, provenance: list[dict[str, Any]]) -> None:
+    """Append only sanitized downstream-use evidence; raw prompt/output is not sent."""
+    knowledge_ids = sorted(item["knowledge_id"] for item in provenance)
+    provenance_fingerprint = stable_fingerprint(provenance)
+    output_fingerprint = hashlib.sha256(answer_text.encode("utf-8")).hexdigest()
+    idempotency_key = stable_fingerprint({"question": question, "knowledge_ids": knowledge_ids, "output_fingerprint": output_fingerprint, "policy": SDAS_CONSUMPTION_POLICY})
+    status, payload = http_json(
+        f"{KNOWLEDGE_SERVICE}/v1/sdas/consumption", "POST",
+        {"knowledge_ids": knowledge_ids, "consumer_id": "dify-certified-rag-bridge",
+         "purpose_class": "rag_grounded_answer", "outcome_class": "grounded_answer",
+         "retrieval_policy_version": SDAS_CONSUMPTION_POLICY,
+         "retrieval_threshold": MIN_CERTIFIED_EVIDENCE_SCORE,
+         "provenance_set_fingerprint": provenance_fingerprint,
+         "output_fingerprint": output_fingerprint, "idempotency_key": idempotency_key},
+    )
+    if status not in (200, 201, 409) or payload.get("disposition") not in {"consumption_recorded", "duplicate_consumption"}:
+        raise RuntimeError("SDAS consumption evidence recording failed")
 
 
 def ensure_collection(vector_size: int) -> bool:
@@ -180,6 +205,7 @@ def answer(question: str) -> None:
     text = (result.message.get_text_content() or "").strip()
     if not text:
         raise RuntimeError("Dify generation returned no answer")
+    record_consumption(question, text, provenance)
     print(json.dumps({
         "status": "grounded_answer", "answer": text, "provenance": provenance,
         "raw_ingestion_records_read": False,

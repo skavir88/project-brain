@@ -163,3 +163,19 @@ The designated reviewer explicitly approved exactly seven ST1-046 candidates. Th
 MDL Progress, Primavera Progress, and the Marun 5 engineering metric remain distinct source-defined measures. Their deterministic Actual-minus-Plan differences are descriptive values only, not completion, schedule-health, contractual-performance, delay, or ahead-of-schedule findings. Activity, constraint, procurement-concern, and payment-related execution-stoppage statements remain source-attributed to the reporting period; they do not establish responsibility, continuation, resolution, present status, or corpus authority.
 
 This coherent, internally identified and explicitly approved reporting period advances `latest_verified_status_period` to `1402/11/21–1402/12/05` after verification. It does not establish present-day status, so `current_status=insufficient_certified_evidence` remains mandatory. No new evidence can enter trusted stores without Human Review and controlled certification.
+
+## DEC-026 — Sahra Data Assurance Standard v0.1 Pilot
+Status: Accepted for internal experimental pilot validation
+
+SDAS v0.1 is accepted only as an additive internal pilot assurance model. It
+is not an industry standard, insurance policy, warranty, underwriting rule,
+or legal representation of correctness. Existing certification semantics,
+retrieval policy, provenance boundaries, and currentness policy remain
+unchanged. No Certified Knowledge item becomes authoritative, current, or
+reliance-eligible merely because it is certified or back-assessed.
+
+The pilot may persist append-only assurance envelopes/events and consumption
+events, and may back-assess existing Certified Knowledge only from observed
+evidence. Missing evidence stays missing. SDAS v0.2 requires a new decision
+before reliance eligibility, supersession/revocation transitions, external
+organizational rollout, or any insurance/legal semantics.
