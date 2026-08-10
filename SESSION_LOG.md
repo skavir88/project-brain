@@ -1060,3 +1060,15 @@ Reach the first real SDAS v0.3 `policy_automatic` gate without weakening authori
 
 ### Boundary and Gate
 - Creating the required real delegation is an explicit governance decision. No real data was certified or automatically approved.
+
+## Session 073 — 2026-08-10
+
+### Objective
+Revalidate the requested ST1-061 bounded locator-recovery state without duplicating native acquisition.
+
+### Completed
+- Confirmed existing sanitized ST1-061 evidence records a `unique_high_confidence_match` and one completed, read-only native chain.
+- Performed no SMB traversal, source-content access, certification, or runtime mutation. Replaced the stale ST1-062 next-task pointer with the exact governance delegation gate required by ST1-066.
+
+### Boundary and Next Gate
+- A complete explicit governance delegation is required before a real record can truthfully be routed `policy_automatic`; that routing never certifies.

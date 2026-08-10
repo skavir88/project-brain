@@ -3,6 +3,7 @@
 ## 2026-08-10
 
 ### Added
+- ST1-067's scoped governance-delegation decision template and atomic approval gate.
 - SDAS v0.3 contract, append-only assurance-decision schema, and sanitized framework evidence.
 - SDAS authority/business-time append-only evidence models and sanitized ST1-062 resolution evidence.
 - Sanitized ST1-061 bounded native real-data acquisition and policy-routing evidence.
@@ -13,6 +14,7 @@
 - Additive immutable SDAS v0.2 registration and post-registration lifecycle-event tables, plus policy-version state enforcement.
 
 ### Changed
+- Revalidated that ST1-061 locator recovery and its single native read-only acquisition are already complete; avoided a duplicate acquisition event and advanced the next task to the required governance decision.
 - Added and deployed a private deterministic policy evaluator without database writes or automatic certification.
 - Completed the approved human-controlled certification of one private native synthetic SDAS record; no organizational data, automatic certification, authority/currentness upgrade, or reliance eligibility was introduced.
 

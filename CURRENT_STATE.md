@@ -318,3 +318,7 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 ## ST1-066 First Real Policy-Automatic Gate
 - The bounded recurring Project Controls progress-workbook class is a technically suitable LOW-risk candidate, but no valid real delegation or authority assertion exists. The scale simulation therefore routes zero real/historical records automatically and keeps 50 in `human_required`; no reconstructed evidence was upgraded.
 - A real automatic path is blocked only by the reusable governance delegation/attestation decision documented in `docs/ST1_066_REAL_POLICY_AUTOMATIC_GATE.md`. ST1-061 remains unchanged and no real certification occurred. Evidence: `evidence/sanitized/2026-08-10-st1-066-real-policy-automatic-gate.json`.
+
+## ST1-061 Locator-Recovery Revalidation
+- The requested bounded locator-recovery outcome is already `unique_high_confidence_match` in the existing ST1-061 sanitized evidence. The registered native acquisition has already completed once, with original fingerprint and transformation lineage captured in protected runtime-local state.
+- Re-running acquisition solely because the locator was requested again would create an unnecessary additional event. No SMB traversal, source-content opening, certification, or trust-policy change was performed. The next real gate is ST1-067's explicit governance delegation decision.
