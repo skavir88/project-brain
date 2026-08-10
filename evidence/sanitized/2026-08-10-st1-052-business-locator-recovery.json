@@ -1,0 +1,30 @@
+{
+  "schema_version": "st1-052-business-locator-recovery-sanitized-v1",
+  "task_id": "ST1-052",
+  "status": "complete_with_source_gap",
+  "metadata_only": true,
+  "index_rows_queried": 52981,
+  "new_smb_traversal": false,
+  "content_opened": false,
+  "external_model_use": false,
+  "raw_locators_runtime_local_only": true,
+  "verified_timeline_cutoff": "1402/12/05",
+  "result": {
+    "post_cutoff_name_or_directory_dated_status_locations": 0,
+    "deterministic_biweekly_continuations_after_known_report_25": 0,
+    "strong_project_wide_candidate": false,
+    "selection": "none"
+  },
+  "screening_notes": [
+    "The strongest project-wide management-report hierarchy in the local index has only older name/directory date signals and cannot extend the verified timeline.",
+    "Later filesystem metadata on package-specific progress-report folders is a discovery signal only and does not prove report period, authority, or project-wide status semantics.",
+    "Known later-numbered report copies occurred in excluded legal/claim context and were not selected as a business-status source."
+  ],
+  "boundaries": [
+    "No source content was opened.",
+    "No persistent SMB mount or new SMB contact was created.",
+    "No document was certified, projected, indexed, or sent to an external model.",
+    "Filesystem timestamps were not treated as project-status facts."
+  ],
+  "next_gate": "Obtain a source-system owner or authoritative reporting location for the latest periodic project-status source."
+}

@@ -3,6 +3,9 @@
 ## 2026-08-08
 
 ### Added
+- Sanitized ST1-051 post-1402/12 metadata-only currentness-discovery evidence.
+- Sanitized ST1-050 bi-weekly management RAG verification evidence.
+- Sanitized ST1-049 existing embedding-credential read-only diagnostic evidence.
 - Sanitized ST1-048 existing embedding-runtime diagnostic evidence.
 - Sanitized ST1-047 bi-weekly management-report certification and embedding-blocker evidence.
 - Sanitized ST1-045 controlled historical-management-report certification evidence and ST1-046 bounded newer-management-report review-preparation evidence.
@@ -119,3 +122,7 @@
 - Completed bounded ST1-046 newer management-report extraction from a runtime-local family and prepared seven local-only, provenance-backed Human Review candidates without automatic certification or platform persistence.
 - Recorded DEC-025 and certified/projected seven explicitly approved reporting-period-bounded management observations; retained the currentness boundary and recorded the non-mutating existing-embedding timeout blocker before Qdrant indexing.
 - Recorded the bounded ST1-048 diagnosis: embedding-related authentication failure was observed without credential inspection or change; Qdrant invariants remained intact and the next recovery path is approval-gated.
+- Recorded ST1-049 non-mutating diagnostic success: the existing model-specific embedding credential produced one controlled 3072-dimensional embedding; no credential refresh or configuration change was required.
+- Verified ST1-050 isolated index invariants and provenance-backed, period-bound historical RAG at threshold `0.70`; broad management retrieval remains conservatively insufficient.
+- Recorded ST1-051 metadata-only exhaustion: no post-1402/12 family has deterministic management-status, periodic-report, or project-control signals, so no content source was opened.
+- Completed ST1-052's one bounded metadata-only locator-recovery pass over the runtime-local index. It selected no source because no eligible project-wide continuation beyond the verified period could be established from metadata; added sanitized source-gap evidence and a source-owner gate.

@@ -877,3 +877,56 @@ Diagnose the existing embedding-runtime timeout without changing credentials, pr
 ### Boundary and Next Gate
 - The root cause is not proven; no credential was inspected, exported, replaced, or changed. No provider/model/schema/threshold/vector change was made.
 - A safe automatic recovery is unavailable. The next task requests one explicit credential-recovery approval for the existing provider; a provider/model change remains a separate decision.
+
+## Session 058 — 2026-08-10
+
+### Objective
+Diagnose the existing embedding configuration and runtime without credential mutation, using at most one controlled embedding request.
+
+### Completed
+- Confirmed the configured embedding model is `text-embedding-3-large` and has a model-specific credential binding. The configured generation model has a separate model-specific credential binding; credential values were not read or emitted.
+- Confirmed the request target only through runtime behavior without decrypting stored config. One synthetic generation invocation succeeded. Exactly one synthetic embedding invocation succeeded and returned the existing dimension 3072.
+
+### Boundary and Next Gate
+- The earlier generic timeout does not prove the existing credential invalid. No credential/model/provider/schema/threshold/Qdrant/service mutation occurred in this task.
+- The next atomic task resumes only idempotent indexing of the seven already certified ST1-047 items, then verifies a period-bound RAG response and provenance at the unchanged threshold.
+
+## Session 059 — 2026-08-10
+
+### Objective
+Verify idempotent isolated Qdrant indexing and period-bound Dify/RAG retrieval for the seven certified ST1-047 observations.
+
+### Completed
+- Preflight later observed 49 green Qdrant points at dimension 3072. Payload-only verification found exactly seven points restricted to the ST1-047 policy/source-record boundary; no destructive vector operation was performed and the original 42 points remain.
+- At threshold `0.70`, a broad management query correctly returned `insufficient_certified_evidence` without generation. A narrow query bound to the approved reporting period and the MDL metric returned a grounded historical/source-attributed answer with one provenance reference above threshold.
+
+### Boundary and Next Gate
+- The verified period is `1402/11/21–1402/12/05`; it does not establish current status. `current_status=insufficient_certified_evidence` remains mandatory.
+- The next task is metadata-only discovery for coherent internally dated status sources newer than that period. No real-content access or certification is part of discovery.
+
+## Session 060 — 2026-08-10
+
+### Objective
+Use only the runtime-local metadata index to locate a bounded coherent management/status source later than `1402/12/05`.
+
+### Completed
+- Queried 52,981 completed index rows with date tokens later than `1402/12`; no SMB traversal, content opening, source modification, persistence, or external-model action occurred.
+- Eleven bounded families met only the date-token filter. None carried management-status, periodic-progress, or project-control/schedule signal categories, so none was selected for content access.
+
+### Boundary and Next Gate
+- Filesystem/date tokens are discovery signals only and cannot establish status-source authority or currentness. The bounded metadata space is exhausted for this selection strategy.
+- The next atomic task requests one business locator: the normal folder or file used for the latest periodic progress report, dashboard, schedule, or project-status report.
+
+## Session 061 — 2026-08-10
+
+### Objective
+Execute the one approved ST1-052 metadata-only business-locator recovery pass without opening source content.
+
+### Completed
+- Queried all 52,981 rows in the completed runtime-local index; no SMB contact, mount, direct enumeration, or source-content access occurred.
+- Applied status/progress, periodic-reporting, project-control/schedule, report-sequence, legal/claim exclusion, and bounded-family filters. No project-wide source had a name/directory date signal later than `1402/12/05`; no eligible deterministic continuation after the already used report 25 was found.
+
+### Result and Next Gate
+- The strong management-report hierarchy retained by the index is older. Package-specific folders with later filesystem metadata are not evidence of currentness and were not selected.
+- No document, certification, Certified Knowledge item, vector, credential, or remote service state changed. Sanitized evidence is `evidence/sanitized/2026-08-10-st1-052-business-locator-recovery.json`.
+- ST1-053 now requires the responsible project-control/reporting owner or authoritative source location; repeating metadata discovery is out of scope.

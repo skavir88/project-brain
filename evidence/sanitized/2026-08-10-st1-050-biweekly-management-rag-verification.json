@@ -1,0 +1,38 @@
+{
+  "schema_version": "st1-050-biweekly-management-rag-verification-v1",
+  "task_id": "ST1-050",
+  "index_invariants": {
+    "qdrant_points_before_observed": 42,
+    "qdrant_points_after_observed": 49,
+    "st1_047_points": 7,
+    "st1_047_policy_only": true,
+    "collection_status": "green",
+    "vector_dimension": 3072,
+    "existing_vectors_deleted_or_regenerated": false
+  },
+  "retrieval_policy": {
+    "minimum_score_threshold": 0.7,
+    "threshold_weakened": false
+  },
+  "controlled_queries": {
+    "broad_management_query": {
+      "result": "insufficient_certified_evidence",
+      "generation_invoked": false
+    },
+    "period_bound_mdl_query": {
+      "result": "grounded_answer",
+      "provenance_count": 1,
+      "retrieval_score": 0.806859,
+      "source_attributed_historical_framing_preserved": true,
+      "raw_ingestion_records_read": false
+    }
+  },
+  "currentness": {
+    "latest_verified_status_period": "1402/11/21–1402/12/05",
+    "current_status": "insufficient_certified_evidence"
+  },
+  "sanitization": {
+    "raw_organizational_answer_versioned": false,
+    "credentials_versioned": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "st1-051-post-1402-12-metadata-discovery-v1",
+  "task_id": "ST1-051",
+  "metadata_query": {
+    "runtime_local_index_rows_queried": 52981,
+    "date_token_filter": "later_than_1402/12",
+    "candidate_family_count": 11,
+    "reported_candidate_count": 10,
+    "content_opened": false,
+    "new_smb_traversal": false
+  },
+  "ranking": {
+    "families_with_management_status_signal": 0,
+    "families_with_periodic_progress_signal": 0,
+    "families_with_control_schedule_signal": 0,
+    "deterministically_superior_status_source_found": false,
+    "raw_locators_or_filenames_versioned": false
+  },
+  "conclusion": {
+    "bounded_currentness_source_not_located_from_metadata": true,
+    "business_locator_required": "normal folder or file location used by the project team for the latest periodic progress report, dashboard, schedule, or status report",
+    "current_status": "insufficient_certified_evidence"
+  }
+}

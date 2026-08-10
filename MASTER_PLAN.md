@@ -36,6 +36,14 @@ ST1-047 completed controlled certification and Certified Knowledge projection fo
 
 ST1-048 completed the permitted existing-runtime diagnosis. It observed an embedding-related authentication failure alongside the controlled timeout but did not inspect or change the credential. The remaining work is approval-gated credential recovery or, separately, an approved provider/model decision; no further blind retry is planned.
 
+ST1-049 performed the approved read-only diagnosis before any credential mutation. The existing embedding credential is recognized by Dify: one controlled synthetic embedding invocation succeeded at vector dimension 3072, while a separate generation credential/model also succeeded. Credential refresh is not required; the next task is controlled idempotent ST1-047 indexing and period-bound RAG verification without changing configuration.
+
+ST1-050 verified the first end-to-end retrieval path for the approved bi-weekly management observations: the collection holds exactly seven new ST1-047 points without removing the 42 prior points, and a narrow source/period/metric-bound query returns provenance-backed historical framing at threshold `0.70`. Broad management retrieval correctly remains conservative. The next task returns to metadata-only currentness discovery for coherent status sources newer than `1402/12/05`.
+
+ST1-051 exhausted the completed local metadata index for post-`1402/12` candidate families with coherent status semantics. It found no name/directory signals sufficient for safe automatic content selection. The next gate requests the normal business filing location for the latest periodic progress, dashboard, schedule, or status source; no broad crawl or speculative corpus selection is authorized.
+
+ST1-052 completed the one approved business-locator recovery pass using only the same local metadata index. It found no deterministic project-wide source that can extend the verified period beyond `1402/12/05`; apparently later package-specific folders cannot establish report date, authority, or CEO-status semantics from metadata. The critical path is now a source-system owner or authoritative reporting location, not another discovery crawl.
+
 ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.
