@@ -1,36 +1,30 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-056
+- Task ID: ST1-058
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting architecture/governance decision
-- Owner: Designated business and architecture owner
+- Status: Awaiting explicit human certification approval
+- Owner: Designated human reviewer
 
 ## Objective
-Decide the bounded SDAS v0.2 scope before adding supersession/revocation,
-reliance eligibility, external rollout, or any legal/insurance semantics.
+Obtain one explicit Human Review decision for the native synthetic SDAS test
+record that policy automatically prepared as `certification_candidate`.
 
 ## Rationale
-- ST1-055 implemented and verified the approved additive v0.1 pilot: 49 SDAS-1 / `assessed_partial` envelopes, append-only assessment and consumption evidence, and no SDAS-3/reliance-eligible record.
-- The authoritative-source/currentness track remains independently blocked pending a business locator or reporting owner; `current_status=insufficient_certified_evidence` remains unchanged.
-
-## Inputs
-- Explicit decision on whether SDAS v0.2 should address only one bounded topic: (a) governed supersession/revocation, (b) authority/freshness assessment, (c) reliance-eligibility definition, or (d) external organizational rollout.
-
-## Allowed Hosts
-- None.
+- SDAS v0.2 native acquisition, transformation, policy decision, and audit path is verified.
+- Automatic certification is prohibited. `policy_automatic` is not human approval.
 
 ## Allowed Operations
-- Documentation review and a single separately approved, additive implementation task after the decision.
+- On explicit `APPROVE`: invoke only the existing controlled certification lifecycle with an explicit human actor, then project/index/consume the synthetic record and verify provenance.
 
 ## Forbidden Operations
-- Automatic reliance eligibility, certification/currentness/retrieval-policy changes, destructive migration, public exposure, insurance/underwriting/coverage/pricing/legal-policy implementation, or raw organizational-content logging.
+- Automatic certification, certification of real organizational data, reliance eligibility, currentness/authority upgrade, policy weakening, or public exposure.
 
 ## Evidence Requirements
-- Explicit decision record, bounded scope, lifecycle/policy ownership, privacy/retention requirements, and rollback strategy.
+- Exact reviewer disposition, controlled lifecycle result, append-only audit/registration/consumption linkage, and sanitized verification output.
 
 ## Rollback
-- None; this decision-gate task changes no runtime state.
+- No destructive rollback; immutable audit evidence remains. Stop before certification if no approval is supplied.
 
 ## Definition of Done
-- One bounded SDAS v0.2 implementation task or a documented decision to retain v0.1 pilot-only status.
+- The explicitly approved synthetic record is certified through the existing controlled path, or the decision is recorded as non-approval with no certification.
