@@ -1009,3 +1009,15 @@ Run the approved bounded native real-data SDAS acquisition pilot.
 
 ### Boundary and Next Gate
 - The record is not SDAS-assessed because certification is intentionally absent. Any certification requires explicit Human Review; authority/currentness/reliance remain unestablished.
+
+## Session 068 â€” 2026-08-10
+
+### Objective
+Design and pilot deterministic authority and business-time evidence resolution for ST1-061.
+
+### Completed
+- Added immutable, actor-attributed authority assertions and business-time evidence tables, with distinct business-time kinds and no UPDATE/DELETE runtime grants.
+- Existing ST1-061 evidence contains zero authority assertions and zero business-time evidence, so it remains `human_required`. No human attestation, certification, source access, or external processing occurred.
+
+### Boundary and Next Gate
+- The reusable attestation design is documented. A designated accountable owner must supply the scoped assertion and any business-time evidence before policy can be re-evaluated beyond `human_required`.

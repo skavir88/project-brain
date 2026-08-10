@@ -3,6 +3,7 @@
 ## 2026-08-10
 
 ### Added
+- SDAS authority/business-time append-only evidence models and sanitized ST1-062 resolution evidence.
 - Sanitized ST1-061 bounded native real-data acquisition and policy-routing evidence.
 - Sanitized ST1-060 append-only policy-status and disabled-decision rejection evidence.
 - Additive SDAS policy-status-event table and database-enforced append-only disable/rollback behavior.

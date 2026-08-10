@@ -298,3 +298,7 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 - One already-authorized bounded Maroon XLSX was recovered through metadata-only locator matching and read once, read-only, solely to capture native acquisition metadata and its original SHA-256. Its raw locator and content remain workstation-local.
 - A private source, acquisition event, deterministic metadata-manifest transformation, validation candidate, and append-only `human_required` policy decision were persisted. Authority is `not_verified`; business/effective time is `missing_not_inferred`.
 - The record remains `certification_candidate` and is not SDAS-assessed because it is not certified. Zero Certified Knowledge, Qdrant, external-AI, or certification changes occurred. Evidence: `evidence/sanitized/2026-08-10-st1-061-native-real-data-pilot.json`.
+
+## ST1-062 Evidence Resolution Pilot
+- Additive immutable authority-assertion and business-time-evidence models are deployed. Existing ST1-061 evidence contains neither an accountable authority assertion nor content-supported business time, so policy remains `human_required`.
+- The reusable attestation contract is `docs/SDAS_EVIDENCE_RESOLUTION.md`; no attestation was made on behalf of a human and no real record was certified. Evidence: `evidence/sanitized/2026-08-10-st1-062-evidence-resolution.json`.

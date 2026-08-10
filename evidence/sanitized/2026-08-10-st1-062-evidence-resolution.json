@@ -1,0 +1,1 @@
+{"task_id":"ST1-062","authority_model":"append_only_scoped_assertion","business_time_model":"independent_append_only_evidence","st1_061_existing_authority_assertions":0,"st1_061_existing_business_time_evidence":0,"resulting_policy":"human_required","automatic_certification":false,"runtime_update_delete_grants":0,"required_human_attestation":true}
