@@ -106,3 +106,6 @@
 - Recorded all 15 ST1-038 Human Review decisions as `NEEDS_MORE_EVIDENCE`, with zero certification eligibility.
 - Closed ST1-039 as `complete_with_source_gap`; recorded the bounded metadata-only source-gap search and a sanitized CEO-status evidence specification without weakening trust or retrieval policy.
 - Recorded ST1-040 controlled self-discovery: ranked runtime-local metadata families, qualified one bounded family with local extraction/Persian OCR, and prepared three local-only Human Review candidates without certification or platform persistence.
+- Recorded DEC-023 and ST1-041 controlled certification of three approved source-attributed observations; verified append-only audit, Certified Knowledge projection, 35-point isolated Qdrant index, least privilege, and unchanged no-evidence retrieval policy.
+- Recorded ST1-042 targeted linkage discovery and two local-only Human Review candidates without automatic certification or platform persistence.
+- Added sanitized ST1-043 metadata-only authoritative-source locator evidence. It identifies one bounded management-report candidate by runtime-local token and records no raw locator or content.

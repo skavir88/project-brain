@@ -136,3 +136,12 @@ The designated reviewer explicitly approved exactly the ten revised ST1-032 cand
 The labelled workbook reporting week is distinct from each row’s planned start/finish dates, source formula evaluation, an event-effective date, and the certification timestamp. Deterministically derived variance is `cumulative actual progress − cumulative contractor plan progress`, expressed in percentage points, and is not by itself a completion, delay, stoppage, authority, or currentness finding. Formula-backed aggregate values retain that status in provenance.
 
 This decision does not establish that a reported condition remains true today, that a planned action was completed, that the source is globally authoritative, or that the reporting week is the latest organizational status. The verified timeline may include this source-attributed reporting week only; `current_status=insufficient_certified_evidence` remains mandatory pending independently established sufficiently recent authoritative evidence.
+
+## DEC-023 — Source-Attributed Certification for ST1-041 Observations
+Status: Accepted
+
+The designated reviewer explicitly approved exactly the three ST1-041 candidates. The controlled lifecycle may certify only those records under policy `st1-041-source-attributed-v1`, preserving source alias, page provenance, reviewer, actor, timestamp, policy, date semantics, and uncertainty.
+
+The engineering observation certifies only that its source records an unapproved Expansion Bolt context, a proposed Anchor Box, and a requested documented manufacturer response by `1402/10/12`; it does not certify response, approval, implementation, or ongoing blocker status. The inspection observation certifies only that the dated Inspection Release Note records the stated items as released after inspection; it does not certify shipment, receipt, installation, completion, commissioning, availability, or current state. The document-follow-up observation certifies only that the dated letter records package documents sent after its stated meeting; it does not certify approval, closure, delivery, installation, commissioning, or current state.
+
+The source issue date for the engineering observation remains unknown. `1403/03/16` may be recorded as the newest verified date associated with the narrow document-follow-up observation, not as the latest overall project-status date. `current_status=insufficient_certified_evidence` remains mandatory.

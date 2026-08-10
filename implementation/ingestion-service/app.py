@@ -117,7 +117,7 @@ class IngestionHandler(BaseHTTPRequestHandler):
                 policy_version = request.get("policy_version", "st1-007-v1")
             except (ValueError, json.JSONDecodeError):
                 actor, policy_version = None, None
-            if not isinstance(actor, str) or not actor.strip() or policy_version not in {"st1-007-v1", "st1-023-historical-v1", "st1-026-source-attributed-v1", "st1-032-source-attributed-v1"} or not persistence_enabled():
+            if not isinstance(actor, str) or not actor.strip() or policy_version not in {"st1-007-v1", "st1-023-historical-v1", "st1-026-source-attributed-v1", "st1-032-source-attributed-v1", "st1-041-source-attributed-v1"} or not persistence_enabled():
                 self.send_json(HTTPStatus.BAD_REQUEST, {"error": "actor_id_required"}); return
             with psycopg.connect(host=os.environ["INGESTION_DB_HOST"], port=os.environ.get("INGESTION_DB_PORT", "5432"), dbname=os.environ["INGESTION_DB_NAME"], user=os.environ["INGESTION_DB_USER"], password=os.environ["INGESTION_DB_PASSWORD"]) as c:
                 with c.cursor() as q:

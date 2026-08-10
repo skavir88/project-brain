@@ -1,0 +1,10 @@
+{
+  "schema_version": "st1-041-source-attributed-certification-v1",
+  "human_review": {"candidate_count": 3, "decision_counts": {"APPROVE": 3, "REJECT": 0, "NEEDS_MORE_EVIDENCE": 0, "CONFLICT": 0}},
+  "certification": {"policy": "st1-041-source-attributed-v1", "certified_records": 3, "append_only_audit_events": 3, "certified_knowledge_projections": 3, "non_certified_records_under_policy": 0},
+  "least_privilege": {"runtime_role_superuser": false, "runtime_delete_grants_on_credibility_and_audit": 0},
+  "qdrant": {"collection": "enterprise_ai_certified_knowledge_v1", "point_count": 35, "vector_dimension": 3072, "idempotent_index_completed": true},
+  "retrieval": {"minimum_score": 0.70, "observed_result": "insufficient_certified_evidence", "threshold_weakened": false, "provenance_returned_for_ineligible_result": false},
+  "temporal_boundary": {"newest_verified_associated_document_date": "1403/03/16", "latest_overall_project_status_date_established": false, "current_status": "insufficient_certified_evidence"},
+  "boundaries": {"raw_organizational_content_versioned": false, "raw_locator_versioned": false, "automatic_certification": false, "existing_certification_or_knowledge_modified": false}
+}

@@ -781,3 +781,43 @@ Execute the approved ST1-040 self-discovery override and qualify the strongest b
 ### Boundary and Next Gate
 - The selected family does not contain a coherent, authoritative overall status snapshot. It cannot establish project currentness, overall progress, plan-versus-actual status, schedule variance, or resolution of the observed items.
 - No source was modified; no real data entered PostgreSQL, Certified Knowledge, Qdrant, Dify, or an external model; no automatic certification occurred. The next task is explicit Human Review of the three candidates.
+
+## Session 051 — 2026-08-09
+
+### Objective
+Apply the three explicit ST1-041 approvals through the controlled certification, Certified Knowledge, and existing Qdrant/Dify path.
+
+### Completed
+- Recorded all three exact `APPROVE` decisions in local append-only review state and recorded DEC-023 for the narrow source-attributed semantics.
+- Added the scoped policy allow-list entry to the loopback ingestion service. The first remote text replacement produced an invalid combined policy literal; certification stopped at HTTP 400. A timestamped backup was retained, the literal was corrected, the service was rebuilt, and its policy/health were verified before retrying.
+- Exactly three existing `certification_candidate` records transitioned atomically to `certified` under `st1-041-source-attributed-v1`. Database verification observed three matching append-only audit events and three Certified Knowledge projections; the runtime role remains non-superuser with zero relevant DELETE grants.
+- Idempotent index execution increased the isolated collection from 32 to 35 points at the unchanged 3072-vector dimension. Controlled RAG retrieval stayed below the unchanged 0.70 threshold and returned `insufficient_certified_evidence`; no policy was weakened.
+
+### Boundary and Next Gate
+- The approved observations remain historical/source-attributed. The `1403/03/16` document date is not the latest overall project-status date and does not establish currentness.
+- ST1-042 continues targeted linkage/supersession discovery for engineering response/approval, inspection-release downstream receipt/installation, and document-submission review/closure evidence, while prioritizing an overall status snapshot.
+
+## Session 052 — 2026-08-09
+
+### Objective
+Execute ST1-042 targeted linkage and supersession discovery from the certified ST1-041 leads.
+
+### Completed
+- Queried only the existing local metadata index and ranked linkage/status families without opening content. From 1,158 candidates, selected an 18-entry fully probeable family using a bounded-size tie-break among top-ranked linkage candidates.
+- Performed four local read-only DOCX probes. They produced two local-only, provenance-backed Human Review candidates: a customs-clearance follow-up observation and a shipping-document delivery observation.
+
+### Boundary and Next Gate
+- Neither observation proves clearance, shipment, receipt, installation, commissioning, closure, or overall/current project status. Both require explicit Human Review before any certification.
+
+## Session 053 â€” 2026-08-09
+
+### Objective
+Perform one bounded metadata-only locator search for likely authoritative project-status source locations after no business filing locator was available.
+
+### Completed
+- Queried the completed runtime-local metadata index only with the approved Persian/English status, periodic-report, project-control, schedule, dashboard, Primavera/P6, and Action Plan terms. No source document was opened and no SMB crawl, hashing, copying, extraction, platform persistence, or external-model use occurred.
+- Ranked one management-report/project-report location first, represented in versioned material solely by token `st1-043-e3aca7f9868040d6`; it has 13 files and direct status/control terminology. Four lower-ranked locations have procurement/download context and are presented for business recognition only.
+
+### Boundary and Next Gate
+- Directory/file metadata does not prove source authority, reporting period, truth, or currentness. The user explicitly prohibited content opening in this locator step.
+- The next task is one business confirmation before any separate bounded content-access task. The two pre-existing ST1-042 linkage-review candidates remain unmodified and awaiting explicit dispositions.

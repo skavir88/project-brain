@@ -37,13 +37,19 @@ def extract_pdf(path: Path) -> dict:
 
 
 def extract_docx(path: Path) -> dict:
-    from docx import Document
-    doc = Document(str(path))
-    paragraphs = [paragraph.text for paragraph in doc.paragraphs[:80] if paragraph.text]
-    tables = []
-    for table in doc.tables[:8]:
-        tables.append(" | ".join(cell.text for row in table.rows[:8] for cell in row.cells[:12]))
-    return {"kind": "docx", "paragraphs_sampled": len(paragraphs), "tables_sampled": len(tables), "text": "\n".join(paragraphs + tables)[:60000]}
+    try:
+        from docx import Document
+        doc = Document(str(path))
+        paragraphs = [paragraph.text for paragraph in doc.paragraphs[:80] if paragraph.text]
+        tables = [" | ".join(cell.text for row in table.rows[:8] for cell in row.cells[:12]) for table in doc.tables[:8]]
+        return {"kind": "docx", "paragraphs_sampled": len(paragraphs), "tables_sampled": len(tables), "text": "\n".join(paragraphs + tables)[:60000]}
+    except ModuleNotFoundError:
+        import zipfile
+        from xml.etree import ElementTree
+        with zipfile.ZipFile(path) as archive:
+            root = ElementTree.fromstring(archive.read("word/document.xml"))
+        text = "\n".join("".join(node.itertext()) for node in root.findall(".//{*}p"))
+        return {"kind": "docx", "paragraphs_sampled": len(root.findall(".//{*}p")), "tables_sampled": len(root.findall(".//{*}tbl")), "text": text[:60000]}
 
 
 def extract_xlsx(path: Path) -> dict:

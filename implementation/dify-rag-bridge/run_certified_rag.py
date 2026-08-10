@@ -8,6 +8,7 @@ Dify models through Dify's normal runtime.
 
 from __future__ import annotations
 
+import base64
 import json
 import sys
 import uuid
@@ -190,5 +191,7 @@ if __name__ == "__main__":
         index()
     elif len(sys.argv) == 3 and sys.argv[1] == "answer":
         answer(sys.argv[2])
+    elif len(sys.argv) == 3 and sys.argv[1] == "answer-base64":
+        answer(base64.b64decode(sys.argv[2]).decode("utf-8"))
     else:
-        raise SystemExit("usage: run_certified_rag.py index | answer <synthetic-question>")
+        raise SystemExit("usage: run_certified_rag.py index | answer <question> | answer-base64 <utf8-question>")

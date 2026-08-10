@@ -54,5 +54,9 @@ ST1-039 is complete with a source gap. The bounded local metadata index and targ
 
 The ST1-040 self-discovery override supersedes that human-locator gate. It ranked the completed runtime-local index and qualified one small family with source-attributed engineering/procurement evidence later than the existing certified timeline. The family does not establish a complete authoritative CEO-status snapshot; three Human Review candidates are the next gate, with no automatic certification or currentness change.
 
+ST1-041 certified those three explicitly approved observations with strict source-attributed semantics. They extend the evidence timeline only in their narrow contexts; retrieval remains conservative at the unchanged threshold and current status remains insufficient. The critical path is targeted linkage/supersession discovery from those observations toward an authoritative overall status snapshot.
+
+ST1-043 executed one user-directed metadata-only locator search after no business filing locator was available. A bounded management-report candidate has the strongest name/hierarchy signals, but its content, authority, reporting period, and currentness remain unknown. The next gate is a single business confirmation before any separate bounded content-access task; existing ST1-042 Human Review candidates remain untouched.
+
 ## Later Stages
 Future work may implement ingestion, validation, normalization, quality scoring, HITL, lineage, certified knowledge, RAG/AI services, automation, and observability. Scope, design, and readiness criteria for later stages must be approved explicitly; they are not established by this document.

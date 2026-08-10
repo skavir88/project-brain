@@ -1,0 +1,24 @@
+{
+  "schema_version": "st1-043-authoritative-source-locator-v1",
+  "metadata_only": true,
+  "index_rows_queried": 52981,
+  "strong_location_count": 203,
+  "unbounded_location_count_excluded": 1,
+  "reported_location_count": 5,
+  "ranked_result": {
+    "top_candidate_token": "st1-043-e3aca7f9868040d6",
+    "top_candidate_signal": "project-reports / management-reports / explicit-status",
+    "top_candidate_file_count": 13,
+    "top_candidate_allowed_type_summary": {".pdf": 4, ".docx": 1},
+    "top_candidate_aggregate_size_bytes": 206118667,
+    "top_candidate_metadata_date_range": ["2023-04-13T07:35:48.784128+00:00", "2023-05-14T11:09:13.991885+00:00"],
+    "other_reported_locations_are_procurement_or_download_context": true
+  },
+  "boundaries": {
+    "content_opened": false,
+    "new_smb_traversal": false,
+    "external_model_use": false,
+    "raw_relative_locators_versioned": false,
+    "filesystem_dates_are_discovery_signals_only": true
+  }
+}
