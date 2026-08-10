@@ -3,6 +3,12 @@
 ## 2026-08-10
 
 ### Added
+- Additive append-only ST1-067 governance-bootstrap policy, pending-delegation, lifecycle-event, and active-authority structures.
+- Sanitized ST1-067 governance-bootstrap evidence, reusable resolution queue, and rolled-back synthetic lifecycle verification.
+- Idempotent ST1-067 policy-bootstrap application that preserves the single pending lifecycle event on repeat execution.
+- A fully populated but non-registerable ST1-067 CEO governance-delegation proposal with explicit required inputs and no runtime mutation.
+- A local ST1-067 proposal validator for the machine-readable CEO decision object.
+- Sanitized ST1-067 read-only registry evidence confirming that required governance identities and authoritative source identity must remain explicit inputs.
 - ST1-067's scoped governance-delegation decision template and atomic approval gate.
 - SDAS v0.3 contract, append-only assurance-decision schema, and sanitized framework evidence.
 - SDAS authority/business-time append-only evidence models and sanitized ST1-062 resolution evidence.

@@ -437,6 +437,19 @@ def evaluate_sdas_policy(*, policy_enabled: bool, policy_effective: bool,
     return "policy_automatic", ["all_required_policy_evidence_present"]
 
 
+def evaluate_sdas_governance_bootstrap_policy(*, delegation_active: bool, **policy_facts: bool) -> tuple[str, list[str]]:
+    """Apply the SDAS v0.3 bootstrap gate before normal policy evaluation.
+
+    A policy-model approval or pending proposal is not operational authority.
+    Only an append-only lifecycle state of ``ACTIVE`` may permit the underlying
+    LOW-risk evaluator to consider ``policy_automatic``. This function never
+    certifies a record.
+    """
+    if not delegation_active:
+        return "human_required", ["delegation_not_active"]
+    return evaluate_sdas_policy(**policy_facts)
+
+
 def is_valid_observed_at(value: object) -> bool:
     """Accept only timezone-aware, non-future ISO-8601 timestamps when supplied."""
 

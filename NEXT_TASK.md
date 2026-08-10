@@ -1,89 +1,103 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-067
+- Task ID: ST1-068
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting explicit governance delegation decision
-- Owner: Accountable Enterprise AI governance authority
+- Status: Awaiting minimum business identity and activation decisions
+- Owner: CEO / designated governance authority
 
 ## Objective
-Obtain a complete, scoped governance decision that can create one real,
-reusable delegated-authority record for the LOW-risk Project Controls progress
-workbook class. This task does not certify any real organizational record.
+Obtain the minimum reusable business evidence required to activate the first
+real, narrowly scoped Project Controls delegation. This task does not approve
+or certify any organizational record.
 
 ## Rationale
-ST1-061 locator recovery and native acquisition are already verified. ST1-066
-confirmed that zero real delegations and zero real authority assertions exist,
-so no real record can truthfully route to `policy_automatic`.
+ST1-067 approved the pilot policy model but deliberately recorded no verified
+CEO role, Project Controls/PMO role, or authoritative source. The append-only
+bootstrap lifecycle prevents inactive proposals from conferring authority.
 
 ## Preconditions
-- The governance authority completes every required field in
-  `docs/ST1_067_GOVERNANCE_DELEGATION_DECISION_TEMPLATE.md`.
-- The decision identifies a non-secret, stable actor identifier and its exact
-  source-system, project, document-class, fact-class, and time scope.
+- Review `docs/SDAS_GOVERNANCE_BOOTSTRAP.md` and answer the four plain-language
+  business questions below. An answer of `unknown` keeps the proposal inactive.
 
 ## Scope
-- Validate and persist only the explicit scoped delegation using the existing
-  append-only delegated-authority model.
-- Re-evaluate only exact LOW-risk policy matches after the delegation is
-  active; retain missing/conflicting/high-risk cases as exceptions.
+- Validate only supplied role/source/reporting-time/activation evidence.
+- Append lifecycle events only after every required identity and source check
+  passes exactly.
+- Re-evaluate ST1-061 only as a regression test; never reacquire it.
 
 ## Out of Scope
-- Automatic certification; claim approval; currentness/authority inference;
-  reliance eligibility; source expansion; credential changes; external AI;
-  destructive operations; and any changes to ST1-061.
+- Per-record certification, automatic certification, currentness/reliance
+  promotion, new source boundaries, credentials, provider/model changes, and
+  destructive operations.
+
+## Minimum Business Decisions
+1. **Governance role:** Which durable internal role is authorized to approve
+   this pilot policy? Recommended: CEO or formally delegated governance office.
+   Approval lets us verify a role identity; unknown keeps the policy pending.
+2. **Accountable role:** Which Project Controls/PMO role owns recurring project
+   progress/status reports? Recommended: the role named in your document-control
+   process. Approval enables role verification, not record certification.
+3. **Source and report convention:** Which registered system/report class is
+   owned by that role, and where is its reporting period recorded? Recommended:
+   one recurring controlled report/workbook and its approved header/period
+   field. Unknown keeps real records in Human Review.
+4. **Activation:** After the prior three items are evidenced, may this exact
+   LOW-risk scope become active? Recommended: yes, with the ST1-067 exclusions
+   unchanged. Rejection leaves it inactive; approval never enables automatic
+   certification.
 
 ## Files to Inspect
-- `docs/ST1_067_GOVERNANCE_DELEGATION_DECISION_TEMPLATE.md`
-- `docs/SDAS_DELEGATED_AUTHORITY.md`
-- `docs/SDAS_V0_3_CONTRACT.md`
-- `CURRENT_STATE.md`
+- `docs/SDAS_GOVERNANCE_BOOTSTRAP.md`
+- `docs/ST1_067_PROPOSED_CEO_GOVERNANCE_DELEGATION.md`
 - `DECISIONS.md`
+- `CURRENT_STATE.md`
 
 ## Files Allowed to Change
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
-- `DECISIONS.md` (only for the explicit approved decision)
+- `DECISIONS.md` when an explicit governance decision is accepted
 - `NEXT_TASK.md`
-- Sanitized evidence and an additive migration only if the supplied decision
-  validates against the existing model.
+- Sanitized evidence and append-only lifecycle events after all preconditions
+  are verified
 
 ## Execution Steps
-1. Receive the complete, explicit governance decision; do not infer omitted fields.
-2. Validate exact scope, effective period, fact classes, business-time rule,
-   and revocation semantics against the v0.3 contract.
-3. If valid, append the real delegation and an event; do not alter historical
-   synthetic records or ST1-061.
-4. Run an exact-match policy simulation, then persist only a policy decision
-   permitted by the contract. Stop before any certification.
-5. Sanitize evidence and update Project Brain.
+1. Receive the four business answers and their non-secret evidence references.
+2. Verify role, source ownership, report class, business-time convention, and
+   exact scope against the bootstrap requirements.
+3. Append `IDENTITY_VERIFIED`, `SOURCE_VERIFIED`, and `ACTIVE` only when each
+   prior condition is independently evidenced; otherwise preserve the pending
+   state.
+4. Run exact-scope policy simulation and stop before certification of the first
+   real `policy_automatic` record.
 
 ## Acceptance Criteria
-- A real delegation exists only after the accountable authority explicitly
-  supplies all required scope and time fields.
-- Missing, expired, revoked, conflicting, or out-of-scope evidence does not
-  route to `policy_automatic`.
-- No real record is certified, projected, indexed, or made current or
-  reliance-eligible.
+- Unverified identity/source evidence cannot activate authority.
+- Every lifecycle transition is append-only and attributable.
+- ST1-061 remains `human_required` absent independently new authority and
+  business-time evidence.
+- No real record is certified, current, reliance-eligible, or insured.
 
 ## Verification Commands
 ```powershell
+python scripts/validate_st1_067_governance_proposal.py
+python scripts/verify_st1_067_governance_bootstrap.py
+python scripts/verify_st1_067_bootstrap_policy_gate.py
 git diff --check
-Get-Content docs/ST1_067_GOVERNANCE_DELEGATION_DECISION_TEMPLATE.md -Raw
 ```
 
 ## Evidence Required
-- Sanitized decision outcome, scope-validation result, and append-only event
-  identifiers only. No raw organizational content, locator, or secret.
+- Sanitized role/source/time/activation validation results and lifecycle event
+  identifiers only; no organizational content, locator, or secret.
 
 ## Rollback
-- Before a real decision, no runtime mutation occurs. If a valid delegation is
-  later revoked, append a revocation event; never delete or overwrite it.
+- Append revocation/supersession/expiry/rejection events only; never delete or
+  overwrite a lifecycle event.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
-- `DECISIONS.md` only when a valid decision is accepted
+- `DECISIONS.md` when required
 - `NEXT_TASK.md`

@@ -1,0 +1,33 @@
+{
+  "task_id": "ST1-067",
+  "governance_policy_status": "approved_for_pilot",
+  "approver_identity_state": "unverified",
+  "pending_proposal": true,
+  "active_real_delegations": 0,
+  "bootstrap_apply_idempotent": true,
+  "synthetic_lifecycle_test": {
+    "inactive_not_usable": true,
+    "premature_activation_rejected": true,
+    "fully_verified_synthetic_active": true,
+    "append_only_update_rejected": true,
+    "persisted": false
+  },
+  "policy_gate_test": {
+    "inactive_outcome": "human_required",
+    "inactive_reason": "delegation_not_active",
+    "active_complete_synthetic_outcome": "policy_automatic",
+    "automatic_certification": false
+  },
+  "st1_061_regression": {
+    "authority_assertions": 0,
+    "business_time_evidence": 0,
+    "outcome": "human_required"
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "automatic_certification": false,
+    "currentness_changed": false,
+    "reliance_eligible": false,
+    "new_source_boundary": false
+  }
+}

@@ -190,6 +190,23 @@ the existing lifecycle. A policy decision may be `policy_automatic`,
 Automatic certification, authority/currentness promotion, legal assurance,
 and reliance eligibility remain forbidden.
 
+## DEC-028 — SDAS Governance Bootstrap for Pilot Policy
+Status: Accepted for internal pilot governance model
+
+The ST1-067 user-directed decision accepts the SDAS v0.3 governance policy
+model for the Maroon pilot only. It establishes the intended Project
+Controls/PMO accountable role class, recurring Project Controls progress/status
+report scope, LOW-risk permitted fact classes, and explicit prohibited classes.
+It is not evidence that any CEO, PMO role, source/system, or report is
+organizationally verified.
+
+Operational delegation is a separate append-only lifecycle. No authority may
+be inherited until `ACTIVE`, which requires independently evidenced governance
+and accountable roles, a verified exact-scope source, business-time evidence,
+integrity/provenance, and no conflict/revocation/supersession. The decision
+does not authorize automatic certification, currentness, reliance, insurance,
+or a new source boundary.
+
 Only the private native synthetic test record may use the explicit Human
 Review approval supplied for ST1-058. Existing historical records retain
 their reconstructed/missing evidence and remain human-review-required in the

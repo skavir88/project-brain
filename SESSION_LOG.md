@@ -1072,3 +1072,32 @@ Revalidate the requested ST1-061 bounded locator-recovery state without duplicat
 
 ### Boundary and Next Gate
 - A complete explicit governance delegation is required before a real record can truthfully be routed `policy_automatic`; that routing never certifies.
+
+## Session 074 — 2026-08-10
+
+### Objective
+Prepare the ST1-067 CEO governance-delegation decision without registering a real delegation.
+
+### Completed
+- Produced a scoped SDAS v0.3 CEO proposal with machine-readable fields, a human decision statement, rationales, exclusions, inheritance controls, and the non-certification boundary.
+- Preserved all unknown identities and document-control requirements as `REQUIRED_INPUT`; no authority was invented and no runtime state changed.
+- Added a local proposal validator that rejects any weakening of LOW-risk fact scope, business-time rules, inheritance controls, automatic-certification, currentness, or reliance boundaries.
+- Performed a read-only aggregate registry check: no CEO role, Project Controls/PMO role, or source with authority beyond `declared_unverified` is available to populate the proposal.
+
+### Boundary and Next Gate
+- The CEO must supply the explicitly marked required inputs and approve the proposal before any append-only real delegation may be registered.
+
+## Session 075 — 2026-08-10
+
+### Objective
+Implement ST1-067 governance bootstrap without inventing organizational authority.
+
+### Completed
+- Applied additive append-only policy-approval, pending-delegation, and lifecycle-event structures. The governance policy model is `approved_for_pilot`, but approver identity remains explicitly unverified and no real delegation is active.
+- Added database transition guards and an active-authority view. A synthetic transaction verified inactive proposals cannot confer authority, premature activation fails, a fully evidenced synthetic sequence can activate, and append-only updates fail; all synthetic rows were rolled back.
+- Recorded the reusable identity/source/business-time activation queue and rechecked ST1-061 without reacquisition; it remains `human_required`.
+- Corrected and verified bootstrap-apply idempotency: a repeat does not attempt an already-recorded transition or create a new event.
+- Added and container-verified the local policy gate: inactive delegation produces `human_required`, while only a fully complete synthetic active case can reach `policy_automatic`.
+
+### Boundary and Next Gate
+- The next gate is a small business decision about role identity, source ownership, reporting-time convention, and activation. Automatic certification, reliance, currentness, and new-source expansion remain disabled.

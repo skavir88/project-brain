@@ -1,0 +1,50 @@
+{
+  "task_id": "ST1-067",
+  "artifact": "ceo_governance_delegation_proposal",
+  "status": "proposed_for_ceo_review_not_registered",
+  "scope": {
+    "project": "maroon_pilot_project",
+    "delegated_role": "Project Controls / PMO accountable owner",
+    "risk_tier": "LOW",
+    "policy_version": "project-controls-progress-low-risk/v1"
+  },
+  "required_input_categories": [
+    "organization",
+    "ceo_actor_identity",
+    "accountable_role_reference",
+    "registered_source_system_identity",
+    "document_control_evidence",
+    "approval_reference_and_timestamp"
+  ],
+  "read_only_registry_check": {
+    "actor_entries": 3,
+    "actor_evidence_quality": "native",
+    "source_entries": 2,
+    "source_evidence_quality": "native",
+    "ceo_role_matches": 0,
+    "project_controls_or_pmo_role_matches": 0,
+    "sources_with_authority_beyond_declared_unverified": 0
+  },
+  "business_time": {
+    "accepted": [
+      "approved_report_header",
+      "registered_source_system_period_field",
+      "document_control_evidence",
+      "accountable_owner_attestation"
+    ],
+    "filesystem_or_acquisition_timestamp_accepted": false
+  },
+  "non_mutation": {
+    "real_delegation_registered": false,
+    "authority_assertion_created": false,
+    "policy_decision_created": false,
+    "certification_created": false,
+    "source_access_performed": false
+  },
+  "boundaries": {
+    "automatic_certification": false,
+    "currentness_state": "not_assessed",
+    "reliance_state": "not_eligible",
+    "st1_061_unchanged": true
+  }
+}
