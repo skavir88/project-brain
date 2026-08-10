@@ -310,3 +310,7 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 ## ST1-064 Delegated Data Authority Pilot
 - Append-only delegated-authority registry/events are deployed and verified with one synthetic delegation only. They do not assign authority to any real role, source, record, or claim.
 - ST1-061 remains `not_verified` / `missing_not_inferred` / un-certified / `human_required`. Evidence: `evidence/sanitized/2026-08-10-st1-064-delegated-authority-pilot.json`.
+
+## ST1-065 SDAS v0.3 Framework
+- Additive v0.3 assurance decisions separate authority inheritance, business time, risk tier, currentness, reliance, and routing outcome. A synthetic complete LOW case reached `policy_automatic`; ST1-061 deterministically remains `human_required` with missing authority/time.
+- No real certification, reliance eligibility, currentness upgrade, provider/model/threshold change, or new source access occurred. Evidence: `evidence/sanitized/2026-08-10-st1-065-v03-framework.json`.
