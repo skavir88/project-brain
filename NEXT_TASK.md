@@ -1,42 +1,45 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-069
+- Task ID: ST1-070
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting three reusable real-world evidence confirmations
-- Owner: CEO / governance office and Project Controls / PMO
+- Status: Awaiting missing controlled organizational evidence
+- Owner: Governance office and Project Controls / PMO
 
 ## Objective
-Collect only the three reusable business evidence confirmations required to
-activate the conditionally approved Maroon LOW-risk delegation. No claim
-certification is in scope.
+Obtain the smallest set of real organizational records needed to resolve the
+remaining reusable authority gap. No real delegation or claim certification is
+in scope.
+
+## Rationale
+ST1-069 proved that previously authorized runtime state can provide only a
+partial reporting-period signal. It cannot prove governance authority, PMO
+responsibility, source ownership/control, or an approved reporting convention.
 
 ## Scope
-- Verify role, source-control, and reporting-period evidence supplied by the
-  business; append lifecycle events only after exact validation passes.
-- Re-evaluate a record only when genuinely new evidence is supplied.
+- Inspect only the specific controlled records supplied by the business.
+- Validate reusable role/source/reporting-time evidence and update readiness.
 
 ## Out of Scope
-- Automatic certification, currentness/reliance promotion, new source
-boundaries, per-record Human Review of unchanged evidence, credentials, and
-destructive operations.
+- Broad SMB discovery, new corpus selection, source reacquisition, automatic
+certification, currentness/reliance changes, and per-record review of unchanged evidence.
 
-## Minimum Business Evidence Needed
-1. **Governance role proof:** What approved internal record confirms that the
-   CEO/Executive Governance Authority role can approve this pilot policy?
-   Recommended evidence: a role mapping or signed governance attestation.
-2. **Project Controls role proof:** What approved internal record confirms the
-   Project Controls/PMO accountable role for these recurring reports?
-   Recommended evidence: document-control responsibility or role mapping.
-3. **Controlled report proof:** Which controlled recurring report/workbook
-   class belongs to that role, and which header/field/document-control item
-   explicitly states its reporting period? Provide its non-secret reference.
+## Minimum Business Records Needed
+1. A controlled organization chart, delegation-of-authority record, governance
+   charter, or signed role attestation identifying the role allowed to approve
+   this pilot policy.
+2. A controlled Project Execution Plan, Project Control Procedure, RACI,
+   document-control procedure, or role description identifying the Project
+   Controls/PMO role responsible for recurring project reports.
+3. One controlled recurring progress/status report/workbook reference plus the
+   document-control rule, header, field, or approved metadata that explicitly
+   identifies its reporting period and ownership/control.
 
 ## Acceptance Criteria
-- Each answer maps to reusable, exact-scope, effective-period evidence.
-- Missing evidence leaves the exception queue `HUMAN_REQUIRED`.
-- A real delegation cannot become `ACTIVE` without all three confirmations.
-- No real record is certified, current, or reliance-eligible.
+- E1/E2/E3 each become `VERIFIED`, `PARTIAL`, or remain `MISSING` from real,
+  traceable evidence; inference is not accepted.
+- No real delegation reaches `ACTIVE` until every activation condition passes.
+- Exception queue changes only from new evidence.
 
 ## Verification Commands
 ```powershell
@@ -45,16 +48,16 @@ git diff --check
 ```
 
 ## Evidence Required
-- Sanitized validation result and event identifiers only; no confidential
-document content, filename, locator, secret, or personal data.
+- Sanitized status, fingerprint/reference, scope, and validation result only.
+  Do not version organizational contents, personal data, locators, or secrets.
 
 ## Rollback
-- Append revocation/supersession/expiry/rejection events only; never overwrite
-or delete evidence or lifecycle events.
+- Append a later supersession/revocation/rejection observation when needed;
+  never overwrite or delete prior evidence.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
-- `DECISIONS.md` when required
+- `DECISIONS.md` if a new decision is required
 - `NEXT_TASK.md`

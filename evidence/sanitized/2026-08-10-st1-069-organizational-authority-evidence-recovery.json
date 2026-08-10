@@ -1,0 +1,31 @@
+{
+  "task_id": "ST1-069",
+  "scope": "previously_authorized_runtime_state_metadata_index_and_bounded_corpora_only",
+  "new_smb_crawl": false,
+  "new_acquisition": false,
+  "st1_061_reacquired": false,
+  "evidence_status": {
+    "E1_governance_authority": "MISSING",
+    "E2_project_controls_accountability": "MISSING",
+    "E3_controlled_recurring_report": "PARTIAL"
+  },
+  "provenance": {
+    "E1": "authorized_runtime_and_metadata_review",
+    "E2": "authorized_runtime_and_metadata_review",
+    "E3": "previously_authorized_bounded_local_extraction; runtime-local reference only"
+  },
+  "E3_limitations": [
+    "source_ownership_or_control_not_established",
+    "project_controls_process_ownership_not_established",
+    "approved_reporting_time_convention_not_established"
+  ],
+  "activation_readiness": "not_ready",
+  "exception_queue": {"PASS": 0, "HUMAN_REQUIRED": 1, "QUARANTINE": 0},
+  "boundaries": {
+    "real_active_delegation": false,
+    "automatic_certification": false,
+    "currentness_changed": false,
+    "reliance_eligible": false,
+    "external_ai_processing": false
+  }
+}
