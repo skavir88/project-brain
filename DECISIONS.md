@@ -207,6 +207,25 @@ integrity/provenance, and no conflict/revocation/supersession. The decision
 does not authorize automatic certification, currentness, reliance, insurance,
 or a new source boundary.
 
+## DEC-029 — Conditional Governance Activation for Maroon Pilot
+Status: Accepted for internal pilot policy model
+
+The ST1-068 business decision accepts `CEO / Executive Governance Authority`
+as the governance-role class, `Project Controls / PMO accountable role` as the
+operational role class, and controlled recurring Project Controls
+progress/status reports or workbooks as the eligible source class. Reporting
+period must be explicit in an approved header, designated period field, or
+approved document-control metadata; filesystem and acquisition timestamps are
+never business time.
+
+This is conditional policy approval only. It neither verifies a particular
+actor/source/report nor activates authority. Activation requires independent,
+append-only role identity, source-control/ownership, reporting-time,
+integrity/provenance, exact-scope, and no-conflict/revocation/supersession
+evidence. Only then may exact LOW-risk facts reach `policy_automatic`; that
+outcome remains separate from certification, currentness, reliance, insurance,
+and guarantees.
+
 Only the private native synthetic test record may use the explicit Human
 Review approval supplied for ST1-058. Existing historical records retain
 their reconstructed/missing evidence and remain human-review-required in the

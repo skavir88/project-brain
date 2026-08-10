@@ -3,6 +3,8 @@
 ## 2026-08-10
 
 ### Added
+- Additive ST1-068 reusable role-identity and source-control/reporting-time verification models, exact-scope lifecycle guard, and PASS/HUMAN_REQUIRED/QUARANTINE exception queue.
+- Sanitized ST1-068 conditional-activation readiness evidence.
 - Additive append-only ST1-067 governance-bootstrap policy, pending-delegation, lifecycle-event, and active-authority structures.
 - Sanitized ST1-067 governance-bootstrap evidence, reusable resolution queue, and rolled-back synthetic lifecycle verification.
 - Idempotent ST1-067 policy-bootstrap application that preserves the single pending lifecycle event on repeat execution.

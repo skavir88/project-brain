@@ -1,0 +1,37 @@
+{
+  "task_id": "ST1-068",
+  "governance_structure_decision": "approved_conditional_activation",
+  "scope": {
+    "project": "maroon_pilot_project",
+    "risk_tier": "LOW",
+    "automatic_certification": false
+  },
+  "activation_evidence_models": [
+    "reusable_role_identity_verification",
+    "reusable_source_control_verification_with_reporting_time_rule"
+  ],
+  "exception_queue": {
+    "PASS": 0,
+    "HUMAN_REQUIRED": 1,
+    "QUARANTINE": 0,
+    "reason": "role_source_or_business_time_evidence_missing"
+  },
+  "actual_verification_evidence": {
+    "role_identity_verifications": 0,
+    "source_control_verifications": 0
+  },
+  "synthetic_validation": {
+    "inactive_not_usable": true,
+    "premature_activation_rejected": true,
+    "complete_exact_scope_activation_passed": true,
+    "append_only_update_rejected": true,
+    "persisted": false
+  },
+  "boundaries": {
+    "real_delegation_active": false,
+    "real_record_certified": false,
+    "st1_061_reacquired": false,
+    "currentness_changed": false,
+    "reliance_eligible": false
+  }
+}

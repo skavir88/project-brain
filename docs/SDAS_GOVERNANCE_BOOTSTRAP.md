@@ -81,3 +81,23 @@ business-time evidence exists, so it remains `human_required`.
 
 The queue is reusable: it shifts review from each routine LOW-risk fact to a
 small governance decision set about roles, sources, and policy boundaries.
+
+## ST1-068 Conditional Activation Evidence
+
+The governance structure is approved conditionally for the Maroon pilot, LOW
+risk only. To make the model deterministic and reusable, activation now
+requires two append-only evidence types in addition to native record lineage:
+
+- **Role identity verification:** ties a durable governance role or Project
+  Controls/PMO role to an actor-registry entry, project scope, effective period,
+  and non-secret evidence reference. It does not require a person's name.
+- **Source-control verification:** ties one registered source to the verified
+  accountable role, exact project scope, one approved recurring report class,
+  and one allowed reporting-time convention.
+
+The database guard rejects `IDENTITY_VERIFIED` without both reusable role
+verifications, and rejects `SOURCE_VERIFIED` unless the source has verified
+authority, matching project scope, matching report class, and reusable
+reporting-time/control evidence. The exception queue returns only `PASS`,
+`HUMAN_REQUIRED`, or `QUARANTINE`; it is not a per-record governance-review
+list.

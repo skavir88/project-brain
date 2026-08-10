@@ -1101,3 +1101,16 @@ Implement ST1-067 governance bootstrap without inventing organizational authorit
 
 ### Boundary and Next Gate
 - The next gate is a small business decision about role identity, source ownership, reporting-time convention, and activation. Automatic certification, reliance, currentness, and new-source expansion remain disabled.
+
+## Session 076 — 2026-08-10
+
+### Objective
+Operationalize the ST1-068 governance business decision without asserting real identities or activating authority.
+
+### Completed
+- Recorded the conditional governance structure: Maroon pilot, LOW-risk recurring Project Controls reporting only, with the existing exclusions and separate certification boundary.
+- Added reusable append-only role-identity and source-control/reporting-time verification models, strengthened lifecycle guards for exact source/report-class scope, and added a three-outcome exception queue.
+- Synthetic rollback validation confirmed complete exact-scope activation can pass while incomplete activation remains rejected. The real queue remains one `HUMAN_REQUIRED` item because no real role/source evidence exists.
+
+### Boundary and Next Gate
+- Three plain-language evidence confirmations are needed for governance role, Project Controls/PMO role, and controlled source/reporting-period convention. No real record, delegation, certification, currentness, or reliance state changed.
