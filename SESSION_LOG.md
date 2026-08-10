@@ -1021,3 +1021,21 @@ Design and pilot deterministic authority and business-time evidence resolution f
 
 ### Boundary and Next Gate
 - The reusable attestation design is documented. A designated accountable owner must supply the scoped assertion and any business-time evidence before policy can be re-evaluated beyond `human_required`.
+
+## Session 069 â€” 2026-08-10
+
+### Objective
+Prepare the minimum real authority/business-time attestation card for ST1-061.
+
+### Completed
+- Performed bounded local-only workbook inspection. Four worksheets and Plan/Actual fields were observed, but no independent authority marker or business reporting/effective time was established.
+- Prepared separate authority and business-time assertion requirements; no human assertion, certification, or external processing occurred.
+
+## Session 070 â€” 2026-08-10
+
+### Objective
+Design and validate private delegated data authority without assigning real authority.
+
+### Completed
+- Applied append-only delegation and delegation-event tables; verified a synthetic governance-to-project-controls delegation only.
+- Documented deterministic authority inheritance and recurring business-time policy. No real delegation, attestation, certification, or source access occurred.

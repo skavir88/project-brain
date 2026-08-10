@@ -302,3 +302,11 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 ## ST1-062 Evidence Resolution Pilot
 - Additive immutable authority-assertion and business-time-evidence models are deployed. Existing ST1-061 evidence contains neither an accountable authority assertion nor content-supported business time, so policy remains `human_required`.
 - The reusable attestation contract is `docs/SDAS_EVIDENCE_RESOLUTION.md`; no attestation was made on behalf of a human and no real record was certified. Evidence: `evidence/sanitized/2026-08-10-st1-062-evidence-resolution.json`.
+
+## ST1-063 Real Authority Attestation Preparation
+- The one ST1-061 XLSX was inspected locally within its existing authorization. Workbook structure shows four discipline/status worksheets and Plan/Actual progress fields, but no independently verified issuer/approver/authority marker or business reporting/effective date was found.
+- A human-attestation card is ready; authority and business-time require independent scoped assertions and remain separate. The record remains `human_required`, un-certified, and outside Certified Knowledge/Qdrant. Evidence: `evidence/sanitized/2026-08-10-st1-063-attestation-preparation.json`.
+
+## ST1-064 Delegated Data Authority Pilot
+- Append-only delegated-authority registry/events are deployed and verified with one synthetic delegation only. They do not assign authority to any real role, source, record, or claim.
+- ST1-061 remains `not_verified` / `missing_not_inferred` / un-certified / `human_required`. Evidence: `evidence/sanitized/2026-08-10-st1-064-delegated-authority-pilot.json`.

@@ -1,0 +1,1 @@
+{"task_id":"ST1-064","synthetic_delegation":1,"real_delegations":0,"st1_061_authority":"not_verified","st1_061_business_time":"missing_not_inferred","st1_061_certification":"none","synthetic_flow":"active_delegation+scope+business_time+integrity=>policy_automatic; otherwise=>human_required","automatic_certification":false}
