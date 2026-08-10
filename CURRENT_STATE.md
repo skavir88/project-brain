@@ -314,3 +314,7 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 ## ST1-065 SDAS v0.3 Framework
 - Additive v0.3 assurance decisions separate authority inheritance, business time, risk tier, currentness, reliance, and routing outcome. A synthetic complete LOW case reached `policy_automatic`; ST1-061 deterministically remains `human_required` with missing authority/time.
 - No real certification, reliance eligibility, currentness upgrade, provider/model/threshold change, or new source access occurred. Evidence: `evidence/sanitized/2026-08-10-st1-065-v03-framework.json`.
+
+## ST1-066 First Real Policy-Automatic Gate
+- The bounded recurring Project Controls progress-workbook class is a technically suitable LOW-risk candidate, but no valid real delegation or authority assertion exists. The scale simulation therefore routes zero real/historical records automatically and keeps 50 in `human_required`; no reconstructed evidence was upgraded.
+- A real automatic path is blocked only by the reusable governance delegation/attestation decision documented in `docs/ST1_066_REAL_POLICY_AUTOMATIC_GATE.md`. ST1-061 remains unchanged and no real certification occurred. Evidence: `evidence/sanitized/2026-08-10-st1-066-real-policy-automatic-gate.json`.

@@ -1048,3 +1048,15 @@ Implement the private SDAS Authority & Automated Assurance Framework v0.3.
 ### Completed
 - Applied append-only v0.3 assurance-decision schema and documented scoped authority, exact inheritance, independent business time/currentness, risk tiers, and reliance separation.
 - Synthetic complete LOW evidence routed `policy_automatic`; ST1-061 routed `human_required` without certification.
+
+## Session 072 â€” 2026-08-10
+
+### Objective
+Reach the first real SDAS v0.3 `policy_automatic` gate without weakening authority controls.
+
+### Completed
+- Selected the existing recurring Project Controls progress-workbook class as the reusable LOW-risk candidate and performed a non-mutating portfolio simulation.
+- Verified zero real governance delegations/assertions. Consequently zero real records can truthfully reach `policy_automatic`; 50 remain `human_required`.
+
+### Boundary and Gate
+- Creating the required real delegation is an explicit governance decision. No real data was certified or automatically approved.
