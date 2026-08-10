@@ -1,0 +1,9 @@
+{
+  "task_id": "ST1-056/ST1-058",
+  "scope": "private synthetic SDAS v0.2 pilot",
+  "human_decision": {"record_alias": "synthetic_sdas_native_test", "disposition": "APPROVE", "automatic_certification": false},
+  "native_chain": {"source_acquisition_transformation_paths": 1, "controlled_certification": "certified", "certified_knowledge_projection": 1, "registration_events": 1, "assurance_level": "SDAS-1", "assurance_state": "assessed_partial", "reliance_eligibility": "not_eligible"},
+  "policy_simulation": {"policy_automatic": 1, "human_required": 49, "reject_or_quarantine": 1, "disabled_policy_rejected": true, "automatic_certification_performed": false},
+  "retrieval": {"qdrant_collection_state": "green", "vector_dimension": 3072, "point_count": 50, "minimum_score_policy": 0.70, "grounded_synthetic_answer": true, "provenance_returned": true, "synthetic_consumption_events": 1},
+  "security_and_boundary": {"runtime_sdas_update_delete_grants": 0, "post_registration_events_applied": 0, "current_status": "insufficient_certified_evidence", "reliance_eligible_records": 0, "public_exposure": false, "organizational_content_processed": false}
+}

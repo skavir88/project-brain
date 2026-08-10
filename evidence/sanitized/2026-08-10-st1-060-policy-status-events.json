@@ -1,0 +1,10 @@
+{
+  "task_id": "ST1-060",
+  "scope": "private synthetic policy disable/rollback validation",
+  "append_only_policy_status_event": "disabled",
+  "blocked_new_policy_decision": true,
+  "automatic_certification": false,
+  "certification_changes": 0,
+  "organizational_content_processed": false,
+  "current_status": "insufficient_certified_evidence"
+}

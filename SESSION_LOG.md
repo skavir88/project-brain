@@ -957,3 +957,43 @@ Implement the approved additive SDAS v0.1 internal pilot without changing existi
 ### Boundary and Next Gate
 - No existing certification/audit/Certified Knowledge record was changed, no source was opened, and no public endpoint, credential, insurance, underwriting, pricing, coverage, or legal-policy feature was created.
 - `current_status=insufficient_certified_evidence` remains mandatory. ST1-056 is a decision gate before any SDAS v0.2 expansion.
+
+## Session 064 â€” 2026-08-10
+
+### Objective
+Complete the approved private SDAS v0.2 native-policy path after explicit Human Review approval of `synthetic_sdas_native_test`.
+
+### Completed
+- Applied additive registration, post-registration-event, and policy-version-state migrations. The policy-state trigger rejects disabled, expired, or unavailable policy versions; all new evidence tables are append-only.
+- Controlled certification transitioned exactly one private synthetic candidate after the reviewer’s `APPROVE`; it was deterministically projected to Certified Knowledge, registered, assessed as `SDAS-1` / `assessed_partial`, indexed idempotently, and retrieved through Dify with provenance at the unchanged threshold.
+- Verified one native source/acquisition/transformation path, one `policy_automatic` decision, 49 reconstructed `human_required` decisions, one `reject_or_quarantine` synthetic decision, disabled-policy rejection, zero runtime SDAS UPDATE/DELETE grants, zero post-registration events, and zero reliance-eligible records.
+- JSON validation, `git diff --check`, secret scan, and legacy scan passed. The unchanged Bash collector syntax check could not run because the local WSL Bash executable is unavailable; this does not affect the SQL migrations, which were applied and verified remotely.
+
+### Boundary and Next Gate
+- No organizational content, credential, retrieval threshold, provider/model, public endpoint, currentness claim, authority upgrade, or automatic certification was introduced. `current_status=insufficient_certified_evidence` remains mandatory.
+- ST1-059 is a governance gate for any future authority/currentness evidence integration or activation of a post-registration lifecycle event; it must not resume broad source discovery.
+
+## Session 065 â€” 2026-08-10
+
+### Objective
+Complete the remaining runtime-owned deterministic SDAS v0.2 policy-evaluation verification.
+
+### Completed
+- Backed up and rebuilt only the private `ingestion-service` on `rdapp`; health returned `ok` after restart.
+- Verified deterministic synthetic routing: complete evidence → `policy_automatic`; authority/missing/conflict → `human_required`; duplicate/disabled-policy → `reject_or_quarantine`.
+- The evaluator test made zero database writes, certification calls, or Qdrant changes.
+
+### Boundary and Next Gate
+- The pilot now has a tested runtime evaluator, but it cannot establish real-source authority, currentness, or reliance eligibility. The next action remains a business/authority evidence gate, not a technical discovery loop.
+
+## Session 066 â€” 2026-08-10
+
+### Objective
+Implement the remaining append-only SDAS policy disable/rollback mechanism.
+
+### Completed
+- Added immutable policy-status events and replaced the policy-decision guard so it evaluates the latest effective append-only state.
+- A disabled synthetic policy status event blocked a subsequent policy-decision insert with the expected database rejection. No UPDATE/DELETE, certification, CK, Qdrant, credential, or organizational-content change occurred.
+
+### Boundary and Next Gate
+- SDAS v0.2 private-pilot implementation is technically complete. The remaining gate is external business/authority evidence for any real currentness or lifecycle action.

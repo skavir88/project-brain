@@ -90,3 +90,20 @@ not modify the certification lifecycle. SDAS v0.2 still requires a separate
 architecture/governance decision. Full proposal and evidence:
 `docs/SDAS_V0_1_PROPOSAL.md` and
 `evidence/sanitized/2026-08-10-st1-055-sdas-v0-1-pilot.json`.
+
+## Sahra Data Assurance Standard v0.2 Private Pilot
+
+SDAS v0.2 extends the private pilot with append-only source and actor
+registries, acquisition and transformation evidence, versioned policy
+decisions, Certified Knowledge registration evidence, and post-registration
+event evidence. It distinguishes `native`, `corroborated_historical`,
+`reconstructed`, `declared_unverified`, and `missing` evidence without
+upgrading historical pilot records.
+
+`policy_automatic` is only a preliminary policy decision. It never replaces
+explicit Human Review or the existing controlled certification lifecycle.
+The only end-to-end native test record was certified after a separately
+recorded human `APPROVE`. Supersession, revocation, correction, expiration,
+and authority change are modeled as append-only events but remain inactive.
+Neither SDAS certification nor registration establishes currentness,
+authority, legal assurance, or reliance eligibility.

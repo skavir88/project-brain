@@ -279,3 +279,17 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 - Additive immutable registries now model source identity, actor/authority metadata, native acquisition, transformation lineage, policy versions, and policy decisions. Policy decisions are separate from Human Review and certification.
 - One private native synthetic record has source → acquisition → fingerprint → deterministic transformation → validation → `policy_automatic` decision evidence and remains `certification_candidate`. No automatic certification occurred.
 - Backward simulation routed all 49 existing Certified Knowledge records to `human_required` because their evidence is reconstructed/missing for native v0.2 requirements; no historical evidence was upgraded. `current_status=insufficient_certified_evidence` and zero reliance-eligible records remain required. Evidence: `evidence/sanitized/2026-08-10-st1-056-v02-policy-native.json`.
+
+## ST1-058 SDAS v0.2 Native Controlled-Certification Path
+- The designated reviewer explicitly approved the private `synthetic_sdas_native_test` record. Existing controlled certification transitioned only that synthetic record to `certified` under the existing human actor and policy; no automatic certification occurred.
+- Its native source/acquisition/transformation lineage, policy decision, append-only certification audit, Certified Knowledge projection, and registration event are verified. The separate assurance envelope is `SDAS-1` / `assessed_partial` / `not_eligible`; it is not authoritative, current, or reliance-eligible.
+- The isolated Qdrant collection is green with 50 points at the unchanged 3072-vector dimension. A controlled synthetic Dify/RAG answer returned the expected source-attributed statement with certification provenance at score `0.814545`, above the unchanged `0.70` threshold.
+- Additive append-only post-registration event support now models supersession, revocation, correction, expiration, and authority-change evidence. No such event was applied. Runtime SDAS UPDATE/DELETE grants remain zero; disabled policy versions are rejected. Evidence: `evidence/sanitized/2026-08-10-st1-058-sdas-v0-2-native-chain.json`.
+
+## ST1-059 SDAS v0.2 Deterministic Policy Evaluator
+- The private ingestion runtime now contains the deterministic SDAS v0.2 policy evaluator. It routes complete synthetic evidence to `policy_automatic`; authority/missing-evidence/conflict cases to `human_required`; and duplicate/disabled-policy cases to `reject_or_quarantine`.
+- The evaluator neither writes to the database nor calls certification. Runtime health is verified after the controlled ingestion-service rebuild; no Qdrant, credential, provider/model, currentness, or organizational-content state changed. Evidence: `evidence/sanitized/2026-08-10-st1-059-policy-evaluator.json`.
+
+## ST1-060 SDAS v0.2 Append-Only Policy Status
+- An additive immutable policy-status-event table now provides the policy disable/rollback mechanism. A synthetic disabled-policy event was recorded and a real new policy-decision insert was rejected by the database trigger.
+- No policy row was overwritten, no certification changed, and no organizational content was processed. Evidence: `evidence/sanitized/2026-08-10-st1-060-policy-status-events.json`.

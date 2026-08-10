@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-08-10
+
+### Added
+- Sanitized ST1-060 append-only policy-status and disabled-decision rejection evidence.
+- Additive SDAS policy-status-event table and database-enforced append-only disable/rollback behavior.
+- Sanitized ST1-059 deterministic SDAS v0.2 policy-evaluator evidence.
+- Sanitized ST1-058 private synthetic SDAS v0.2 native-chain, controlled-certification, registration, policy-state, and provenance-backed retrieval evidence.
+- Additive immutable SDAS v0.2 registration and post-registration lifecycle-event tables, plus policy-version state enforcement.
+
+### Changed
+- Added and deployed a private deterministic policy evaluator without database writes or automatic certification.
+- Completed the approved human-controlled certification of one private native synthetic SDAS record; no organizational data, automatic certification, authority/currentness upgrade, or reliance eligibility was introduced.
+
 ## 2026-08-08
 
 ### Added

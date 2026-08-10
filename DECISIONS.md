@@ -179,3 +179,19 @@ events, and may back-assess existing Certified Knowledge only from observed
 evidence. Missing evidence stays missing. SDAS v0.2 requires a new decision
 before reliance eligibility, supersession/revocation transitions, external
 organizational rollout, or any insurance/legal semantics.
+
+## DEC-027 â€” SDAS v0.2 Private Provenance and Policy Pilot
+Status: Accepted for private synthetic pilot validation
+
+SDAS v0.2 may add append-only provenance, actor, acquisition,
+transformation, policy, registration, and post-registration evidence around
+the existing lifecycle. A policy decision may be `policy_automatic`,
+`human_required`, or `reject_or_quarantine`, but it is never certification.
+Automatic certification, authority/currentness promotion, legal assurance,
+and reliance eligibility remain forbidden.
+
+Only the private native synthetic test record may use the explicit Human
+Review approval supplied for ST1-058. Existing historical records retain
+their reconstructed/missing evidence and remain human-review-required in the
+v0.2 simulation. Post-registration lifecycle events are append-only and
+require evidence and actor identity; none is activated by this decision.

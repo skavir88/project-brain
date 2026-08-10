@@ -404,6 +404,39 @@ def evaluate_quality_gate(record: dict[str, object]) -> tuple[str, str | None]:
     return "certification_candidate", None
 
 
+def evaluate_sdas_policy(*, policy_enabled: bool, policy_effective: bool,
+                         source_type_allowed: bool, data_class_allowed: bool,
+                         source_authority_verified: bool, acquisition_present: bool,
+                         transformation_present: bool, integrity_valid: bool,
+                         validation_passed: bool, duplicate: bool,
+                         conflict: bool) -> tuple[str, list[str]]:
+    """Deterministic SDAS v0.2 policy decision; never performs certification.
+
+    The caller supplies only persisted facts.  A missing/ambiguous authority
+    fact routes to accountable Human Review, never to policy auto-approval.
+    """
+    if not policy_enabled or not policy_effective:
+        return "reject_or_quarantine", ["policy_disabled_or_expired"]
+    if duplicate:
+        return "reject_or_quarantine", ["duplicate_detected"]
+    if not integrity_valid or not validation_passed:
+        return "reject_or_quarantine", ["integrity_or_validation_failed"]
+    if not source_type_allowed or not data_class_allowed:
+        return "human_required", ["outside_policy_scope"]
+    if conflict:
+        return "human_required", ["evidence_conflict"]
+    missing = []
+    if not source_authority_verified:
+        missing.append("authority_not_verified")
+    if not acquisition_present:
+        missing.append("acquisition_evidence_missing")
+    if not transformation_present:
+        missing.append("transformation_evidence_missing")
+    if missing:
+        return "human_required", missing
+    return "policy_automatic", ["all_required_policy_evidence_present"]
+
+
 def is_valid_observed_at(value: object) -> bool:
     """Accept only timezone-aware, non-future ISO-8601 timestamps when supplied."""
 

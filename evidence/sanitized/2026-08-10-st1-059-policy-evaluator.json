@@ -1,0 +1,23 @@
+{
+  "task_id": "ST1-059",
+  "runtime": "private ingestion service on rdapp",
+  "health": "ok",
+  "policy_branch_results": {
+    "all_required_evidence": "policy_automatic",
+    "authority_unverified": "human_required",
+    "acquisition_or_transformation_missing": "human_required",
+    "evidence_conflict": "human_required",
+    "duplicate": "reject_or_quarantine",
+    "disabled_policy": "reject_or_quarantine"
+  },
+  "side_effects": {
+    "database_writes": 0,
+    "certification_calls": 0,
+    "automatic_certification": false,
+    "qdrant_changes": 0
+  },
+  "boundary": {
+    "organizational_content_processed": false,
+    "current_status": "insufficient_certified_evidence"
+  }
+}

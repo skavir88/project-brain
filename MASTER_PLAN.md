@@ -48,6 +48,8 @@ ST1-053 acknowledges that source gap and leaves it blocked pending business inpu
 
 ST1-055 implemented the approved SDAS v0.1 internal pilot with additive immutable assurance/consumption evidence tables. It back-assessed all 49 Certified Knowledge items only from persisted evidence, yielding `SDAS-1` / `assessed_partial` for all and zero reliance-eligible records. The next SDAS change is a decision gate; no v0.2 supersession/revocation, authority/currentness, reliance eligibility, or external rollout is implied.
 
+ST1-056 through ST1-058 implemented and verified the approved private SDAS v0.2 provenance/policy pilot. One native synthetic record traversed source acquisition, deterministic transformation, policy automatic preparation, explicit human approval, controlled certification, registration, Certified Knowledge projection, isolated indexing, and provenance-backed retrieval. The 49 historical Certified Knowledge items remain `human_required` in the v0.2 simulation; no historical evidence was upgraded. Policy automatic approval does not certify a record, and currentness/authority/reliance remain out of scope.
+
 ST1-014 confirmed that multiple bounded status-reporting subsets satisfy the technical size target. A business selection is required before content reading, because filesystem metadata does not establish which status period is authoritative.
 
 DEC-015 selected `status_candidate_b`; bounded read-only extraction then completed for 18 of 19 documents without platform persistence or AI use. One selected XLSX failed deterministic OOXML extraction (`BadZipFile`), so the real-data corpus is partial and requires a human resolution/review gate before any real record can advance toward certification.
