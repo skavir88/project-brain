@@ -1126,3 +1126,24 @@ Recover reusable organizational authority evidence from already-authorized state
 
 ### Boundary and Next Gate
 - The exception queue remains a single reusable `HUMAN_REQUIRED` governance gate. A controlled organizational role/authority record and a controlled-report/source ownership reference are required before any activation-readiness advance.
+
+## Session 078 — 2026-08-10
+
+### Objective
+Implement ST1-070's controlled organizational-attestation workflow without
+creating real authority.
+
+### Completed
+- Applied an additive append-only attestation schema for three independent
+  evidence types and a verified-only view; no real attestation row was created.
+- Verified with a rolled-back synthetic transaction that premature verification
+  and self-assertion fail, valid three-form evidence can verify, append-only
+  mutation fails, and revocation/supersession remove a verified artifact.
+- Produced the plain-Persian, three-form Business Attestation Pack and documented
+  the Tier-A/Tier-B hierarchy and the minimum A3 requirements for closing E3.
+
+### Boundary and Next Gate
+- A human must now provide signed evidence through the three forms (or stronger
+  Tier-A controlled records). Identity must be independently verified before
+  any attestation becomes `VERIFIED`; no real delegation can become `ACTIVE`
+  in this task.

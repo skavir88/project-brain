@@ -101,3 +101,41 @@ authority, matching project scope, matching report class, and reusable
 reporting-time/control evidence. The exception queue returns only `PASS`,
 `HUMAN_REQUIRED`, or `QUARANTINE`; it is not a per-record governance-review
 list.
+
+## ST1-070 Controlled Attestation Evidence Hierarchy
+
+Tier A is an existing controlled organizational artifact: approved organization
+chart, delegation, governance charter, Project Execution Plan, Project Controls
+procedure, RACI, document-control procedure, or controlled report definition.
+Tier B is a narrowly scoped, signed accountable attestation only when Tier A is
+unavailable. Tier B does not infer missing Tier A evidence and it never grants
+retroactive authority outside its explicit effective period.
+
+Three independent attestation kinds are supported: governance authority,
+Project Controls/PMO accountability, and controlled recurring-report
+definition. A signed artifact is stored as a fingerprint/reference with
+acquisition provenance, scope, version, effective period, signer and an
+append-only lifecycle:
+
+```text
+SUBMITTED -> IDENTITY_VERIFIED -> VERIFIED
+                                 -> REVOKED | SUPERSEDED
+SUBMITTED | IDENTITY_VERIFIED -> REJECTED
+```
+
+The signer must already have independently evidenced identity before an
+attestation can become `VERIFIED`. A self-asserted or declared-only identity
+cannot pass that gate. Corrections use a new attestation plus `SUPERSEDED`;
+there is no update/delete path. A verified attestation is reusable only for
+its exact project, role, report class, effective period, and permitted facts.
+It is evidence for a later activation-readiness calculation, not a real active
+delegation, automatic certification, currentness, reliance, or insurance.
+
+For the existing E3 `PARTIAL` signal, the minimum Tier-B artifact is the
+Controlled Report Definition Attestation. It must identify the recurring report
+class, owning role, non-sensitive source-location class, deterministic
+reporting-period header/field/convention, document identifier/version rule,
+release convention where applicable, allowed LOW-risk facts, prohibited
+inferences, scope, effective period, and approval method. The report-period
+rule remains business-time evidence; filesystem and acquisition times cannot
+substitute for it.

@@ -1,0 +1,44 @@
+{
+  "task_id": "ST1-070",
+  "scope": "additive_controlled_attestation_workflow_only",
+  "evidence_hierarchy": {
+    "tier_a": "existing_controlled_organizational_evidence",
+    "tier_b": "signed_accountable_attestation_only_when_tier_a_unavailable"
+  },
+  "attestation_kinds": [
+    "governance_authority",
+    "project_controls_accountability",
+    "controlled_report_definition"
+  ],
+  "lifecycle": ["SUBMITTED", "IDENTITY_VERIFIED", "VERIFIED", "REVOKED", "SUPERSEDED", "REJECTED"],
+  "synthetic_verification": {
+    "three_attestations_verified": true,
+    "premature_verification_rejected": true,
+    "self_assertion_rejected": true,
+    "append_only_update_rejected": true,
+    "revocation_removes_verified": true,
+    "supersession_removes_verified": true,
+    "synthetic_test_persisted": false
+  },
+  "deployment": {
+    "additive_schema_applied": true,
+    "repeat_application": "already_applied"
+  },
+  "real_state": {
+    "real_attestations_created": 0,
+    "real_active_delegations": 0,
+    "automatic_certification": false,
+    "st1_061_changed": false,
+    "e1_governance_authority": "MISSING",
+    "e2_project_controls_accountability": "MISSING",
+    "e3_controlled_recurring_report": "PARTIAL"
+  },
+  "e3_minimum_to_verify": "signed_controlled_report_definition_attestation_with_independently_verified_signer_and_explicit_reporting_period_rule",
+  "boundaries": {
+    "new_smb_discovery": false,
+    "retroactive_authority": false,
+    "currentness_changed": false,
+    "reliance_eligible": false,
+    "certification": false
+  }
+}

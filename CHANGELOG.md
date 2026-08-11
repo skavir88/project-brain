@@ -3,6 +3,11 @@
 ## 2026-08-10
 
 ### Added
+- Additive ST1-070 controlled-attestation lifecycle, verified-only view,
+  synthetic guard verification, sanitized evidence, and Persian Business
+  Attestation Pack.
+- DEC-030 controlled-attestation evidence hierarchy and non-retroactive,
+  no-auto-certification boundary.
 - Additive append-only ST1-069 governance-evidence observation model and sanitized bounded recovery evidence.
 - Additive ST1-068 reusable role-identity and source-control/reporting-time verification models, exact-scope lifecycle guard, and PASS/HUMAN_REQUIRED/QUARANTINE exception queue.
 - Sanitized ST1-068 conditional-activation readiness evidence.

@@ -231,3 +231,23 @@ Review approval supplied for ST1-058. Existing historical records retain
 their reconstructed/missing evidence and remain human-review-required in the
 v0.2 simulation. Post-registration lifecycle events are append-only and
 require evidence and actor identity; none is activated by this decision.
+
+## DEC-030 — Controlled Organizational Attestation Bootstrap
+Status: Accepted for Maroon-pilot evidence recovery
+
+When Tier-A controlled organizational artifacts are unavailable, SDAS may
+capture three independent Tier-B accountable attestations: governance
+authority, Project Controls/PMO accountability, and controlled recurring
+report definition. Each is a signed, versioned, fingerprinted, scoped,
+effective-period-bound artifact with append-only submission, independent
+signer-identity verification, verification, revocation, rejection, and
+supersession events.
+
+An attestation cannot infer another attestation, confer retroactive authority
+outside its stated effective period, or create an active delegation by itself.
+Self-asserted identity is insufficient. Verified evidence is reusable only for
+an exact project, role, source/report class, business-time rule, permitted
+fact class, and effective period; prohibited HIGH-risk facts remain outside
+the automatic route. Automatic certification, currentness, reliance,
+insurance/guarantee semantics, and real delegation activation remain separate
+approval gates.
