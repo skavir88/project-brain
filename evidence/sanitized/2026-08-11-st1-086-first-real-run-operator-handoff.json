@@ -1,0 +1,158 @@
+{
+  "schema_version": "st1-086-first-real-run-operator-handoff-evidence-v1",
+  "generated_utc": "2026-08-11T07:34:00Z",
+  "cases": {
+    "blocked_missing_native_metadata": {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "handoff": {
+        "blocking_conditions": [
+          {
+            "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+            "gate": "preflight_not_ready",
+            "native_record_errors": [
+              "native_record metadata not supplied"
+            ],
+            "native_record_readiness": "BLOCKED_NATIVE_RECORD_METADATA_MISSING"
+          }
+        ],
+        "checklist_status": "BLOCKED_OPERATOR_HANDOFF",
+        "hard_stops": [
+          {
+            "condition": "bundle_readiness must remain PENDING_INDEPENDENT_VERIFICATION and native_record_readiness must be READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+            "current_status": {
+              "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+              "native_record_readiness": "BLOCKED_NATIVE_RECORD_METADATA_MISSING"
+            },
+            "gate": "before_mutation"
+          },
+          {
+            "condition": "runtime write sequence must be executed successfully and the resulting decision must still be checked against exact-scope active delegation, business time, risk, and validation controls",
+            "current_status": "not_executed_in_dry_run",
+            "gate": "before_policy_automatic_claim"
+          },
+          {
+            "condition": "first real policy_automatic record must stop before certification unless explicit user approval is later provided",
+            "current_status": "hard_stop_preserved",
+            "gate": "before_certification"
+          }
+        ],
+        "operator_may_start_runtime_mutation": false
+      },
+      "project_scope": "maroon_pilot",
+      "runtime_mutation_performed": false,
+      "schema_version": "st1-086-first-real-run-operator-handoff-v1",
+      "source_artifacts": {
+        "dry_run_schema": "st1-084-first-real-runtime-dry-run-v1",
+        "manifest_schema": "st1-085-first-real-attempt-manifest-v1",
+        "preflight_schema": "st1-083-first-native-record-preflight-v1"
+      }
+    },
+    "ready_operator_handoff": {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "handoff": {
+        "checklist_status": "READY_OPERATOR_HANDOFF",
+        "hard_stops": [
+          {
+            "condition": "bundle_readiness must remain PENDING_INDEPENDENT_VERIFICATION and native_record_readiness must be READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+            "current_status": {
+              "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+              "native_record_readiness": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT"
+            },
+            "gate": "before_mutation"
+          },
+          {
+            "condition": "runtime write sequence must be executed successfully and the resulting decision must still be checked against exact-scope active delegation, business time, risk, and validation controls",
+            "current_status": "not_executed_in_dry_run",
+            "gate": "before_policy_automatic_claim"
+          },
+          {
+            "condition": "first real policy_automatic record must stop before certification unless explicit user approval is later provided",
+            "current_status": "hard_stop_preserved",
+            "gate": "before_certification"
+          }
+        ],
+        "must_stop_if_any_of_the_following_is_false": [
+          "exact-scope active delegation is not actually present at runtime",
+          "business-time evidence no longer matches the approved workbook rule",
+          "native acquisition or transformation continuity is incomplete",
+          "record intake does not return certification_candidate",
+          "policy decision cannot truthfully remain policy_automatic under exact controls"
+        ],
+        "must_verify_immediately_before_step_1": [
+          "verified bundle artifacts remain the exact approved class and project scope",
+          "the native record still uses the approved workbook-level reporting-period source",
+          "no automatic certification request has been introduced",
+          "no secret values are being copied into repository artifacts"
+        ],
+        "operator_may_start_runtime_mutation": true,
+        "operator_must_supply_before_runtime": [
+          "verified accountable_actor_id",
+          "verified evidence_fingerprint values",
+          "real record_id",
+          "real observed_at",
+          "real low-risk fact payload"
+        ],
+        "ordered_runtime_actions": [
+          {
+            "must_match_manifest_payload_shape": true,
+            "purpose": "register the exact selected-class source/system identity and scope",
+            "sequence": 1,
+            "target": "ingestion.sdas_source_registry"
+          },
+          {
+            "must_match_manifest_payload_shape": true,
+            "purpose": "persist the exact source-control verification that ties the source to the accountable role and workbook reporting-period rule",
+            "sequence": 2,
+            "target": "ingestion.sdas_source_control_verifications"
+          },
+          {
+            "must_match_manifest_payload_shape": true,
+            "purpose": "record read-only native acquisition, original SHA-256, size, media type, and source reference",
+            "sequence": 3,
+            "target": "ingestion.sdas_acquisition_events"
+          },
+          {
+            "must_match_manifest_payload_shape": true,
+            "purpose": "record deterministic transformation continuity from original fingerprint to canonical output fingerprint",
+            "sequence": 4,
+            "target": "ingestion.sdas_transformations"
+          },
+          {
+            "must_match_manifest_payload_shape": true,
+            "purpose": "create the first real selected-class credibility record through the existing intake contract",
+            "sequence": 5,
+            "target": "POST /v1/records -> ingestion.credibility_records"
+          },
+          {
+            "must_match_manifest_payload_shape": true,
+            "purpose": "persist the first policy decision for the real native record",
+            "sequence": 6,
+            "target": "ingestion.sdas_policy_decisions"
+          }
+        ],
+        "prerequisites_confirmed": [
+          "bundle_readiness = PENDING_INDEPENDENT_VERIFICATION",
+          "native_record_readiness = READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+          "dry_run_plan = READY_DRY_RUN_PLAN",
+          "execution_manifest = READY_EXECUTION_MANIFEST"
+        ]
+      },
+      "project_scope": "maroon_pilot",
+      "runtime_mutation_performed": false,
+      "schema_version": "st1-086-first-real-run-operator-handoff-v1",
+      "source_artifacts": {
+        "dry_run_schema": "st1-084-first-real-runtime-dry-run-v1",
+        "manifest_schema": "st1-085-first-real-attempt-manifest-v1",
+        "preflight_schema": "st1-083-first-native-record-preflight-v1"
+      }
+    }
+  },
+  "boundaries": {
+    "runtime_mutation_performed": false,
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_certification_performed": false
+  }
+}

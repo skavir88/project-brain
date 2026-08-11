@@ -255,11 +255,11 @@ def main() -> None:
             },
             "malformed_evidence": {
                 "base_result": observed["malformed_evidence"][0],
-                "expected": "QUARANTINED",
+                "expected": "INTEGRITY_FAILURE",
             },
             "hash_provenance_mismatch": {
                 "base_result": observed["hash_provenance_mismatch"][0],
-                "expected": "QUARANTINED",
+                "expected": "INTEGRITY_FAILURE",
             },
             "high_risk_fact": {
                 "base_result": observed["high_risk_fact"][0],

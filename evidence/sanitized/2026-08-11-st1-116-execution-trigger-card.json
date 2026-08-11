@@ -1,0 +1,55 @@
+{
+  "schema_version": "st1-116-execution-trigger-card-evidence-v1",
+  "generated_utc": "2026-08-11T10:47:53Z",
+  "verification": {
+    "py_compile": {
+      "command": "C:/Users/PNS/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -m py_compile scripts/compile_st1_116_execution_trigger_card.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "wait_for_external_evidence": {
+      "trigger_card_status": "BLOCKED_EXECUTION_TRIGGER_CARD",
+      "next_action": "wait_for_external_evidence",
+      "readiness_status": "waiting_for_external_evidence",
+      "external_evidence_requirements_count": 1,
+      "runtime_only_requirements_count": 0
+    },
+    "wait_for_runtime_only_values": {
+      "trigger_card_status": "BLOCKED_EXECUTION_TRIGGER_CARD",
+      "next_action": "wait_for_runtime_only_values",
+      "readiness_status": "waiting_for_runtime_only_fields",
+      "external_evidence_requirements_count": 0,
+      "runtime_only_requirements_count": 5
+    },
+    "execute_now": {
+      "trigger_card_status": "READY_EXECUTION_TRIGGER_CARD",
+      "next_action": "execute_now",
+      "readiness_status": "ready_to_run",
+      "runtime_values": [
+        "verified accountable_actor_id",
+        "verified evidence_fingerprint values",
+        "real record_id",
+        "real observed_at",
+        "real low-risk fact payload"
+      ],
+      "human_approval_required_before_certification": true
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_source_control_verified": false,
+    "real_file_acquired": false,
+    "real_transformation_recorded": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

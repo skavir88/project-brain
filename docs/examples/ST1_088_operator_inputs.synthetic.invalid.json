@@ -1,0 +1,25 @@
+{
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "accountable_actor_id": "project-controls-pmo-role",
+  "bundle_fingerprints": {
+    "A1": "1111111111111111111111111111111111111111111111111111111111111111",
+    "A2": "2222222222222222222222222222222222222222222222222222222222222222",
+    "A3": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "record_id": "RUNTIME_REQUIRED_INPUT",
+  "observed_at": "2026-08-11T00:12:00Z",
+  "fact_payload": {
+    "fact_class": "claim",
+    "fact_value": "disallowed_fact_class",
+    "source_id": "maroon_project_controls_progress_workbook_series",
+    "report_period_value": "1402/07/01-1402/07/07"
+  },
+  "runtime_gate_assertions": {
+    "bundle_independently_verified": true,
+    "native_record_independently_verified": true,
+    "exact_scope_reconfirmed": false,
+    "hard_stop_before_certification_acknowledged": true,
+    "automatic_certification_requested": true
+  }
+}

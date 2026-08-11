@@ -1,0 +1,51 @@
+{
+  "schema_version": "st1-091-selected-class-exception-queue-evidence-v1",
+  "generated_utc": "2026-08-11T09:05:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/generate_st1_091_selected_class_exception_queue.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "current_like_historical_batch": {
+      "fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.current_like.json",
+      "exception_summary": {
+        "exception_count": 3,
+        "human_review_count": 3,
+        "quarantine_count": 0,
+        "policy_automatic_items_excluded_from_review_output": true
+      },
+      "review_pack_count": 3
+    },
+    "mixed_future_batch": {
+      "fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "exception_summary": {
+        "exception_count": 5,
+        "human_review_count": 3,
+        "quarantine_count": 2,
+        "policy_automatic_items_excluded_from_review_output": true
+      },
+      "review_pack_count": 5,
+      "routing_counts": {
+        "policy_automatic": 1,
+        "human_required": 3,
+        "reject_or_quarantine": 2
+      }
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

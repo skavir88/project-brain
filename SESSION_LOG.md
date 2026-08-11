@@ -1431,3 +1431,1580 @@ validator so supplied evidence bundles can be triaged into exact gate states.
   evidence review remains outside the local-only boundary.
 - No real attestation, delegation, source registration, acquisition, or
   certification changed.
+
+## Session 089 - 2026-08-11
+
+### Objective
+Formally park the unchanged external ST1-078 dependency and advance the
+repository-side Assurance Passport contract toward a versioned deterministic
+verification layer.
+
+### Completed
+- Added `docs/ST1_079_EXTERNAL_GATE_PARKING.md` and
+  `scripts/fingerprint_st1_078_external_gate.py`.
+- Recorded the stable parked external-gate fingerprint for the unchanged
+  `E1=MISSING`, `E2=MISSING`, `E3=PARTIAL` state.
+- Added `docs/ST1_079_ASSURANCE_PASSPORT_MATRIX.md`.
+- Upgraded the repository-side passport contract toward
+  `SDAS Assurance Passport v0.1` with explicit dimension-level explanation and
+  a distinct `INTEGRITY_FAILURE` outcome.
+- Added `scripts/verify_st1_079_assurance_passport_v01.py` and locally verified
+  the v0.1 helper contract behavior.
+
+### Boundary and Next Gate
+- No real authority, delegation, certification, source registration, or
+  reliance state changed.
+- The remaining ST1-079 gap is runtime deployment and verification of the
+  upgraded passport/views on the private stack.
+
+## Session 090 - 2026-08-11
+
+### Objective
+Deploy and verify the repository-side `SDAS Assurance Passport v0.1` upgrade on
+the private ingestion stack without changing any real trust state.
+
+### Completed
+- Identified the durable deployment path:
+  - source: `/opt/enterprise-ai/ingestion-service`
+  - compose project: `/opt/enterprise-ai/deploy`
+- Added `scripts/apply_st1_080_passport_v01.py` and
+  `scripts/verify_st1_080_passport_runtime.py`.
+- Applied the upgraded passport projection/summary SQL on `rddb`.
+- Backed up and replaced the runtime `app.py` on `rdapp`, rebuilt the
+  ingestion-service container, and restarted it through `docker compose up -d`.
+- Verified runtime health, upgraded projection columns, deterministic passport
+  outcomes, summary/queue behavior, and unchanged external governance state.
+
+### Boundary and Next Gate
+- No real authority, delegation, certification, reliance state, or source
+  access changed.
+- The external gate remains `WAITING_FOR_EXTERNAL_EVIDENCE`.
+- The next independent milestone should move to a still-partial adjacent
+  capability rather than more ST1-078 restatement.
+
+## Session 091 - 2026-08-11
+
+### Objective
+Add a certified-only, read-only index-visibility adjunct to the Assurance
+Passport so operators can verify isolated Qdrant projection state without
+changing trust, governance, certification, or retrieval policy.
+
+### Completed
+- Added `migrations/026_add_sdas_assurance_passport_index_projection.sql`.
+- Extended `implementation/ingestion-service/app.py` with
+  `GET /v1/sdas/passport/index?knowledge_id=<hex64>`.
+- Added `scripts/apply_st1_081_passport_index_visibility.py` and
+  `scripts/verify_st1_081_passport_index_visibility.py`.
+- Deployed the additive view/runtime change to the private stack with backups
+  under:
+  - `/var/tmp/enterprise-ai-evidence/st1-081-20260811T070656Z-rdapp`
+  - `/var/tmp/enterprise-ai-evidence/st1-081-20260811T070656Z-rddb`
+- Verified:
+  - real certified indexed case -> `indexed_certified_projection_visible`
+  - synthetic certified non-indexed case -> `certified_not_indexed`
+  - uncertified/missing `knowledge_id` -> `404 assurance_passport_index_not_found`
+  - real indexed payload contract remained valid and `reliance_state` remained
+    `not_eligible`
+
+### Boundary and Next Gate
+- No provider/model/credential, retrieval-threshold, certification,
+  delegation, governance, or source-access state changed.
+- The external governance dependency remains `WAITING_FOR_EXTERNAL_EVIDENCE`.
+- The next task should return directly to the ST1-066 hard gate by forecasting
+  what the selected real recurring workbook class would do under exact-scope
+  activation conditions, without activating any real delegation.
+
+## Session 092 - 2026-08-11
+
+### Objective
+Quantify, without mutation, what the selected real recurring workbook class
+would do under exact-scope governance/source-control activation so the next
+critical path toward the first real `policy_automatic` hard gate is explicit.
+
+### Completed
+- Added `scripts/forecast_st1_082_policy_automatic.py`.
+- Queried the live selected class
+  `enterprise_ai_real_action_plan_weekly_observation` from runtime routing
+  state only.
+- Verified the current real class footprint:
+  - `10` records
+  - `10 x human_required`
+  - dominant reason code `missing_native_evidence`
+  - `0` source-registry rows
+  - `0` acquisition events
+  - `0` transformations
+  - `0` business-time evidence rows
+  - `0` authority assertions
+- Recorded the exact-scope activation overlay forecast:
+  - `policy_automatic = 0`
+  - `human_required = 10`
+  - `reject_or_quarantine = 0`
+  - Human Review reduction = `0`
+- Confirmed no historical/reconstructed row is promoted to native solely by
+  governance activation.
+
+### Boundary and Next Gate
+- No real delegation, source registration, acquisition, certification,
+  provider/model/credential, or retrieval state changed.
+- The remaining blocker is now sharper: first real `policy_automatic` requires
+  both the external governance/source-control evidence bundle and at least one
+  truly native record from this class.
+- The next task should prepare the deterministic first-native-record preflight
+  so that, once the real bundle exists, native registration/acquisition/policy
+  evaluation can proceed without improvisation.
+
+## Session 093 - 2026-08-11
+
+### Objective
+Build the deterministic first-native-record preflight for the selected
+recurring Project Controls progress workbook class.
+
+### Completed
+- Added `scripts/verify_st1_083_first_native_record_preflight.py`.
+- Added three synthetic native-record fixtures:
+  - `docs/examples/ST1_083_first_native_record.synthetic.ready.json`
+  - `docs/examples/ST1_083_first_native_record.synthetic.invalid_business_time.json`
+  - `docs/examples/ST1_083_first_native_record.synthetic.incomplete_native_evidence.json`
+- Verified four deterministic states:
+  - valid bundle + no native metadata -> `BLOCKED_NATIVE_RECORD_METADATA_MISSING`
+  - valid bundle + invalid business-time metadata -> `BLOCKED_BUSINESS_TIME_RULE_INVALID`
+  - valid bundle + incomplete transformation/acquisition continuity -> `BLOCKED_NATIVE_EVIDENCE_INCOMPLETE`
+  - valid bundle + compliant synthetic native metadata -> `READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-083-first-native-record-preflight.json`
+
+### Boundary and Next Gate
+- No real delegation, source registration, acquisition, ingestion, policy
+  mutation, or certification changed.
+- The next critical-path task should prepare the exact dry-run runtime
+  transaction plan for the first real attempt so that valid external evidence
+  plus one native-record artifact can be executed with minimal uncertainty.
+
+## Session 094 - 2026-08-11
+
+### Objective
+Turn the first-native-record readiness gate into an exact dry-run runtime
+transaction plan for the first real selected-class attempt.
+
+### Completed
+- Added `scripts/plan_st1_084_first_real_runtime_attempt.py`.
+- Verified blocked dry-run behavior for:
+  - missing native metadata
+  - invalid workbook business-time metadata
+- Verified ready dry-run behavior for the synthetic compliant case.
+- Recorded one stable six-step append-only write sequence:
+  1. `sdas_source_registry`
+  2. `sdas_source_control_verifications`
+  3. `sdas_acquisition_events`
+  4. `sdas_transformations`
+  5. `POST /v1/records -> credibility_records`
+  6. `sdas_policy_decisions`
+- Preserved explicit hard stops before mutation, before claiming
+  `policy_automatic`, and before any certification step.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-084-first-real-runtime-dry-run.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, or certification changed.
+- The next task should compile the future valid bundle + native-record inputs
+  into one non-secret execution-manifest shape so the first real attempt is
+  operator-executable with minimal translation risk.
+
+## Session 095 - 2026-08-11
+
+### Objective
+Compile the ready dry-run transaction plan into one non-secret execution
+manifest for the first real selected-class attempt.
+
+### Completed
+- Added `scripts/compile_st1_085_first_real_attempt_manifest.py`.
+- Verified blocked manifest behavior when native metadata is absent.
+- Verified ready manifest behavior for the compliant synthetic selected-class
+  case.
+- Compiled the six-step write sequence into operator-executable payload shapes
+  without secrets, credentials, or runtime-only values:
+  1. `sdas_source_registry`
+  2. `sdas_source_control_verifications`
+  3. `sdas_acquisition_events`
+  4. `sdas_transformations`
+  5. `POST /v1/records -> credibility_records`
+  6. `sdas_policy_decisions`
+- Preserved explicit runtime-operator inputs and the hard stops before
+  mutation, before claiming `policy_automatic`, and before certification.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-085-first-real-attempt-manifest.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, or certification changed.
+- The next additive step should convert the current manifest + hard-stop state
+  into one concise operator readiness checklist / handoff artifact for the
+  eventual first real run.
+
+## Session 096 - 2026-08-11
+
+### Objective
+Generate one concise operator-facing readiness checklist/handoff artifact for
+the first real selected-class runtime attempt.
+
+### Completed
+- Added `scripts/generate_st1_086_operator_handoff.py`.
+- Verified blocked handoff behavior when native metadata is absent.
+- Verified ready handoff behavior for the compliant synthetic selected-class
+  case.
+- Confirmed the handoff artifact preserves:
+  - prerequisite confirmations
+  - required operator-supplied values
+  - ordered runtime actions
+  - immediate pre-step checks
+  - explicit stop conditions
+  - all previously established hard stops
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-086-first-real-run-operator-handoff.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, or certification changed.
+- The next additive step should package the existing preflight/plan/manifest/
+  handoff layers into one submission-ready operator kit for the eventual first
+  real run.
+
+## Session 097 - 2026-08-11
+
+### Objective
+Package the existing preflight, dry-run, manifest, and handoff layers into
+one deterministic submission-ready operator kit for the first real
+selected-class runtime attempt.
+
+### Completed
+- Added `scripts/compile_st1_087_first_real_attempt_kit.py`.
+- Verified compiler syntax with `python -m py_compile`.
+- Verified blocked kit behavior with the valid ST1-078 bundle fixture alone.
+- Verified ready kit behavior with the compliant ST1-083 ready native-record
+  fixture.
+- Confirmed the compiled kit preserves:
+  - one deterministic non-secret artifact set
+  - zero runtime mutation
+  - the ordered six-step runtime sequence when ready
+  - the required operator-input list
+  - the same three preserved hard stops
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-087-first-real-attempt-operator-kit.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should build the deterministic pre-mutation
+  independent-verification gate so a future real evidence submission can be
+  checked for exact-scope readiness immediately before any runtime write.
+
+## Session 098 - 2026-08-11
+
+### Objective
+Build one deterministic pre-mutation independent-verification gate for the
+first real selected-class attempt.
+
+### Completed
+- Added `scripts/verify_st1_088_pre_mutation_gate.py`.
+- Added synthetic operator-input fixtures:
+  - `docs/examples/ST1_088_operator_inputs.synthetic.ready.json`
+  - `docs/examples/ST1_088_operator_inputs.synthetic.invalid.json`
+- Verified script syntax with `python -m py_compile`.
+- Verified blocked behavior with missing operator inputs and a blocked
+  upstream operator kit.
+- Verified blocked behavior with a ready upstream operator kit but invalid
+  operator inputs, preserving exact blocker reasons for:
+  - automatic certification not allowed
+  - business-time mismatch
+  - exact-scope mismatch
+  - invalid fact payload
+- Verified ready behavior with compliant synthetic operator inputs and a
+  ready upstream operator kit, producing
+  `GO_FOR_FIRST_RUNTIME_MUTATION`.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-088-pre-mutation-gate.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should verify the post-mutation receipt and hard-stop
+  boundary so the first real runtime attempt can be proven to have reached
+  `policy_automatic` truthfully without crossing into certification.
+
+## Session 099 - 2026-08-11
+
+### Objective
+Build one deterministic post-mutation receipt and hard-stop verifier for the
+first real selected-class attempt.
+
+### Completed
+- Added `scripts/verify_st1_089_policy_automatic_receipt.py`.
+- Added synthetic receipt fixtures:
+  - `docs/examples/ST1_089_runtime_receipt.synthetic.ready.json`
+  - `docs/examples/ST1_089_runtime_receipt.synthetic.invalid.json`
+- Verified script syntax with `python -m py_compile`.
+- Verified blocked behavior with a ready pre-mutation gate but no receipt.
+- Verified blocked behavior with an invalid synthetic receipt that does not
+  preserve truthful `policy_automatic` / certification-boundary semantics.
+- Verified ready behavior with the compliant synthetic receipt, producing
+  `REACHED_POLICY_AUTOMATIC_HARD_STOP` while preserving
+  `certification_executed=false`.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-089-policy-automatic-receipt.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should formalize the selected-class operating-model
+  simulation so future batches can report `policy_automatic`,
+  `human_required`, and `reject_or_quarantine` counts without per-record
+  review.
+
+## Session 100 - 2026-08-11
+
+### Objective
+Build one deterministic selected-class operating-model simulator for future
+routine batches.
+
+### Completed
+- Added `scripts/simulate_st1_090_selected_class_operating_model.py`.
+- Added synthetic batch fixtures:
+  - `docs/examples/ST1_090_selected_class_batch.synthetic.current_like.json`
+  - `docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json`
+- Verified script syntax with `python -m py_compile`.
+- Verified a current-like historical/reconstructed batch remains fully
+  `human_required` with dominant reason `missing_native_evidence`.
+- Verified a mixed future batch routes deterministically to:
+  - `policy_automatic=1`
+  - `human_required=3`
+  - `reject_or_quarantine=2`
+- Verified the Human Review operating rule remains exception-focused:
+  only `human_required` and `reject_or_quarantine` items require follow-up.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-090-selected-class-operating-model.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should build an operator-facing selected-class
+  exception queue/review-pack contract so future routine batches can surface
+  only the review-worthy exceptions.
+
+## Session 101 - 2026-08-11
+
+### Objective
+Build one deterministic selected-class exception queue / review-pack contract.
+
+### Completed
+- Added `scripts/generate_st1_091_selected_class_exception_queue.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified a current-like historical batch produces exactly three
+  `human_required` review items and excludes all `policy_automatic` items from
+  individual review output.
+- Verified a mixed future batch produces exactly five review-pack exceptions:
+  three `human_required` plus two `reject_or_quarantine`, while excluding the
+  single `policy_automatic` item from the review pack.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-091-selected-class-exception-queue.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile the explicit first-real hard-stop
+  report contract required immediately before certification.
+
+## Session 102 - 2026-08-11
+
+### Objective
+Build one deterministic first-real hard-stop report compiler for the selected
+class.
+
+### Completed
+- Added `scripts/compile_st1_092_first_real_hard_stop_report.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified blocked behavior with an invalid synthetic receipt, preserving the
+  exact receipt-side blocker `policy_receipt_invalid`.
+- Verified ready behavior with the compliant synthetic receipt, emitting the
+  required ST1-066 section D report fields for the first real hard stop.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-092-first-real-hard-stop-report.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should package the end-to-end first-real execution
+- dossier so the operator can move from independently verified external
+- evidence to runtime execution and hard-stop reporting with minimal
+- coordination overhead.
+
+## Session 103 - 2026-08-11
+
+### Objective
+Build one deterministic first-real execution dossier for the selected class.
+
+### Completed
+- Added `scripts/compile_st1_093_first_real_execution_dossier.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified blocked dossier behavior with an invalid synthetic receipt,
+  preserving the downstream blocker chain through receipt and hard-stop
+  reporting.
+- Verified ready dossier behavior with the compliant synthetic receipt,
+  producing a ready operator-facing dossier with:
+  - six ordered runtime steps
+  - three preserved hard stops
+  - ready hard-stop report surface
+  - preserved exclusion of `policy_automatic` items from exception review
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-093-first-real-execution-dossier.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should formalize the handoff surface from
+- independently verified external evidence into this execution dossier so the
+- first truthful real native attempt can be populated without ad-hoc operator
+- translation.
+
+## Session 104 - 2026-08-11
+
+### Objective
+Build one deterministic external-evidence-to-dossier handoff compiler for the
+selected class.
+
+### Completed
+- Added `scripts/compile_st1_094_external_evidence_to_dossier_handoff.py`.
+- Added `docs/examples/ST1_094_first_real_native_record.synthetic.invalid.json`.
+- Verified script syntax with `python -m py_compile`.
+- Verified blocked handoff behavior with incomplete synthetic native evidence,
+  preserving the upstream blocker `BLOCKED_NATIVE_EVIDENCE_INCOMPLETE`.
+- Verified ready handoff behavior with the compliant synthetic native record,
+  emitting dossier-ready input shapes and explicit remaining runtime-only
+  fields.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-094-external-evidence-to-dossier-handoff.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile the final operator launch package that
+  combines the handoff surface with the ready execution dossier for immediate
+  use when real verified evidence arrives.
+
+## Session 105 - 2026-08-11
+
+### Objective
+Build one deterministic final operator launch package for the selected class.
+
+### Completed
+- Added `scripts/compile_st1_095_final_operator_launch_package.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified blocked launch-package behavior with incomplete synthetic native
+  evidence, preserving the dossier/handoff blocker chain.
+- Verified ready launch-package behavior with compliant synthetic inputs,
+  producing:
+  - six ordered runtime steps
+  - seven remaining runtime-only fields
+  - three hard stops
+  - a ready hard-stop report surface
+  - preserved exclusion of `policy_automatic` items from exception review
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-095-final-operator-launch-package.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile a concise operator-facing
+  readiness/blocking summary that classifies whether the selected-class first
+  real attempt is ready to run, still waiting on external evidence, or only
+  missing runtime-only fields.
+
+## Session 106 - 2026-08-11
+
+### Objective
+Build one deterministic selected-class real-run readiness summary.
+
+### Completed
+- Added `scripts/compile_st1_096_real_run_readiness_summary.py`.
+- Added `docs/examples/ST1_096_operator_inputs.synthetic.runtime_only_missing.json`.
+- Verified script syntax with `python -m py_compile`.
+- Verified all three required readiness states:
+  - `waiting_for_external_evidence`
+  - `waiting_for_runtime_only_fields`
+  - `ready_to_run`
+- Confirmed exact blocker reasons and remaining runtime-only fields are
+  preserved where applicable.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-096-real-run-readiness-summary.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one final business-facing
+  missing-input pack that names only the real-world evidence or runtime-only
+  values still required when the selected-class first real attempt is not
+  yet `ready_to_run`.
+
+## Session 107 - 2026-08-11
+
+### Objective
+Build one deterministic selected-class missing-input pack for all non-ready
+first-real-attempt states.
+
+### Completed
+- Added `scripts/compile_st1_097_missing_input_pack.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified three deterministic states:
+  - `waiting_for_external_evidence` -> one exact external native-evidence
+    requirement: `transformation.lineage_complete must be true`
+  - `waiting_for_runtime_only_fields` -> five exact runtime-only requirements:
+    `fact_payload.fact_value`, `observed_at`, `record_id`, plus the later
+    runtime artifacts `runtime receipt after actual execution` and
+    `batch routing input only if exception-queue simulation is needed for the
+    same run`
+  - `ready_to_run` -> zero missing inputs
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-097-missing-input-pack.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic reentry gate so the
+  first real selected-class path stays parked while the external dependency
+  fingerprint is unchanged and reopens only when external state or immediate
+  runtime readiness genuinely changes.
+
+## Session 108 - 2026-08-11
+
+### Objective
+Build one deterministic selected-class reentry gate above the parked external
+dependency and missing-input pack.
+
+### Completed
+- Added `scripts/compile_st1_098_reentry_gate.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified four deterministic outcomes:
+  - unchanged parked fingerprint + external-evidence blocker ->
+    `PARKED_UNCHANGED_EXTERNAL_DEPENDENCY`
+  - changed parked fingerprint + external-evidence blocker ->
+    `REOPEN_FOR_EXTERNAL_EVIDENCE_REASSESSMENT`
+  - runtime-only gaps ->
+    `WAITING_FOR_RUNTIME_ONLY_FIELDS`
+  - ready inputs ->
+    `READY_FOR_FIRST_RUNTIME_MUTATION`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-098-reentry-gate.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one single-command first-real-attempt
+  rehearsal runner that executes the existing selected-class local stack from
+  parked dependency through reentry status, so the first truthful runtime
+  attempt can be assessed with one deterministic invocation instead of
+  stitching together multiple scripts manually.
+
+## Session 109 - 2026-08-11
+
+### Objective
+Build one deterministic single-command rehearsal runner for the selected-class
+first real attempt.
+
+### Completed
+- Added `scripts/run_st1_099_first_real_attempt_rehearsal.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified four deterministic outcomes:
+  - `PARKED_UNCHANGED_EXTERNAL_DEPENDENCY` ->
+    `wait_for_new_external_evidence`
+  - `REOPEN_FOR_EXTERNAL_EVIDENCE_REASSESSMENT` ->
+    `reassess_new_external_evidence_bundle`
+  - `WAITING_FOR_RUNTIME_ONLY_FIELDS` ->
+    `supply_remaining_runtime_only_inputs`
+  - `READY_FOR_FIRST_RUNTIME_MUTATION` ->
+    `begin_first_runtime_mutation_under_existing_hard_stops`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-099-first-real-attempt-rehearsal.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compare a future externally supplied bundle or
+  native-record artifact against the parked baseline and show exactly what
+  changed before any reentry or runtime mutation is attempted.
+
+## Session 110 - 2026-08-11
+
+### Objective
+Build one deterministic delta comparator for future selected-class external
+evidence submissions.
+
+### Completed
+- Added `scripts/compare_st1_100_submission_delta.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - unchanged baseline vs submission ->
+    `UNCHANGED_BASELINE_RELEVANT_INPUTS` with zero changed fields and no
+    reopen recommendation
+  - baseline invalid native evidence vs changed ready native evidence ->
+    `CHANGED_BASELINE_RELEVANT_INPUTS` with exact reentry-relevant deltas,
+    including `native.transformation.lineage_complete: false -> true`,
+    `handoff.handoff_status: BLOCKED_DOSSIER_HANDOFF -> READY_DOSSIER_HANDOFF`,
+    and `rehearsal.rehearsal_result: PARKED_UNCHANGED_EXTERNAL_DEPENDENCY ->
+    READY_FOR_FIRST_RUNTIME_MUTATION`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-100-submission-delta.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one concise business-facing change
+  summary over this comparator so a future external submission can be reviewed
+  as exact changed facts and readiness impact, without exposing the full
+  low-level delta surface.
+
+## Session 111 - 2026-08-11
+
+### Objective
+Build one deterministic business-facing change-impact summary for future
+selected-class external evidence submissions.
+
+### Completed
+- Added `scripts/summarize_st1_101_submission_change_impact.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - unchanged baseline vs submission ->
+    `NO_REENTRY_RELEVANT_CHANGE` with unchanged readiness and zero changed
+    facts
+  - changed native-evidence submission ->
+    `REENTRY_RELEVANT_CHANGE_DETECTED` with concise high-signal changed facts,
+    readiness transition `PARKED_UNCHANGED_EXTERNAL_DEPENDENCY ->
+    READY_FOR_FIRST_RUNTIME_MUTATION`, and next-action transition
+    `wait_for_new_external_evidence ->
+    begin_first_runtime_mutation_under_existing_hard_stops`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-101-change-impact-summary.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic candidate-submission
+  checklist for future real external evidence arrivals so the operator can
+  confirm only the exact files, fields, and runtime artifacts still needed
+  before running the first real attempt.
+
+## Session 112 - 2026-08-11
+
+### Objective
+Build one deterministic candidate-submission checklist for future selected-class
+real external evidence arrivals.
+
+### Completed
+- Added `scripts/compile_st1_102_candidate_submission_checklist.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - unchanged baseline/submission ->
+    `CHECKLIST_ITEMS_REMAIN` with exactly one remaining checklist item:
+    `native_record_submission.transformation.lineage_complete must be true`
+  - changed ready native-evidence submission ->
+    `READY_CHECKLIST` with zero remaining external-evidence or runtime-only
+    items and readiness transition
+    `PARKED_UNCHANGED_EXTERNAL_DEPENDENCY ->
+    READY_FOR_FIRST_RUNTIME_MUTATION`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-102-candidate-submission-checklist.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic arrival packet so a
+  future real external submission can be handed into the first-real local
+  stack as one exact operator-ready payload instead of separate files.
+
+## Session 113 - 2026-08-11
+
+### Objective
+Build one deterministic selected-class arrival packet for future real external
+evidence submissions.
+
+### Completed
+- Added `scripts/compile_st1_103_arrival_packet.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - incomplete submission ->
+    `CHECKLIST_ITEMS_REMAIN` with one remaining exact native-record
+    requirement
+  - ready submission ->
+    `READY_CHECKLIST` with one operator-ready payload carrying exact changed
+    facts, readiness transition
+    `PARKED_UNCHANGED_EXTERNAL_DEPENDENCY ->
+    READY_FOR_FIRST_RUNTIME_MUTATION`, and next-action transition
+    `wait_for_new_external_evidence ->
+    begin_first_runtime_mutation_under_existing_hard_stops`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-103-arrival-packet.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic first-real attempt
+  execution envelope so a future real selected-class arrival packet and the
+  existing hard-stop contract can be handed off as one exact pre-mutation
+  execution object.
+
+## Session 114 - 2026-08-11
+
+### Objective
+Build one deterministic first-real pre-mutation execution envelope for future
+selected-class real arrivals.
+
+### Completed
+- Added `scripts/compile_st1_104_pre_mutation_execution_envelope.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_PRE_MUTATION_EXECUTION_ENVELOPE` with one exact remaining
+    native-record checklist item, zero ordered runtime steps, three hard
+    stops, and no ready hard-stop report
+  - ready arrival ->
+    `READY_PRE_MUTATION_EXECUTION_ENVELOPE` with six ordered runtime steps,
+    three hard stops, ready hard-stop reporting, preserved required operator
+    inputs, and readiness transition
+    `PARKED_UNCHANGED_EXTERNAL_DEPENDENCY ->
+    READY_FOR_FIRST_RUNTIME_MUTATION`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-104-pre-mutation-execution-envelope.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic first-real mutation
+  handoff contract that reduces the ready execution envelope to the exact
+  mutation-start payload and the explicit before-step-one confirmations only.
+
+## Session 115 - 2026-08-11
+
+### Objective
+Build one deterministic first-real mutation-start handoff for future
+selected-class ready arrivals.
+
+### Completed
+- Added `scripts/compile_st1_105_mutation_start_handoff.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_MUTATION_START_HANDOFF` with false before-step-one confirmations,
+    three hard stops, zero ordered runtime steps, and one exact remaining
+    checklist item
+  - ready arrival ->
+    `READY_MUTATION_START_HANDOFF` with all before-step-one confirmations
+    true, three hard stops, six ordered runtime steps, preserved required
+    operator inputs, and next-action transition
+    `wait_for_new_external_evidence ->
+    begin_first_runtime_mutation_under_existing_hard_stops`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-105-mutation-start-handoff.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic first-step launch
+  card so the operator sees only the exact initial write target, required
+  confirmations, and preserved hard stops at the moment a real run starts.
+
+## Session 116 - 2026-08-11
+
+### Objective
+Build one deterministic first-step launch card for future selected-class ready
+arrivals.
+
+### Completed
+- Added `scripts/compile_st1_106_first_step_launch_card.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_FIRST_STEP_LAUNCH_CARD` with exact initial write target
+    `sdas_source_registry`, false confirmations, three preserved hard stops,
+    and one exact remaining checklist item
+  - ready arrival ->
+    `READY_FIRST_STEP_LAUNCH_CARD` with initial write target
+    `sdas_source_registry`, all confirmations true, three preserved hard
+    stops, and preserved required operator inputs
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-106-first-step-launch-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic source-registration
+  step card so the exact first write target itself is reduced to the minimal
+  field-level payload and confirmations for `sdas_source_registry`.
+
+## Session 117 - 2026-08-11
+
+### Objective
+Build one deterministic source-registration step card for future selected-class
+ready arrivals.
+
+### Completed
+- Added `scripts/compile_st1_107_source_registration_step_card.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_SOURCE_REGISTRATION_STEP_CARD` with empty payload, false
+    confirmations, and one exact remaining checklist item
+  - ready arrival ->
+    `READY_SOURCE_REGISTRATION_STEP_CARD` with the minimal field-level payload
+    for `sdas_source_registry`:
+    `source_id`, `report_class`, `project_scope`, `report_period_value`,
+    `resolution_source`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-107-source-registration-step-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  acquisition, ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic source-control
+  verification step card for the second write target so the operator can move
+  from source registration to the next exact runtime write with the same
+  narrowness.
+
+## Session 118 - 2026-08-11
+
+### Objective
+Build one deterministic source-control verification step card for future
+selected-class ready arrivals.
+
+### Completed
+- Added `scripts/compile_st1_108_source_control_verification_step_card.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_SOURCE_CONTROL_VERIFICATION_STEP_CARD` with empty payload, false
+    confirmations, and one exact remaining checklist item
+  - ready arrival ->
+    `READY_SOURCE_CONTROL_VERIFICATION_STEP_CARD` with the minimal field-level
+    payload for `sdas_source_control_verifications`:
+    `source_id`, `project_scope`, `document_data_class`,
+    `business_time_rule=approved_report_header`, and the runtime-required
+    verified-bundle fields `accountable_actor_id`, `evidence_reference`, and
+    `evidence_fingerprint`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-108-source-control-verification-step-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, ingestion, policy execution, or
+  certification changed.
+- The next additive step should compile one deterministic acquisition step
+  card for the third write target so the operator can move from source-control
+  verification to native acquisition with the same narrowness.
+
+## Session 119 - 2026-08-11
+
+### Objective
+Build one deterministic acquisition step card for future selected-class ready
+arrivals.
+
+### Completed
+- Added `scripts/compile_st1_109_acquisition_step_card.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_ACQUISITION_STEP_CARD` with empty payload, false confirmations,
+    and one exact remaining checklist item
+  - ready arrival ->
+    `READY_ACQUISITION_STEP_CARD` with the minimal field-level payload for
+    `sdas_acquisition_events`: `source_id`, `acquired_at`, `source_reference`,
+    `acquisition_method`, `original_fingerprint`, `size_bytes`, `media_type`,
+    `read_only`, and the runtime-derived fields `actor_id` and `evidence_hash`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-109-acquisition-step-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, ingestion, policy execution, or
+  certification changed.
+- The next additive step should compile one deterministic transformation step
+  card for the fourth write target so the operator can move from native
+  acquisition to transformation continuity with the same narrowness.
+
+## Session 120 - 2026-08-11
+
+### Objective
+Build one deterministic transformation step card, then continue narrowing the
+remaining selected-class runtime writes.
+
+### Completed
+- Added `scripts/compile_st1_110_transformation_step_card.py`.
+- Added `scripts/compile_st1_111_record_intake_step_card.py`.
+- Added `scripts/compile_st1_112_policy_decision_step_card.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified deterministic blocked and ready cases for:
+  - `BLOCKED_TRANSFORMATION_STEP_CARD` /
+    `READY_TRANSFORMATION_STEP_CARD`
+  - `BLOCKED_RECORD_INTAKE_STEP_CARD` /
+    `READY_RECORD_INTAKE_STEP_CARD`
+  - `BLOCKED_POLICY_DECISION_STEP_CARD` /
+    `READY_POLICY_DECISION_STEP_CARD`
+- Recorded sanitized evidence at:
+  - `evidence/sanitized/2026-08-11-st1-110-transformation-step-card.json`
+  - `evidence/sanitized/2026-08-11-st1-111-record-intake-step-card.json`
+  - `evidence/sanitized/2026-08-11-st1-112-policy-decision-step-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- All six planned writes are now reduced to deterministic operator-ready step
+  cards. The next additive step should assemble them into one exact
+  pre-certification hard-stop gate package for the first real
+  `policy_automatic` attempt.
+
+## Session 121 - 2026-08-11
+
+### Objective
+Build one deterministic pre-certification hard-stop gate package for future
+selected-class ready arrivals.
+
+### Completed
+- Added `scripts/compile_st1_113_pre_certification_hard_stop_gate.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_PRE_CERTIFICATION_HARD_STOP_GATE` with all six step cards
+    blocked, blocked hard-stop/launch surfaces, one exact remaining checklist
+    item, and zero ordered runtime steps
+  - ready arrival ->
+    `READY_PRE_CERTIFICATION_HARD_STOP_GATE` with all six step cards ready,
+    ready hard-stop/launch surfaces, six ordered runtime steps, exact runtime
+    operator inputs, explicit `policy_automatic` policy metadata, and
+    `human_approval_required_before_certification=true`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-113-pre-certification-hard-stop-gate.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- The next additive step should compile one deterministic runtime-only
+  submission card so the operator sees only the exact five real values still
+  required to execute the first selected-class attempt under the preserved
+  hard stops.
+
+## Session 122 - 2026-08-11
+
+### Objective
+Build one deterministic runtime-only submission card for future selected-class
+ready arrivals.
+
+### Completed
+- Added `scripts/compile_st1_114_runtime_only_submission_card.py`.
+- Verified script syntax with the bundled workspace Python runtime.
+- Verified three deterministic cases:
+  - external-evidence-blocked ->
+    `BLOCKED_RUNTIME_ONLY_SUBMISSION_CARD` with zero runtime values and one
+    exact remaining checklist item
+  - runtime-only-missing ->
+    `BLOCKED_RUNTIME_ONLY_SUBMISSION_CARD` with the five unresolved runtime-
+    only items
+  - ready ->
+    `READY_RUNTIME_ONLY_SUBMISSION_CARD` with the exact five real
+    operator-supplied values still required for execution time
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-114-runtime-only-submission-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- The next meaningful step should compile one exact execution worksheet that
+  maps the five runtime-supplied values to the existing six-step runtime
+  sequence and preserved stop-before-certification boundary, without adding
+  new trust semantics.
+
+## Session 123 - 2026-08-11
+
+### Objective
+Build one deterministic first-real execution worksheet for future selected-
+class ready arrivals.
+
+### Completed
+- Added `scripts/compile_st1_115_first_real_execution_worksheet.py`.
+- Verified script syntax with the bundled workspace Python runtime.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_FIRST_REAL_EXECUTION_WORKSHEET` with no runtime values, blocked
+    manifest/hard-stop surfaces, and one exact remaining checklist item
+  - ready arrival ->
+    `READY_FIRST_REAL_EXECUTION_WORKSHEET` with the exact five runtime values
+    and an explicit step-to-value mapping over the six-step runtime sequence
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-115-first-real-execution-worksheet.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- The next meaningful step should compile one deterministic execution trigger
+  card that answers only whether the first selected-class attempt should
+  execute now, wait for external evidence, or wait for runtime-only values.
+
+## Session 124 - 2026-08-11
+
+### Objective
+Build one deterministic first-real execution trigger card for future
+selected-class arrivals.
+
+### Completed
+- Added `scripts/compile_st1_116_execution_trigger_card.py`.
+- Verified script syntax with the bundled workspace Python runtime.
+- Verified three deterministic outcomes:
+  - `wait_for_external_evidence`
+  - `wait_for_runtime_only_values`
+  - `execute_now`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-116-execution-trigger-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- The next meaningful step should compile one minimal activation-request
+  packet that tells the operator exactly what real independently verified
+  evidence and/or runtime values are still needed to move the trigger toward
+  `execute_now`.
+
+## Session 125 - 2026-08-11
+
+### Objective
+Build one deterministic first-real activation-request packet for future
+selected-class arrivals.
+
+### Completed
+- Added `scripts/compile_st1_117_activation_request_packet.py`.
+- Verified script syntax with the bundled workspace Python runtime.
+- Verified three deterministic outcomes:
+  - `external_evidence_request`
+  - `runtime_only_request`
+  - `execute_now_packet`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-117-activation-request-packet.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- The next meaningful step should compile one final pre-execution operator
+  brief that combines the exact request, six-step execution map, and
+  stop-before-certification boundary into one handoff for the first real
+  attempt.
+
+## Session 126 - 2026-08-11
+
+### Objective
+Build one deterministic first-real pre-execution operator brief for future
+selected-class arrivals.
+
+### Completed
+- Added `scripts/compile_st1_118_pre_execution_operator_brief.py`.
+- Verified script syntax with the bundled workspace Python runtime.
+- Verified three deterministic outcomes:
+  - external-evidence blocked ->
+    `BLOCKED_PRE_EXECUTION_OPERATOR_BRIEF` with
+    `next_action=wait_for_external_evidence`, zero execution steps, and the
+    exact remaining external-evidence checklist
+  - runtime-only missing ->
+    `BLOCKED_PRE_EXECUTION_OPERATOR_BRIEF` with
+    `next_action=wait_for_runtime_only_values`, six preserved execution steps,
+    and the exact five remaining runtime-only items
+  - ready arrival ->
+    `READY_PRE_EXECUTION_OPERATOR_BRIEF` with `next_action=execute_now`, the
+    full six-step execution map, five runtime values, and a ready hard-stop
+    report
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-118-pre-execution-operator-brief.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- The next meaningful step should verify future real execution conformance:
+  whether an actual first-real runtime receipt and step sequence match this
+  brief exactly and preserve the stop-before-certification boundary.
+
+## Session 127 - 2026-08-11
+
+### Objective
+Build one deterministic first-real execution-conformance verifier for future
+selected-class attempts.
+
+### Completed
+- Added `scripts/verify_st1_119_execution_conformance.py`.
+- Added approved synthetic brief fixture at
+  `docs/examples/ST1_118_pre_execution_operator_brief.synthetic.ready.json`
+  so ST1-119 compares a future runtime receipt against a pre-approved brief
+  instead of recomputing the brief from that same receipt.
+- Verified script syntax with the bundled workspace Python runtime.
+- Verified two deterministic outcomes:
+  - non-conforming receipt ->
+    `EXECUTION_DOES_NOT_CONFORM` with deterministic reasons
+    `approval_mode_mismatch`, `policy_receipt_invalid`,
+    `receipt_not_at_policy_automatic_hard_stop`, and
+    `certification_boundary_breached`
+  - conforming receipt ->
+    `EXECUTION_CONFORMS_TO_APPROVED_BRIEF` with zero reason codes,
+    six expected vs six observed steps, `approval_mode=policy_automatic`,
+    and preserved `certification_executed=false`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-119-execution-conformance.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- No further independent local-only packaging/verifier step remains on the
+  critical path without drifting away from the real ST1-066 success
+  criterion.
+- The next meaningful task is the first real selected-class attempt itself,
+  triggered only when independently verified external governance/source-
+  control evidence and one native selected-class record artifact actually
+  arrive.
+
+## Session 128 - 2026-08-11
+
+### Objective
+Verify from current authoritative workspace/runtime state whether ST1-120 has
+actually become executable.
+
+### Completed
+- Re-read the ST1-066 objective and current ST1-120 task state.
+- Audited current repository artifacts for any new real-arrival ST1-078 bundle
+  or real native selected-class record artifact.
+- Confirmed the repository still contains only scope-definition and
+  synthetic/example artifacts for the selected class.
+- Re-checked the candidate-specific bundle state and confirmed the same four
+  external inputs remain required.
+- Ran read-only runtime counts on `rddb` for the selected runtime source
+  family and confirmed:
+  - `source_registry_rows = 0`
+  - `acquisition_rows = 0`
+  - `transformation_rows = 0`
+  - `active_delegations = 0`
+  - `policy_rows_for_selected_runtime_source_family = 10`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-120-blocked-arrival-audit.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, transformation recording,
+  ingestion, policy execution, or certification changed.
+- ST1-120 remains truthfully blocked by missing independently verified
+  external evidence and one native selected-class record artifact.
+- The next meaningful step is unchanged: execute the first real selected-class
+  attempt immediately when those two real inputs actually arrive.
+
+## Session 129 - 2026-08-11
+
+### Objective
+Apply the newly approved limited pilot-governance decision without fabricating
+historical/source authority, and verify whether one already-authorized real
+artifact has already reached a truthful native SDAS hard stop.
+
+### Completed
+- Re-read the authoritative task, governance-bootstrap contracts, ST1-061 evidence, and the current runtime state in `enterprise_ai_ingestion_mvp`.
+- Verified that the existing append-only governance model already expresses the new business decision safely:
+  - `sdas-governance-policy-pilot-v1` remains `approved_for_pilot`
+  - approver identity remains `unverified`
+  - the latest bootstrap state remains `GOVERNANCE_APPROVED`
+  - active real delegations remain `0`
+- Deterministically reused the already-authorized real ST1-061 workbook from protected runtime-local state:
+  - selection alias `st1-046-7297becd26ebbda6`
+  - source alias `source-aa9ee5b08080281d`
+  - runtime source `maroon-st1-061-source-aa9ee5b08080281d`
+- Re-verified from runtime state that this real artifact had already truthfully reached policy evaluation:
+  - `1` source row
+  - `1` read-only native acquisition event
+  - `1` deterministic `metadata_manifest` transformation
+  - `1` credibility record
+  - `1` append-only policy decision
+- Re-verified the persisted policy result for that real artifact:
+  - `approval_mode=human_required`
+  - reason codes=`authority_not_verified`, `business_timestamp_missing`
+  - source authority remains `declared_unverified`
+  - record/source authority assertions remain `0`
+  - business-time evidence rows remain `0`
+  - certification remains absent
+- Added `scripts/verify_st1_121_limited_pilot_bootstrap.py`.
+- Verified, with rolled-back checks, that:
+  - limited pilot governance approval does not imply historical accountability
+  - limited pilot governance approval does not imply source authority
+  - business time is still not inferred from acquisition/filesystem timestamps
+  - append-only bootstrap mutation is rejected
+  - duplicate source registration is a no-op
+  - duplicate acquisition is a no-op
+  - a synthetic high-risk case routes to `human_required`
+  - a synthetic invalid/conflicting case routes to `reject_or_quarantine`
+- Re-ran `scripts/verify_st1_067_governance_bootstrap.py` successfully.
+- A local Docker-dependent verifier step could not be rerun because the local Docker Desktop service was stopped and could not be started from the current session without additional local elevation. This did not affect the remote runtime truth checks for ST1-121.
+- Recorded sanitized evidence at `evidence/sanitized/2026-08-11-st1-121-limited-pilot-bootstrap.json`.
+
+### Boundary and Next Gate
+- No historical authority, Project Controls accountability, source ownership, or business reporting time was upgraded to `VERIFIED`.
+- No real delegation became active.
+- No certification occurred.
+- No Certified Knowledge, Qdrant, Dify, embedding, threshold, currentness, or reliance boundary changed.
+- The remaining blocker is now narrower and truthful: the reused ST1-061 real artifact has already reached a valid native `human_required` hard stop, and the next meaningful task is to obtain exactly one independent source-authority or reporting-period evidence artifact for that same source/class so policy can be re-evaluated without widening scope or certifying anything.
+
+## Session 130 - 2026-08-11
+
+### Objective
+Re-align the active ST1-066 success target so the first real `policy_automatic`
+path does not incorrectly use ST1-061.
+
+### Completed
+- Re-read the newly attached ST1-066 objective and extracted its key invariant:
+  ST1-061 must remain `human_required` and must not be the first real
+  `policy_automatic` success target.
+- Reconciled the existing ST1-075/ST1-076 selected recurring class with
+  approved runtime-local workbook evidence from ST1-046.
+- Added `scripts/compile_st1_122_first_real_policy_target.py`.
+- Produced sanitized evidence identifying the representative first-real
+  success-target candidate inside the already selected class:
+  - recurring Project Controls progress workbook class
+  - series source id target: `maroon_project_controls_progress_workbook_series`
+  - representative real workbook alias: `source-a08f4a79cf2116b1`
+  - representative reporting period from document content:
+    `1402/11/21–1402/12/05`
+- Recorded the smallest truthful reusable governance gap for that target:
+  `A1` governance authority, `A2` Project Controls accountability, `A3`
+  controlled report definition, and one stable non-sensitive source
+  registration identity for the recurring workbook series.
+- Preserved all hard boundaries:
+  - ST1-061 unchanged
+  - no new source boundary
+  - no real delegation activation
+  - no certification
+  - no CK/Qdrant/Dify/provider/model change
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-122-first-real-policy-target.json`.
+
+### Boundary and Next Gate
+- The next truthful business ask is no longer “fix ST1-061”. It is now the
+  smallest reusable class-scoped governance/report-definition bundle required
+  for the recurring workbook series that can truthfully become the first real
+  `policy_automatic` target.
+- No further autonomous local-only step can create that real authority/source-
+  control basis without new organizational evidence or explicit signed
+  attestation.
+
+## Session 131 - 2026-08-11
+
+### Objective
+Turn ST1-123 from a generic reusable-evidence requirement into a precise
+business-facing handoff for the selected recurring workbook series.
+
+### Completed
+- Created a clean Persian business request pack specific to the selected
+  recurring workbook series:
+  `docs/ST1_123_RECURRING_WORKBOOK_GOVERNANCE_REQUEST_FA.md`
+- Narrowed the external ask to exactly four inputs for the real first
+  `policy_automatic` target:
+  - `A1` governance authority confirmation
+  - `A2` Project Controls / PMO accountability confirmation
+  - `A3` controlled report-definition confirmation
+  - one stable non-sensitive source-series identifier
+- Preserved the active target alignment:
+  - ST1-061 remains excluded as the first real success target
+  - no new source boundary
+  - no real delegation activation
+  - no certification
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-123-governance-request-pack.json`.
+
+### Boundary and Next Gate
+- The project is now ready for one concrete business response package rather
+  than a broad governance discussion.
+- The next real progress requires those four exact class-scoped inputs or one
+  equivalent controlled evidence bundle covering them.
+
+## Session 132 - 2026-08-11
+
+### Objective
+Turn the ST1-123 business request into one exact machine-checkable
+series-scoped intake kit so the next real submission can be validated without
+manual reinterpretation.
+
+### Completed
+- Added the exact selected-series intake template:
+  `docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json`
+- Added the exact selected-series verifier:
+  `scripts/verify_st1_124_recurring_workbook_governance_bundle.py`
+- Bound the intake kit to the active first-real `policy_automatic` target only:
+  - canonical source id:
+    `maroon_project_controls_progress_workbook_series`
+  - representative real workbook alias:
+    `source-a08f4a79cf2116b1`
+  - representative filename:
+    `070-TWRP-24 1402-12-05.xlsx`
+  - representative document-content reporting period example:
+    `1402/11/21–1402/12/05`
+- Verified the template locally:
+  - Python syntax check passed.
+  - JSON structure check passed.
+  - The verifier returns `WAITING_FOR_EXTERNAL_EVIDENCE`.
+  - The exact remaining missing inputs are:
+    `A1_governance_authority_confirmation`,
+    `A2_project_controls_accountability_confirmation`,
+    `A3_controlled_report_definition_confirmation`,
+    `stable_source_registration_evidence_reference`,
+    and `stable_non_sensitive_source_series_identifier`.
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-124-series-governance-intake-kit.json`.
+
+### Boundary and Next Gate
+- No delegation was activated.
+- No source registration occurred.
+- No certification occurred.
+- ST1-061 remains excluded as the first real success target.
+- The next truthful task is to validate exactly one submitted
+  series-scoped governance bundle against ST1-078 + ST1-124 and either accept
+  it structurally or reject it with precise missing/scope reasons.
+
+## Session 133 - 2026-08-11
+
+### Objective
+Prove the full ST1-125 selected-series submission gate in both the waiting and
+ready-but-unverified states without using any real authority artifact.
+
+### Completed
+- Added one positive synthetic filled selected-series fixture:
+  `docs/examples/ST1_124_recurring_workbook_governance_bundle.synthetic.ready.json`
+- Added one deterministic single-command selected-series gate runner:
+  `scripts/run_st1_125_series_bundle_gate.py`
+- Corrected the ST1-124 template fingerprints so the template is no longer
+  syntactically broken. It now stays structurally complete while still
+  truthfully remaining `WAITING_FOR_EXTERNAL_EVIDENCE`.
+- Verified two exact gate outcomes for the selected recurring workbook series:
+  - template bundle ->
+    structurally complete + exact selected-series match +
+    `WAITING_FOR_EXTERNAL_EVIDENCE`
+  - synthetic ready bundle ->
+    structurally complete + exact selected-series match +
+    `PENDING_INDEPENDENT_VERIFICATION`
+- Verified in both outcomes that:
+  - `st1_061_is_success_target = false`
+  - no delegation is activated
+  - no source registration occurs
+  - no certification occurs
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-125-series-bundle-gate.json`.
+
+### Boundary and Next Gate
+- The repository now has a truthful end-to-end local intake path for this exact
+  series from template -> filled bundle -> readiness classification.
+- The next real progress requires one real sanitized filled bundle for the same
+  selected recurring workbook series; no further packaging ambiguity remains.
+
+## Session 134 - 2026-08-11
+
+### Objective
+Convert the selected-series post-gate step into one deterministic
+independent-verification handoff so a future real filled bundle can move from
+`PENDING_INDEPENDENT_VERIFICATION` to exact controlled review requirements
+without reinterpretation.
+
+### Completed
+- Added one deterministic handoff compiler:
+  `scripts/compile_st1_127_independent_verification_handoff.py`
+- Verified the same two meaningful states for the exact selected recurring
+  workbook series:
+  - template bundle ->
+    `WAITING_FOR_EXTERNAL_EVIDENCE` +
+    `can_begin_real_controlled_review=false`
+  - synthetic ready bundle ->
+    `PENDING_INDEPENDENT_VERIFICATION` +
+    `can_begin_real_controlled_review=true`
+- Froze the exact controlled checks that remain required before any real
+  selected-series runtime mutation:
+  - governance approver identity verification
+  - Project Controls / PMO accountable role verification
+  - controlled report-definition verification
+  - business-time rule verification
+  - source ownership/control verification
+  - exact selected-series confirmation
+- Verified again that:
+  - `st1_061_is_success_target = false`
+  - no delegation is activated
+  - no source registration occurs
+  - no native acquisition occurs
+  - no certification occurs
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-127-independent-verification-handoff.json`.
+
+### Boundary and Next Gate
+- The remaining blocker is no longer uncertainty about what independent review
+  must verify after a filled exact-scope bundle arrives.
+- The next real progress requires one real sanitized filled selected-series
+  bundle, after which the exact controlled review checklist is already ready.
+
+## Session 135 - 2026-08-11
+
+### Objective
+Audit the full ST1-066 objective against current authoritative evidence so the
+remaining end-state blockers are explicit and machine-checkable rather than
+only implicit in scattered artifacts.
+
+### Completed
+- Added one deterministic readiness auditor:
+  `scripts/audit_st1_066_readiness.py`
+- Verified the current authoritative state against ST1-066 section-by-section:
+  - `A` -> `PROVEN`
+  - `B` -> `PROVEN_PREPARATION_ONLY`
+  - `C` -> `NOT_YET_PROVEN`
+  - `D` -> `PROVEN_PREPARATION_ONLY`
+  - `E` -> `PROVEN_SIMULATION_ONLY`
+  - `F` -> `PROVEN`
+  - `G` -> `PROVEN_WITH_ACTIVE_HARD_STOPS`
+- Verified the success criterion is still not achieved and narrowed the exact
+  remaining critical path to:
+  - one real sanitized filled selected-series bundle
+  - independent controlled review of scope/identity/source-control/business-time
+  - one real native selected-series record artifact
+  - one real `policy_automatic` hard stop without certification
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-129-st1-066-readiness-audit.json`.
+
+### Boundary and Next Gate
+- The project now has a direct evidence-backed audit stating exactly which
+  ST1-066 requirements are done, partially done, or still unproven.
+- The next real progress still requires new real-world evidence; the remaining
+  local ambiguity has been exhausted further.
+
+## Session 136 - 2026-08-11
+
+### Objective
+Eliminate the remaining local ambiguity around the native-record side of the
+selected recurring workbook series, rather than only the broader selected
+class.
+
+### Completed
+- Added one exact selected-series native-record verifier:
+  `scripts/verify_st1_131_selected_series_native_record.py`
+- Added one positive synthetic selected-series native-record fixture:
+  `docs/examples/ST1_131_selected_series_native_record.synthetic.ready.json`
+- Verified that the older selected-class native-record readiness can now also
+  be proven for the exact ST1-122 selected series:
+  - class-level native readiness ->
+    `READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT`
+  - selected-series native readiness ->
+    `READY_FOR_SELECTED_SERIES_NATIVE_PATH`
+  - combined selected-series runtime readiness -> `true`
+- Froze the exact selected-series native-record boundary inside this gate:
+  - source id `maroon_project_controls_progress_workbook_series`
+  - source alias `source-a08f4a79cf2116b1`
+  - filename `070-TWRP-24 1402-12-05.xlsx`
+  - example reporting period `1402/11/21–1402/12/05`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-131-selected-series-native-record-gate.json`.
+
+### Boundary and Next Gate
+- The critical path no longer has a local-only ambiguity on the native-record
+  side of the selected series.
+- The remaining real blockers are now narrower still:
+  - one real sanitized filled selected-series governance bundle
+  - one real selected-series native-record artifact
+  - the controlled review of the bundle
+  - and the first real `policy_automatic` hard stop without certification
+
+## Session 137 - 2026-08-11
+
+### Objective
+Prove that the two remaining real selected-series inputs, when both present
+and exact-scope aligned, are sufficient to move the path to controlled review
+without another local interpretation layer.
+
+### Completed
+- Added one exact selected-series dual-input convergence gate:
+  `scripts/run_st1_132_selected_series_dual_input_gate.py`
+- Verified the exact positive synthetic pair for the selected recurring
+  workbook series:
+  - bundle gate ->
+    `PENDING_INDEPENDENT_VERIFICATION`
+  - native-record gate ->
+    `READY_FOR_SELECTED_SERIES_NATIVE_PATH`
+  - combined dual-input status ->
+    `can_begin_controlled_review = true`
+  - next truthful step ->
+    `begin_independent_controlled_review`
+- Verified again that:
+  - `st1_061_is_success_target = false`
+  - no delegation is activated
+  - no source registration occurs
+  - no native acquisition occurs
+  - no policy mutation occurs
+  - no certification occurs
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-132-selected-series-dual-input-gate.json`.
+
+### Boundary and Next Gate
+- The remaining blocker is now purely the absence of the two real selected-series
+  artifacts plus their controlled review; not another local ambiguity.
+
+## Session 138 - 2026-08-11
+
+### Objective
+Turn the exact remaining real-world ask into one concise Persian request pack
+so the next handoff for the selected series is operational rather than
+interpretive.
+
+### Completed
+- Added the business-facing request pack:
+  `docs/ST1_134_SELECTED_SERIES_REAL_INPUT_REQUEST_FA.md`
+- Narrowed the real-world ask to exactly two artifacts for the same selected
+  series:
+  - one real sanitized filled governance/report-definition bundle
+  - one real sanitized native-record artifact
+- Preserved the exact selected-series scope and explicit non-goals:
+  - no delegation activation
+  - no source registration
+  - no native acquisition execution
+  - no policy mutation
+  - no certification
+  - no current-status declaration
+- Preserved the exact next truthful step if both artifacts arrive and pass:
+  `begin_independent_controlled_review`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-134-selected-series-real-input-request-pack.json`.
+
+### Boundary and Next Gate
+- The next meaningful progress now depends on the arrival of those two exact
+  real selected-series artifacts, not on any further local packaging layer.
+
+## Session 119 - 2026-08-11
+
+### Objective
+Build one deterministic acquisition step card for future selected-class ready
+arrivals.
+
+### Completed
+- Added `scripts/compile_st1_109_acquisition_step_card.py`.
+- Verified script syntax with `python -m py_compile`.
+- Verified two deterministic cases:
+  - blocked arrival ->
+    `BLOCKED_ACQUISITION_STEP_CARD` with empty payload, false confirmations,
+    and one exact remaining checklist item
+  - ready arrival ->
+    `READY_ACQUISITION_STEP_CARD` with the minimal field-level payload for
+    `sdas_acquisition_events`: `source_id`, `acquired_at`, `source_reference`,
+    `acquisition_method`, `original_fingerprint`, `size_bytes`, `media_type`,
+    `read_only`, and the runtime-derived fields `actor_id` and `evidence_hash`
+- Recorded sanitized evidence at
+  `evidence/sanitized/2026-08-11-st1-109-acquisition-step-card.json`
+
+### Boundary and Next Gate
+- No real runtime mutation, delegation activation, source registration,
+  source-control verification, acquisition, ingestion, policy execution, or
+  certification changed.
+- The next additive step should compile one deterministic transformation step
+  card for the fourth write target so the operator can move from native
+  acquisition to transformation continuity with the same narrowness.

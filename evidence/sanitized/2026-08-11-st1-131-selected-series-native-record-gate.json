@@ -1,0 +1,33 @@
+{
+  "task_id": "ST1-131",
+  "date": "2026-08-11",
+  "purpose": "selected_series_native_record_readiness_gate_for_the_st1_122_target",
+  "artifacts_created": [
+    "docs/examples/ST1_131_selected_series_native_record.synthetic.ready.json",
+    "scripts/verify_st1_131_selected_series_native_record.py"
+  ],
+  "verified_case": {
+    "class_level_native_readiness": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+    "selected_series_native_readiness": "READY_FOR_SELECTED_SERIES_NATIVE_PATH",
+    "ready_for_selected_series_runtime_path": true,
+    "selected_target": {
+      "target_source_id": "maroon_project_controls_progress_workbook_series",
+      "representative_source_alias": "source-a08f4a79cf2116b1",
+      "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+      "observed_reporting_period_example": "1402/11/21–1402/12/05"
+    }
+  },
+  "boundary": {
+    "real_delegation_activated": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_policy_mutation": false,
+    "real_certification_changed": false,
+    "st1_061_is_success_target": false
+  },
+  "verification_commands": [
+    "python -m py_compile scripts/verify_st1_131_selected_series_native_record.py",
+    "python scripts/verify_st1_131_selected_series_native_record.py --native-record docs/examples/ST1_131_selected_series_native_record.synthetic.ready.json",
+    "python -c \"import json, pathlib; json.loads(pathlib.Path('docs/examples/ST1_131_selected_series_native_record.synthetic.ready.json').read_text(encoding='utf-8')); print('JSON_OK')\""
+  ]
+}

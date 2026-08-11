@@ -1,0 +1,72 @@
+{
+  "task_id": "ST1-080",
+  "scope": "private_runtime_deployment_and_verification_only",
+  "deployment": {
+    "applied": true,
+    "rdapp_backup_dir": "/var/tmp/enterprise-ai-evidence/st1-080-20260811T065641Z-rdapp",
+    "rddb_backup_dir": "/var/tmp/enterprise-ai-evidence/st1-080-20260811T065641Z-rddb",
+    "remote_app_sha256": "cbc5de915c6bd7feb24cd80e89af4450c71a53f6312750e3935015ceb6b92b07",
+    "service_status": "deploy-ingestion-service-1 Up 6 seconds"
+  },
+  "runtime_verification": {
+    "health_status": 200,
+    "invalid_passport_request_status": 400,
+    "projection_exists": true,
+    "summary_view_exists": true,
+    "queue_view_exists": true,
+    "runtime_select_granted": true,
+    "runtime_summary_select_granted": true,
+    "runtime_queue_select_granted": true,
+    "projection_added_columns": [
+      "quality_gate_outcome",
+      "policy_reason_codes",
+      "assurance_reason_codes"
+    ],
+    "local_contract_version": "SDAS Assurance Passport v0.1",
+    "local_contract_integrity_result": "INTEGRITY_FAILURE",
+    "local_contract_reliance_result": "NOT_RELIANCE_ELIGIBLE"
+  },
+  "synthetic_projection_cases": {
+    "complete_valid_assurance_chain": "VERIFIED",
+    "missing_authority": "HUMAN_REQUIRED",
+    "missing_business_time": "HUMAN_REQUIRED",
+    "revoked_authority": "REVOKED_OR_SUPERSEDED",
+    "superseded_evidence": "REVOKED_OR_SUPERSEDED",
+    "conflicting_evidence": "QUARANTINED",
+    "expired_currentness_failure": "VERIFIED_WITH_LIMITATIONS",
+    "malformed_evidence": "INTEGRITY_FAILURE",
+    "hash_provenance_mismatch": "INTEGRITY_FAILURE",
+    "high_risk_fact": "QUARANTINED",
+    "reliance_not_eligible": "NOT_RELIANCE_ELIGIBLE"
+  },
+  "summary_verification": {
+    "summary_delta": {
+      "HUMAN_REQUIRED": 1,
+      "NOT_RELIANCE_ELIGIBLE": 2,
+      "QUARANTINED": 1,
+      "REVOKED_OR_SUPERSEDED": 1
+    },
+    "queue_delta": {
+      "HUMAN_REQUIRED": 1,
+      "NOT_RELIANCE_ELIGIBLE": 2,
+      "QUARANTINED": 1,
+      "REVOKED_OR_SUPERSEDED": 1
+    },
+    "verified_not_in_queue": true,
+    "queue_total_delta": 5
+  },
+  "external_gate": {
+    "state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "e1": "MISSING",
+    "e2": "MISSING",
+    "e3": "PARTIAL",
+    "real_active_delegations": 0
+  },
+  "boundaries": {
+    "real_authority_changed": false,
+    "real_delegation_changed": false,
+    "real_certification_changed": false,
+    "real_reliance_changed": false,
+    "new_source_access": false
+  }
+}

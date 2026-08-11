@@ -1,0 +1,46 @@
+{
+  "schema_version": "st1-099-first-real-attempt-rehearsal-evidence-v1",
+  "generated_utc": "2026-08-11T12:45:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/run_st1_099_first_real_attempt_rehearsal.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "parked_unchanged_external_dependency": {
+      "rehearsal_result": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY",
+      "next_action": "wait_for_new_external_evidence",
+      "dependency_fingerprint_changed": false
+    },
+    "reopen_for_external_evidence_reassessment": {
+      "rehearsal_result": "REOPEN_FOR_EXTERNAL_EVIDENCE_REASSESSMENT",
+      "next_action": "reassess_new_external_evidence_bundle",
+      "dependency_fingerprint_changed": true
+    },
+    "waiting_for_runtime_only_fields": {
+      "rehearsal_result": "WAITING_FOR_RUNTIME_ONLY_FIELDS",
+      "next_action": "supply_remaining_runtime_only_inputs",
+      "dependency_fingerprint_changed": false
+    },
+    "ready_for_first_runtime_mutation": {
+      "rehearsal_result": "READY_FOR_FIRST_RUNTIME_MUTATION",
+      "next_action": "begin_first_runtime_mutation_under_existing_hard_stops",
+      "dependency_fingerprint_changed": false
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

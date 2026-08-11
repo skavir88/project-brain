@@ -1,0 +1,62 @@
+{
+  "schema_version": "st1-089-policy-automatic-receipt-evidence-v1",
+  "generated_utc": "2026-08-11T08:42:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/verify_st1_089_policy_automatic_receipt.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_missing_receipt": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": null,
+      "receipt_result": "NO_GO_POLICY_AUTOMATIC_RECEIPT",
+      "pre_mutation_gate_result": "GO_FOR_FIRST_RUNTIME_MUTATION",
+      "receipt_status": "BLOCKED_RECEIPT_MISSING",
+      "reason_codes": [
+        "receipt_missing"
+      ]
+    },
+    "blocked_invalid_policy_or_hard_stop": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.invalid.json",
+      "receipt_result": "NO_GO_POLICY_AUTOMATIC_RECEIPT",
+      "pre_mutation_gate_result": "GO_FOR_FIRST_RUNTIME_MUTATION",
+      "receipt_status": "BLOCKED_POLICY_RECEIPT_INVALID",
+      "reason_codes": [
+        "policy_receipt_invalid"
+      ]
+    },
+    "ready_policy_automatic_hard_stop": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "receipt_result": "REACHED_POLICY_AUTOMATIC_HARD_STOP",
+      "pre_mutation_gate_result": "GO_FOR_FIRST_RUNTIME_MUTATION",
+      "receipt_status": "READY_POLICY_AUTOMATIC_HARD_STOP",
+      "reason_codes": [],
+      "approval_mode": "policy_automatic",
+      "certification_executed": false
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

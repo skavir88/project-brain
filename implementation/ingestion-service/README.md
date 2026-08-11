@@ -66,12 +66,28 @@ chain-integrity flags. When `require_reliance_eligible=true`, an otherwise
 verified passport deterministically downgrades to
 `NOT_RELIANCE_ELIGIBLE` unless the stored reliance state is `eligible`.
 
+The contract is versioned as `SDAS Assurance Passport v0.1`. It exposes
+independent machine-readable dimensions for identity, provenance, integrity,
+authority, business time, validation, policy, human review, certification,
+currentness, reliance, conflict, revocation, supersession, and consumption.
+Each dimension carries its own deterministic status, evidence references, and
+limitations where applicable.
+
+`GET /v1/sdas/passport/index?knowledge_id=<hex64>` returns a read-only
+index-visibility adjunct for one existing Certified Knowledge item. It shows
+only non-secret projection state for the isolated Qdrant collection:
+collection existence/runtime status, expected point identifier, whether the
+certified point is present, and whether the stored payload identity matches the
+Certified Knowledge identity. It does not expose raw vectors, provider
+credentials, retrieval thresholds, or uncertified records.
+
 `GET /v1/sdas/passports/summary` returns deterministic portfolio counts by
 passport outcome plus aggregated limitation-code counts.
 
 `GET /v1/sdas/passports/exceptions` returns only non-`VERIFIED` passports for
 triage. An optional `verification_result` filter narrows the queue to one
-deterministic class such as `HUMAN_REQUIRED` or `QUARANTINED`.
+deterministic class such as `HUMAN_REQUIRED`, `QUARANTINED`, or
+`INTEGRITY_FAILURE`.
 
 ## SDAS record routing
 

@@ -1,0 +1,56 @@
+{
+  "schema_version": "st1-102-candidate-submission-checklist-evidence-v1",
+  "generated_utc": "2026-08-11T14:05:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_102_candidate_submission_checklist.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "checklist_items_remain": {
+      "change_impact_result": "NO_REENTRY_RELEVANT_CHANGE",
+      "checklist_result": "CHECKLIST_ITEMS_REMAIN",
+      "readiness_transition": {
+        "baseline": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY",
+        "submission": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY"
+      },
+      "external_evidence_bundle_items": [
+        {
+          "artifact": "native_record_submission",
+          "field_path": "transformation.lineage_complete",
+          "requirement": "transformation.lineage_complete must be true"
+        }
+      ],
+      "runtime_only_items_count": 0
+    },
+    "ready_checklist": {
+      "change_impact_result": "REENTRY_RELEVANT_CHANGE_DETECTED",
+      "checklist_result": "READY_CHECKLIST",
+      "readiness_transition": {
+        "baseline": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY",
+        "submission": "READY_FOR_FIRST_RUNTIME_MUTATION"
+      },
+      "next_action_transition": {
+        "baseline": "wait_for_new_external_evidence",
+        "submission": "begin_first_runtime_mutation_under_existing_hard_stops"
+      },
+      "external_evidence_bundle_items_count": 0,
+      "runtime_only_items_count": 0
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

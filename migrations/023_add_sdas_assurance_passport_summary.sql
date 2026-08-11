@@ -1,8 +1,10 @@
-CREATE VIEW ingestion.sdas_assurance_passport_portfolio_summary AS
+CREATE OR REPLACE VIEW ingestion.sdas_assurance_passport_portfolio_summary AS
 WITH passport_rows AS (
   SELECT
     knowledge_id,
     CASE
+      WHEN base_verification_result = 'INTEGRITY_FAILURE'
+        THEN 'INTEGRITY_FAILURE'
       WHEN base_verification_result IN ('VERIFIED', 'VERIFIED_WITH_LIMITATIONS')
         AND COALESCE(authority_inheritance_state, 'missing') = 'eligible'
         AND COALESCE(business_time_state, 'missing') = 'valid'
@@ -44,7 +46,7 @@ LEFT JOIN limitation_counts lc
   ON lc.verification_result = pc.verification_result
 GROUP BY pc.verification_result, pc.passport_count;
 
-CREATE VIEW ingestion.sdas_assurance_passport_exception_queue AS
+CREATE OR REPLACE VIEW ingestion.sdas_assurance_passport_exception_queue AS
 WITH normalized AS (
   SELECT
     knowledge_id,
@@ -53,6 +55,8 @@ WITH normalized AS (
     certification_timestamp,
     base_verification_result,
     CASE
+      WHEN base_verification_result = 'INTEGRITY_FAILURE'
+        THEN 'INTEGRITY_FAILURE'
       WHEN base_verification_result IN ('VERIFIED', 'VERIFIED_WITH_LIMITATIONS')
         AND COALESCE(authority_inheritance_state, 'missing') = 'eligible'
         AND COALESCE(business_time_state, 'missing') = 'valid'
@@ -90,12 +94,13 @@ FROM normalized
 WHERE verification_result <> 'VERIFIED'
 ORDER BY
   CASE verification_result
-    WHEN 'QUARANTINED' THEN 1
-    WHEN 'REVOKED_OR_SUPERSEDED' THEN 2
-    WHEN 'HUMAN_REQUIRED' THEN 3
-    WHEN 'NOT_RELIANCE_ELIGIBLE' THEN 4
-    WHEN 'VERIFIED_WITH_LIMITATIONS' THEN 5
-    ELSE 6
+    WHEN 'INTEGRITY_FAILURE' THEN 1
+    WHEN 'QUARANTINED' THEN 2
+    WHEN 'REVOKED_OR_SUPERSEDED' THEN 3
+    WHEN 'HUMAN_REQUIRED' THEN 4
+    WHEN 'NOT_RELIANCE_ELIGIBLE' THEN 5
+    WHEN 'VERIFIED_WITH_LIMITATIONS' THEN 6
+    ELSE 7
   END,
   certification_timestamp DESC,
   knowledge_id;

@@ -1,0 +1,60 @@
+{
+  "schema_version": "st1-105-mutation-start-handoff-evidence-v1",
+  "generated_utc": "2026-08-11T15:45:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_105_mutation_start_handoff.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_mutation_start_handoff": {
+      "handoff_status": "BLOCKED_MUTATION_START_HANDOFF",
+      "before_step_one_confirmations": {
+        "arrival_packet_ready": false,
+        "execution_dossier_ready": false,
+        "launch_package_ready": false,
+        "hard_stop_report_ready": false,
+        "hard_stop_count": 3
+      },
+      "remaining_checklist_item": "native_record_submission.transformation.lineage_complete must be true",
+      "ordered_runtime_step_count": 0
+    },
+    "ready_mutation_start_handoff": {
+      "handoff_status": "READY_MUTATION_START_HANDOFF",
+      "before_step_one_confirmations": {
+        "arrival_packet_ready": true,
+        "execution_dossier_ready": true,
+        "launch_package_ready": true,
+        "hard_stop_report_ready": true,
+        "hard_stop_count": 3
+      },
+      "next_action_transition": {
+        "baseline": "wait_for_new_external_evidence",
+        "submission": "begin_first_runtime_mutation_under_existing_hard_stops"
+      },
+      "ordered_runtime_step_count": 6,
+      "required_operator_inputs": [
+        "verified accountable_actor_id",
+        "verified evidence_fingerprint values",
+        "real record_id",
+        "real observed_at",
+        "real low-risk fact payload"
+      ]
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

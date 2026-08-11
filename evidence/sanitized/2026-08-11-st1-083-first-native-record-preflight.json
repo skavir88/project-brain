@@ -1,0 +1,134 @@
+{
+  "schema_version": "st1-083-first-native-record-preflight-evidence-v1",
+  "generated_utc": "2026-08-11T07:18:00Z",
+  "cases": {
+    "bundle_only": {
+      "boundaries": {
+        "real_certification_performed": false,
+        "real_delegation_activated": false,
+        "real_file_acquired": false,
+        "real_record_ingested": false,
+        "real_source_registered": false
+      },
+      "bundle_readiness": {
+        "errors": [],
+        "status": "PENDING_INDEPENDENT_VERIFICATION",
+        "structural_validation_passed": true
+      },
+      "candidate_class_id": "project_controls_progress_workbook",
+      "native_record_readiness": {
+        "errors": [
+          "native_record metadata not supplied"
+        ],
+        "status": "BLOCKED_NATIVE_RECORD_METADATA_MISSING"
+      },
+      "native_record_summary": {
+        "media_type": null,
+        "resolution_source": null,
+        "source_id": null
+      },
+      "preflight_result": "BLOCKED",
+      "project_scope": "maroon_pilot",
+      "ready_for_real_runtime_attempt": false,
+      "schema_version": "st1-083-first-native-record-preflight-v1"
+    },
+    "invalid_business_time": {
+      "boundaries": {
+        "real_certification_performed": false,
+        "real_delegation_activated": false,
+        "real_file_acquired": false,
+        "real_record_ingested": false,
+        "real_source_registered": false
+      },
+      "bundle_readiness": {
+        "errors": [],
+        "status": "PENDING_INDEPENDENT_VERIFICATION",
+        "structural_validation_passed": true
+      },
+      "candidate_class_id": "project_controls_progress_workbook",
+      "native_record_readiness": {
+        "errors": [
+          "business_time.resolution_source must use the approved workbook-level reporting-period rule",
+          "business_time.disallowed_substitutes_used must remain empty"
+        ],
+        "status": "BLOCKED_BUSINESS_TIME_RULE_INVALID"
+      },
+      "native_record_summary": {
+        "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "resolution_source": "filesystem_timestamp",
+        "source_id": "maroon_project_controls_progress_workbook_series"
+      },
+      "preflight_result": "BLOCKED",
+      "project_scope": "maroon_pilot",
+      "ready_for_real_runtime_attempt": false,
+      "schema_version": "st1-083-first-native-record-preflight-v1"
+    },
+    "incomplete_native_evidence": {
+      "boundaries": {
+        "real_certification_performed": false,
+        "real_delegation_activated": false,
+        "real_file_acquired": false,
+        "real_record_ingested": false,
+        "real_source_registered": false
+      },
+      "bundle_readiness": {
+        "errors": [],
+        "status": "PENDING_INDEPENDENT_VERIFICATION",
+        "structural_validation_passed": true
+      },
+      "candidate_class_id": "project_controls_progress_workbook",
+      "native_record_readiness": {
+        "errors": [
+          "transformation.deterministic must be true",
+          "transformation.lineage_complete must be true",
+          "transformation.input_fingerprint must match acquisition.original_fingerprint"
+        ],
+        "status": "BLOCKED_NATIVE_EVIDENCE_INCOMPLETE"
+      },
+      "native_record_summary": {
+        "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "resolution_source": "workbook_labelled_reporting_week_header",
+        "source_id": "maroon_project_controls_progress_workbook_series"
+      },
+      "preflight_result": "BLOCKED",
+      "project_scope": "maroon_pilot",
+      "ready_for_real_runtime_attempt": false,
+      "schema_version": "st1-083-first-native-record-preflight-v1"
+    },
+    "ready": {
+      "boundaries": {
+        "real_certification_performed": false,
+        "real_delegation_activated": false,
+        "real_file_acquired": false,
+        "real_record_ingested": false,
+        "real_source_registered": false
+      },
+      "bundle_readiness": {
+        "errors": [],
+        "status": "PENDING_INDEPENDENT_VERIFICATION",
+        "structural_validation_passed": true
+      },
+      "candidate_class_id": "project_controls_progress_workbook",
+      "native_record_readiness": {
+        "errors": [],
+        "status": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT"
+      },
+      "native_record_summary": {
+        "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "resolution_source": "workbook_labelled_reporting_week_header",
+        "source_id": "maroon_project_controls_progress_workbook_series"
+      },
+      "preflight_result": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+      "project_scope": "maroon_pilot",
+      "ready_for_real_runtime_attempt": true,
+      "schema_version": "st1-083-first-native-record-preflight-v1"
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_certification_performed": false
+  }
+}

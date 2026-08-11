@@ -1,0 +1,405 @@
+{
+  "schema_version": "st1-085-first-real-attempt-manifest-evidence-v1",
+  "generated_utc": "2026-08-11T07:29:00Z",
+  "cases": {
+    "blocked_missing_native_metadata": {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "compiler_result": "BLOCKED_EXECUTION_MANIFEST",
+      "dry_run_plan": {
+        "candidate_class_id": "project_controls_progress_workbook",
+        "dry_run_only": true,
+        "hard_stops": [
+          {
+            "condition": "bundle_readiness must remain PENDING_INDEPENDENT_VERIFICATION and native_record_readiness must be READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+            "current_status": {
+              "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+              "native_record_readiness": "BLOCKED_NATIVE_RECORD_METADATA_MISSING"
+            },
+            "gate": "before_mutation"
+          },
+          {
+            "condition": "runtime write sequence must be executed successfully and the resulting decision must still be checked against exact-scope active delegation, business time, risk, and validation controls",
+            "current_status": "not_executed_in_dry_run",
+            "gate": "before_policy_automatic_claim"
+          },
+          {
+            "condition": "first real policy_automatic record must stop before certification unless explicit user approval is later provided",
+            "current_status": "hard_stop_preserved",
+            "gate": "before_certification"
+          }
+        ],
+        "planned_write_sequence": [],
+        "planner_result": "BLOCKED_DRY_RUN_PLAN",
+        "preflight": {
+          "boundaries": {
+            "real_certification_performed": false,
+            "real_delegation_activated": false,
+            "real_file_acquired": false,
+            "real_record_ingested": false,
+            "real_source_registered": false
+          },
+          "bundle_readiness": {
+            "errors": [],
+            "status": "PENDING_INDEPENDENT_VERIFICATION",
+            "structural_validation_passed": true
+          },
+          "candidate_class_id": "project_controls_progress_workbook",
+          "native_record_readiness": {
+            "errors": [
+              "native_record metadata not supplied"
+            ],
+            "status": "BLOCKED_NATIVE_RECORD_METADATA_MISSING"
+          },
+          "native_record_summary": {
+            "media_type": null,
+            "resolution_source": null,
+            "source_id": null
+          },
+          "preflight_result": "BLOCKED",
+          "project_scope": "maroon_pilot",
+          "ready_for_real_runtime_attempt": false,
+          "schema_version": "st1-083-first-native-record-preflight-v1"
+        },
+        "project_scope": "maroon_pilot",
+        "runtime_mutation_performed": false,
+        "schema_version": "st1-084-first-real-runtime-dry-run-v1"
+      },
+      "execution_manifest": [],
+      "project_scope": "maroon_pilot",
+      "runtime_mutation_performed": false,
+      "schema_version": "st1-085-first-real-attempt-manifest-v1"
+    },
+    "ready_execution_manifest": {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "compiler_result": "READY_EXECUTION_MANIFEST",
+      "dry_run_plan": {
+        "candidate_class_id": "project_controls_progress_workbook",
+        "dry_run_only": true,
+        "hard_stops": [
+          {
+            "condition": "bundle_readiness must remain PENDING_INDEPENDENT_VERIFICATION and native_record_readiness must be READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+            "current_status": {
+              "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+              "native_record_readiness": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT"
+            },
+            "gate": "before_mutation"
+          },
+          {
+            "condition": "runtime write sequence must be executed successfully and the resulting decision must still be checked against exact-scope active delegation, business time, risk, and validation controls",
+            "current_status": "not_executed_in_dry_run",
+            "gate": "before_policy_automatic_claim"
+          },
+          {
+            "condition": "first real policy_automatic record must stop before certification unless explicit user approval is later provided",
+            "current_status": "hard_stop_preserved",
+            "gate": "before_certification"
+          }
+        ],
+        "planned_write_sequence": [
+          {
+            "derived_summary": {
+              "source_id": "maroon_project_controls_progress_workbook_series"
+            },
+            "minimum_inputs": [
+              "source_id",
+              "source_type",
+              "non_sensitive_location_class",
+              "owning_role_class",
+              "project_scope",
+              "report_class",
+              "authority_state",
+              "evidence_reference"
+            ],
+            "phase": "source_registration",
+            "purpose": "register the exact selected-class source/system identity and scope",
+            "sequence": 1,
+            "target": "ingestion.sdas_source_registry",
+            "write_kind": "append_or_idempotent_insert"
+          },
+          {
+            "derived_summary": {
+              "resolution_source": "workbook_labelled_reporting_week_header"
+            },
+            "minimum_inputs": [
+              "source_id",
+              "accountable_actor_id",
+              "project_scope",
+              "document_data_class",
+              "business_time_rule",
+              "evidence_reference",
+              "evidence_fingerprint"
+            ],
+            "phase": "source_registration",
+            "purpose": "persist the exact source-control verification that ties the source to the accountable role and workbook reporting-period rule",
+            "sequence": 2,
+            "target": "ingestion.sdas_source_control_verifications",
+            "write_kind": "append_insert"
+          },
+          {
+            "derived_summary": {
+              "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            },
+            "minimum_inputs": [
+              "source_id",
+              "acquired_at",
+              "actor_id",
+              "acquisition_method",
+              "source_reference",
+              "original_fingerprint",
+              "size_bytes",
+              "media_type",
+              "evidence_hash"
+            ],
+            "phase": "acquisition",
+            "purpose": "record read-only native acquisition, original SHA-256, size, media type, and source reference",
+            "sequence": 3,
+            "target": "ingestion.sdas_acquisition_events",
+            "write_kind": "append_or_idempotent_insert"
+          },
+          {
+            "minimum_inputs": [
+              "acquisition_event_id",
+              "transformation_type",
+              "tool_name",
+              "tool_version",
+              "transformed_at",
+              "input_fingerprint",
+              "output_fingerprint",
+              "deterministic",
+              "evidence_hash"
+            ],
+            "phase": "transformation",
+            "purpose": "record deterministic transformation continuity from original fingerprint to canonical output fingerprint",
+            "sequence": 4,
+            "target": "ingestion.sdas_transformations",
+            "write_kind": "append_or_idempotent_insert"
+          },
+          {
+            "expected_service_gate": "certification_candidate",
+            "minimum_inputs": [
+              "source_id",
+              "record_id",
+              "payload.source_id",
+              "payload.data_class",
+              "provenance.source_reference",
+              "provenance.acquisition_event_id",
+              "provenance.evidence_quality",
+              "observed_at"
+            ],
+            "phase": "record_intake",
+            "purpose": "create the first real selected-class credibility record through the existing intake contract",
+            "sequence": 5,
+            "target": "POST /v1/records -> ingestion.credibility_records",
+            "write_kind": "service_insert"
+          },
+          {
+            "expected_outcome_if_all_controls_hold": "policy_automatic",
+            "minimum_inputs": [
+              "record_fingerprint",
+              "policy_id",
+              "policy_version",
+              "approval_mode",
+              "decision_actor",
+              "decision_reasons",
+              "evidence_quality",
+              "decision_hash"
+            ],
+            "phase": "policy_evaluation",
+            "purpose": "persist the first policy decision for the real native record",
+            "sequence": 6,
+            "target": "ingestion.sdas_policy_decisions",
+            "write_kind": "append_or_idempotent_insert"
+          }
+        ],
+        "planner_result": "READY_DRY_RUN_PLAN",
+        "preflight": {
+          "boundaries": {
+            "real_certification_performed": false,
+            "real_delegation_activated": false,
+            "real_file_acquired": false,
+            "real_record_ingested": false,
+            "real_source_registered": false
+          },
+          "bundle_readiness": {
+            "errors": [],
+            "status": "PENDING_INDEPENDENT_VERIFICATION",
+            "structural_validation_passed": true
+          },
+          "candidate_class_id": "project_controls_progress_workbook",
+          "native_record_readiness": {
+            "errors": [],
+            "status": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT"
+          },
+          "native_record_summary": {
+            "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "resolution_source": "workbook_labelled_reporting_week_header",
+            "source_id": "maroon_project_controls_progress_workbook_series"
+          },
+          "preflight_result": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+          "project_scope": "maroon_pilot",
+          "ready_for_real_runtime_attempt": true,
+          "schema_version": "st1-083-first-native-record-preflight-v1"
+        },
+        "project_scope": "maroon_pilot",
+        "runtime_mutation_performed": false,
+        "schema_version": "st1-084-first-real-runtime-dry-run-v1"
+      },
+      "execution_manifest": [
+        {
+          "payload_shape": {
+            "authority_state": "awaiting_validation",
+            "evidence_reference": "synthetic://source-registration/maroon-progress-workbook",
+            "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+            "owning_role_class": "Project Controls / PMO accountable role",
+            "project_scope": "maroon_pilot",
+            "report_class": "project_controls_progress_workbook",
+            "source_id": "maroon_project_controls_progress_workbook_series",
+            "source_type": "controlled_recurring_report_workbook"
+          },
+          "phase": "source_registration",
+          "purpose": "register the exact selected-class source/system identity and scope",
+          "sequence": 1,
+          "target": "ingestion.sdas_source_registry",
+          "write_kind": "append_or_idempotent_insert"
+        },
+        {
+          "payload_shape": {
+            "accountable_actor_id": "RUNTIME_REQUIRED_INPUT_FROM_VERIFIED_BUNDLE",
+            "business_time_rule": "workbook_labelled_reporting_week_header",
+            "document_data_class": "project_controls_progress_workbook",
+            "evidence_fingerprint": "RUNTIME_REQUIRED_INPUT_FROM_VERIFIED_BUNDLE",
+            "evidence_reference": "synthetic://source-registration/maroon-progress-workbook",
+            "project_scope": "maroon_pilot",
+            "source_id": "maroon_project_controls_progress_workbook_series"
+          },
+          "phase": "source_registration",
+          "purpose": "persist the exact source-control verification that ties the source to the accountable role and workbook reporting-period rule",
+          "sequence": 2,
+          "target": "ingestion.sdas_source_control_verifications",
+          "write_kind": "append_insert"
+        },
+        {
+          "payload_shape": {
+            "acquired_at": "2026-08-11T00:00:00Z",
+            "acquisition_method": "read_only_controlled_copy",
+            "actor_id": "RUNTIME_REQUIRED_INPUT_FROM_VERIFIED_BUNDLE",
+            "evidence_hash": "RUNTIME_DERIVED_FROM_ACQUISITION_FACTS",
+            "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "original_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "read_only": true,
+            "size_bytes": 1048576,
+            "source_id": "maroon_project_controls_progress_workbook_series",
+            "source_reference": "synthetic://native-source/first-workbook"
+          },
+          "phase": "acquisition",
+          "purpose": "record read-only native acquisition, original SHA-256, size, media type, and source reference",
+          "sequence": 3,
+          "target": "ingestion.sdas_acquisition_events",
+          "write_kind": "append_or_idempotent_insert"
+        },
+        {
+          "payload_shape": {
+            "acquisition_event_id": "RUNTIME_OUTPUT_FROM_STEP_3",
+            "deterministic": true,
+            "evidence_hash": "RUNTIME_DERIVED_FROM_TRANSFORMATION_FACTS",
+            "input_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "lineage_complete": true,
+            "output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "tool_name": "enterprise-ai-ingestion",
+            "tool_version": "0.3",
+            "transformation_type": "canonicalization",
+            "transformed_at": "2026-08-11T00:10:00Z"
+          },
+          "phase": "transformation",
+          "purpose": "record deterministic transformation continuity from original fingerprint to canonical output fingerprint",
+          "sequence": 4,
+          "target": "ingestion.sdas_transformations",
+          "write_kind": "append_or_idempotent_insert"
+        },
+        {
+          "payload_shape": {
+            "observed_at": "RUNTIME_REQUIRED_INPUT",
+            "payload": {
+              "data_class": "project_controls_progress_workbook_low_risk_fact",
+              "fact_payload": "RUNTIME_REQUIRED_INPUT",
+              "report_period": "1402/06/25-1402/06/31",
+              "source_id": "maroon_project_controls_progress_workbook_series"
+            },
+            "provenance": {
+              "acquisition_event_id": "RUNTIME_OUTPUT_FROM_STEP_3",
+              "evidence_quality": "native",
+              "source_reference": "synthetic://native-source/first-workbook"
+            },
+            "record_id": "RUNTIME_REQUIRED_INPUT",
+            "source_id": "maroon_project_controls_progress_workbook_series"
+          },
+          "phase": "record_intake",
+          "purpose": "create the first real selected-class credibility record through the existing intake contract",
+          "sequence": 5,
+          "target": "POST /v1/records -> ingestion.credibility_records",
+          "write_kind": "service_insert"
+        },
+        {
+          "payload_shape": {
+            "approval_mode": "policy_automatic",
+            "decision_actor": "sahra_policy_engine",
+            "decision_hash": "RUNTIME_DERIVED_FROM_PERSISTED_FACTS",
+            "decision_reasons": [
+              "all_required_policy_evidence_present"
+            ],
+            "evidence_quality": "native",
+            "policy_id": "project-controls-progress-low-risk",
+            "policy_version": "v1"
+          },
+          "phase": "policy_evaluation",
+          "purpose": "persist the first policy decision for the real native record",
+          "sequence": 6,
+          "target": "ingestion.sdas_policy_decisions",
+          "write_kind": "append_or_idempotent_insert"
+        }
+      ],
+      "manifest_summary": {
+        "contains_secret_values": false,
+        "hard_stops": [
+          {
+            "condition": "bundle_readiness must remain PENDING_INDEPENDENT_VERIFICATION and native_record_readiness must be READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+            "current_status": {
+              "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+              "native_record_readiness": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT"
+            },
+            "gate": "before_mutation"
+          },
+          {
+            "condition": "runtime write sequence must be executed successfully and the resulting decision must still be checked against exact-scope active delegation, business time, risk, and validation controls",
+            "current_status": "not_executed_in_dry_run",
+            "gate": "before_policy_automatic_claim"
+          },
+          {
+            "condition": "first real policy_automatic record must stop before certification unless explicit user approval is later provided",
+            "current_status": "hard_stop_preserved",
+            "gate": "before_certification"
+          }
+        ],
+        "requires_runtime_operator_inputs": [
+          "verified accountable_actor_id",
+          "verified evidence_fingerprint values",
+          "real record_id",
+          "real observed_at",
+          "real low-risk fact payload"
+        ],
+        "step_count": 6
+      },
+      "project_scope": "maroon_pilot",
+      "runtime_mutation_performed": false,
+      "schema_version": "st1-085-first-real-attempt-manifest-v1"
+    }
+  },
+  "boundaries": {
+    "runtime_mutation_performed": false,
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_certification_performed": false
+  }
+}

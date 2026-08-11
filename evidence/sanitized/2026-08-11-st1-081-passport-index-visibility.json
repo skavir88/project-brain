@@ -1,0 +1,45 @@
+{
+  "local_synthetic": {
+    "boundary_flags": {
+      "certification_or_governance_mutated": false,
+      "certified_scope_only": true,
+      "provider_or_credential_state_exposed": false,
+      "raw_vector_exposed": false,
+      "retrieval_threshold_changed": false
+    },
+    "indexed_payload_contract_valid": true,
+    "indexed_reliance_state": "not_eligible",
+    "indexed_visibility_result": "indexed_certified_projection_visible",
+    "nonindexed_visibility_result": "certified_not_indexed",
+    "payload_mismatch_visibility_result": "indexed_payload_mismatch"
+  },
+  "remote_runtime": {
+    "indexed_collection_exists": true,
+    "indexed_payload_contract_valid": true,
+    "indexed_point_present": true,
+    "indexed_reliance_state": "not_eligible",
+    "indexed_status": 200,
+    "indexed_vector_dimension": 3072,
+    "indexed_visibility_result": "indexed_certified_projection_visible",
+    "missing_error": "assurance_passport_index_not_found",
+    "missing_status": 404,
+    "verified_knowledge_id": "8648130408cc5a7cc04832907721b04c5366ebfda2fdff06cb388273cbc30f9b"
+  },
+  "schema_version": "st1-081-passport-index-visibility-v1",
+  "generated_utc": "2026-08-11T07:08:00Z",
+  "deployment": {
+    "rdapp_backup_dir": "/var/tmp/enterprise-ai-evidence/st1-081-20260811T070656Z-rdapp",
+    "rddb_backup_dir": "/var/tmp/enterprise-ai-evidence/st1-081-20260811T070656Z-rddb",
+    "runtime_service_rebuilt": true,
+    "database_projection_applied": true
+  },
+  "boundaries": {
+    "read_only_visibility_contract": true,
+    "raw_vectors_exposed": false,
+    "provider_or_credential_state_changed": false,
+    "retrieval_threshold_changed": false,
+    "real_certification_mutated": false,
+    "real_governance_or_delegation_mutated": false,
+    "uncertified_records_discoverable": false
+  }
+}

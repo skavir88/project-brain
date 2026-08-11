@@ -1,0 +1,184 @@
+{
+  "schema_version": "st1-118-pre-execution-operator-brief-evidence-v1",
+  "verified_on": "2026-08-11",
+  "expected_dependency_fingerprint": "f7ec9eb1ff1e6630ddd128fe85a20f50e484a9e915c94074be4a7c62ce96130c",
+  "cases": {
+    "external_blocked": {
+      "brief_status": "BLOCKED_PRE_EXECUTION_OPERATOR_BRIEF",
+      "truthful_next_action": "wait_for_external_evidence",
+      "request_kind": "external_evidence_request",
+      "requested_item_count": 6,
+      "execution_step_count": 0,
+      "runtime_value_count": 0,
+      "hard_stop_boundary": {},
+      "has_ready_hard_stop_report": false,
+      "remaining_checklist_items": {
+        "external_evidence_bundle_items": [
+          {
+            "field_path": "evidence_items.A1.signed_artifact_fingerprint",
+            "requirement": "evidence_items.A1.signed_artifact_fingerprint must be a lowercase sha256 hex string"
+          },
+          {
+            "field_path": "evidence_items.A2.signed_artifact_fingerprint",
+            "requirement": "evidence_items.A2.signed_artifact_fingerprint must be a lowercase sha256 hex string"
+          },
+          {
+            "field_path": "evidence_items.A3.signed_artifact_fingerprint",
+            "requirement": "evidence_items.A3.signed_artifact_fingerprint must be a lowercase sha256 hex string"
+          },
+          {
+            "field_path": "transformation.deterministic",
+            "requirement": "transformation.deterministic must be true"
+          },
+          {
+            "field_path": "transformation.lineage_complete",
+            "requirement": "transformation.lineage_complete must be true"
+          },
+          {
+            "field_path": "transformation.input_fingerprint must match acquisition.original_fingerprint",
+            "requirement": "transformation.input_fingerprint must match acquisition.original_fingerprint"
+          }
+        ],
+        "runtime_only_items": []
+      },
+      "concise_handoff_summary": "Do not retry internal tooling; wait only for new independently verified external evidence for the parked selected class.",
+      "blocking_reasons": {
+        "hard_stop_report_status": "BLOCKED_HARD_STOP_REPORT",
+        "next_action": "wait_for_external_evidence",
+        "packet_status": "BLOCKED_ACTIVATION_REQUEST_PACKET",
+        "worksheet_status": "BLOCKED_FIRST_REAL_EXECUTION_WORKSHEET"
+      }
+    },
+    "runtime_only_missing": {
+      "brief_status": "BLOCKED_PRE_EXECUTION_OPERATOR_BRIEF",
+      "truthful_next_action": "wait_for_runtime_only_values",
+      "request_kind": "runtime_only_request",
+      "requested_item_count": 5,
+      "execution_step_count": 6,
+      "runtime_value_count": 0,
+      "hard_stop_boundary": {},
+      "has_ready_hard_stop_report": false,
+      "remaining_checklist_items": {
+        "external_evidence_bundle_items": [],
+        "runtime_only_items": [
+          {
+            "field_path": "fact_payload.fact_value",
+            "required_kind": "runtime_value"
+          },
+          {
+            "field_path": "observed_at",
+            "required_kind": "runtime_value"
+          },
+          {
+            "field_path": "record_id",
+            "required_kind": "runtime_value"
+          },
+          {
+            "field_path": "runtime receipt after actual execution",
+            "required_kind": "later_runtime_artifact"
+          },
+          {
+            "field_path": "batch routing input only if exception-queue simulation is needed for the same run",
+            "required_kind": "later_runtime_artifact"
+          }
+        ]
+      },
+      "concise_handoff_summary": "External evidence is already sufficient; collect only the exact remaining runtime-only values before step 1.",
+      "blocking_reasons": {
+        "hard_stop_report_status": "BLOCKED_HARD_STOP_REPORT",
+        "next_action": "wait_for_runtime_only_values",
+        "packet_status": "BLOCKED_ACTIVATION_REQUEST_PACKET",
+        "worksheet_status": "BLOCKED_FIRST_REAL_EXECUTION_WORKSHEET"
+      }
+    },
+    "ready": {
+      "brief_status": "READY_PRE_EXECUTION_OPERATOR_BRIEF",
+      "truthful_next_action": "execute_now",
+      "request_kind": "execute_now_packet",
+      "requested_item_count": 5,
+      "execution_step_count": 6,
+      "runtime_value_count": 5,
+      "hard_stop_boundary": {
+        "authority_basis": {
+          "accountable_role_class": "Project Controls / PMO accountable role",
+          "authority_basis": "signed_controlled_attestation",
+          "controlled_report_owner_role": "Project Controls / PMO accountable role",
+          "governance_role_class": "CEO / Executive Governance Authority"
+        },
+        "certification_boundary": {
+          "certification_executed": false,
+          "currentness_implied": false,
+          "reliance_eligibility_implied": false
+        },
+        "deterministic_decision_reasons": [
+          "all_required_policy_evidence_present"
+        ],
+        "exact_facts_eligible_for_policy_automatic": [
+          "report_period",
+          "reported_activity",
+          "reported_actual",
+          "reported_milestone",
+          "reported_plan",
+          "reported_progress",
+          "reported_project_control_issue"
+        ],
+        "exact_facts_excluded_from_policy": [
+          "claim",
+          "contractual_delay_determination",
+          "current_executive_status_outside_report_period",
+          "entitlement",
+          "final_completion",
+          "financial_liability",
+          "insurance_or_guarantee_status",
+          "legal_conclusion",
+          "payment_authorization_or_status",
+          "reliance_eligibility",
+          "safety_or_compliance_certification"
+        ],
+        "human_approval_required_before_certification": true,
+        "native_evidence": {
+          "acquisition_method": "read_only_controlled_copy",
+          "evidence_quality": "native",
+          "original_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "read_only_acquisition": true,
+          "source_reference": "synthetic://native-source/first-workbook",
+          "transformation_output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "policy": {
+          "approval_mode": "policy_automatic",
+          "policy_id": "project-controls-progress-low-risk",
+          "policy_version": "v1"
+        },
+        "record_data_class": {
+          "candidate_class_id": "project_controls_progress_workbook",
+          "fact_class": "reported_progress",
+          "record_id": "maroon-progress-row-0001"
+        },
+        "reporting_business_time": {
+          "observed_at": "2026-08-11T00:12:00Z",
+          "report_period_value": "1402/06/25-1402/06/31",
+          "resolution_source": "workbook_labelled_reporting_week_header"
+        },
+        "risk_tier": "LOW",
+        "source_class": {
+          "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+          "report_class": "project_controls_progress_workbook",
+          "source_id": "maroon_project_controls_progress_workbook_series",
+          "source_type": "controlled_recurring_report_workbook"
+        }
+      },
+      "has_ready_hard_stop_report": true,
+      "remaining_checklist_items": {
+        "external_evidence_bundle_items": [],
+        "runtime_only_items": []
+      },
+      "concise_handoff_summary": "All local-only prerequisites are satisfied; execute the six-step runtime path and preserve the pre-certification hard stop.",
+      "blocking_reasons": {
+        "hard_stop_report_status": "READY_HARD_STOP_REPORT",
+        "next_action": "execute_now",
+        "packet_status": "READY_ACTIVATION_REQUEST_PACKET",
+        "worksheet_status": "READY_FIRST_REAL_EXECUTION_WORKSHEET"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "st1-115-first-real-execution-worksheet-evidence-v1",
+  "generated_utc": "2026-08-11T10:41:18Z",
+  "verification": {
+    "py_compile": {
+      "command": "C:/Users/PNS/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -m py_compile scripts/compile_st1_115_first_real_execution_worksheet.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_first_real_execution_worksheet": {
+      "worksheet_status": "BLOCKED_FIRST_REAL_EXECUTION_WORKSHEET",
+      "readiness_status": "waiting_for_external_evidence",
+      "hard_stop_report_status": "BLOCKED_HARD_STOP_REPORT",
+      "manifest_status": "BLOCKED_EXECUTION_MANIFEST",
+      "runtime_values_count": 0,
+      "remaining_checklist_item": "native_record_submission.transformation.lineage_complete must be true"
+    },
+    "ready_first_real_execution_worksheet": {
+      "worksheet_status": "READY_FIRST_REAL_EXECUTION_WORKSHEET",
+      "readiness_status": "ready_to_run",
+      "hard_stop_report_status": "READY_HARD_STOP_REPORT",
+      "manifest_status": "READY_EXECUTION_MANIFEST",
+      "runtime_values": [
+        "verified accountable_actor_id",
+        "verified evidence_fingerprint values",
+        "real record_id",
+        "real observed_at",
+        "real low-risk fact payload"
+      ],
+      "runtime_value_step_map": {
+        "verified accountable_actor_id": [2, 3],
+        "verified evidence_fingerprint values": [2],
+        "real record_id": [5],
+        "real observed_at": [5],
+        "real low-risk fact payload": [5]
+      },
+      "hard_stop_count": 3,
+      "human_approval_required_before_certification": true
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_source_control_verified": false,
+    "real_file_acquired": false,
+    "real_transformation_recorded": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

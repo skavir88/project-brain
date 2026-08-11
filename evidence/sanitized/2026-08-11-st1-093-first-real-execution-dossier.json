@@ -1,0 +1,68 @@
+{
+  "schema_version": "st1-093-first-real-execution-dossier-evidence-v1",
+  "generated_utc": "2026-08-11T09:28:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_093_first_real_execution_dossier.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_invalid_receipt": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.invalid.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "dossier_status": "BLOCKED_FIRST_REAL_EXECUTION_DOSSIER",
+      "ordered_runtime_step_count": 6,
+      "hard_stop_count": 3,
+      "hard_stop_report_ready": false,
+      "policy_automatic_items_excluded_from_exception_review": true,
+      "blocking_reasons": {
+        "hard_stop_report_status": "BLOCKED_HARD_STOP_REPORT",
+        "kit_status": "READY_OPERATOR_KIT",
+        "pre_mutation_gate_result": "GO_FOR_FIRST_RUNTIME_MUTATION",
+        "pre_mutation_reason_codes": [],
+        "receipt_reason_codes": [
+          "policy_receipt_invalid"
+        ],
+        "receipt_result": "NO_GO_POLICY_AUTOMATIC_RECEIPT"
+      }
+    },
+    "ready_execution_dossier": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "dossier_status": "READY_FIRST_REAL_EXECUTION_DOSSIER",
+      "ordered_runtime_step_count": 6,
+      "hard_stop_count": 3,
+      "hard_stop_report_ready": true,
+      "policy_automatic_items_excluded_from_exception_review": true,
+      "blocking_reasons": {
+        "hard_stop_report_status": "READY_HARD_STOP_REPORT",
+        "kit_status": "READY_OPERATOR_KIT",
+        "pre_mutation_gate_result": "GO_FOR_FIRST_RUNTIME_MUTATION",
+        "pre_mutation_reason_codes": [],
+        "receipt_reason_codes": [],
+        "receipt_result": "REACHED_POLICY_AUTOMATIC_HARD_STOP"
+      }
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

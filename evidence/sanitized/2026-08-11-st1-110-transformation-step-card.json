@@ -1,0 +1,70 @@
+{
+  "schema_version": "st1-110-transformation-step-card-evidence-v1",
+  "generated_utc": "2026-08-11T09:02:59Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_110_transformation_step_card.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_transformation_step_card": {
+      "step_card_status": "BLOCKED_TRANSFORMATION_STEP_CARD",
+      "write_target": "sdas_transformations",
+      "minimal_payload": {},
+      "required_confirmations": {
+        "acquisition_step_card_ready": false,
+        "source_registration_step_card_ready": false,
+        "source_control_verification_step_card_ready": false,
+        "arrival_packet_ready": false,
+        "execution_dossier_ready": false,
+        "launch_package_ready": false,
+        "hard_stop_report_ready": false,
+        "hard_stop_count": 3
+      },
+      "remaining_checklist_item": "native_record_submission.transformation.lineage_complete must be true"
+    },
+    "ready_transformation_step_card": {
+      "step_card_status": "READY_TRANSFORMATION_STEP_CARD",
+      "write_target": "sdas_transformations",
+      "minimal_payload": {
+        "acquisition_event_id": "RUNTIME_OUTPUT_FROM_STEP_3",
+        "transformation_type": "canonicalization",
+        "tool_name": "enterprise-ai-ingestion",
+        "tool_version": "0.3",
+        "transformed_at": "2026-08-11T00:10:00Z",
+        "input_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "deterministic": true,
+        "lineage_complete": true,
+        "evidence_hash": "RUNTIME_DERIVED_FROM_TRANSFORMATION_FACTS"
+      },
+      "required_confirmations": {
+        "acquisition_step_card_ready": true,
+        "source_registration_step_card_ready": true,
+        "source_control_verification_step_card_ready": true,
+        "arrival_packet_ready": true,
+        "execution_dossier_ready": true,
+        "launch_package_ready": true,
+        "hard_stop_report_ready": true,
+        "hard_stop_count": 3
+      }
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_source_control_verified": false,
+    "real_file_acquired": false,
+    "real_transformation_recorded": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

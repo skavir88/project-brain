@@ -1,0 +1,57 @@
+{
+  "schema_version": "st1-107-source-registration-step-card-evidence-v1",
+  "generated_utc": "2026-08-11T17:00:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_107_source_registration_step_card.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_source_registration_step_card": {
+      "step_card_status": "BLOCKED_SOURCE_REGISTRATION_STEP_CARD",
+      "write_target": "sdas_source_registry",
+      "minimal_payload": {},
+      "required_confirmations": {
+        "arrival_packet_ready": false,
+        "execution_dossier_ready": false,
+        "launch_package_ready": false,
+        "hard_stop_report_ready": false,
+        "hard_stop_count": 3
+      },
+      "remaining_checklist_item": "native_record_submission.transformation.lineage_complete must be true"
+    },
+    "ready_source_registration_step_card": {
+      "step_card_status": "READY_SOURCE_REGISTRATION_STEP_CARD",
+      "write_target": "sdas_source_registry",
+      "minimal_payload": {
+        "source_id": "maroon_project_controls_progress_workbook_series",
+        "report_class": "project_controls_progress_workbook",
+        "project_scope": "maroon_pilot",
+        "report_period_value": "1402/06/25-1402/06/31",
+        "resolution_source": "workbook_labelled_reporting_week_header"
+      },
+      "required_confirmations": {
+        "arrival_packet_ready": true,
+        "execution_dossier_ready": true,
+        "launch_package_ready": true,
+        "hard_stop_report_ready": true,
+        "hard_stop_count": 3
+      }
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

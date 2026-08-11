@@ -1,0 +1,57 @@
+{
+  "schema_version": "st1-087-first-real-attempt-operator-kit-evidence-v1",
+  "generated_utc": "2026-08-11T08:05:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_087_first_real_attempt_kit.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_missing_native_metadata": {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": null,
+      "kit_status": "BLOCKED_OPERATOR_KIT",
+      "runtime_mutation_performed": false,
+      "ordered_runtime_step_count": 0,
+      "required_operator_inputs_count": 0,
+      "hard_stop_count": 3,
+      "primary_blockers": [
+        {
+          "bundle_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+          "gate": "preflight_not_ready",
+          "native_record_errors": [
+            "native_record metadata not supplied"
+          ],
+          "native_record_readiness": "BLOCKED_NATIVE_RECORD_METADATA_MISSING"
+        }
+      ]
+    },
+    "ready_operator_kit": {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "kit_status": "READY_OPERATOR_KIT",
+      "runtime_mutation_performed": false,
+      "ordered_runtime_step_count": 6,
+      "required_operator_inputs_count": 5,
+      "hard_stop_count": 3,
+      "primary_blockers": []
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

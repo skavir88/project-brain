@@ -1,0 +1,65 @@
+{
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "receipt_version": "st1-089/v1",
+  "record_id": "maroon-progress-row-0001",
+  "source_id": "maroon_project_controls_progress_workbook_series",
+  "report_period_value": "1402/06/25-1402/06/31",
+  "fact_class": "reported_progress",
+  "executed_steps": [
+    {
+      "sequence": 1,
+      "target": "ingestion.sdas_source_registry",
+      "persisted": true,
+      "receipt_reference": "synthetic://receipts/source-registry/1"
+    },
+    {
+      "sequence": 2,
+      "target": "ingestion.sdas_source_control_verifications",
+      "persisted": true,
+      "receipt_reference": "synthetic://receipts/source-control/2"
+    },
+    {
+      "sequence": 3,
+      "target": "ingestion.sdas_acquisition_events",
+      "persisted": true,
+      "receipt_reference": "synthetic://receipts/acquisition/3"
+    },
+    {
+      "sequence": 4,
+      "target": "ingestion.sdas_transformations",
+      "persisted": true,
+      "receipt_reference": "synthetic://receipts/transformation/4"
+    },
+    {
+      "sequence": 5,
+      "target": "POST /v1/records -> ingestion.credibility_records",
+      "persisted": true,
+      "receipt_reference": "synthetic://receipts/records/5"
+    },
+    {
+      "sequence": 6,
+      "target": "ingestion.sdas_policy_decisions",
+      "persisted": true,
+      "receipt_reference": "synthetic://receipts/policy-decisions/6"
+    }
+  ],
+  "policy_decision": {
+    "policy_id": "project-controls-progress-low-risk",
+    "policy_version": "v1",
+    "approval_mode": "policy_automatic",
+    "decision_actor": "sahra_policy_engine",
+    "risk_tier": "LOW",
+    "decision_reasons": [
+      "all_required_policy_evidence_present"
+    ],
+    "decision_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "certification_boundary": {
+    "certification_executed": false,
+    "human_approval_executed": false,
+    "currentness_asserted": false,
+    "reliance_asserted": false,
+    "hard_stop_state": "STOPPED_BEFORE_CERTIFICATION"
+  }
+}

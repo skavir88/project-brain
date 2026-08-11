@@ -1,0 +1,64 @@
+{
+  "schema_version": "st1-092-first-real-hard-stop-report-evidence-v1",
+  "generated_utc": "2026-08-11T09:18:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_092_first_real_hard_stop_report.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_invalid_receipt": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.invalid.json",
+      "report_status": "BLOCKED_HARD_STOP_REPORT",
+      "blocking_reasons": {
+        "pre_mutation_gate_result": "GO_FOR_FIRST_RUNTIME_MUTATION",
+        "pre_mutation_reason_codes": [],
+        "receipt_result": "NO_GO_POLICY_AUTOMATIC_RECEIPT",
+        "receipt_reason_codes": [
+          "policy_receipt_invalid"
+        ]
+      }
+    },
+    "ready_hard_stop_report": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "report_status": "READY_HARD_STOP_REPORT",
+      "record_data_class": {
+        "candidate_class_id": "project_controls_progress_workbook",
+        "fact_class": "reported_progress",
+        "record_id": "maroon-progress-row-0001"
+      },
+      "policy": {
+        "policy_id": "project-controls-progress-low-risk",
+        "policy_version": "v1",
+        "approval_mode": "policy_automatic"
+      },
+      "human_approval_required_before_certification": true,
+      "certification_boundary": {
+        "certification_executed": false,
+        "currentness_implied": false,
+        "reliance_eligibility_implied": false
+      }
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

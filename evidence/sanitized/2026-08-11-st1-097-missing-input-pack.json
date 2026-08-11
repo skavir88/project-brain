@@ -1,0 +1,63 @@
+{
+  "schema_version": "st1-097-missing-input-pack-evidence-v1",
+  "generated_utc": "2026-08-11T12:10:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_097_missing_input_pack.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "waiting_for_external_evidence": {
+      "readiness_status": "waiting_for_external_evidence",
+      "missing_input_state": "waiting_for_external_evidence",
+      "blocking_reasons": [
+        "transformation.lineage_complete must be true"
+      ],
+      "external_evidence_requirements": [
+        {
+          "field_path": "transformation.lineage_complete",
+          "requirement": "transformation.lineage_complete must be true"
+        }
+      ],
+      "runtime_only_requirements_count": 0
+    },
+    "waiting_for_runtime_only_fields": {
+      "readiness_status": "waiting_for_runtime_only_fields",
+      "missing_input_state": "waiting_for_runtime_only_fields",
+      "blocking_reasons": [
+        "operator_inputs_invalid",
+        "pre_mutation_gate_not_ready"
+      ],
+      "runtime_only_requirements": [
+        "fact_payload.fact_value",
+        "observed_at",
+        "record_id",
+        "runtime receipt after actual execution",
+        "batch routing input only if exception-queue simulation is needed for the same run"
+      ],
+      "external_evidence_requirements_count": 0
+    },
+    "ready_to_run": {
+      "readiness_status": "ready_to_run",
+      "missing_input_state": "ready_to_run",
+      "blocking_reasons": [],
+      "external_evidence_requirements_count": 0,
+      "runtime_only_requirements_count": 0
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

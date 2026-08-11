@@ -1,0 +1,47 @@
+{
+  "task_id": "ST1-124",
+  "date": "2026-08-11",
+  "purpose": "series_scoped_intake_kit_for_the_first_real_policy_automatic_target",
+  "artifacts_created": [
+    "docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json",
+    "scripts/verify_st1_124_recurring_workbook_governance_bundle.py"
+  ],
+  "selected_target": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "template_verification_result": {
+    "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "structural_validation_passed": false,
+    "section_statuses": {
+      "bundle": "PARTIAL",
+      "A1": "MISSING",
+      "A2": "MISSING",
+      "A3": "MISSING",
+      "source_registration": "MISSING",
+      "series_scope": "MISSING"
+    },
+    "required_external_inputs_remaining": [
+      "A1_governance_authority_confirmation",
+      "A2_project_controls_accountability_confirmation",
+      "A3_controlled_report_definition_confirmation",
+      "stable_source_registration_evidence_reference",
+      "stable_non_sensitive_source_series_identifier"
+    ]
+  },
+  "boundary": {
+    "st1_061_is_success_target": false,
+    "real_delegation_activated": false,
+    "real_source_registration": false,
+    "real_certification_changed": false,
+    "currentness_changed": false,
+    "reliance_changed": false
+  },
+  "verification_commands": [
+    "python -m py_compile scripts/verify_st1_124_recurring_workbook_governance_bundle.py",
+    "python scripts/verify_st1_124_recurring_workbook_governance_bundle.py --bundle docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json",
+    "python -c \"import json, pathlib; json.loads(pathlib.Path('docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json').read_text(encoding='utf-8')); print('JSON_OK')\""
+  ]
+}

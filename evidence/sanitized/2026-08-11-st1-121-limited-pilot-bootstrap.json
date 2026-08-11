@@ -1,0 +1,189 @@
+{
+  "task_id": "ST1-121",
+  "business_decision": "limited_pilot_governance_bootstrap_approved",
+  "selected_real_artifact": {
+    "selection_alias": "st1-046-7297becd26ebbda6",
+    "source_alias": "source-aa9ee5b08080281d",
+    "source_id": "maroon-st1-061-source-aa9ee5b08080281d",
+    "locator_fingerprint": "b75edf126c3996fce175469676bc1e3835a2790061ce0df8aca4e37c9f7ef269",
+    "original_fingerprint": "3fee8dd08de79a7db5a9ca29ba65e981bf6f17e394353106882f3a516c302b7b",
+    "size_bytes": 3824638,
+    "extension": ".xlsx"
+  },
+  "pilot_governance": {
+    "approval_basis_reference": "user_directed_ST1_067_governance_policy_model",
+    "approval_id": "sdas-governance-policy-pilot-v1",
+    "approved_at": "2026-08-10 12:29:36.986924+00",
+    "approver_identity_state": "unverified",
+    "governance_policy_status": "approved_for_pilot",
+    "policy_scope": {
+      "document_data_classes": [
+        "recurring_project_controls_progress_report",
+        "recurring_project_controls_status_report",
+        "recurring_project_controls_progress_workbook"
+      ],
+      "intended_role_class": "Project Controls / PMO accountable owner",
+      "permitted_fact_classes": [
+        "report_period",
+        "reported_plan",
+        "reported_actual",
+        "reported_progress",
+        "reported_activity",
+        "reported_milestone",
+        "reported_project_control_issue"
+      ],
+      "prohibited_fact_classes": [
+        "contractual_delay_determination",
+        "entitlement",
+        "claim_validity",
+        "payment_authorization",
+        "financial_liability",
+        "legal_conclusion",
+        "safety_or_compliance_certification",
+        "final_completion",
+        "current_executive_status_outside_certified_currentness_policy",
+        "reliance_eligibility",
+        "insured_or_guaranteed_status"
+      ],
+      "project_scope": "maroon_pilot_project",
+      "source_system_identity": "REQUIRED_INPUT"
+    },
+    "semantic_pilot_governance_status": "APPROVED_LIMITED_PILOT"
+  },
+  "bootstrap_state": {
+    "latest_event": {
+      "accountable_actor_id": null,
+      "event_at": "2026-08-10 12:29:36.986924+00",
+      "governance_actor_id": null,
+      "proposal_id": "sdas-bootstrap-maroon-project-controls-v1",
+      "source_id": null,
+      "transition_state": "GOVERNANCE_APPROVED"
+    },
+    "queue": {
+      "queue_outcome": "HUMAN_REQUIRED",
+      "reason_code": "role_source_or_business_time_evidence_missing"
+    },
+    "active_delegation_count": 0
+  },
+  "selected_artifact_runtime_state": {
+    "source": {
+      "authority_scope": [
+        "not_verified"
+      ],
+      "authority_status": "declared_unverified",
+      "created_at": "2026-08-10 09:59:42.708066+00",
+      "evidence_quality": "native",
+      "source_id": "maroon-st1-061-source-aa9ee5b08080281d",
+      "source_type": "organizational_file",
+      "system_location_identity": "maroon_smb_pilot"
+    },
+    "acquisition_events": [
+      {
+        "acquired_at": "2026-08-10 09:58:37.125907+00",
+        "acquisition_event_id": 2,
+        "acquisition_method": "read_only_smb_hash",
+        "evidence_hash": "fb18d3843e7245890f26174578e6c045304d5e4206ed794b4b2dc362dc4d5de5",
+        "evidence_quality": "native",
+        "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "original_fingerprint": "3fee8dd08de79a7db5a9ca29ba65e981bf6f17e394353106882f3a516c302b7b",
+        "size_bytes": 3824638,
+        "source_reference": "runtime-local://b75edf126c3996fce175469676bc1e3835a2790061ce0df8aca4e37c9f7ef269"
+      }
+    ],
+    "transformations": [
+      {
+        "acquisition_event_id": 2,
+        "deterministic": true,
+        "evidence_quality": "native",
+        "input_fingerprint": "3fee8dd08de79a7db5a9ca29ba65e981bf6f17e394353106882f3a516c302b7b",
+        "output_fingerprint": "2ab8098245c55ae93db95ced8ba350a6a4c9122a26d07bdf16994a4ea2059e19",
+        "tool_name": "enterprise-ai-native-acquisition",
+        "tool_version": "st1-061",
+        "transformation_id": 2,
+        "transformation_type": "metadata_manifest",
+        "transformed_at": "2026-08-10 09:58:37.125907+00"
+      }
+    ],
+    "credibility_record": {
+      "certification_actor": null,
+      "certification_policy_version": null,
+      "certification_timestamp": null,
+      "disposition": "certification_candidate",
+      "ingested_at": "2026-08-10 09:59:42.770731+00",
+      "lifecycle_state": "certification_candidate",
+      "observed_at": "2026-08-10 09:58:37.125907+00",
+      "quality_gate_outcome": "passed",
+      "reason_code": null,
+      "record_fingerprint": "1aa4527d87cf19fecc0c09c06484f16d8603c11e9fb06e20708a4c1efa037b8e",
+      "record_id": "st1-061-native-real-source-aa9ee5b08080281d"
+    },
+    "policy_decision": {
+      "approval_mode": "human_required",
+      "decision_reasons": [
+        "authority_not_verified",
+        "business_timestamp_missing"
+      ],
+      "evidence_quality": "native",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "v1"
+    }
+  },
+  "separation": {
+    "business_time_status": "MISSING_NOT_INFERRED",
+    "certification_status": "NONE",
+    "currentness_status": "UNCHANGED_INSUFFICIENT_CERTIFIED_EVIDENCE",
+    "data_authority_status": "NOT_VERIFIED",
+    "historical_accountability_status": "NOT_VERIFIED",
+    "pilot_governance_does_not_imply_historical_accountability": true,
+    "pilot_governance_does_not_imply_source_authority": true,
+    "pilot_governance_status": "APPROVED_LIMITED_PILOT",
+    "reliance_status": "NOT_ELIGIBLE"
+  },
+  "supporting_counts": {
+    "authority_assertions": {
+      "record": 0,
+      "source": 0
+    },
+    "business_time_evidence": {
+      "acquisition_timestamp": 0,
+      "all": 0,
+      "filesystem_timestamp": 0
+    },
+    "role_source_verifications": {
+      "role_identity_verifications": 0,
+      "source_control_verifications": 0
+    }
+  },
+  "checks": {
+    "real_artifact_chain_reached_policy_evaluation": true,
+    "business_time_not_inferred_from_acquisition_or_filesystem": true,
+    "append_only_update_rejected": true,
+    "idempotency_checks": {
+      "duplicate_acquisition_noop": true,
+      "duplicate_source_registration_noop": true
+    },
+    "no_certification_occurred": true,
+    "synthetic_routing_cases": {
+      "st1-121-conflict": {
+        "effective_reason_codes": [
+          "integrity_or_validation_failed"
+        ],
+        "effective_routing_outcome": "reject_or_quarantine"
+      },
+      "st1-121-high-risk": {
+        "effective_reason_codes": [
+          "high_risk_fact_requires_human_review"
+        ],
+        "effective_routing_outcome": "human_required"
+      }
+    }
+  },
+  "boundaries_unchanged": {
+    "certified_knowledge_touched": false,
+    "qdrant_touched": false,
+    "dify_touched": false,
+    "embedding_settings_changed": false,
+    "retrieval_threshold_changed": false,
+    "automatic_certification": false
+  }
+}

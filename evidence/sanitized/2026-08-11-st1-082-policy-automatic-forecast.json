@@ -1,0 +1,372 @@
+{
+  "schema_version": "st1-082-policy-automatic-forecast-v1",
+  "generated_utc": "2026-08-11T07:14:59.291254+00:00",
+  "selected_class": {
+    "source_id": "enterprise_ai_real_action_plan_weekly_observation",
+    "policy_id": "sdas-low-risk-native",
+    "policy_version": "simulation-v1",
+    "document_class": "recurring Project Controls progress workbook"
+  },
+  "current_real_state": {
+    "record_count": 10,
+    "routing_counts": {
+      "human_required": 10
+    },
+    "dominant_reason_codes": {
+      "missing_native_evidence": 10
+    },
+    "supporting_evidence_presence": {
+      "source_registry_rows": 0,
+      "acquisition_event_count": 0,
+      "transformation_count": 0,
+      "business_time_evidence_count": 0,
+      "record_authority_assertion_count": 0,
+      "source_authority_assertion_count": 0,
+      "matched_active_delegation_count_now": 0,
+      "certified_knowledge_count": 10
+    }
+  },
+  "hypothetical_exact_scope_activation_overlay": {
+    "mutates_real_state": false,
+    "assumptions": {
+      "active_delegation_exact_scope_match": true,
+      "source_registration_and_control_for_class": true,
+      "existing_records_upgraded_to_native": false,
+      "automatic_certification_enabled": false
+    },
+    "forecast_routing_counts": {
+      "human_required": 10
+    },
+    "forecast_dominant_reason_codes": {
+      "missing_native_evidence": 10
+    },
+    "human_review_reduction_vs_current": 0,
+    "policy_automatic_delta_vs_current": 0
+  },
+  "false_positive_safety_checks": {
+    "records_not_promoted_to_policy_automatic_solely_by_delegation_overlay": true,
+    "historical_records_not_reclassified_as_native": true,
+    "uncertified_records_not_considered": true
+  },
+  "conclusion": {
+    "result": "governance_only_activation_unlocks_zero_current_records",
+    "why": [
+      "all currently known records in the selected class are historical/reconstructed simulation rows",
+      "the dominant persisted blocker is missing_native_evidence",
+      "no source registration, acquisition events, transformations, business-time evidence, or authority assertions currently exist for this class in runtime state"
+    ],
+    "next_required_real_change": "obtain valid external governance/source-control evidence and then ingest at least one truly native record from this class without upgrading historical records"
+  },
+  "records": [
+    {
+      "record_fingerprint": "30e7bc32d0f2a70278138e867e380683cb21daa9a2505f68924f0e1a7587702f",
+      "record_id": "st1-032-review-1a9f5d84b538a0b5",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "0065f4d697544fd0d5a8c9bc417fd4e9dc171abfbf32fd2ac8bc0662fb8d1100",
+      "record_id": "st1-032-review-1e49734d4b9f6d91",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "58be712a2cc401a76205349b9cdf58736fbf3859b5f967725c00d1a35fd1e7da",
+      "record_id": "st1-032-review-3ba79361fe19bde0",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "cd61c85029b93cc39279d35f11b077ce2c67acd7135c9712235e0d7b5bab8a75",
+      "record_id": "st1-032-review-5df3482497ab0142",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "645093fc3e702a9ed26f5448d8ebddded5c7697c779ecd3bc8a0f51bde62c4bf",
+      "record_id": "st1-032-review-6c07ecb65b039520",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "9bb939a7cba2fa9551ba7ad871abe5a781a9f42f5f75db3dccc501cfe97c018f",
+      "record_id": "st1-032-review-9f4c51eed6b3ef58",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "6df4f96dac938df3458421953602a9ad44080622859409ea8bcb4e3e6530e89d",
+      "record_id": "st1-032-review-a3805dcc4f3b2ccf",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "60bcc84dfe91d5f6b7f20ffc074469fc5d32792104809b3447b7e72925593942",
+      "record_id": "st1-032-review-bc23f13650704903",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "40c3d84e279d2b0b12b58eed3b65c7e07d8e71b01a20269219eeed4ab989ffef",
+      "record_id": "st1-032-review-c08417d3e88a3fa1",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    },
+    {
+      "record_fingerprint": "ce4190a7ffff3cc3390aec2b0cada5e0e4eaa19bb8c53266e2dee58c6a3951de",
+      "record_id": "st1-032-review-df6b20306f4cd366",
+      "lifecycle_state": "certified",
+      "quality_gate_outcome": "passed",
+      "policy_id": "sdas-low-risk-native",
+      "policy_version": "simulation-v1",
+      "policy_approval_mode": "human_required",
+      "assurance_outcome": "",
+      "authority_inheritance_state": "",
+      "business_time_state": "",
+      "risk_tier": "",
+      "currentness_state": "",
+      "reliance_state": "",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "missing_native_evidence"
+      ],
+      "forecast_under_exact_scope_activation": {
+        "effective_routing_outcome": "human_required",
+        "effective_reason_codes": [
+          "missing_native_evidence"
+        ],
+        "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+        "assumptions": [
+          "approved governance/source-control conditions are satisfied exactly for this class",
+          "existing historical records are not upgraded to native evidence"
+        ]
+      }
+    }
+  ]
+}

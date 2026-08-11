@@ -1,0 +1,70 @@
+{
+  "schema_version": "st1-120-blocked-arrival-audit-v1",
+  "verified_on": "2026-08-11",
+  "selected_class": {
+    "candidate_class_id": "project_controls_progress_workbook",
+    "runtime_source_family": "enterprise_ai_real_action_plan_weekly_observation",
+    "project_scope": "maroon_pilot"
+  },
+  "workspace_arrival_audit": {
+    "real_arrival_bundle_detected": false,
+    "real_native_selected_class_artifact_detected": false,
+    "observed_bundle_like_artifacts": [
+      "docs/ST1_076_PROJECT_CONTROLS_PROGRESS_WORKBOOK_BUNDLE.md",
+      "docs/examples/ST1_078_real_evidence_bundle.template.json",
+      "docs/examples/ST1_078_real_evidence_bundle.synthetic.invalid.json",
+      "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "docs/examples/ST1_083_first_native_record.synthetic.incomplete_native_evidence.json",
+      "docs/examples/ST1_083_first_native_record.synthetic.invalid_business_time.json",
+      "docs/examples/ST1_083_first_native_record.synthetic.ready.json"
+    ],
+    "interpretation": "Only scope-definition and synthetic/example artifacts were observed in the repository workspace; no new independently verified real-arrival bundle or real native selected-class artifact was found."
+  },
+  "candidate_bundle_state": {
+    "artifact": "evidence/sanitized/2026-08-11-st1-076-candidate-bundle.json",
+    "remaining_external_inputs": [
+      "A1_governance_authority_confirmation",
+      "A2_project_controls_accountability_confirmation",
+      "A3_controlled_report_definition_confirmation",
+      "real_source_system_registration_inputs"
+    ],
+    "boundary": {
+      "real_delegation_created": false,
+      "real_delegation_activated": false,
+      "real_source_registered": false,
+      "real_content_acquired": false,
+      "real_certification_changed": false
+    }
+  },
+  "bundle_readiness_assessment": {
+    "artifact_tested": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+    "structural_validation_passed": true,
+    "activation_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+    "verified_sections_count": 0,
+    "section_statuses": {
+      "bundle": "PARTIAL",
+      "A1": "PARTIAL",
+      "A2": "PARTIAL",
+      "A3": "PARTIAL",
+      "source_registration": "PARTIAL"
+    },
+    "interpretation": "Even a structurally complete bundle shape does not satisfy the required independent verification boundary for real activation."
+  },
+  "runtime_state_audit": {
+    "source_registry_rows": 0,
+    "acquisition_rows": 0,
+    "transformation_rows": 0,
+    "policy_rows_for_selected_runtime_source_family": 10,
+    "active_delegations": 0,
+    "interpretation": "No real selected-class source registration, acquisition, transformation, or active delegation exists in runtime state. The persisted policy rows belong only to the historical simulation layer already documented for this class."
+  },
+  "conclusion": {
+    "st1_120_ready_to_execute": false,
+    "blocking_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "why": [
+      "No independently verified real-arrival ST1-078 bundle was found in current workspace state.",
+      "No real native selected-class record artifact was found in current workspace state.",
+      "Runtime state still shows zero selected-class source registration, acquisition, transformation, and active delegation rows."
+    ]
+  }
+}

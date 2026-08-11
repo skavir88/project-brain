@@ -1,93 +1,149 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-078
+- Task ID: ST1-135
 - Stage: Stage 1 — Product Implementation
-- Status: Waiting for external evidence
-- Owner: Governance authority, Project Controls / PMO, and controlled report owner
+- Status: Waiting for Two Real Selected-Series Artifacts
+- Owner: Codex / Enterprise AI Project Operator
 
 ## Objective
-Validate and register only the real controlled organizational evidence supplied
-for the selected recurring Project Controls progress workbook class:
-A1 governance authority, A2 Project Controls accountability, A3 controlled
-report definition, and the exact source-registration inputs for that class.
+Use the ST1-134 request pack to obtain the exact two real selected-series
+artifacts still required on the ST1-066 critical path:
+
+1. one real sanitized filled governance/report-definition bundle for
+   `maroon_project_controls_progress_workbook_series`
+2. one real sanitized native-record artifact for the same selected series
+
+Then:
+
+3. validate the real bundle with the deterministic selected-series bundle gate;
+4. validate the real native-record artifact with the deterministic
+   selected-series native-record gate;
+5. validate the pair with the deterministic selected-series dual-input gate;
+6. if both are exact-scope and ready, compile the independent controlled-review
+   handoff only;
+7. stop before any delegation activation, source registration, native
+   acquisition, policy mutation, or certification.
 
 ## Rationale
-ST1-075 selected the exact real candidate class, ST1-076 froze its scope, and
-ST1-077 converted the evidence ask into a class-specific Persian business pack.
-The next step is no longer discovery or design; it is validating real supplied
-evidence for this exact class.
+As of Tuesday, August 11, 2026, the repository-local path is already fully
+prepared:
+
+- bundle-side exact-scope gate exists;
+- native-record-side exact-scope gate exists;
+- dual-input convergence gate exists;
+- the Persian ST1-134 request pack narrows the real-world ask to exactly the
+  two remaining artifacts;
+- ST1-061 remains excluded as the first real success target.
+
+The blocker is now only the arrival of those two real artifacts and their
+controlled review.
 
 ## Preconditions
-- One or more signed business artifacts or stronger Tier-A controlled records
-  answering `docs/ST1_077_PROJECT_CONTROLS_PROGRESS_EVIDENCE_REQUEST_FA.md`
-  are supplied through an approved business channel.
-- Each signer can be independently identified through controlled evidence.
+- The selected target remains the recurring Project Controls progress workbook
+  series, not ST1-061.
+- Both incoming artifacts must remain inside the approved Maroon pilot scope.
+- Both incoming artifacts must be sanitized or otherwise safe for
+  repository-local validation.
+- No delegation activation, source registration, acquisition, policy mutation,
+  or certification may occur in this task.
 
 ## Scope
-- Inspect only supplied controlled evidence for the selected workbook class.
-- Validate provenance, signer identity, scope match, reporting-time rule, and
-  source-registration inputs.
-- Append only sanitized references/fingerprints and update readiness.
+- Use:
+  - `docs/ST1_134_SELECTED_SERIES_REAL_INPUT_REQUEST_FA.md`
+- Validate the real selected-series governance bundle with:
+  - `scripts/validate_st1_078_real_evidence_bundle.py`
+  - `scripts/assess_st1_078_real_evidence_bundle.py`
+  - `scripts/verify_st1_124_recurring_workbook_governance_bundle.py`
+  - `scripts/run_st1_125_series_bundle_gate.py`
+- Validate the real selected-series native-record artifact with:
+  - `scripts/verify_st1_083_first_native_record_preflight.py`
+  - `scripts/verify_st1_131_selected_series_native_record.py`
+- Validate the pair together with:
+  - `scripts/run_st1_132_selected_series_dual_input_gate.py`
+- If the pair is ready, compile:
+  - `scripts/compile_st1_127_independent_verification_handoff.py`
 
 ## Out of Scope
-- New SMB discovery
-- New source boundary
+- Using ST1-061 as the first real `policy_automatic` success target
 - Real delegation activation
-- Real certification
-- Any change to ST1-061
+- Real source registration
+- Real native acquisition
+- Real policy decision mutation
+- Real certification mutation
+- Any new source boundary
+- Any destructive change
 
 ## Files to Inspect
-- `docs/ST1_075_REAL_POLICY_AUTOMATIC_CANDIDATE.md`
-- `docs/ST1_076_PROJECT_CONTROLS_PROGRESS_WORKBOOK_BUNDLE.md`
-- `docs/ST1_077_PROJECT_CONTROLS_PROGRESS_EVIDENCE_REQUEST_FA.md`
-- `docs/ST1_078_REAL_EVIDENCE_INTAKE_SPEC.md`
-- `docs/ST1_078_REAL_EVIDENCE_SUBMISSION_TEMPLATE.md`
-- `docs/examples/ST1_078_real_evidence_bundle.template.json`
-- `scripts/assess_st1_078_real_evidence_bundle.py`
-- `scripts/validate_st1_078_real_evidence_bundle.py`
-- Supplied business artifacts only
+- `docs/ST1_134_SELECTED_SERIES_REAL_INPUT_REQUEST_FA.md`
+- `evidence/sanitized/2026-08-11-st1-134-selected-series-real-input-request-pack.json`
+- `evidence/sanitized/2026-08-11-st1-132-selected-series-dual-input-gate.json`
+- `scripts/run_st1_125_series_bundle_gate.py`
+- `scripts/verify_st1_131_selected_series_native_record.py`
+- `scripts/run_st1_132_selected_series_dual_input_gate.py`
+- `scripts/compile_st1_127_independent_verification_handoff.py`
 
 ## Files Allowed to Change
-- Sanitized evidence
+- sanitized evidence
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
-- `DECISIONS.md`, only if a new decision is required
+- `MASTER_PLAN.md`
 - `NEXT_TASK.md`
 
 ## Execution Steps
-1. Verify each supplied artifact against the selected workbook-class scope.
-2. Confirm signer identity independently.
-3. Determine whether A1, A2, A3, and source-registration inputs are
-   `VERIFIED`, `PARTIAL`, `REJECTED`, or still `MISSING`.
-4. Update activation/native-ingestion readiness without activating anything.
-5. Record sanitized evidence and update Project Brain.
+1. Use the ST1-134 request pack as the exact handoff for the selected series.
+2. Receive one real sanitized filled bundle JSON for the selected recurring
+   workbook series.
+3. Receive one real sanitized native-record JSON for the same selected series.
+4. Run the deterministic selected-series bundle gate.
+5. Run the deterministic selected-series native-record gate.
+6. Run the deterministic selected-series dual-input gate.
+7. If both are scope-correct and ready, compile the independent-review handoff.
+8. Stop before any activation, registration, acquisition, policy mutation, or
+   certification.
 
 ## Acceptance Criteria
-- No artifact passes on self-assertion alone.
-- The selected workbook class either has verified real organizational inputs
-  or an exact remaining gap, with no inference.
-- No real delegation is activated and no real certification occurs.
+- The target remains the recurring workbook series and not ST1-061.
+- The real filled bundle is classified truthfully with exact reason(s).
+- The real native-record artifact is classified truthfully with exact reason(s).
+- The real pair is classified truthfully with exact reason(s).
+- If both are ready, the exact independent controlled-review checklist is produced.
+- No historical/source authority is fabricated.
+- No delegation is activated.
+- No source is registered.
+- No native acquisition occurs.
+- No policy mutation occurs.
+- No certification occurs.
+- No trust boundary is weakened.
 
 ## Verification Commands
 ```powershell
-python scripts/validate_st1_078_real_evidence_bundle.py --bundle <path-to-supplied-bundle.json>
-python scripts/assess_st1_078_real_evidence_bundle.py --bundle <path-to-supplied-bundle.json>
+python scripts/run_st1_125_series_bundle_gate.py --bundle <real-sanitized-filled-bundle.json>
+python scripts/verify_st1_131_selected_series_native_record.py --native-record <real-sanitized-native-record.json>
+python scripts/run_st1_132_selected_series_dual_input_gate.py --bundle <real-sanitized-filled-bundle.json> --native-record <real-sanitized-native-record.json>
+python scripts/compile_st1_127_independent_verification_handoff.py --bundle <real-sanitized-filled-bundle.json>
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized fingerprint/reference, asserted role/source/time fact, scope,
-  effective period, verification method, provenance, and status.
+- Sanitized evidence showing:
+  - exact selected-series match or mismatch for the bundle;
+  - exact selected-series match or mismatch for the native record;
+  - exact pair convergence result;
+  - structural and readiness outcomes;
+  - exact missing or rejected fields if any;
+  - exact independent-review checklist if eligible;
+  - unchanged delegation/source-registration/acquisition/policy/certification boundaries.
 
 ## Rollback
-- Append `REJECTED`, `REVOKED`, `SUPERSEDED`, or a new corrective event; never
-  overwrite or delete evidence.
+- If either artifact is incomplete or rejected, no rollback is required.
+- If an additive evidence write begins and fails, roll back only the in-flight
+  write and do not mutate prior governance, ST1-061, or certification state.
 
 ## Completion Updates
 - `CURRENT_STATE.md`
 - `SESSION_LOG.md`
 - `CHANGELOG.md`
-- `DECISIONS.md`, only if a new decision is required
+- `MASTER_PLAN.md`
 - `NEXT_TASK.md`

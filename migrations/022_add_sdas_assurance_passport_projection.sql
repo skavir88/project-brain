@@ -1,4 +1,4 @@
-CREATE VIEW ingestion.sdas_assurance_passport_projection AS
+CREATE OR REPLACE VIEW ingestion.sdas_assurance_passport_projection AS
 WITH latest_policy_decision AS (
   SELECT DISTINCT ON (record_fingerprint)
     record_fingerprint,
@@ -212,14 +212,15 @@ SELECT
   CASE
     WHEN post.event_type IN ('revocation', 'supersession') OR COALESCE(ra.revoked_or_superseded_count, 0) > 0 OR COALESCE(sa.revoked_or_superseded_count, 0) > 0
       THEN 'REVOKED_OR_SUPERSEDED'
+    WHEN k.source_fingerprint <> r.record_fingerprint
+      OR env.source_fingerprint IS DISTINCT FROM k.source_fingerprint
+      OR NOT COALESCE(acv.chain_valid, true)
+      OR NOT COALESCE(ccv.chain_valid, true)
+      THEN 'INTEGRITY_FAILURE'
     WHEN COALESCE(ra.conflicting_count, 0) > 0 OR COALESCE(sa.conflicting_count, 0) > 0
       OR COALESCE(bt.distinct_time_values, 0) > 1
       OR COALESCE(lad.risk_tier, 'low') = 'high'
       OR COALESCE(lad.outcome, lpd.approval_mode, 'human_required') = 'reject_or_quarantine'
-      OR k.source_fingerprint <> r.record_fingerprint
-      OR env.source_fingerprint IS DISTINCT FROM k.source_fingerprint
-      OR NOT COALESCE(acv.chain_valid, true)
-      OR NOT COALESCE(ccv.chain_valid, true)
       THEN 'QUARANTINED'
     WHEN COALESCE(lad.outcome, lpd.approval_mode, 'human_required') = 'human_required'
       OR (
@@ -251,7 +252,10 @@ SELECT
     CASE WHEN NOT COALESCE(acv.chain_valid, true) OR NOT COALESCE(ccv.chain_valid, true) THEN 'event_hash_chain_mismatch' END,
     CASE WHEN env.source_fingerprint IS DISTINCT FROM k.source_fingerprint OR k.source_fingerprint <> r.record_fingerprint THEN 'provenance_link_mismatch' END,
     CASE WHEN COALESCE(lad.risk_tier, 'low') = 'high' THEN 'high_risk_fact' END
-  ], NULL)) AS limitation_codes
+  ], NULL)) AS limitation_codes,
+  r.quality_gate_outcome,
+  COALESCE(lpd.decision_reasons, '[]'::jsonb) AS policy_reason_codes,
+  COALESCE(lad.reason_codes, '[]'::jsonb) AS assurance_reason_codes
 FROM ingestion.certified_knowledge_items AS k
 JOIN ingestion.credibility_records AS r
   ON r.record_fingerprint = k.source_fingerprint

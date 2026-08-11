@@ -1,0 +1,50 @@
+{
+  "schema_version": "st1-098-reentry-gate-evidence-v1",
+  "generated_utc": "2026-08-11T12:20:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_098_reentry_gate.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "parked_unchanged_external_dependency": {
+      "expected_dependency_fingerprint": "f7ec9eb1ff1e6630ddd128fe85a20f50e484a9e915c94074be4a7c62ce96130c",
+      "dependency_fingerprint_changed": false,
+      "readiness_status": "waiting_for_external_evidence",
+      "reentry_gate_result": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY"
+    },
+    "reopen_for_external_evidence_reassessment": {
+      "expected_dependency_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+      "dependency_fingerprint_changed": true,
+      "readiness_status": "waiting_for_external_evidence",
+      "reentry_gate_result": "REOPEN_FOR_EXTERNAL_EVIDENCE_REASSESSMENT"
+    },
+    "waiting_for_runtime_only_fields": {
+      "expected_dependency_fingerprint": "f7ec9eb1ff1e6630ddd128fe85a20f50e484a9e915c94074be4a7c62ce96130c",
+      "dependency_fingerprint_changed": false,
+      "readiness_status": "waiting_for_runtime_only_fields",
+      "reentry_gate_result": "WAITING_FOR_RUNTIME_ONLY_FIELDS"
+    },
+    "ready_for_first_runtime_mutation": {
+      "expected_dependency_fingerprint": "f7ec9eb1ff1e6630ddd128fe85a20f50e484a9e915c94074be4a7c62ce96130c",
+      "dependency_fingerprint_changed": false,
+      "readiness_status": "ready_to_run",
+      "reentry_gate_result": "READY_FOR_FIRST_RUNTIME_MUTATION"
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "st1-119-execution-conformance-evidence-v1",
+  "verified_on": "2026-08-11",
+  "cases": {
+    "non_conforming": {
+      "conformance_result": "EXECUTION_DOES_NOT_CONFORM",
+      "approved_brief_status": "READY_PRE_EXECUTION_OPERATOR_BRIEF",
+      "receipt_result": "NO_GO_POLICY_AUTOMATIC_RECEIPT",
+      "reason_codes": [
+        "approval_mode_mismatch",
+        "certification_boundary_breached",
+        "policy_receipt_invalid",
+        "receipt_not_at_policy_automatic_hard_stop"
+      ],
+      "conformance_summary": {
+        "approval_mode": "human_required",
+        "certification_executed": true,
+        "errors": [
+          "receipt_not_at_policy_automatic_hard_stop",
+          "approval_mode_mismatch",
+          "certification_boundary_breached"
+        ],
+        "expected_execution_step_count": 6,
+        "fact_class": "reported_progress",
+        "human_approval_required_before_certification": true,
+        "observed_execution_step_count": 6,
+        "policy_id": "project-controls-progress-low-risk",
+        "record_id": "maroon-progress-row-0001",
+        "report_period_value": "1402/06/25-1402/06/31",
+        "requested_item_count": 5,
+        "runtime_value_count": 5,
+        "source_id": "maroon_project_controls_progress_workbook_series",
+        "truthful_next_action": "execute_now"
+      }
+    },
+    "conforming": {
+      "conformance_result": "EXECUTION_CONFORMS_TO_APPROVED_BRIEF",
+      "approved_brief_status": "READY_PRE_EXECUTION_OPERATOR_BRIEF",
+      "receipt_result": "REACHED_POLICY_AUTOMATIC_HARD_STOP",
+      "reason_codes": [],
+      "conformance_summary": {
+        "approval_mode": "policy_automatic",
+        "certification_executed": false,
+        "errors": [],
+        "expected_execution_step_count": 6,
+        "fact_class": "reported_progress",
+        "human_approval_required_before_certification": true,
+        "observed_execution_step_count": 6,
+        "policy_id": "project-controls-progress-low-risk",
+        "record_id": "maroon-progress-row-0001",
+        "report_period_value": "1402/06/25-1402/06/31",
+        "requested_item_count": 5,
+        "runtime_value_count": 5,
+        "source_id": "maroon_project_controls_progress_workbook_series",
+        "truthful_next_action": "execute_now"
+      }
+    }
+  }
+}

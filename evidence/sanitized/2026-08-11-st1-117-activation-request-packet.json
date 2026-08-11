@@ -1,0 +1,53 @@
+{
+  "schema_version": "st1-117-activation-request-packet-evidence-v1",
+  "generated_utc": "2026-08-11T10:51:07Z",
+  "verification": {
+    "py_compile": {
+      "command": "C:/Users/PNS/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -m py_compile scripts/compile_st1_117_activation_request_packet.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "external_evidence_request": {
+      "packet_status": "BLOCKED_ACTIVATION_REQUEST_PACKET",
+      "next_action": "wait_for_external_evidence",
+      "request_kind": "external_evidence_request",
+      "requested_item_count": 1
+    },
+    "runtime_only_request": {
+      "packet_status": "BLOCKED_ACTIVATION_REQUEST_PACKET",
+      "next_action": "wait_for_runtime_only_values",
+      "request_kind": "runtime_only_request",
+      "requested_item_count": 5
+    },
+    "execute_now_packet": {
+      "packet_status": "READY_ACTIVATION_REQUEST_PACKET",
+      "next_action": "execute_now",
+      "request_kind": "execute_now_packet",
+      "requested_items": [
+        "verified accountable_actor_id",
+        "verified evidence_fingerprint values",
+        "real record_id",
+        "real observed_at",
+        "real low-risk fact payload"
+      ],
+      "human_approval_required_before_certification": true
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_source_control_verified": false,
+    "real_file_acquired": false,
+    "real_transformation_recorded": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

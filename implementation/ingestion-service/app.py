@@ -9,7 +9,9 @@ from hashlib import sha256
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import Lock
+from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urlparse
+from urllib.request import Request, urlopen
 
 import psycopg
 
@@ -25,6 +27,7 @@ PASSPORT_RESULTS = {
     "NOT_RELIANCE_ELIGIBLE",
     "REVOKED_OR_SUPERSEDED",
     "QUARANTINED",
+    "INTEGRITY_FAILURE",
 }
 PORTFOLIO_RESULTS = {
     "VERIFIED",
@@ -33,11 +36,25 @@ PORTFOLIO_RESULTS = {
     "NOT_RELIANCE_ELIGIBLE",
     "REVOKED_OR_SUPERSEDED",
     "QUARANTINED",
+    "INTEGRITY_FAILURE",
 }
 ROUTING_RESULTS = {
     "policy_automatic",
     "human_required",
     "reject_or_quarantine",
+}
+CERTIFIED_KNOWLEDGE_QDRANT_COLLECTION = os.environ.get("CERTIFIED_KNOWLEDGE_QDRANT_COLLECTION", "enterprise_ai_certified_knowledge_v1")
+QDRANT_URL = os.environ.get("QDRANT_URL", "http://rdvector:6333").rstrip("/")
+CERTIFIED_KNOWLEDGE_REQUIRED_FIELDS = {
+    "knowledge_id",
+    "source_fingerprint",
+    "source_record_id",
+    "certification_event_id",
+    "knowledge_text",
+    "provenance",
+    "certifying_actor",
+    "certification_timestamp",
+    "certification_policy_version",
 }
 
 
@@ -63,6 +80,28 @@ def parse_boolean_flag(value: str | None) -> bool:
     return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
 
 
+def point_id_from_knowledge_id(knowledge_id: str) -> str:
+    return (
+        f"{knowledge_id[:8]}-{knowledge_id[8:12]}-{knowledge_id[12:16]}-"
+        f"{knowledge_id[16:20]}-{knowledge_id[20:32]}"
+    )
+
+
+def qdrant_request(path: str, method: str = "GET", payload: dict[str, object] | None = None) -> tuple[int | None, dict[str, object]]:
+    body = json.dumps(payload).encode("utf-8") if payload is not None else None
+    request = Request(f"{QDRANT_URL}{path}", data=body, method=method, headers={"Content-Type": "application/json"})
+    try:
+        with urlopen(request, timeout=20) as response:
+            return response.status, json.load(response)
+    except HTTPError as error:
+        try:
+            return error.code, json.load(error)
+        except json.JSONDecodeError:
+            return error.code, {"error": "qdrant_http_error"}
+    except (URLError, TimeoutError, ValueError, json.JSONDecodeError):
+        return None, {"error": "qdrant_unavailable"}
+
+
 def finalize_passport_verification_result(base_result: str, reliance_state: str | None, require_reliance_eligible: bool) -> str:
     if base_result not in PASSPORT_RESULTS:
         raise ValueError("unexpected_passport_result")
@@ -71,64 +110,230 @@ def finalize_passport_verification_result(base_result: str, reliance_state: str 
     return base_result
 
 
-def row_to_passport_payload(row: tuple[object, ...], require_reliance_eligible: bool) -> dict[str, object]:
-    limitation_codes = row[30] if isinstance(row[30], list) else []
-    verification_result = finalize_passport_verification_result(str(row[28]), row[18] if isinstance(row[18], str) else None, require_reliance_eligible)
+def uniq(items: list[str]) -> list[str]:
+    seen: set[str] = set()
+    output: list[str] = []
+    for item in items:
+        if item and item not in seen:
+            seen.add(item)
+            output.append(item)
+    return output
+
+
+def build_dimension(*, status: str, evidence_refs: list[str], limitations: list[str], policy_version: str | None = None,
+                    verified_at: str | None = None, evaluated_at: str | None = None) -> dict[str, object]:
+    payload: dict[str, object] = {
+        "status": status,
+        "evidence_refs": uniq(evidence_refs),
+        "limitations": uniq(limitations),
+    }
+    if policy_version:
+        payload["policy_version"] = policy_version
+    if verified_at:
+        payload["verified_at"] = verified_at
+    if evaluated_at:
+        payload["evaluated_at"] = evaluated_at
+    return payload
+
+
+def build_passport_dimensions(row: tuple[object, ...], limitation_codes: list[str]) -> dict[str, object]:
+    knowledge_id = str(row[0])
+    source_fingerprint = str(row[1])
+    source_id = str(row[3]) if isinstance(row[3], str) else None
+    quality_gate_outcome = str(row[5]) if isinstance(row[5], str) else None
+    certification_timestamp = row[11].isoformat() if row[11] else None
+    certification_policy_version = row[12] if isinstance(row[12], str) else None
+    assurance_policy_version = row[15] if isinstance(row[15], str) else None
+    currentness_state = str(row[19]) if isinstance(row[19], str) else "not_assessed"
+    reliance_state = str(row[20]) if isinstance(row[20], str) else "not_eligible"
+    authority_state = str(row[25]) if isinstance(row[25], str) else "missing"
+    business_time_state = str(row[26]) if isinstance(row[26], str) else "missing"
+    provenance_link_valid = bool(row[32])
+    assurance_chain_valid = bool(row[33])
+    consumption_chain_valid = bool(row[34])
+    consumption_count = int(row[35]) if row[35] is not None else 0
+    last_consumed_at = row[36].isoformat() if row[36] else None
+    post_event_type = str(row[37]) if isinstance(row[37], str) else None
+    post_event_at = row[38].isoformat() if row[38] else None
+    policy_reason_codes = row[39] if isinstance(row[39], list) else []
+    assurance_reason_codes = row[40] if isinstance(row[40], list) else []
+
+    integrity_limitations = []
+    if not provenance_link_valid:
+        integrity_limitations.append("provenance_link_mismatch")
+    if not assurance_chain_valid:
+        integrity_limitations.append("assurance_event_chain_mismatch")
+    if not consumption_chain_valid:
+        integrity_limitations.append("consumption_event_chain_mismatch")
+
+    conflict_limitations = [code for code in limitation_codes if code in {"authority_conflict", "business_time_conflict"}]
+    authority_limitations = [code for code in limitation_codes if code.startswith("authority_") or code == "governance_waiting_for_external_evidence"]
+    business_time_limitations = [code for code in limitation_codes if code.startswith("business_time_")]
+
     return {
+        "identity": build_dimension(
+            status="VERIFIED" if knowledge_id and source_fingerprint else "MISSING",
+            evidence_refs=[f"knowledge:{knowledge_id}", f"record:{source_fingerprint}", f"source:{source_id}" if source_id else ""],
+            limitations=[],
+            verified_at=certification_timestamp,
+        ),
+        "provenance": build_dimension(
+            status="VERIFIED" if provenance_link_valid else "INTEGRITY_FAILURE",
+            evidence_refs=[f"knowledge:{knowledge_id}", f"record:{source_fingerprint}"],
+            limitations=["provenance_link_mismatch"] if not provenance_link_valid else [],
+            verified_at=certification_timestamp,
+        ),
+        "integrity": build_dimension(
+            status="INTEGRITY_FAILURE" if integrity_limitations else "VERIFIED",
+            evidence_refs=[f"assurance_chain:{knowledge_id}", f"consumption_chain:{knowledge_id}"],
+            limitations=integrity_limitations,
+            evaluated_at=last_consumed_at or certification_timestamp,
+        ),
+        "authority": build_dimension(
+            status={"verified": "VERIFIED", "missing": "MISSING", "conflict": "CONFLICT", "revoked_or_superseded": "REVOKED_OR_SUPERSEDED"}.get(authority_state, "PARTIAL"),
+            evidence_refs=[f"authority_assertions:record:{source_fingerprint}", f"source_registry:{source_id}" if source_id else ""],
+            limitations=authority_limitations,
+            policy_version=assurance_policy_version,
+            evaluated_at=certification_timestamp,
+        ),
+        "business_time": build_dimension(
+            status={"valid": "VERIFIED", "missing": "MISSING", "conflict": "CONFLICT"}.get(business_time_state, "PARTIAL"),
+            evidence_refs=[f"business_time_evidence:{source_fingerprint}"],
+            limitations=business_time_limitations,
+            evaluated_at=certification_timestamp,
+        ),
+        "validation": build_dimension(
+            status="VERIFIED" if quality_gate_outcome == "passed" else "PARTIAL",
+            evidence_refs=[f"credibility_record:{source_fingerprint}"],
+            limitations=[] if quality_gate_outcome == "passed" else ["validation_outcome_not_passed_or_not_recorded"],
+            evaluated_at=certification_timestamp,
+        ),
+        "policy": build_dimension(
+            status="VERIFIED" if row[22] and row[23] else "MISSING",
+            evidence_refs=[f"policy_decision:{source_fingerprint}"],
+            limitations=uniq([*policy_reason_codes, *assurance_reason_codes]),
+            policy_version=str(row[23]) if isinstance(row[23], str) else None,
+            evaluated_at=certification_timestamp,
+        ),
+        "human_review": build_dimension(
+            status="REQUIRED" if row[24] == "human_required" else "NOT_REQUIRED",
+            evidence_refs=[f"certification_event:{row[9]}"] if row[9] else [],
+            limitations=["human_review_required"] if row[24] == "human_required" else [],
+            verified_at=certification_timestamp,
+        ),
+        "certification": build_dimension(
+            status="VERIFIED" if row[9] and certification_timestamp else "MISSING",
+            evidence_refs=[f"certification_event:{row[9]}"] if row[9] else [],
+            limitations=[],
+            policy_version=certification_policy_version,
+            verified_at=certification_timestamp,
+        ),
+        "currentness": build_dimension(
+            status="VERIFIED" if currentness_state == "current_eligible" else "LIMITED",
+            evidence_refs=[f"assurance_decision:{source_fingerprint}"],
+            limitations=["currentness_limited"] if currentness_state != "current_eligible" else [],
+            policy_version=assurance_policy_version,
+            evaluated_at=certification_timestamp,
+        ),
+        "reliance": build_dimension(
+            status="VERIFIED" if reliance_state == "eligible" else "NOT_RELIANCE_ELIGIBLE",
+            evidence_refs=[f"assurance_decision:{source_fingerprint}"],
+            limitations=["reliance_not_eligible"] if reliance_state != "eligible" else [],
+            policy_version=assurance_policy_version,
+            evaluated_at=certification_timestamp,
+        ),
+        "conflict": build_dimension(
+            status="CONFLICT" if conflict_limitations else "CLEAR",
+            evidence_refs=[f"authority_assertions:record:{source_fingerprint}", f"business_time_evidence:{source_fingerprint}"],
+            limitations=conflict_limitations,
+            evaluated_at=certification_timestamp,
+        ),
+        "revocation": build_dimension(
+            status="REVOKED" if post_event_type == "revocation" else "CLEAR",
+            evidence_refs=[f"post_registration:{knowledge_id}"] if post_event_type == "revocation" else [],
+            limitations=["post_registration_terminal_event"] if post_event_type == "revocation" else [],
+            evaluated_at=post_event_at,
+        ),
+        "supersession": build_dimension(
+            status="SUPERSEDED" if post_event_type == "supersession" else "CLEAR",
+            evidence_refs=[f"post_registration:{knowledge_id}"] if post_event_type == "supersession" else [],
+            limitations=["post_registration_terminal_event"] if post_event_type == "supersession" else [],
+            evaluated_at=post_event_at,
+        ),
+        "consumption": build_dimension(
+            status="VERIFIED" if consumption_count > 0 and consumption_chain_valid else "NOT_VERIFIABLE" if consumption_count == 0 else "INTEGRITY_FAILURE",
+            evidence_refs=[f"consumption_events:{knowledge_id}"],
+            limitations=[] if consumption_count > 0 and consumption_chain_valid else ["consumption_history_missing"] if consumption_count == 0 else ["consumption_event_chain_mismatch"],
+            evaluated_at=last_consumed_at,
+        ),
+    }
+
+
+def row_to_passport_payload(row: tuple[object, ...], require_reliance_eligible: bool) -> dict[str, object]:
+    limitation_codes = row[31] if isinstance(row[31], list) else []
+    verification_result = finalize_passport_verification_result(str(row[30]), row[20] if isinstance(row[20], str) else None, require_reliance_eligible)
+    dimensions = build_passport_dimensions(row, limitation_codes)
+    return {
+        "contract_version": "SDAS Assurance Passport v0.1",
         "knowledge_id": row[0],
         "source_fingerprint": row[1],
         "source_record_id": row[2],
         "source_id": row[3],
         "record_id": row[4],
-        "observed_at": row[5].isoformat() if row[5] else None,
-        "ingested_at": row[6].isoformat() if row[6] else None,
-        "acquired_at": row[7].isoformat() if row[7] else None,
+        "quality_gate_outcome": row[5],
+        "observed_at": row[6].isoformat() if row[6] else None,
+        "ingested_at": row[7].isoformat() if row[7] else None,
+        "acquired_at": row[8].isoformat() if row[8] else None,
         "certification": {
-            "event_id": row[8],
-            "actor": row[9],
-            "timestamp": row[10].isoformat() if row[10] else None,
-            "policy_version": row[11],
+            "event_id": row[9],
+            "actor": row[10],
+            "timestamp": row[11].isoformat() if row[11] else None,
+            "policy_version": row[12],
         },
         "assurance": {
-            "level": row[12],
-            "state": row[13],
-            "policy_version": row[14],
-            "authority_inheritance_state": row[15],
-            "business_time_state": row[16],
-            "risk_tier": row[17],
-            "currentness_state": row[18],
-            "reliance_state": row[19],
-            "outcome": row[20],
+            "level": row[13],
+            "state": row[14],
+            "policy_version": row[15],
+            "authority_inheritance_state": row[16],
+            "business_time_state": row[17],
+            "risk_tier": row[18],
+            "currentness_state": row[19],
+            "reliance_state": row[20],
+            "outcome": row[21],
+            "reason_codes": row[40] if isinstance(row[40], list) else [],
         },
         "policy": {
-            "policy_id": row[21],
-            "policy_version": row[22],
-            "approval_mode": row[23],
+            "policy_id": row[22],
+            "policy_version": row[23],
+            "approval_mode": row[24],
+            "reason_codes": row[39] if isinstance(row[39], list) else [],
         },
         "authority": {
-            "passport_authority_state": row[24],
-            "source_registry_authority_status": row[25],
+            "passport_authority_state": row[25],
+            "source_registry_authority_status": row[26],
         },
         "transformations": {
-            "count": row[26],
-            "all_deterministic": row[27],
+            "count": row[27],
+            "all_deterministic": row[28],
         },
         "verification_result": verification_result,
+        "reason_codes": uniq(limitation_codes),
         "business_time_evidence": row[29] if isinstance(row[29], list) else [],
         "limitation_codes": limitation_codes,
         "chain_integrity": {
-            "provenance_link_valid": row[31],
-            "assurance_event_chain_valid": row[32],
-            "consumption_event_chain_valid": row[33],
+            "provenance_link_valid": row[32],
+            "assurance_event_chain_valid": row[33],
+            "consumption_event_chain_valid": row[34],
         },
         "consumption": {
-            "count": row[34],
-            "last_consumed_at": row[35].isoformat() if row[35] else None,
+            "count": row[35],
+            "last_consumed_at": row[36].isoformat() if row[36] else None,
         },
         "post_registration": {
-            "event_type": row[36],
-            "event_at": row[37].isoformat() if row[37] else None,
+            "event_type": row[37],
+            "event_at": row[38].isoformat() if row[38] else None,
         },
+        "dimensions": dimensions,
         "request_constraints": {
             "require_reliance_eligible": require_reliance_eligible,
         },
@@ -143,6 +348,7 @@ def row_to_portfolio_summary_payload(rows: list[tuple[object, ...]]) -> dict[str
         "NOT_RELIANCE_ELIGIBLE",
         "REVOKED_OR_SUPERSEDED",
         "QUARANTINED",
+        "INTEGRITY_FAILURE",
     ]
     summary = {result: {"passport_count": 0, "limitation_code_counts": {}} for result in ordered_results}
     total = 0
@@ -269,6 +475,150 @@ def row_to_routing_detail_payload(row: tuple[object, ...]) -> dict[str, object]:
     }
 
 
+def collection_projection_state(collection_name: str) -> dict[str, object]:
+    status, payload = qdrant_request(f"/collections/{collection_name}")
+    if status == 200:
+        result = payload.get("result", {}) if isinstance(payload, dict) else {}
+        config = result.get("config", {}) if isinstance(result, dict) else {}
+        params = config.get("params", {}) if isinstance(config, dict) else {}
+        vectors = params.get("vectors", {}) if isinstance(params, dict) else {}
+        return {
+            "collection_exists": True,
+            "collection_runtime_state": result.get("status"),
+            "points_count": result.get("points_count"),
+            "vector_dimension": vectors.get("size"),
+            "distance_metric": vectors.get("distance"),
+        }
+    if status == 404:
+        return {
+            "collection_exists": False,
+            "collection_runtime_state": "missing",
+            "points_count": None,
+            "vector_dimension": None,
+            "distance_metric": None,
+        }
+    return {
+        "collection_exists": False,
+        "collection_runtime_state": "unavailable",
+        "points_count": None,
+        "vector_dimension": None,
+        "distance_metric": None,
+    }
+
+
+def point_projection_state(*, collection_name: str, point_id: str, knowledge_id: str, source_fingerprint: str,
+                           source_record_id: str, certification_event_id: int | None) -> dict[str, object]:
+    status, payload = qdrant_request(
+        f"/collections/{collection_name}/points",
+        "POST",
+        {"ids": [point_id], "with_payload": True, "with_vector": False},
+    )
+    if status != 200:
+        return {
+            "indexed_point_present": None,
+            "payload_contract_valid": None,
+            "payload_knowledge_id_match": None,
+            "payload_source_fingerprint_match": None,
+            "payload_source_record_id_match": None,
+            "payload_certification_event_id_match": None,
+            "point_runtime_state": "unavailable",
+        }
+    result = payload.get("result", []) if isinstance(payload, dict) else []
+    point = result[0] if isinstance(result, list) and result else None
+    if not isinstance(point, dict):
+        return {
+            "indexed_point_present": False,
+            "payload_contract_valid": None,
+            "payload_knowledge_id_match": None,
+            "payload_source_fingerprint_match": None,
+            "payload_source_record_id_match": None,
+            "payload_certification_event_id_match": None,
+            "point_runtime_state": "missing",
+        }
+    item = point.get("payload")
+    payload_contract_valid = isinstance(item, dict) and set(item) == CERTIFIED_KNOWLEDGE_REQUIRED_FIELDS
+    return {
+        "indexed_point_present": True,
+        "payload_contract_valid": payload_contract_valid,
+        "payload_knowledge_id_match": item.get("knowledge_id") == knowledge_id if payload_contract_valid else None,
+        "payload_source_fingerprint_match": item.get("source_fingerprint") == source_fingerprint if payload_contract_valid else None,
+        "payload_source_record_id_match": item.get("source_record_id") == source_record_id if payload_contract_valid else None,
+        "payload_certification_event_id_match": item.get("certification_event_id") == certification_event_id if payload_contract_valid else None,
+        "point_runtime_state": "present",
+    }
+
+
+def build_passport_index_projection_state(*, row: tuple[object, ...], collection_state: dict[str, object],
+                                          point_state: dict[str, object]) -> dict[str, object]:
+    collection_exists = bool(collection_state["collection_exists"])
+    indexed_point_present = point_state["indexed_point_present"]
+    payload_checks = [
+        point_state["payload_contract_valid"],
+        point_state["payload_knowledge_id_match"],
+        point_state["payload_source_fingerprint_match"],
+        point_state["payload_source_record_id_match"],
+        point_state["payload_certification_event_id_match"],
+    ]
+    if collection_state["collection_runtime_state"] == "unavailable":
+        visibility_result = "index_runtime_unavailable"
+    elif not collection_exists:
+        visibility_result = "collection_missing"
+    elif indexed_point_present is False:
+        visibility_result = "certified_not_indexed"
+    elif indexed_point_present is True and all(value is True for value in payload_checks):
+        visibility_result = "indexed_certified_projection_visible"
+    elif indexed_point_present is True:
+        visibility_result = "indexed_payload_mismatch"
+    else:
+        visibility_result = "point_runtime_unavailable"
+    return {
+        "collection_name": row[5],
+        "point_id": row[4],
+        "collection_exists": collection_exists,
+        "collection_runtime_state": collection_state["collection_runtime_state"],
+        "points_count": collection_state["points_count"],
+        "vector_dimension": collection_state["vector_dimension"],
+        "distance_metric": collection_state["distance_metric"],
+        "indexed_point_present": indexed_point_present,
+        "point_runtime_state": point_state["point_runtime_state"],
+        "payload_contract_valid": point_state["payload_contract_valid"],
+        "payload_knowledge_id_match": point_state["payload_knowledge_id_match"],
+        "payload_source_fingerprint_match": point_state["payload_source_fingerprint_match"],
+        "payload_source_record_id_match": point_state["payload_source_record_id_match"],
+        "payload_certification_event_id_match": point_state["payload_certification_event_id_match"],
+        "visibility_result": visibility_result,
+    }
+
+
+def row_to_passport_index_payload(row: tuple[object, ...], index_projection: dict[str, object]) -> dict[str, object]:
+    return {
+        "contract_version": "SDAS Assurance Passport Index Adjunct v0.1",
+        "knowledge_id": row[0],
+        "source_fingerprint": row[1],
+        "source_record_id": row[2],
+        "certification": {
+            "event_id": row[3],
+            "timestamp": row[10].isoformat() if row[10] else None,
+            "policy_version": row[11],
+        },
+        "assurance_context": {
+            "passport_base_verification_result": row[6],
+            "currentness_state": row[7],
+            "reliance_state": row[8],
+            "latest_post_registration_event_type": row[9],
+            "limitation_codes": row[12] if isinstance(row[12], list) else [],
+        },
+        "index_projection": index_projection,
+        "boundaries": {
+            "certified_scope_only": True,
+            "raw_vector_exposed": False,
+            "provider_or_credential_state_exposed": False,
+            "retrieval_threshold_changed": False,
+            "certification_or_governance_mutated": False,
+        },
+    }
+
+
 def build_sdas_assessment(row: tuple[object, ...]) -> dict[str, object]:
     """Assess only evidence already persisted; absent evidence remains missing."""
     provenance = row[6] if isinstance(row[6], dict) else {}
@@ -352,18 +702,19 @@ class IngestionHandler(BaseHTTPRequestHandler):
                 with connection.cursor() as cursor:
                     cursor.execute(
                         """SELECT knowledge_id, source_fingerprint, source_record_id, source_id, record_id,
-                                  observed_at, ingested_at, acquired_at, certification_event_id,
-                                  certifying_actor, certification_timestamp, certification_policy_version,
-                                  assurance_level, assurance_state, assurance_policy_version,
-                                  authority_inheritance_state, business_time_state, risk_tier,
-                                  currentness_state, reliance_state, assurance_outcome, policy_id,
-                                  policy_version, policy_approval_mode, passport_authority_state,
+                                  quality_gate_outcome, observed_at, ingested_at, acquired_at,
+                                  certification_event_id, certifying_actor, certification_timestamp,
+                                  certification_policy_version, assurance_level, assurance_state,
+                                  assurance_policy_version, authority_inheritance_state,
+                                  business_time_state, risk_tier, currentness_state, reliance_state,
+                                  assurance_outcome, policy_id, policy_version, policy_approval_mode, passport_authority_state,
                                   source_registry_authority_status, transformation_count,
-                                  all_transformations_deterministic, base_verification_result,
-                                  business_time_evidence, limitation_codes, provenance_link_valid,
+                                  all_transformations_deterministic, business_time_evidence,
+                                  base_verification_result, limitation_codes, provenance_link_valid,
                                   assurance_event_chain_valid, consumption_event_chain_valid,
                                   consumption_count, last_consumed_at,
-                                  latest_post_registration_event_type, latest_post_registration_event_at
+                                  latest_post_registration_event_type, latest_post_registration_event_at,
+                                  policy_reason_codes, assurance_reason_codes
                            FROM ingestion.sdas_assurance_passport_projection
                            WHERE knowledge_id=%s""",
                         (knowledge_id[0],),
@@ -420,6 +771,45 @@ class IngestionHandler(BaseHTTPRequestHandler):
                     "verification_result_filter": requested_result or None,
                     "items": [row_to_exception_payload(row) for row in rows],
                 },
+            )
+            return
+
+        if parsed_path.path == "/v1/sdas/passport/index":
+            query = parse_qs(parsed_path.query, keep_blank_values=True)
+            knowledge_id = query.get("knowledge_id", [""])
+            if len(knowledge_id) != 1 or not is_hex64(knowledge_id[0]) or not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_assurance_passport_index_request"})
+                return
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        """SELECT knowledge_id, source_fingerprint, source_record_id, certification_event_id,
+                                  qdrant_point_id, qdrant_collection_name, passport_base_verification_result,
+                                  currentness_state, reliance_state, latest_post_registration_event_type,
+                                  certification_timestamp, certification_policy_version, limitation_codes
+                           FROM ingestion.sdas_assurance_passport_index_projection
+                           WHERE knowledge_id=%s""",
+                        (knowledge_id[0],),
+                    )
+                    row = cursor.fetchone()
+            if not row:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "assurance_passport_index_not_found"})
+                return
+            collection_state = collection_projection_state(str(row[5]))
+            point_state = point_projection_state(
+                collection_name=str(row[5]),
+                point_id=str(row[4]),
+                knowledge_id=str(row[0]),
+                source_fingerprint=str(row[1]),
+                source_record_id=str(row[2]),
+                certification_event_id=int(row[3]) if row[3] is not None else None,
+            )
+            self.send_json(
+                HTTPStatus.OK,
+                row_to_passport_index_payload(
+                    row,
+                    build_passport_index_projection_state(row=row, collection_state=collection_state, point_state=point_state),
+                ),
             )
             return
 

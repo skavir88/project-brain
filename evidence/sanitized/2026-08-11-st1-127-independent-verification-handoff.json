@@ -1,0 +1,50 @@
+{
+  "task_id": "ST1-127",
+  "date": "2026-08-11",
+  "purpose": "deterministic_independent_verification_handoff_for_the_selected_recurring_workbook_series",
+  "artifact_created": "scripts/compile_st1_127_independent_verification_handoff.py",
+  "verified_cases": {
+    "template_waiting_case": {
+      "bundle": "docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json",
+      "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "can_begin_real_controlled_review": false,
+      "selected_series_match": true,
+      "required_check_status": "NOT_READY_EXTERNAL_EVIDENCE_INCOMPLETE",
+      "missing_external_inputs": [
+        "A1_governance_authority_confirmation",
+        "A2_project_controls_accountability_confirmation",
+        "A3_controlled_report_definition_confirmation",
+        "stable_source_registration_evidence_reference",
+        "stable_non_sensitive_source_series_identifier"
+      ]
+    },
+    "synthetic_ready_case": {
+      "bundle": "docs/examples/ST1_124_recurring_workbook_governance_bundle.synthetic.ready.json",
+      "activation_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+      "can_begin_real_controlled_review": true,
+      "selected_series_match": true,
+      "required_check_status": "REQUIRED_FOR_REAL_REVIEW",
+      "missing_external_inputs": []
+    }
+  },
+  "required_controlled_checks": [
+    "IV-001_governance_approver_identity_verification",
+    "IV-002_project_controls_accountable_role_verification",
+    "IV-003_controlled_report_definition_verification",
+    "IV-004_business_time_rule_verification",
+    "IV-005_source_ownership_control_verification",
+    "IV-006_selected_series_exact_scope_confirmation"
+  ],
+  "boundary": {
+    "real_delegation_activated": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_certification_changed": false,
+    "st1_061_is_success_target": false
+  },
+  "verification_commands": [
+    "python -m py_compile scripts/compile_st1_127_independent_verification_handoff.py",
+    "python scripts/compile_st1_127_independent_verification_handoff.py --bundle docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json",
+    "python scripts/compile_st1_127_independent_verification_handoff.py --bundle docs/examples/ST1_124_recurring_workbook_governance_bundle.synthetic.ready.json"
+  ]
+}

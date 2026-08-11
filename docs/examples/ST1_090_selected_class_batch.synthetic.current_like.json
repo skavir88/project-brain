@@ -1,0 +1,49 @@
+{
+  "records": [
+    {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "project_scope": "maroon_pilot",
+      "record_id": "hist-0001",
+      "source_id": "enterprise_ai_real_action_plan_weekly_observation",
+      "fact_class": "reported_progress",
+      "evidence_quality": "historical_reconstructed",
+      "exact_scope_match": true,
+      "governance_ready": true,
+      "native_evidence_ready": false,
+      "business_time_ready": true,
+      "integrity_ready": true,
+      "risk_tier": "LOW",
+      "automatic_certification_requested": false
+    },
+    {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "project_scope": "maroon_pilot",
+      "record_id": "hist-0002",
+      "source_id": "enterprise_ai_real_action_plan_weekly_observation",
+      "fact_class": "reported_activity",
+      "evidence_quality": "historical_reconstructed",
+      "exact_scope_match": true,
+      "governance_ready": true,
+      "native_evidence_ready": false,
+      "business_time_ready": true,
+      "integrity_ready": true,
+      "risk_tier": "LOW",
+      "automatic_certification_requested": false
+    },
+    {
+      "candidate_class_id": "project_controls_progress_workbook",
+      "project_scope": "maroon_pilot",
+      "record_id": "hist-0003",
+      "source_id": "enterprise_ai_real_action_plan_weekly_observation",
+      "fact_class": "reported_project_control_issue",
+      "evidence_quality": "historical_reconstructed",
+      "exact_scope_match": true,
+      "governance_ready": true,
+      "native_evidence_ready": false,
+      "business_time_ready": true,
+      "integrity_ready": true,
+      "risk_tier": "LOW",
+      "automatic_certification_requested": false
+    }
+  ]
+}

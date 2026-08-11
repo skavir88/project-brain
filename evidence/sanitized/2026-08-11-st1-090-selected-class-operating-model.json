@@ -1,0 +1,73 @@
+{
+  "schema_version": "st1-090-selected-class-operating-model-evidence-v1",
+  "generated_utc": "2026-08-11T08:55:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/simulate_st1_090_selected_class_operating_model.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "current_like_historical_batch": {
+      "fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.current_like.json",
+      "record_count": 3,
+      "routing_counts": {
+        "policy_automatic": 0,
+        "human_required": 3,
+        "reject_or_quarantine": 0
+      },
+      "dominant_reason_codes": {
+        "missing_native_evidence": 3
+      },
+      "estimated_human_review_reduction": 0,
+      "false_positive_safety_checks": {
+        "historical_or_reconstructed_not_promoted_to_native": true,
+        "out_of_scope_fact_classes_not_promoted": true,
+        "automatic_certification_not_enabled": true
+      }
+    },
+    "mixed_future_batch": {
+      "fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "record_count": 6,
+      "routing_counts": {
+        "policy_automatic": 1,
+        "human_required": 3,
+        "reject_or_quarantine": 2
+      },
+      "dominant_reason_codes": {
+        "all_required_policy_evidence_present": 1,
+        "authority_not_verified": 1,
+        "automatic_certification_not_allowed": 1,
+        "business_time_missing": 1,
+        "fact_class_out_of_scope": 1,
+        "missing_native_evidence": 1
+      },
+      "estimated_human_review_reduction": 1,
+      "future_batch_shape": {
+        "N_new_records": 6,
+        "X_policy_automatic": 1,
+        "Y_human_review_required": 3,
+        "Z_quarantine": 2
+      },
+      "false_positive_safety_checks": {
+        "historical_or_reconstructed_not_promoted_to_native": true,
+        "out_of_scope_fact_classes_not_promoted": true,
+        "automatic_certification_not_enabled": true
+      }
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

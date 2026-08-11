@@ -1,0 +1,48 @@
+{
+  "task_id": "ST1-079",
+  "external_gate": {
+    "state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "e1": "MISSING",
+    "e2": "MISSING",
+    "e3": "PARTIAL",
+    "real_active_delegations": 0,
+    "real_policy_automatic_path_available": false,
+    "dependency_fingerprint": "f7ec9eb1ff1e6630ddd128fe85a20f50e484a9e915c94074be4a7c62ce96130c"
+  },
+  "implemented_artifacts": {
+    "passport_matrix": "docs/ST1_079_ASSURANCE_PASSPORT_MATRIX.md",
+    "external_gate_parking": "docs/ST1_079_EXTERNAL_GATE_PARKING.md",
+    "external_gate_fingerprint_script": "scripts/fingerprint_st1_078_external_gate.py",
+    "passport_contract_verifier": "scripts/verify_st1_079_assurance_passport_v01.py"
+  },
+  "contract_verification": {
+    "contract_version": "SDAS Assurance Passport v0.1",
+    "verified_result_under_reliance_requirement": "NOT_RELIANCE_ELIGIBLE",
+    "integrity_failure_result": "INTEGRITY_FAILURE",
+    "dimension_keys": [
+      "authority",
+      "business_time",
+      "certification",
+      "conflict",
+      "consumption",
+      "currentness",
+      "human_review",
+      "identity",
+      "integrity",
+      "policy",
+      "provenance",
+      "reliance",
+      "revocation",
+      "supersession",
+      "validation"
+    ]
+  },
+  "boundaries": {
+    "real_authority_changed": false,
+    "real_delegation_changed": false,
+    "real_certification_changed": false,
+    "reliance_policy_weakened": false,
+    "new_source_access": false
+  },
+  "remaining_gap": "repository-side ST1-079 implementation advanced, but remote deployment and runtime verification of the upgraded contract/views remain a separate next milestone"
+}

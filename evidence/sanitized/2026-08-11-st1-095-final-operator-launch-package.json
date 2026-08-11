@@ -1,0 +1,52 @@
+{
+  "schema_version": "st1-095-final-operator-launch-package-evidence-v1",
+  "generated_utc": "2026-08-11T09:52:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_095_final_operator_launch_package.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_incomplete_native_evidence": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_094_first_real_native_record.synthetic.invalid.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "launch_package_status": "BLOCKED_FINAL_OPERATOR_LAUNCH_PACKAGE",
+      "ordered_runtime_step_count": 0,
+      "remaining_runtime_only_fields_count": 0,
+      "hard_stop_count": 3,
+      "hard_stop_report_ready": false,
+      "policy_automatic_items_excluded_from_exception_review": true
+    },
+    "ready_launch_package": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "launch_package_status": "READY_FINAL_OPERATOR_LAUNCH_PACKAGE",
+      "ordered_runtime_step_count": 6,
+      "remaining_runtime_only_fields_count": 7,
+      "hard_stop_count": 3,
+      "hard_stop_report_ready": true,
+      "policy_automatic_items_excluded_from_exception_review": true
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "st1-114-runtime-only-submission-card-evidence-v1",
+  "generated_utc": "2026-08-11T10:21:20Z",
+  "verification": {
+    "py_compile": {
+      "command": "C:/Users/PNS/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -m py_compile scripts/compile_st1_114_runtime_only_submission_card.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "blocked_waiting_for_external_evidence": {
+      "submission_card_status": "BLOCKED_RUNTIME_ONLY_SUBMISSION_CARD",
+      "current_readiness_status": "waiting_for_external_evidence",
+      "missing_input_state": "waiting_for_external_evidence",
+      "required_runtime_values_count": 0,
+      "remaining_checklist_item": "native_record_submission.transformation.lineage_complete must be true"
+    },
+    "blocked_waiting_for_runtime_only_fields": {
+      "submission_card_status": "BLOCKED_RUNTIME_ONLY_SUBMISSION_CARD",
+      "current_readiness_status": "waiting_for_runtime_only_fields",
+      "missing_input_state": "waiting_for_runtime_only_fields",
+      "required_runtime_values_count": 0,
+      "runtime_only_items": [
+        "fact_payload.fact_value",
+        "observed_at",
+        "record_id",
+        "runtime receipt after actual execution",
+        "batch routing input only if exception-queue simulation is needed for the same run"
+      ]
+    },
+    "ready_runtime_only_submission_card": {
+      "submission_card_status": "READY_RUNTIME_ONLY_SUBMISSION_CARD",
+      "current_readiness_status": "ready_to_run",
+      "missing_input_state": "ready_to_run",
+      "required_runtime_values": [
+        "verified accountable_actor_id",
+        "verified evidence_fingerprint values",
+        "real record_id",
+        "real observed_at",
+        "real low-risk fact payload"
+      ],
+      "hard_stop_count": 3,
+      "hard_stop_report_ready": true
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_source_control_verified": false,
+    "real_file_acquired": false,
+    "real_transformation_recorded": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "source_registration": {
+    "source_id": "maroon_project_controls_progress_workbook_series",
+    "source_type": "controlled_recurring_report_workbook",
+    "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+    "owning_role_class": "Project Controls / PMO accountable role",
+    "project_scope": "maroon_pilot",
+    "report_class": "project_controls_progress_workbook",
+    "authority_state": "awaiting_validation",
+    "evidence_reference": "synthetic://source-registration/maroon-progress-workbook"
+  },
+  "acquisition": {
+    "acquired_at": "2026-08-11T00:00:00Z",
+    "source_reference": "synthetic://native-source/first-workbook",
+    "acquisition_method": "read_only_controlled_copy",
+    "original_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "size_bytes": 1048576,
+    "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "read_only": true
+  },
+  "transformation": {
+    "tool_name": "enterprise-ai-ingestion",
+    "tool_version": "0.3",
+    "transformed_at": "2026-08-11T00:10:00Z",
+    "transformation_type": "canonicalization",
+    "input_fingerprint": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "deterministic": false,
+    "lineage_complete": false
+  },
+  "business_time": {
+    "resolved": true,
+    "resolution_source": "workbook_labelled_reporting_week_header",
+    "report_period_value": "1402/06/25-1402/06/31",
+    "disallowed_substitutes_used": []
+  },
+  "policy_context": {
+    "policy_id": "project-controls-progress-low-risk",
+    "policy_version": "v1",
+    "risk_tier": "LOW",
+    "automatic_certification_requested": false
+  },
+  "independent_verification": {
+    "bundle_independently_verified": true,
+    "source_control_independently_verified": true,
+    "business_time_rule_independently_verified": true
+  }
+}

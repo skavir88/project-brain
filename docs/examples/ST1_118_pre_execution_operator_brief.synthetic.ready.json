@@ -1,0 +1,363 @@
+{
+  "blocking_reasons": {
+    "hard_stop_report_status": "READY_HARD_STOP_REPORT",
+    "next_action": "execute_now",
+    "packet_status": "READY_ACTIVATION_REQUEST_PACKET",
+    "worksheet_status": "READY_FIRST_REAL_EXECUTION_WORKSHEET"
+  },
+  "boundaries": {
+    "real_certification_performed": false,
+    "real_delegation_activated": false,
+    "real_file_acquired": false,
+    "real_policy_decision_executed": false,
+    "real_record_ingested": false,
+    "real_source_control_verified": false,
+    "real_source_registered": false,
+    "real_transformation_recorded": false,
+    "trust_boundary_changed": false
+  },
+  "brief_status": "READY_PRE_EXECUTION_OPERATOR_BRIEF",
+  "candidate_class_id": "project_controls_progress_workbook",
+  "pre_execution_operator_brief": {
+    "concise_handoff_summary": "All local-only prerequisites are satisfied; execute the six-step runtime path and preserve the pre-certification hard stop.",
+    "hard_stop_boundary": {
+      "authority_basis": {
+        "accountable_role_class": "Project Controls / PMO accountable role",
+        "authority_basis": "signed_controlled_attestation",
+        "controlled_report_owner_role": "Project Controls / PMO accountable role",
+        "governance_role_class": "CEO / Executive Governance Authority"
+      },
+      "certification_boundary": {
+        "certification_executed": false,
+        "currentness_implied": false,
+        "reliance_eligibility_implied": false
+      },
+      "deterministic_decision_reasons": [
+        "all_required_policy_evidence_present"
+      ],
+      "exact_facts_eligible_for_policy_automatic": [
+        "report_period",
+        "reported_activity",
+        "reported_actual",
+        "reported_milestone",
+        "reported_plan",
+        "reported_progress",
+        "reported_project_control_issue"
+      ],
+      "exact_facts_excluded_from_policy": [
+        "claim",
+        "contractual_delay_determination",
+        "current_executive_status_outside_report_period",
+        "entitlement",
+        "final_completion",
+        "financial_liability",
+        "insurance_or_guarantee_status",
+        "legal_conclusion",
+        "payment_authorization_or_status",
+        "reliance_eligibility",
+        "safety_or_compliance_certification"
+      ],
+      "human_approval_required_before_certification": true,
+      "native_evidence": {
+        "acquisition_method": "read_only_controlled_copy",
+        "evidence_quality": "native",
+        "original_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "read_only_acquisition": true,
+        "source_reference": "synthetic://native-source/first-workbook",
+        "transformation_output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "policy": {
+        "approval_mode": "policy_automatic",
+        "policy_id": "project-controls-progress-low-risk",
+        "policy_version": "v1"
+      },
+      "record_data_class": {
+        "candidate_class_id": "project_controls_progress_workbook",
+        "fact_class": "reported_progress",
+        "record_id": "maroon-progress-row-0001"
+      },
+      "reporting_business_time": {
+        "observed_at": "2026-08-11T00:12:00Z",
+        "report_period_value": "1402/06/25-1402/06/31",
+        "resolution_source": "workbook_labelled_reporting_week_header"
+      },
+      "risk_tier": "LOW",
+      "source_class": {
+        "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+        "report_class": "project_controls_progress_workbook",
+        "source_id": "maroon_project_controls_progress_workbook_series",
+        "source_type": "controlled_recurring_report_workbook"
+      }
+    },
+    "hard_stop_report": {
+      "authority_basis": {
+        "accountable_role_class": "Project Controls / PMO accountable role",
+        "authority_basis": "signed_controlled_attestation",
+        "controlled_report_owner_role": "Project Controls / PMO accountable role",
+        "governance_role_class": "CEO / Executive Governance Authority"
+      },
+      "certification_boundary": {
+        "certification_executed": false,
+        "currentness_implied": false,
+        "reliance_eligibility_implied": false
+      },
+      "deterministic_decision_reasons": [
+        "all_required_policy_evidence_present"
+      ],
+      "exact_facts_eligible_for_policy_automatic": [
+        "report_period",
+        "reported_activity",
+        "reported_actual",
+        "reported_milestone",
+        "reported_plan",
+        "reported_progress",
+        "reported_project_control_issue"
+      ],
+      "exact_facts_excluded_from_policy": [
+        "claim",
+        "contractual_delay_determination",
+        "current_executive_status_outside_report_period",
+        "entitlement",
+        "final_completion",
+        "financial_liability",
+        "insurance_or_guarantee_status",
+        "legal_conclusion",
+        "payment_authorization_or_status",
+        "reliance_eligibility",
+        "safety_or_compliance_certification"
+      ],
+      "human_approval_required_before_certification": true,
+      "native_evidence": {
+        "acquisition_method": "read_only_controlled_copy",
+        "evidence_quality": "native",
+        "original_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "read_only_acquisition": true,
+        "source_reference": "synthetic://native-source/first-workbook",
+        "transformation_output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "policy": {
+        "approval_mode": "policy_automatic",
+        "policy_id": "project-controls-progress-low-risk",
+        "policy_version": "v1"
+      },
+      "record_data_class": {
+        "candidate_class_id": "project_controls_progress_workbook",
+        "fact_class": "reported_progress",
+        "record_id": "maroon-progress-row-0001"
+      },
+      "reporting_business_time": {
+        "observed_at": "2026-08-11T00:12:00Z",
+        "report_period_value": "1402/06/25-1402/06/31",
+        "resolution_source": "workbook_labelled_reporting_week_header"
+      },
+      "risk_tier": "LOW",
+      "source_class": {
+        "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+        "report_class": "project_controls_progress_workbook",
+        "source_id": "maroon_project_controls_progress_workbook_series",
+        "source_type": "controlled_recurring_report_workbook"
+      }
+    },
+    "remaining_checklist_items": {
+      "external_evidence_bundle_items": [],
+      "runtime_only_items": []
+    },
+    "runtime_value_map": [
+      {
+        "runtime_value": "verified accountable_actor_id",
+        "target_fields": [
+          "step_2.payload_shape.accountable_actor_id",
+          "step_3.payload_shape.actor_id"
+        ],
+        "used_in_steps": [
+          2,
+          3
+        ]
+      },
+      {
+        "runtime_value": "verified evidence_fingerprint values",
+        "target_fields": [
+          "step_2.payload_shape.evidence_fingerprint",
+          "step_2.payload_shape.evidence_reference"
+        ],
+        "used_in_steps": [
+          2
+        ]
+      },
+      {
+        "runtime_value": "real record_id",
+        "target_fields": [
+          "step_5.payload_shape.record_id"
+        ],
+        "used_in_steps": [
+          5
+        ]
+      },
+      {
+        "runtime_value": "real observed_at",
+        "target_fields": [
+          "step_5.payload_shape.observed_at"
+        ],
+        "used_in_steps": [
+          5
+        ]
+      },
+      {
+        "runtime_value": "real low-risk fact payload",
+        "target_fields": [
+          "step_5.payload_shape.payload.fact_payload"
+        ],
+        "used_in_steps": [
+          5
+        ]
+      }
+    ],
+    "runtime_values": [
+      "verified accountable_actor_id",
+      "verified evidence_fingerprint values",
+      "real record_id",
+      "real observed_at",
+      "real low-risk fact payload"
+    ],
+    "six_step_execution_mapping": [
+      {
+        "preserved_payload_shape": {
+          "authority_state": "awaiting_validation",
+          "evidence_reference": "synthetic://source-registration/maroon-progress-workbook",
+          "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+          "owning_role_class": "Project Controls / PMO accountable role",
+          "project_scope": "maroon_pilot",
+          "report_class": "project_controls_progress_workbook",
+          "source_id": "maroon_project_controls_progress_workbook_series",
+          "source_type": "controlled_recurring_report_workbook"
+        },
+        "purpose": "register the exact selected-class source/system identity and scope",
+        "runtime_values_used": [],
+        "sequence": 1,
+        "target": "ingestion.sdas_source_registry"
+      },
+      {
+        "preserved_payload_shape": {
+          "accountable_actor_id": "RUNTIME_REQUIRED_INPUT_FROM_VERIFIED_BUNDLE",
+          "business_time_rule": "workbook_labelled_reporting_week_header",
+          "document_data_class": "project_controls_progress_workbook",
+          "evidence_fingerprint": "RUNTIME_REQUIRED_INPUT_FROM_VERIFIED_BUNDLE",
+          "evidence_reference": "synthetic://source-registration/maroon-progress-workbook",
+          "project_scope": "maroon_pilot",
+          "source_id": "maroon_project_controls_progress_workbook_series"
+        },
+        "purpose": "persist the exact source-control verification that ties the source to the accountable role and workbook reporting-period rule",
+        "runtime_values_used": [
+          "verified accountable_actor_id",
+          "verified evidence_fingerprint values"
+        ],
+        "sequence": 2,
+        "target": "ingestion.sdas_source_control_verifications"
+      },
+      {
+        "preserved_payload_shape": {
+          "acquired_at": "2026-08-11T00:00:00Z",
+          "acquisition_method": "read_only_controlled_copy",
+          "actor_id": "RUNTIME_REQUIRED_INPUT_FROM_VERIFIED_BUNDLE",
+          "evidence_hash": "RUNTIME_DERIVED_FROM_ACQUISITION_FACTS",
+          "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "original_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "read_only": true,
+          "size_bytes": 1048576,
+          "source_id": "maroon_project_controls_progress_workbook_series",
+          "source_reference": "synthetic://native-source/first-workbook"
+        },
+        "purpose": "record read-only native acquisition, original SHA-256, size, media type, and source reference",
+        "runtime_values_used": [
+          "verified accountable_actor_id"
+        ],
+        "sequence": 3,
+        "target": "ingestion.sdas_acquisition_events"
+      },
+      {
+        "preserved_payload_shape": {
+          "acquisition_event_id": "RUNTIME_OUTPUT_FROM_STEP_3",
+          "deterministic": true,
+          "evidence_hash": "RUNTIME_DERIVED_FROM_TRANSFORMATION_FACTS",
+          "input_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "lineage_complete": true,
+          "output_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "tool_name": "enterprise-ai-ingestion",
+          "tool_version": "0.3",
+          "transformation_type": "canonicalization",
+          "transformed_at": "2026-08-11T00:10:00Z"
+        },
+        "purpose": "record deterministic transformation continuity from original fingerprint to canonical output fingerprint",
+        "runtime_values_used": [],
+        "sequence": 4,
+        "target": "ingestion.sdas_transformations"
+      },
+      {
+        "preserved_payload_shape": {
+          "observed_at": "RUNTIME_REQUIRED_INPUT",
+          "payload": {
+            "data_class": "project_controls_progress_workbook_low_risk_fact",
+            "fact_payload": "RUNTIME_REQUIRED_INPUT",
+            "report_period": "1402/06/25-1402/06/31",
+            "source_id": "maroon_project_controls_progress_workbook_series"
+          },
+          "provenance": {
+            "acquisition_event_id": "RUNTIME_OUTPUT_FROM_STEP_3",
+            "evidence_quality": "native",
+            "source_reference": "synthetic://native-source/first-workbook"
+          },
+          "record_id": "RUNTIME_REQUIRED_INPUT",
+          "source_id": "maroon_project_controls_progress_workbook_series"
+        },
+        "purpose": "create the first real selected-class credibility record through the existing intake contract",
+        "runtime_values_used": [
+          "real record_id",
+          "real observed_at",
+          "real low-risk fact payload"
+        ],
+        "sequence": 5,
+        "target": "POST /v1/records -> ingestion.credibility_records"
+      },
+      {
+        "preserved_payload_shape": {
+          "approval_mode": "policy_automatic",
+          "decision_actor": "sahra_policy_engine",
+          "decision_hash": "RUNTIME_DERIVED_FROM_PERSISTED_FACTS",
+          "decision_reasons": [
+            "all_required_policy_evidence_present"
+          ],
+          "evidence_quality": "native",
+          "policy_id": "project-controls-progress-low-risk",
+          "policy_version": "v1"
+        },
+        "purpose": "persist the first policy decision for the real native record",
+        "runtime_values_used": [],
+        "sequence": 6,
+        "target": "ingestion.sdas_policy_decisions"
+      }
+    ],
+    "smallest_activation_request": {
+      "request_kind": "execute_now_packet",
+      "requested_items": [
+        {
+          "value": "verified accountable_actor_id"
+        },
+        {
+          "value": "verified evidence_fingerprint values"
+        },
+        {
+          "value": "real record_id"
+        },
+        {
+          "value": "real observed_at"
+        },
+        {
+          "value": "real low-risk fact payload"
+        }
+      ]
+    },
+    "truthful_next_action": "execute_now"
+  },
+  "project_scope": "maroon_pilot",
+  "schema_version": "st1-118-pre-execution-operator-brief-v1"
+}

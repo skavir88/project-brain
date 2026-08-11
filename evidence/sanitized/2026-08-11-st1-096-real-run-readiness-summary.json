@@ -1,0 +1,63 @@
+{
+  "schema_version": "st1-096-real-run-readiness-summary-evidence-v1",
+  "generated_utc": "2026-08-11T10:05:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compile_st1_096_real_run_readiness_summary.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "waiting_for_external_evidence": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_094_first_real_native_record.synthetic.invalid.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "readiness_status": "waiting_for_external_evidence",
+      "blocking_reasons": [
+        "transformation.lineage_complete must be true"
+      ],
+      "remaining_runtime_only_fields_count": 0
+    },
+    "waiting_for_runtime_only_fields": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_096_operator_inputs.synthetic.runtime_only_missing.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "readiness_status": "waiting_for_runtime_only_fields",
+      "blocking_reasons": [
+        "operator_inputs_invalid",
+        "pre_mutation_gate_not_ready"
+      ],
+      "remaining_runtime_only_fields_count": 7
+    },
+    "ready_to_run": {
+      "bundle_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+      "native_record_fixture": "docs/examples/ST1_083_first_native_record.synthetic.ready.json",
+      "operator_inputs_fixture": "docs/examples/ST1_088_operator_inputs.synthetic.ready.json",
+      "receipt_fixture": "docs/examples/ST1_089_runtime_receipt.synthetic.ready.json",
+      "batch_fixture": "docs/examples/ST1_090_selected_class_batch.synthetic.mixed.json",
+      "readiness_status": "ready_to_run",
+      "blocking_reasons": [],
+      "remaining_runtime_only_fields_count": 7,
+      "hard_stop_count": 3,
+      "hard_stop_report_ready": true
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "task_id": "ST1-123",
+  "date": "2026-08-11",
+  "artifact": "docs/ST1_123_RECURRING_WORKBOOK_GOVERNANCE_REQUEST_FA.md",
+  "purpose": "business_facing_reusable_governance_request_for_first_real_policy_automatic_target",
+  "target_class": "recurring_project_controls_progress_workbook",
+  "target_series_source_id": "maroon_project_controls_progress_workbook_series",
+  "representative_real_candidate": {
+    "source_alias": "source-a08f4a79cf2116b1",
+    "filename": "070-TWRP-24 1402-12-05.xlsx",
+    "reporting_period_from_content": "1402/11/21–1402/12/05"
+  },
+  "required_real_world_inputs": [
+    "A1_governance_authority_confirmation",
+    "A2_project_controls_accountability_confirmation",
+    "A3_controlled_report_definition_confirmation",
+    "stable_non_sensitive_source_series_identifier"
+  ],
+  "success_target_exclusions": {
+    "st1_061_is_success_target": false,
+    "automatic_certification": false,
+    "historical_authority_backfill": false,
+    "current_executive_status_assertion": false,
+    "reliance_eligibility": false
+  },
+  "boundary": {
+    "new_source_boundary": false,
+    "real_delegation_activated": false,
+    "real_certification_changed": false
+  }
+}

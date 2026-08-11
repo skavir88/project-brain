@@ -1,0 +1,46 @@
+{
+  "schema_version": "st1-100-submission-delta-evidence-v1",
+  "generated_utc": "2026-08-11T13:10:00Z",
+  "verification": {
+    "py_compile": {
+      "command": "python -m py_compile scripts/compare_st1_100_submission_delta.py",
+      "returncode": 0
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "warnings_only",
+      "warning_class": "lf_will_be_replaced_by_crlf"
+    }
+  },
+  "cases": {
+    "unchanged_baseline_relevant_inputs": {
+      "delta_result": "UNCHANGED_BASELINE_RELEVANT_INPUTS",
+      "baseline_rehearsal_result": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY",
+      "submission_rehearsal_result": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY",
+      "reopen_recommended": false,
+      "changed_field_count": 0
+    },
+    "changed_baseline_relevant_inputs": {
+      "delta_result": "CHANGED_BASELINE_RELEVANT_INPUTS",
+      "baseline_rehearsal_result": "PARKED_UNCHANGED_EXTERNAL_DEPENDENCY",
+      "submission_rehearsal_result": "READY_FOR_FIRST_RUNTIME_MUTATION",
+      "reopen_recommended": true,
+      "high_signal_changed_fields": [
+        "native.transformation.lineage_complete",
+        "handoff.handoff_status",
+        "rehearsal.rehearsal_result",
+        "rehearsal.readiness_status",
+        "rehearsal.next_action"
+      ]
+    }
+  },
+  "boundaries": {
+    "real_delegation_activated": false,
+    "real_source_registered": false,
+    "real_file_acquired": false,
+    "real_record_ingested": false,
+    "real_policy_decision_executed": false,
+    "real_certification_performed": false,
+    "trust_boundary_changed": false
+  }
+}
