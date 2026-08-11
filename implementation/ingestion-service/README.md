@@ -53,6 +53,42 @@ Their tables are additive and append-only. `SDAS-1` expresses a traceable
 certification chain only; it does not mean current, authoritative, correct,
 or reliance-eligible.
 
+## SDAS assurance passport
+
+`GET /v1/sdas/passport?knowledge_id=<hex64>&require_reliance_eligible=false`
+returns a machine-readable assurance passport for one existing Certified
+Knowledge item. The route reads only the additive append-only SDAS projection;
+it does not certify, mutate, or create truth.
+
+The response exposes the evidence chain state, verification result,
+limitations, business-time evidence summary, post-registration state, and
+chain-integrity flags. When `require_reliance_eligible=true`, an otherwise
+verified passport deterministically downgrades to
+`NOT_RELIANCE_ELIGIBLE` unless the stored reliance state is `eligible`.
+
+`GET /v1/sdas/passports/summary` returns deterministic portfolio counts by
+passport outcome plus aggregated limitation-code counts.
+
+`GET /v1/sdas/passports/exceptions` returns only non-`VERIFIED` passports for
+triage. An optional `verification_result` filter narrows the queue to one
+deterministic class such as `HUMAN_REQUIRED` or `QUARANTINED`.
+
+## SDAS record routing
+
+`GET /v1/sdas/routing/summary` returns deterministic pre-certification routing
+counts by `policy_automatic`, `human_required`, and
+`reject_or_quarantine`.
+
+`GET /v1/sdas/routing/exceptions` returns only non-`policy_automatic` records
+for operator triage. An optional `outcome` filter narrows the queue to one
+deterministic class such as `human_required` or `reject_or_quarantine`.
+
+`GET /v1/sdas/routing/detail?record_fingerprint=<hex64>` returns one
+deterministic routing explanation for operator triage. It exposes the
+effective routing outcome, governance dependency state, dominant reason codes,
+the relevant policy and assurance signals, source registration context, and
+matched active-delegation evidence when present.
+
 ## Docker Compose
 
 ```powershell

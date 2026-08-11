@@ -101,6 +101,37 @@
 - Recorded DEC-020 and certified seven explicitly approved Action Plan observations as source-attributed historical statements; verified projection, isolated Qdrant indexing, provenance-backed RAG, unchanged retrieval threshold, and historical/modality framing.
 - Recorded the bounded ST1-027 metadata-only discovery timeout after excluding exhausted corpora; no content was opened and no absence-of-source conclusion was made.
 
+## 2026-08-11
+
+### Added
+- Additive SDAS assurance-passport projection on `rddb` via `migrations/022_add_sdas_assurance_passport_projection.sql`.
+- Private assurance-passport route and classifier in the loopback ingestion service: `GET /v1/sdas/passport`.
+- Additive SDAS portfolio summary and exception-queue views on `rddb` via `migrations/023_add_sdas_assurance_passport_summary.sql`.
+- Private loopback summary and queue routes in the ingestion service: `GET /v1/sdas/passports/summary` and `GET /v1/sdas/passports/exceptions`.
+- Additive SDAS pre-certification routing projection, summary, and exception queue on `rddb` via `migrations/024_add_sdas_record_routing_summary.sql`.
+- Additive SDAS per-record routing-detail view on `rddb` via `migrations/025_add_sdas_record_routing_detail.sql`.
+- Private loopback routing routes in the ingestion service: `GET /v1/sdas/routing/summary` and `GET /v1/sdas/routing/exceptions`.
+- Private loopback per-record explainability route in the ingestion service: `GET /v1/sdas/routing/detail`.
+- Candidate-class analysis for the first real ST1-066 path at `docs/ST1_075_REAL_POLICY_AUTOMATIC_CANDIDATE.md`.
+- Candidate-specific governance/source bundle for the selected ST1-075 workbook class at `docs/ST1_076_PROJECT_CONTROLS_PROGRESS_WORKBOOK_BUNDLE.md`.
+- Candidate-specific Persian business evidence-request pack for the selected workbook class at `docs/ST1_077_PROJECT_CONTROLS_PROGRESS_EVIDENCE_REQUEST_FA.md`.
+- Sanitized ST1-071 evidence for governance parking, gap analysis, passport verification outcomes, and deployment checks.
+- Sanitized ST1-072 evidence for deterministic portfolio counts, exception routing, and runtime route checks.
+- Sanitized ST1-073 evidence for deterministic record-routing counts, governance-blocked routing, and runtime route checks.
+- Sanitized ST1-074 evidence for deterministic per-record routing explainability and runtime detail-route checks.
+- Sanitized ST1-075 evidence for real candidate-class selection and exact governance/control gap mapping.
+- Candidate-specific ST1-076 bundle for the selected recurring Project Controls progress workbook class.
+- Sanitized ST1-077 evidence for the class-specific business evidence-request pack.
+- `docs/SDAS_ASSURANCE_PASSPORT.md` documenting the machine-readable passport contract and deterministic result semantics.
+
+### Changed
+- Explicitly parked the unresolved E1/E2/E3 governance dependency as `WAITING_FOR_EXTERNAL_EVIDENCE` instead of treating it as a failed technical task.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` after a timestamped backup of remote `app.py`; verified private health and malformed-request behavior.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` again after a second timestamped backup of remote `app.py`; verified private summary and exception routes.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` again after a third timestamped backup of remote `app.py`; verified private routing summary and exception routes.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` again after a fourth timestamped backup of remote `app.py`; verified the private routing-detail route.
+- Continued SDAS implementation without changing real authority, certification, currentness, or reliance boundaries.
+
 ## 2026-08-06
 
 ### Added
@@ -160,3 +191,8 @@
 - Completed ST1-052's one bounded metadata-only locator-recovery pass over the runtime-local index. It selected no source because no eligible project-wide continuation beyond the verified period could be established from metadata; added sanitized source-gap evidence and a source-owner gate.
 - Added the decision-gated Sahra Data Assurance Standard v0.1 proposal and pilot gap assessment. It documents assurance evidence requirements and downstream consumption provenance without changing existing certification, currentness, authority, retrieval, or runtime semantics.
 - Recorded DEC-026 and implemented the approved additive SDAS v0.1 internal pilot: immutable assurance/consumption evidence, 49 evidence-only back-assessments, append-only consumption verification, and negative tamper/transition/duplicate checks. No record became current, authoritative, or reliance-eligible.
+- Added deterministic ST1-078 local evidence-intake spec and validator for the selected real workbook class at `docs/ST1_078_REAL_EVIDENCE_INTAKE_SPEC.md` and `scripts/validate_st1_078_real_evidence_bundle.py`.
+- Added synthetic valid/invalid ST1-078 bundle fixtures under `docs/examples/`.
+- Added sanitized ST1-078 evidence for the local intake-validator verification path.
+- Added a machine-readable ST1-078 submission template with `REQUIRED_INPUT` placeholders and a short usage guide at `docs/ST1_078_REAL_EVIDENCE_SUBMISSION_TEMPLATE.md`.
+- Added deterministic ST1-078 readiness assessment at `scripts/assess_st1_078_real_evidence_bundle.py` and sanitized verification evidence for valid/invalid/template bundle states.

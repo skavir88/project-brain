@@ -107,3 +107,50 @@ recorded human `APPROVE`. Supersession, revocation, correction, expiration,
 and authority change are modeled as append-only events but remain inactive.
 Neither SDAS certification nor registration establishes currentness,
 authority, legal assurance, or reliance eligibility.
+
+## ST1-071 Assurance Passport Verification Layer - 2026-08-11
+
+The governance/authority activation path remains externally blocked as
+`WAITING_FOR_EXTERNAL_EVIDENCE`. That dependency is not treated as a failed
+technical task and does not block unrelated SDAS implementation.
+
+An additive assurance-passport layer now sits above the existing append-only
+evidence tables. On `rddb`, the read-only projection
+`ingestion.sdas_assurance_passport_projection` reconciles certification,
+policy, authority, business-time, acquisition, transformation, assurance,
+post-registration, and consumption evidence for one Certified Knowledge item.
+On `rdapp`, the loopback-only ingestion service privately exposes
+`GET /v1/sdas/passport` as a machine-readable verifier over that projection.
+It also exposes `GET /v1/sdas/passports/summary` and
+`GET /v1/sdas/passports/exceptions` as deterministic portfolio-level
+operator/auditor read models.
+
+This layer does not certify records, activate governance, create currentness,
+grant reliance eligibility, or mutate truth. It only explains the recorded
+state of a certified datum and deterministically classifies it as
+`VERIFIED`, `VERIFIED_WITH_LIMITATIONS`, `HUMAN_REQUIRED`,
+`NOT_RELIANCE_ELIGIBLE`, `REVOKED_OR_SUPERSEDED`, or `QUARANTINED`.
+
+ST1-073 adds a sibling pre-certification operating layer. On `rddb`, the
+read-only projections `ingestion.sdas_record_policy_routing_projection`,
+`ingestion.sdas_record_policy_routing_summary`, and
+`ingestion.sdas_record_policy_routing_exception_queue` reconcile immutable
+record, policy-decision, assurance-decision, source, and active-delegation
+evidence. On `rdapp`, the same loopback-only ingestion service privately
+exposes `GET /v1/sdas/routing/summary` and
+`GET /v1/sdas/routing/exceptions` for the original ST1-066 operating model:
+`policy_automatic`, `human_required`, or `reject_or_quarantine` before
+certification.
+
+This routing layer likewise does not bypass governance: if no exact-scope
+active delegation matches a record's source/report class, the routing state
+remains `human_required` with
+`governance_dependency_state=WAITING_FOR_EXTERNAL_EVIDENCE`.
+
+ST1-074 adds a per-record explainability read model on `rddb`:
+`ingestion.sdas_record_policy_routing_detail`. On `rdapp`, the loopback-only
+ingestion service privately exposes `GET /v1/sdas/routing/detail` for a single
+record fingerprint. This route explains the normalized routing outcome, the
+dominant reason codes, the key policy/assurance/source signals, and any exact
+matched active-delegation evidence needed for operator triage. It remains
+read-only and does not certify, activate governance, or mutate routing truth.

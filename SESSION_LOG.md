@@ -1147,3 +1147,287 @@ creating real authority.
   Tier-A controlled records). Identity must be independently verified before
   any attestation becomes `VERIFIED`; no real delegation can become `ACTIVE`
   in this task.
+
+## Session 079 - 2026-08-11
+
+### Objective
+Continue SDAS development without bypassing the unresolved governance gate by
+implementing the next independent assurance layer.
+
+### Completed
+- Reconciled the active governance dependency and explicitly parked it as
+  `WAITING_FOR_EXTERNAL_EVIDENCE`: E1=`MISSING`, E2=`MISSING`, E3=`PARTIAL`,
+  real active delegations=`0`, real `policy_automatic` unavailable, ST1-061
+  unchanged, and no currentness/reliance/certification-automation change.
+- Selected the Assurance Verification and Evidence Passport layer as the
+  highest-value independent SDAS milestone because append-only evidence already
+  existed but no deterministic per-datum verifier/read model existed.
+- Applied additive migration `022_add_sdas_assurance_passport_projection.sql`
+  on `rddb`, creating `ingestion.sdas_assurance_passport_projection`.
+- Added the private assurance-passport classifier and route to the ingestion
+  service, documented the contract, and redeployed only the loopback
+  `ingestion-service` on `rdapp` after a timestamped backup of remote
+  `app.py`.
+- Verified deterministic synthetic outcomes across the required cases:
+  `VERIFIED`, `VERIFIED_WITH_LIMITATIONS`, `HUMAN_REQUIRED`,
+  `NOT_RELIANCE_ELIGIBLE`, `REVOKED_OR_SUPERSEDED`, and `QUARANTINED`.
+- Verified duplicate/idempotent consumption handling stays at one event and
+  unauthorized mutation is rejected.
+- Verified the deployed private route on `rdapp`: `GET /health` returned `200`
+  and a malformed passport request returned
+  `400 invalid_assurance_passport_request`.
+
+### Boundary and Next Gate
+- No real authority, certification, currentness, or reliance state changed.
+  Governance activation remains blocked only by external organizational
+  evidence. The next independent SDAS step is a portfolio-level assurance
+  summary and exception queue over the new passport projection.
+
+## Session 080 - 2026-08-11
+
+### Objective
+Implement a deterministic portfolio-level assurance summary and exception queue
+over the ST1-071 assurance-passport layer.
+
+### Completed
+- Applied additive summary views on `rddb`:
+  `ingestion.sdas_assurance_passport_portfolio_summary` and
+  `ingestion.sdas_assurance_passport_exception_queue`.
+- Extended the private loopback ingestion service on `rdapp` with
+  `GET /v1/sdas/passports/summary` and `GET /v1/sdas/passports/exceptions`.
+- Verified synthetic delta-based routing for `HUMAN_REQUIRED`,
+  `NOT_RELIANCE_ELIGIBLE`, `QUARANTINED`, and `REVOKED_OR_SUPERSEDED`, while
+  confirming `VERIFIED` items remain outside the exception queue and that
+  unauthorized mutation still fails.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` after a
+  timestamped backup of remote `app.py`. Verified runtime loopback behavior:
+  `/health` returned `200`, `/summary` returned `200`, `/exceptions` returned
+  `200`, the `HUMAN_REQUIRED` filter returned `200`, and an invalid filter
+  returned `400`.
+- Confirmed the current real live portfolio is still entirely
+  `HUMAN_REQUIRED` (`50` items), which matches the unresolved governance
+  dependency instead of a missing technical queue layer.
+
+### Boundary and Next Gate
+- No governance activation, real certification, currentness promotion,
+  reliance enablement, new source access, or destructive change occurred.
+  The next independent SDAS step should shift from certified-passport triage to
+  pre-certification record-routing visibility aligned with the original
+  ST1-066 operating model (`X policy_automatic / Y human_review_required / Z quarantine`).
+
+## Session 081 - 2026-08-11
+
+### Objective
+Implement deterministic pre-certification SDAS routing visibility aligned with
+the original ST1-066 operating model, without bypassing the unresolved
+governance gate.
+
+### Completed
+- Applied additive views on `rddb`:
+  `ingestion.sdas_record_policy_routing_projection`,
+  `ingestion.sdas_record_policy_routing_summary`, and
+  `ingestion.sdas_record_policy_routing_exception_queue`.
+- Extended the private loopback ingestion service on `rdapp` with
+  `GET /v1/sdas/routing/summary` and `GET /v1/sdas/routing/exceptions`.
+- Verified with a rolled-back synthetic transaction that one exact-scope
+  synthetic active delegation can surface `policy_automatic`, an otherwise
+  complete unmatched case routes to `human_required` with
+  `governance_waiting_for_external_evidence`, explicit rejection remains
+  `reject_or_quarantine`, and append-only mutation rejection still holds.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` after a
+  timestamped backup of remote `app.py`, then verified live loopback behavior:
+  `/health` returned `200`, `/v1/sdas/routing/summary` returned `200`,
+  `/v1/sdas/routing/exceptions?outcome=human_required` returned `200`, and an
+  invalid exception filter returned `400`.
+- Confirmed the live real routing portfolio currently reports
+  `policy_automatic=0`, `human_required=61`, and `reject_or_quarantine=2`,
+  which preserves `WAITING_FOR_EXTERNAL_EVIDENCE` as an external blocker
+  rather than a technical routing failure.
+
+### Boundary and Next Gate
+- No real delegation became active, no real certification was created or
+  changed, no currentness/reliance rule was weakened, and no new source was
+  accessed. The next independent SDAS step should move from aggregate routing
+  counts to deterministic per-record explainability for operator triage.
+
+## Session 082 - 2026-08-11
+
+### Objective
+Implement deterministic per-record SDAS routing explainability so one record's
+`policy_automatic`, `human_required`, or `reject_or_quarantine` outcome can be
+explained without raw-table access or any certification-state change.
+
+### Completed
+- Applied additive view `ingestion.sdas_record_policy_routing_detail` on
+  `rddb`.
+- Extended the private loopback ingestion service on `rdapp` with
+  `GET /v1/sdas/routing/detail?record_fingerprint=<hex64>`.
+- Verified deterministic synthetic detail behavior for:
+  matched-delegation `policy_automatic`, governance-blocked
+  `human_required`, explicit `human_required`, explicit
+  `reject_or_quarantine`, and `policy_decision_missing`.
+- Rebuilt and restarted only `ingestion-service` on `rdapp` after a
+  timestamped backup of remote `app.py`.
+- Verified live loopback behavior:
+  `/health` returned `200`, the queue route returned `200`, a real sampled
+  record detail returned `200`, and an invalid detail request returned `400`.
+- Confirmed the sampled real queue item still resolves to
+  `human_required` with `WAITING_FOR_EXTERNAL_EVIDENCE`,
+  `authority_not_verified`, and `business_time_missing`, with no matched
+  active delegation. The blocker is now precisely explainable per record.
+
+### Boundary and Next Gate
+- No real delegation became active, no real certification was created or
+  changed, no currentness/reliance boundary moved, and no new source was
+  accessed. The next direct step should move from generic explainability to the
+  real ST1-066 target: select one already-authorized recurring LOW-risk real
+  class and compute the smallest truthful governance gap to its first real
+  `policy_automatic` hard stop.
+
+## Session 083 - 2026-08-11
+
+### Objective
+Select one already-authorized recurring LOW-risk real class from the Maroon
+pilot and compute the smallest truthful governance/control gap preventing the
+first real `policy_automatic` hard stop.
+
+### Completed
+- Selected the recurring Project Controls progress workbook class as the
+  strongest in-scope real candidate, anchored by the existing runtime source
+  family `enterprise_ai_real_action_plan_weekly_observation`.
+- Confirmed the selection from existing evidence only: deterministic workbook
+  schema, explicit reporting-week semantics, sheet/cell provenance, and a
+  LOW-risk fact boundary around reported
+  Plan/Actual/progress/activity/milestone/project-controls issue facts.
+- Compared the selected class against the daily-status and management-report
+  families and rejected them as the first candidate because they do not reduce
+  ambiguity or the governance gap for the first routine automatic-routing path.
+- Calculated the exact blocker groups truthfully:
+  E1=`MISSING`, E2=`MISSING`, E3=`PARTIAL`, real source registration missing,
+  real source-control verification missing, and native acquisition/
+  transformation chain missing for this class.
+- Narrowed the class-scoped business-time rule: use the workbook-labelled
+  reporting week or designated reporting-period field only; row plan dates and
+  filesystem/acquisition timestamps are not business time.
+
+### Boundary and Next Gate
+- No new source boundary was opened, no real delegation was activated, no real
+  certification changed, and no trust rule was weakened. The next direct step
+  is to convert this selected class into a candidate-specific governance/source
+  registration bundle so that signed evidence can later close the gap without
+  reinterpreting scope.
+
+## Session 084 - 2026-08-11
+
+### Objective
+Freeze the selected ST1-075 workbook class into one candidate-specific bundle
+so that future real organizational evidence can be applied without re-opening
+scope or reinterpreting the reporting-time rule.
+
+### Completed
+- Created `docs/ST1_076_PROJECT_CONTROLS_PROGRESS_WORKBOOK_BUNDLE.md`.
+- Fixed the exact candidate scope: recurring Project Controls progress
+  workbook, LOW risk only, with explicit permitted and prohibited fact
+  classes.
+- Fixed the class-scoped business-time rule: only the workbook-labelled
+  reporting week or designated reporting-period field is valid; row-level
+  dates and filesystem/acquisition timestamps are not business time.
+- Fixed the exact external inputs still needed before a real native automatic
+  routing attempt:
+  - A1 governance authority confirmation
+  - A2 Project Controls / PMO accountability confirmation
+  - A3 controlled report definition confirmation
+  - real source/system registration inputs
+
+### Boundary and Next Gate
+- No real delegation was created or activated, no real source/system was
+  registered, no content was acquired, and no certification changed. The next
+  gate is genuinely external evidence for this exact workbook class, not
+  additional internal discovery.
+
+## Session 085 - 2026-08-11
+
+### Objective
+Convert the selected workbook-class bundle into a plain-Persian business
+request so the organization can supply exactly the needed evidence without
+technical SDAS translation.
+
+### Completed
+- Created `docs/ST1_077_PROJECT_CONTROLS_PROGRESS_EVIDENCE_REQUEST_FA.md`.
+- Reduced the request to four concrete business items:
+  - A1 governance authority confirmation
+  - A2 Project Controls / PMO accountability confirmation
+  - A3 controlled report definition confirmation
+  - minimum real source-registration inputs
+- Repeated the selected class's reporting-time rule in business language so
+  filesystem/acquisition timestamps and row-level dates are not mistakenly
+  supplied as business time.
+
+### Boundary and Next Gate
+- No real delegation was activated, no real source/system was registered, no
+  content was acquired, and no certification changed. The next gate is the
+  arrival of real controlled evidence for this exact workbook class.
+
+## Session 086 - 2026-08-11
+
+### Objective
+Prepare deterministic local intake validation for the exact ST1-078 evidence
+bundle so receipt of real A1/A2/A3 and source-registration evidence does not
+require ad-hoc structural interpretation.
+
+### Completed
+- Created `docs/ST1_078_REAL_EVIDENCE_INTAKE_SPEC.md`.
+- Created `scripts/validate_st1_078_real_evidence_bundle.py`.
+- Added one synthetic valid bundle and one synthetic invalid bundle under
+  `docs/examples/`.
+- Verified the valid fixture passes with
+  `STRUCTURALLY_COMPLETE_PENDING_INDEPENDENT_VERIFICATION`.
+- Verified the invalid fixture fails deterministically for forbidden activation
+  intent, invalid fingerprint, scope mismatch, fact-boundary mismatch,
+  reporting-period-rule mismatch, and incomplete source registration.
+
+### Boundary and Next Gate
+- No real attestation, delegation, source registration, acquisition, or
+  certification changed.
+- The next gate remains the arrival of real controlled evidence for the exact
+  selected workbook class, now with deterministic local bundle validation
+  ready.
+
+## Session 087 - 2026-08-11
+
+### Objective
+Make the external ST1-078 evidence handoff executable in one machine-readable
+shape without inventing any unresolved authority/source facts.
+
+### Completed
+- Added `docs/examples/ST1_078_real_evidence_bundle.template.json` with
+  explicit `REQUIRED_INPUT` placeholders for all unresolved real-world fields.
+- Added `docs/ST1_078_REAL_EVIDENCE_SUBMISSION_TEMPLATE.md` to explain how the
+  template should be copied outside Git, filled only from controlled evidence,
+  and then validated locally.
+
+### Boundary and Next Gate
+- No real attestation, delegation, source registration, acquisition, or
+  certification changed.
+- The next gate remains the receipt of real controlled evidence for the exact
+  selected workbook class.
+
+## Session 088 - 2026-08-11
+
+### Objective
+Add deterministic readiness assessment on top of the ST1-078 structural
+validator so supplied evidence bundles can be triaged into exact gate states.
+
+### Completed
+- Added `scripts/assess_st1_078_real_evidence_bundle.py`.
+- Verified three deterministic outcomes:
+  - valid fixture -> `PENDING_INDEPENDENT_VERIFICATION`
+  - invalid fixture -> `WAITING_FOR_SCOPE_OR_POLICY_CORRECTION`
+  - template fixture -> `WAITING_FOR_EXTERNAL_EVIDENCE`
+- Documented the assessor in the intake spec and submission-template guide.
+
+### Boundary and Next Gate
+- The assessor still returns zero `VERIFIED` sections because independent
+  evidence review remains outside the local-only boundary.
+- No real attestation, delegation, source registration, acquisition, or
+  certification changed.

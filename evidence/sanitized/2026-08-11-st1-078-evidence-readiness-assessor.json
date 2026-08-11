@@ -1,0 +1,44 @@
+{
+  "task_id": "ST1-078",
+  "scope": "local_non_destructive_real_evidence_readiness_assessment_only",
+  "artifacts_created": {
+    "assessor": "scripts/assess_st1_078_real_evidence_bundle.py"
+  },
+  "synthetic_assessment": {
+    "valid_fixture": {
+      "activation_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+      "section_statuses": {
+        "bundle": "PARTIAL",
+        "A1": "PARTIAL",
+        "A2": "PARTIAL",
+        "A3": "PARTIAL",
+        "source_registration": "PARTIAL"
+      }
+    },
+    "invalid_fixture": {
+      "activation_readiness": "WAITING_FOR_SCOPE_OR_POLICY_CORRECTION",
+      "rejected_sections": [
+        "bundle",
+        "A1",
+        "A2",
+        "A3",
+        "source_registration"
+      ]
+    },
+    "template_fixture": {
+      "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "missing_sections": [
+        "A1",
+        "A2",
+        "A3",
+        "source_registration"
+      ]
+    }
+  },
+  "boundaries": {
+    "verified_sections_returned": 0,
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_certification": false
+  }
+}

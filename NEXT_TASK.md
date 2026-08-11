@@ -1,74 +1,88 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-071
+- Task ID: ST1-078
 - Stage: Stage 1 — Product Implementation
-- Status: Awaiting signed organizational evidence
-- Owner: Governance authority, Project Controls / PMO, and document-control owner
+- Status: Waiting for external evidence
+- Owner: Governance authority, Project Controls / PMO, and controlled report owner
 
 ## Objective
-Validate and register only the independently signed controlled organizational
-evidence needed to resolve E1, E2, and E3; calculate readiness, but do not
-activate a real delegation.
+Validate and register only the real controlled organizational evidence supplied
+for the selected recurring Project Controls progress workbook class:
+A1 governance authority, A2 Project Controls accountability, A3 controlled
+report definition, and the exact source-registration inputs for that class.
 
 ## Rationale
-ST1-070 provides the append-only evidence workflow and plain-language forms.
-The remaining gap is real, attributable organizational confirmation—not a
-technical implementation gap.
+ST1-075 selected the exact real candidate class, ST1-076 froze its scope, and
+ST1-077 converted the evidence ask into a class-specific Persian business pack.
+The next step is no longer discovery or design; it is validating real supplied
+evidence for this exact class.
 
 ## Preconditions
-- One or more completed forms from `docs/ST1_070_BUSINESS_ATTESTATION_PACK.md`,
-  or stronger Tier-A controlled records, are supplied through an approved
-  business channel.
-- Each signer can be independently identified through controlled organizational
-  evidence; self-assertion alone is insufficient.
+- One or more signed business artifacts or stronger Tier-A controlled records
+  answering `docs/ST1_077_PROJECT_CONTROLS_PROGRESS_EVIDENCE_REQUEST_FA.md`
+  are supplied through an approved business channel.
+- Each signer can be independently identified through controlled evidence.
 
 ## Scope
-- Inspect only supplied attestation artifacts or Tier-A records.
-- Store sanitized references/fingerprints and append-only evidence events.
-- Recalculate E1/E2/E3 and the `PASS`/`HUMAN_REQUIRED`/`QUARANTINE` queue.
+- Inspect only supplied controlled evidence for the selected workbook class.
+- Validate provenance, signer identity, scope match, reporting-time rule, and
+  source-registration inputs.
+- Append only sanitized references/fingerprints and update readiness.
 
 ## Out of Scope
-- SMB discovery, source reacquisition, ST1-061 changes, activating a real
-  delegation, certification, currentness/reliance changes, or automatic
-  certification.
+- New SMB discovery
+- New source boundary
+- Real delegation activation
+- Real certification
+- Any change to ST1-061
 
 ## Files to Inspect
-- `docs/ST1_070_BUSINESS_ATTESTATION_PACK.md`
-- `docs/SDAS_GOVERNANCE_BOOTSTRAP.md`
-- `migrations/021_add_sdas_controlled_attestations.sql`
+- `docs/ST1_075_REAL_POLICY_AUTOMATIC_CANDIDATE.md`
+- `docs/ST1_076_PROJECT_CONTROLS_PROGRESS_WORKBOOK_BUNDLE.md`
+- `docs/ST1_077_PROJECT_CONTROLS_PROGRESS_EVIDENCE_REQUEST_FA.md`
+- `docs/ST1_078_REAL_EVIDENCE_INTAKE_SPEC.md`
+- `docs/ST1_078_REAL_EVIDENCE_SUBMISSION_TEMPLATE.md`
+- `docs/examples/ST1_078_real_evidence_bundle.template.json`
+- `scripts/assess_st1_078_real_evidence_bundle.py`
+- `scripts/validate_st1_078_real_evidence_bundle.py`
 - Supplied business artifacts only
 
 ## Files Allowed to Change
-- Sanitized evidence, Project Brain documents, and additive validation scripts
-  if needed. No raw organizational artifact enters Git.
+- Sanitized evidence
+- `CURRENT_STATE.md`
+- `SESSION_LOG.md`
+- `CHANGELOG.md`
+- `DECISIONS.md`, only if a new decision is required
+- `NEXT_TASK.md`
 
 ## Execution Steps
-1. Verify artifact provenance, signer identity, scope, effective period, and
-   required fields independently for each supplied A1/A2/A3 record.
-2. Append `SUBMITTED`, `IDENTITY_VERIFIED`, and only then `VERIFIED` or a
-   terminal event; preserve fingerprints and non-secret references.
-3. Recalculate E1/E2/E3 and activation readiness without creating `ACTIVE`.
-4. Run lifecycle, JSON, secret, legacy, and diff validation; record sanitized evidence.
+1. Verify each supplied artifact against the selected workbook-class scope.
+2. Confirm signer identity independently.
+3. Determine whether A1, A2, A3, and source-registration inputs are
+   `VERIFIED`, `PARTIAL`, `REJECTED`, or still `MISSING`.
+4. Update activation/native-ingestion readiness without activating anything.
+5. Record sanitized evidence and update Project Brain.
 
 ## Acceptance Criteria
-- Every supplied artifact is `VERIFIED`, `PARTIAL`, or rejected from real,
-  traceable evidence—not inference.
-- Self-assertion alone cannot pass.
-- No real delegation is `ACTIVE` and no certification occurs.
+- No artifact passes on self-assertion alone.
+- The selected workbook class either has verified real organizational inputs
+  or an exact remaining gap, with no inference.
+- No real delegation is activated and no real certification occurs.
 
 ## Verification Commands
 ```powershell
-python scripts/verify_st1_070_attestation_workflow.py
+python scripts/validate_st1_078_real_evidence_bundle.py --bundle <path-to-supplied-bundle.json>
+python scripts/assess_st1_078_real_evidence_bundle.py --bundle <path-to-supplied-bundle.json>
 git diff --check
 ```
 
 ## Evidence Required
-- Sanitized fingerprint/reference, evidence type, asserted role/source/time
-  fact, scope, effective period, verification method, provenance, and status.
+- Sanitized fingerprint/reference, asserted role/source/time fact, scope,
+  effective period, verification method, provenance, and status.
 
 ## Rollback
-- Append `REVOKED`, `SUPERSEDED`, `REJECTED`, or a new correction event; never
+- Append `REJECTED`, `REVOKED`, `SUPERSEDED`, or a new corrective event; never
   overwrite or delete evidence.
 
 ## Completion Updates

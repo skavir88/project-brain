@@ -1,0 +1,74 @@
+{
+  "task_id": "ST1-074",
+  "date": "2026-08-11",
+  "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+  "real_authority_changed": false,
+  "real_certification_changed": false,
+  "currentness_changed": false,
+  "reliance_changed": false,
+  "database_views": [
+    "ingestion.sdas_record_policy_routing_detail"
+  ],
+  "private_routes": [
+    "GET /v1/sdas/routing/detail"
+  ],
+  "synthetic_verification": {
+    "detail_view_exists": true,
+    "runtime_detail_select_granted": true,
+    "matched_auto": {
+      "effective_routing_outcome": "policy_automatic",
+      "governance_dependency_state": "MATCHED_ACTIVE_DELEGATION",
+      "matched_active_delegation_length": 1
+    },
+    "waiting_external": {
+      "effective_routing_outcome": "human_required",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_reason_codes": [
+        "authority_not_verified",
+        "governance_waiting_for_external_evidence"
+      ]
+    },
+    "explicit_human": {
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "evidence_conflict"
+      ]
+    },
+    "quarantine": {
+      "effective_routing_outcome": "reject_or_quarantine",
+      "effective_reason_codes": [
+        "integrity_or_validation_failed"
+      ]
+    },
+    "missing_policy": {
+      "effective_routing_outcome": "human_required",
+      "effective_reason_codes": [
+        "policy_decision_missing"
+      ]
+    },
+    "unauthorized_mutation_rejected": true,
+    "real_active_delegations": 0
+  },
+  "runtime_verification": {
+    "health_status": 200,
+    "queue_status": 200,
+    "detail_status": 200,
+    "invalid_detail_status": 400,
+    "sample_real_detail": {
+      "routing_outcome": "human_required",
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_reason_codes": [
+        "authority_not_verified",
+        "business_time_missing"
+      ],
+      "source_type": "organizational_file",
+      "source_authority_status": "declared_unverified"
+    }
+  },
+  "boundary": {
+    "no_real_delegation_activation": true,
+    "no_real_automatic_certification": true,
+    "no_new_source_access": true,
+    "no_destructive_change": true
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "task_id": "ST1-073",
+  "date": "2026-08-11",
+  "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+  "real_authority_changed": false,
+  "real_certification_changed": false,
+  "currentness_changed": false,
+  "reliance_changed": false,
+  "database_views": [
+    "ingestion.sdas_record_policy_routing_projection",
+    "ingestion.sdas_record_policy_routing_summary",
+    "ingestion.sdas_record_policy_routing_exception_queue"
+  ],
+  "private_routes": [
+    "GET /v1/sdas/routing/summary",
+    "GET /v1/sdas/routing/exceptions"
+  ],
+  "synthetic_verification": {
+    "projection_view_exists": true,
+    "summary_view_exists": true,
+    "queue_view_exists": true,
+    "runtime_summary_select_granted": true,
+    "runtime_queue_select_granted": true,
+    "matched_outcome": "policy_automatic",
+    "policy_automatic_not_in_queue": true,
+    "waiting_state": {
+      "governance_dependency_state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "effective_reason_codes": [
+        "authority_not_verified",
+        "governance_waiting_for_external_evidence"
+      ]
+    },
+    "summary_delta": {
+      "policy_automatic": 1,
+      "human_required": 2,
+      "reject_or_quarantine": 1
+    },
+    "queue_delta": {
+      "human_required": 2,
+      "reject_or_quarantine": 1
+    },
+    "unauthorized_mutation_rejected": true,
+    "real_active_delegations": 0
+  },
+  "runtime_verification": {
+    "health_status": 200,
+    "routing_summary_status": 200,
+    "routing_exceptions_human_required_status": 200,
+    "invalid_filter_status": 400,
+    "total_records": 63,
+    "summary_counts": {
+      "policy_automatic": 0,
+      "human_required": 61,
+      "reject_or_quarantine": 2
+    }
+  },
+  "boundary": {
+    "no_real_delegation_activation": true,
+    "no_real_automatic_certification": true,
+    "no_new_source_access": true,
+    "no_destructive_change": true
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "task_id": "ST1-072",
+  "stage": "Stage 1 - Product Implementation",
+  "governance_dependency": {
+    "state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "e1_governance_authority": "MISSING",
+    "e2_project_controls_accountability": "MISSING",
+    "e3_controlled_report_evidence": "PARTIAL",
+    "real_active_delegations": 0,
+    "real_certification_changed": false,
+    "real_reliance_changed": false
+  },
+  "implementation": {
+    "database_summary_views_applied_on_rddb": true,
+    "summary_view": "ingestion.sdas_assurance_passport_portfolio_summary",
+    "exception_queue_view": "ingestion.sdas_assurance_passport_exception_queue",
+    "private_routes_deployed_on_rdapp": [
+      "GET /v1/sdas/passports/summary",
+      "GET /v1/sdas/passports/exceptions"
+    ]
+  },
+  "synthetic_verification": {
+    "summary_view_exists": true,
+    "queue_view_exists": true,
+    "runtime_summary_select_granted": true,
+    "runtime_queue_select_granted": true,
+    "summary_delta": {
+      "VERIFIED": 0,
+      "VERIFIED_WITH_LIMITATIONS": 0,
+      "HUMAN_REQUIRED": 1,
+      "NOT_RELIANCE_ELIGIBLE": 2,
+      "QUARANTINED": 1,
+      "REVOKED_OR_SUPERSEDED": 1
+    },
+    "queue_delta": {
+      "HUMAN_REQUIRED": 1,
+      "NOT_RELIANCE_ELIGIBLE": 2,
+      "QUARANTINED": 1,
+      "REVOKED_OR_SUPERSEDED": 1
+    },
+    "queue_total_delta": 5,
+    "verified_not_in_queue": true,
+    "unauthorized_mutation_rejected": true
+  },
+  "runtime_verification": {
+    "remote_health_status": 200,
+    "summary_route_status": 200,
+    "summary_total_passports": 50,
+    "summary_results": {
+      "VERIFIED": 0,
+      "VERIFIED_WITH_LIMITATIONS": 0,
+      "HUMAN_REQUIRED": 50,
+      "NOT_RELIANCE_ELIGIBLE": 0,
+      "REVOKED_OR_SUPERSEDED": 0,
+      "QUARANTINED": 0
+    },
+    "exceptions_route_status": 200,
+    "exceptions_total_count": 50,
+    "human_required_filter_status": 200,
+    "human_required_filter_count": 50,
+    "invalid_filter_status": 400
+  },
+  "boundaries": {
+    "new_real_source_access": false,
+    "automatic_certification_enabled": false,
+    "governance_activated": false,
+    "currentness_policy_weakened": false,
+    "reliance_policy_weakened": false,
+    "destructive_migration": false
+  }
+}

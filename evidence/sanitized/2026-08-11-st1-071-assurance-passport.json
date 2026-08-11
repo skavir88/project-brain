@@ -1,0 +1,82 @@
+{
+  "task_id": "ST1-071",
+  "stage": "Stage 1 - Product Implementation",
+  "governance_dependency": {
+    "state": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "e1_governance_authority": "MISSING",
+    "e2_project_controls_accountability": "MISSING",
+    "e3_controlled_report_evidence": "PARTIAL",
+    "real_active_delegations": 0,
+    "real_policy_automatic_path_available": false,
+    "st1_061_changed": false,
+    "current_status": "insufficient_certified_evidence",
+    "reliance_eligibility_changed": false,
+    "certification_automation_enabled": false
+  },
+  "selected_next_capability": {
+    "name": "Assurance Verification and Evidence Passport",
+    "why_selected": "The repository already had additive provenance, policy, governance, certification, and consumption evidence layers, but it lacked one deterministic projection and API that could explain the complete assurance chain for a certified datum without creating mutable truth."
+  },
+  "gap_analysis": [
+    {
+      "capability": "append-only evidence chain",
+      "current_capability": "Implemented across SDAS v0.1-v0.3 tables and events",
+      "production_requirement": "Machine-readable verification of the complete chain per certified datum",
+      "gap": "No unified read model",
+      "risk": "Consumers and auditors must manually reconcile many tables",
+      "next_control": "Projection and classifier"
+    },
+    {
+      "capability": "authority and business-time controls",
+      "current_capability": "Recorded separately with governance gate still unresolved",
+      "production_requirement": "Per-datum deterministic visibility of missing, conflicting, revoked, or verified evidence",
+      "gap": "No normalized passport result",
+      "risk": "Governance blockers can be confused with technical failure",
+      "next_control": "Passport authority/time states and limitation codes"
+    },
+    {
+      "capability": "post-registration and consumption traceability",
+      "current_capability": "Append-only events exist",
+      "production_requirement": "Visible revocation/supersession and downstream-use status",
+      "gap": "No per-datum summary",
+      "risk": "Downstream consumers cannot deterministically know whether a datum remains safe to use",
+      "next_control": "Passport projection with terminal-state and chain-integrity fields"
+    }
+  ],
+  "implementation": {
+    "database_projection_applied_on_rddb": true,
+    "private_service_contract_deployed_on_rdapp": true,
+    "projection_name": "ingestion.sdas_assurance_passport_projection",
+    "private_route": "GET /v1/sdas/passport?knowledge_id=<hex64>&require_reliance_eligible=false"
+  },
+  "verification_results": {
+    "projection_exists": true,
+    "runtime_select_granted": true,
+    "cases": {
+      "complete_valid_assurance_chain": "VERIFIED",
+      "missing_authority": "HUMAN_REQUIRED",
+      "missing_business_time": "HUMAN_REQUIRED",
+      "revoked_authority": "REVOKED_OR_SUPERSEDED",
+      "superseded_evidence": "REVOKED_OR_SUPERSEDED",
+      "conflicting_evidence": "QUARANTINED",
+      "expired_currentness_failure": "VERIFIED_WITH_LIMITATIONS",
+      "malformed_evidence": "QUARANTINED",
+      "hash_provenance_mismatch": "QUARANTINED",
+      "high_risk_fact": "QUARANTINED",
+      "reliance_not_eligible": "NOT_RELIANCE_ELIGIBLE"
+    },
+    "duplicate_idempotent_operation_count": 1,
+    "unauthorized_mutation_rejected": true,
+    "remote_health_status": 200,
+    "remote_invalid_passport_request_status": 400
+  },
+  "boundaries": {
+    "real_authority_changed": false,
+    "real_certification_changed": false,
+    "reliance_policy_weakened": false,
+    "currentness_policy_weakened": false,
+    "automatic_certification_enabled": false,
+    "new_real_source_access": false,
+    "destructive_migration": false
+  }
+}

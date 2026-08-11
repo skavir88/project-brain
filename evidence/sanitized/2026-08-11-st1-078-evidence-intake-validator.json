@@ -1,0 +1,49 @@
+{
+  "task_id": "ST1-078",
+  "scope": "local_non_destructive_real_evidence_intake_validation_only",
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "artifacts_created": {
+    "spec": "docs/ST1_078_REAL_EVIDENCE_INTAKE_SPEC.md",
+    "validator": "scripts/validate_st1_078_real_evidence_bundle.py",
+    "synthetic_valid_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.valid.json",
+    "synthetic_invalid_fixture": "docs/examples/ST1_078_real_evidence_bundle.synthetic.invalid.json"
+  },
+  "synthetic_verification": {
+    "valid_fixture_exit_code": 0,
+    "valid_fixture_result": "STRUCTURALLY_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+    "invalid_fixture_exit_code": 1,
+    "invalid_fixture_failures_observed": [
+      "activation_request must remain false",
+      "signed_artifact_fingerprint must be lowercase sha256 hex",
+      "scope mismatch rejected",
+      "fact-class boundary mismatch rejected",
+      "reporting-period rule mismatch rejected",
+      "empty source registration rejected"
+    ],
+    "fixtures_json_valid": true
+  },
+  "enforced_controls": {
+    "activation_request_must_remain_false": true,
+    "automatic_certification_requested_must_remain_false": true,
+    "currentness_override_requested_must_remain_false": true,
+    "reliance_override_requested_must_remain_false": true,
+    "exact_candidate_scope_required": true,
+    "exact_permitted_fact_set_required": true,
+    "exact_prohibited_fact_set_required": true,
+    "reporting_period_rule_restricted": true
+  },
+  "real_world_effect": {
+    "real_attestations_created": 0,
+    "real_delegations_activated": 0,
+    "real_sources_registered": 0,
+    "real_certifications_changed": 0
+  },
+  "boundaries": {
+    "external_evidence_still_required": true,
+    "st1_061_changed": false,
+    "authority_inferred": false,
+    "currentness_changed": false,
+    "reliance_changed": false
+  }
+}

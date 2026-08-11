@@ -18,6 +18,27 @@ seen_fingerprints: set[str] = set()
 fingerprint_lock = Lock()
 SDAS_POLICY = "sdas-v0.1-pilot-assessment-v1"
 HEX64 = set("0123456789abcdef")
+PASSPORT_RESULTS = {
+    "VERIFIED",
+    "VERIFIED_WITH_LIMITATIONS",
+    "HUMAN_REQUIRED",
+    "NOT_RELIANCE_ELIGIBLE",
+    "REVOKED_OR_SUPERSEDED",
+    "QUARANTINED",
+}
+PORTFOLIO_RESULTS = {
+    "VERIFIED",
+    "VERIFIED_WITH_LIMITATIONS",
+    "HUMAN_REQUIRED",
+    "NOT_RELIANCE_ELIGIBLE",
+    "REVOKED_OR_SUPERSEDED",
+    "QUARANTINED",
+}
+ROUTING_RESULTS = {
+    "policy_automatic",
+    "human_required",
+    "reject_or_quarantine",
+}
 
 
 def persistence_enabled() -> bool:
@@ -36,6 +57,216 @@ def is_hex64(value: object) -> bool:
 
 def chained_event_hash(previous_hash: str | None, knowledge_id: str, event_type: str, policy: str, payload: dict[str, object]) -> str:
     return sha256(json.dumps({"previous_event_hash": previous_hash, "knowledge_id": knowledge_id, "event_type": event_type, "policy": policy, "payload": payload}, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def parse_boolean_flag(value: str | None) -> bool:
+    return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def finalize_passport_verification_result(base_result: str, reliance_state: str | None, require_reliance_eligible: bool) -> str:
+    if base_result not in PASSPORT_RESULTS:
+        raise ValueError("unexpected_passport_result")
+    if require_reliance_eligible and base_result in {"VERIFIED", "VERIFIED_WITH_LIMITATIONS"} and reliance_state != "eligible":
+        return "NOT_RELIANCE_ELIGIBLE"
+    return base_result
+
+
+def row_to_passport_payload(row: tuple[object, ...], require_reliance_eligible: bool) -> dict[str, object]:
+    limitation_codes = row[30] if isinstance(row[30], list) else []
+    verification_result = finalize_passport_verification_result(str(row[28]), row[18] if isinstance(row[18], str) else None, require_reliance_eligible)
+    return {
+        "knowledge_id": row[0],
+        "source_fingerprint": row[1],
+        "source_record_id": row[2],
+        "source_id": row[3],
+        "record_id": row[4],
+        "observed_at": row[5].isoformat() if row[5] else None,
+        "ingested_at": row[6].isoformat() if row[6] else None,
+        "acquired_at": row[7].isoformat() if row[7] else None,
+        "certification": {
+            "event_id": row[8],
+            "actor": row[9],
+            "timestamp": row[10].isoformat() if row[10] else None,
+            "policy_version": row[11],
+        },
+        "assurance": {
+            "level": row[12],
+            "state": row[13],
+            "policy_version": row[14],
+            "authority_inheritance_state": row[15],
+            "business_time_state": row[16],
+            "risk_tier": row[17],
+            "currentness_state": row[18],
+            "reliance_state": row[19],
+            "outcome": row[20],
+        },
+        "policy": {
+            "policy_id": row[21],
+            "policy_version": row[22],
+            "approval_mode": row[23],
+        },
+        "authority": {
+            "passport_authority_state": row[24],
+            "source_registry_authority_status": row[25],
+        },
+        "transformations": {
+            "count": row[26],
+            "all_deterministic": row[27],
+        },
+        "verification_result": verification_result,
+        "business_time_evidence": row[29] if isinstance(row[29], list) else [],
+        "limitation_codes": limitation_codes,
+        "chain_integrity": {
+            "provenance_link_valid": row[31],
+            "assurance_event_chain_valid": row[32],
+            "consumption_event_chain_valid": row[33],
+        },
+        "consumption": {
+            "count": row[34],
+            "last_consumed_at": row[35].isoformat() if row[35] else None,
+        },
+        "post_registration": {
+            "event_type": row[36],
+            "event_at": row[37].isoformat() if row[37] else None,
+        },
+        "request_constraints": {
+            "require_reliance_eligible": require_reliance_eligible,
+        },
+    }
+
+
+def row_to_portfolio_summary_payload(rows: list[tuple[object, ...]]) -> dict[str, object]:
+    ordered_results = [
+        "VERIFIED",
+        "VERIFIED_WITH_LIMITATIONS",
+        "HUMAN_REQUIRED",
+        "NOT_RELIANCE_ELIGIBLE",
+        "REVOKED_OR_SUPERSEDED",
+        "QUARANTINED",
+    ]
+    summary = {result: {"passport_count": 0, "limitation_code_counts": {}} for result in ordered_results}
+    total = 0
+    for result, count, limitation_counts in rows:
+        if result not in PORTFOLIO_RESULTS:
+            continue
+        summary[result] = {
+            "passport_count": int(count),
+            "limitation_code_counts": limitation_counts if isinstance(limitation_counts, dict) else {},
+        }
+        total += int(count)
+    return {"total_passports": total, "results": summary}
+
+
+def row_to_exception_payload(row: tuple[object, ...]) -> dict[str, object]:
+    return {
+        "knowledge_id": row[0],
+        "source_id": row[1],
+        "source_record_id": row[2],
+        "certification_timestamp": row[3].isoformat() if row[3] else None,
+        "verification_result": row[4],
+        "limitation_codes": row[5] if isinstance(row[5], list) else [],
+        "passport_authority_state": row[6],
+        "passport_business_time_state": row[7],
+        "currentness_state": row[8],
+        "reliance_state": row[9],
+        "risk_tier": row[10],
+        "latest_post_registration_event_type": row[11],
+    }
+
+
+def row_to_routing_summary_payload(rows: list[tuple[object, ...]]) -> dict[str, object]:
+    ordered_results = ["policy_automatic", "human_required", "reject_or_quarantine"]
+    summary = {result: {"record_count": 0, "reason_code_counts": {}} for result in ordered_results}
+    total = 0
+    for result, count, reason_counts in rows:
+        if result not in ROUTING_RESULTS:
+            continue
+        summary[result] = {
+            "record_count": int(count),
+            "reason_code_counts": reason_counts if isinstance(reason_counts, dict) else {},
+        }
+        total += int(count)
+    return {"total_records": total, "results": summary}
+
+
+def row_to_routing_exception_payload(row: tuple[object, ...]) -> dict[str, object]:
+    return {
+        "record_fingerprint": row[0],
+        "source_id": row[1],
+        "record_id": row[2],
+        "lifecycle_state": row[3],
+        "quality_gate_outcome": row[4],
+        "policy": {
+            "policy_id": row[5],
+            "policy_version": row[6],
+            "approval_mode": row[7],
+        },
+        "assurance": {
+            "policy_version": row[8],
+            "outcome": row[9],
+            "authority_inheritance_state": row[10],
+            "business_time_state": row[11],
+            "currentness_state": row[12],
+            "reliance_state": row[13],
+        },
+        "governance_dependency_state": row[14],
+        "effective_routing_outcome": row[15],
+        "effective_reason_codes": row[16] if isinstance(row[16], list) else [],
+        "observed_at": row[17].isoformat() if row[17] else None,
+        "ingested_at": row[18].isoformat() if row[18] else None,
+    }
+
+
+def row_to_routing_detail_payload(row: tuple[object, ...]) -> dict[str, object]:
+    return {
+        "record_fingerprint": row[0],
+        "source_id": row[1],
+        "record_id": row[2],
+        "record_state": {
+            "lifecycle_state": row[3],
+            "disposition": row[4],
+            "quality_gate_outcome": row[5],
+            "observed_at": row[6].isoformat() if row[6] else None,
+            "ingested_at": row[7].isoformat() if row[7] else None,
+        },
+        "policy": {
+            "policy_id": row[8],
+            "policy_version": row[9],
+            "approval_mode": row[10],
+            "decision_timestamp": row[11].isoformat() if row[11] else None,
+            "reason_codes": row[12] if isinstance(row[12], list) else [],
+        },
+        "assurance": {
+            "policy_version": row[13],
+            "outcome": row[14],
+            "decision_timestamp": row[15].isoformat() if row[15] else None,
+            "reason_codes": row[16] if isinstance(row[16], list) else [],
+            "authority_inheritance_state": row[17],
+            "business_time_state": row[18],
+            "risk_tier": row[19],
+            "currentness_state": row[20],
+            "reliance_state": row[21],
+        },
+        "routing": {
+            "matched_active_delegation_count": row[22],
+            "governance_dependency_state": row[23],
+            "effective_routing_outcome": row[24],
+            "effective_reason_codes": row[25] if isinstance(row[25], list) else [],
+        },
+        "source": {
+            "source_type": row[26],
+            "system_location_identity": row[27],
+            "owner_actor_id": row[28],
+            "business_purpose": row[29],
+            "authority_status": row[30],
+            "authority_scope": row[31] if isinstance(row[31], dict) else {},
+            "effective_from": row[32].isoformat() if row[32] else None,
+            "effective_to": row[33].isoformat() if row[33] else None,
+            "evidence_quality": row[34],
+        },
+        "matched_active_delegations": row[35] if isinstance(row[35], list) else [],
+        "triage_signals": row[36] if isinstance(row[36], dict) else {},
+    }
 
 
 def build_sdas_assessment(row: tuple[object, ...]) -> dict[str, object]:
@@ -108,6 +339,173 @@ class IngestionHandler(BaseHTTPRequestHandler):
                 HTTPStatus.OK,
                 {"service": "enterprise-ai-ingestion", "status": "ok"},
             )
+            return
+
+        if parsed_path.path == "/v1/sdas/passport":
+            query = parse_qs(parsed_path.query, keep_blank_values=True)
+            knowledge_id = query.get("knowledge_id", [""])
+            require_reliance_eligible = parse_boolean_flag(query.get("require_reliance_eligible", ["false"])[0])
+            if len(knowledge_id) != 1 or not is_hex64(knowledge_id[0]) or not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_assurance_passport_request"})
+                return
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        """SELECT knowledge_id, source_fingerprint, source_record_id, source_id, record_id,
+                                  observed_at, ingested_at, acquired_at, certification_event_id,
+                                  certifying_actor, certification_timestamp, certification_policy_version,
+                                  assurance_level, assurance_state, assurance_policy_version,
+                                  authority_inheritance_state, business_time_state, risk_tier,
+                                  currentness_state, reliance_state, assurance_outcome, policy_id,
+                                  policy_version, policy_approval_mode, passport_authority_state,
+                                  source_registry_authority_status, transformation_count,
+                                  all_transformations_deterministic, base_verification_result,
+                                  business_time_evidence, limitation_codes, provenance_link_valid,
+                                  assurance_event_chain_valid, consumption_event_chain_valid,
+                                  consumption_count, last_consumed_at,
+                                  latest_post_registration_event_type, latest_post_registration_event_at
+                           FROM ingestion.sdas_assurance_passport_projection
+                           WHERE knowledge_id=%s""",
+                        (knowledge_id[0],),
+                    )
+                    row = cursor.fetchone()
+            if not row:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "assurance_passport_not_found"})
+                return
+            self.send_json(HTTPStatus.OK, row_to_passport_payload(row, require_reliance_eligible))
+            return
+
+        if parsed_path.path == "/v1/sdas/passports/summary":
+            if not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "assurance_passport_summary_unavailable"})
+                return
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        """SELECT verification_result, passport_count, limitation_code_counts
+                           FROM ingestion.sdas_assurance_passport_portfolio_summary
+                           ORDER BY verification_result"""
+                    )
+                    rows = cursor.fetchall()
+            self.send_json(HTTPStatus.OK, row_to_portfolio_summary_payload(rows))
+            return
+
+        if parsed_path.path == "/v1/sdas/passports/exceptions":
+            query = parse_qs(parsed_path.query, keep_blank_values=True)
+            requested_result = query.get("verification_result", [""])[0].strip()
+            if requested_result and requested_result not in PORTFOLIO_RESULTS:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_exception_filter"})
+                return
+            if not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "assurance_passport_exception_queue_unavailable"})
+                return
+            sql = """SELECT knowledge_id, source_id, source_record_id, certification_timestamp,
+                            verification_result, limitation_codes, passport_authority_state,
+                            passport_business_time_state, currentness_state, reliance_state,
+                            risk_tier, latest_post_registration_event_type
+                     FROM ingestion.sdas_assurance_passport_exception_queue"""
+            params: tuple[object, ...] = ()
+            if requested_result:
+                sql += " WHERE verification_result=%s"
+                params = (requested_result,)
+            sql += " ORDER BY certification_timestamp DESC, knowledge_id LIMIT 500"
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(sql, params)
+                    rows = cursor.fetchall()
+            self.send_json(
+                HTTPStatus.OK,
+                {
+                    "count": len(rows),
+                    "verification_result_filter": requested_result or None,
+                    "items": [row_to_exception_payload(row) for row in rows],
+                },
+            )
+            return
+
+        if parsed_path.path == "/v1/sdas/routing/summary":
+            if not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "sdas_routing_summary_unavailable"})
+                return
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        """SELECT effective_routing_outcome, record_count, reason_code_counts
+                           FROM ingestion.sdas_record_policy_routing_summary
+                           ORDER BY effective_routing_outcome"""
+                    )
+                    rows = cursor.fetchall()
+            self.send_json(HTTPStatus.OK, row_to_routing_summary_payload(rows))
+            return
+
+        if parsed_path.path == "/v1/sdas/routing/exceptions":
+            query = parse_qs(parsed_path.query, keep_blank_values=True)
+            requested_outcome = query.get("outcome", [""])[0].strip()
+            if requested_outcome and requested_outcome not in ROUTING_RESULTS:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_routing_exception_filter"})
+                return
+            if not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "sdas_routing_exception_queue_unavailable"})
+                return
+            sql = """SELECT record_fingerprint, source_id, record_id, lifecycle_state,
+                            quality_gate_outcome, policy_id, policy_version,
+                            policy_approval_mode, assurance_policy_version,
+                            assurance_outcome, authority_inheritance_state,
+                            business_time_state, currentness_state, reliance_state,
+                            governance_dependency_state, effective_routing_outcome,
+                            effective_reason_codes, observed_at, ingested_at
+                     FROM ingestion.sdas_record_policy_routing_exception_queue"""
+            params: tuple[object, ...] = ()
+            if requested_outcome:
+                sql += " WHERE effective_routing_outcome=%s"
+                params = (requested_outcome,)
+            sql += " LIMIT 500"
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(sql, params)
+                    rows = cursor.fetchall()
+            self.send_json(
+                HTTPStatus.OK,
+                {
+                    "count": len(rows),
+                    "outcome_filter": requested_outcome or None,
+                    "items": [row_to_routing_exception_payload(row) for row in rows],
+                },
+            )
+            return
+
+        if parsed_path.path == "/v1/sdas/routing/detail":
+            query = parse_qs(parsed_path.query, keep_blank_values=True)
+            record_fingerprint = query.get("record_fingerprint", [""])
+            if len(record_fingerprint) != 1 or not is_hex64(record_fingerprint[0]) or not persistence_enabled():
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_routing_detail_request"})
+                return
+            with database_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        """SELECT record_fingerprint, source_id, record_id, lifecycle_state, disposition,
+                                  quality_gate_outcome, observed_at, ingested_at, policy_id,
+                                  policy_version, policy_approval_mode, policy_decision_timestamp,
+                                  policy_reason_codes, assurance_policy_version, assurance_outcome,
+                                  assurance_decision_timestamp, assurance_reason_codes,
+                                  authority_inheritance_state, business_time_state, risk_tier,
+                                  currentness_state, reliance_state,
+                                  matched_active_delegation_count, governance_dependency_state,
+                                  effective_routing_outcome, effective_reason_codes, source_type,
+                                  system_location_identity, owner_actor_id, business_purpose,
+                                  source_registry_authority_status, source_registry_authority_scope,
+                                  source_registry_effective_from, source_registry_effective_to,
+                                  source_registry_evidence_quality, matched_active_delegations,
+                                  triage_signals
+                           FROM ingestion.sdas_record_policy_routing_detail
+                           WHERE record_fingerprint=%s""",
+                        (record_fingerprint[0],),
+                    )
+                    row = cursor.fetchone()
+            if not row:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "routing_detail_not_found"})
+                return
+            self.send_json(HTTPStatus.OK, row_to_routing_detail_payload(row))
             return
 
         if parsed_path.path != "/v1/knowledge":
