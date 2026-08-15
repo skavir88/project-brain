@@ -1,0 +1,96 @@
+{
+  "task_id": "ST1-136",
+  "date": "2026-08-11",
+  "selected_target": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "current_gate_before_changes": {
+    "task_id": "ST1-136",
+    "status": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "source": "NEXT_TASK.md and evidence/sanitized/2026-08-11-st1-136-post-a1-submission-gate.json"
+  },
+  "governance_interpretation_preserved": {
+    "a1_limited_pilot_governance_only": true,
+    "a1_does_not_imply_historical_project_controls_authority": true,
+    "a1_does_not_imply_historical_pmo_accountability": true,
+    "a1_does_not_imply_workbook_series_ownership": true,
+    "a1_does_not_imply_current_project_status": true,
+    "a1_does_not_imply_certification_authority": true,
+    "a1_does_not_imply_reliance_eligibility": true
+  },
+  "classifications": {
+    "A2_project_controls_pmo_accountability": {
+      "status": "MISSING",
+      "reason": "No real independently evidenced accountability confirmation for the recurring Project Controls progress workbook class exists in the repository or runtime-local authorized state.",
+      "what_was_checked": [
+        "ST1-135 selected-series A1 partial bundle",
+        "ST1-122 first-real policy target",
+        "ST1-136 post-A1 gate",
+        "runtime-local ST1-046 family artifacts"
+      ]
+    },
+    "A3_controlled_report_definition": {
+      "status": "REAL_PARTIAL",
+      "reason": "The representative workbook independently evidences a workbook-level reporting-week header and a concrete observed reporting period, but it does not independently establish ownership, approval/release authority, or a controlled document-identifier convention.",
+      "verified_subfacts": [
+        {
+          "fact": "workbook_labelled_reporting_week_header_present",
+          "value": true,
+          "provenance": "runtime-local st1-046-twrp-cells.json -> sheet 'cover' cell R8"
+        },
+        {
+          "fact": "observed_reporting_period_value",
+          "value": "1402/11/21–1402/12/05",
+          "provenance": "runtime-local st1-046-mrp-human-review.json and sheet 'cover' cell R8"
+        }
+      ],
+      "not_established": [
+        "owning organizational role",
+        "issue/publication/approval rule",
+        "official document-control authority",
+        "official revision/document-number convention"
+      ]
+    },
+    "stable_source_registration_evidence_reference": {
+      "status": "MISSING",
+      "reason": "No stable independently verified source-control evidence reference exists yet for the selected recurring workbook series."
+    },
+    "stable_non_sensitive_source_series_identifier": {
+      "status": "REAL_VERIFIED",
+      "identifier": "maroon_project_controls_progress_workbook_series",
+      "identifier_kind": "pilot_non_sensitive_series_identifier",
+      "reason": "This identifier is fixed by the existing repository contract and the current user-approved instruction for ST1-136. It is not treated as an official organizational document-control identifier."
+    },
+    "real_selected_series_native_record_artifact": {
+      "status": "REAL_PARTIAL",
+      "reason": "Exact deterministic source matching, read-only acquisition evidence, business-time extraction, and deterministic transformation lineage are available for the representative workbook. Independent bundle/source-control verification remains unresolved, so the artifact is not runtime-ready.",
+      "native_artifact_path": "evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json"
+    }
+  },
+  "exact_match_and_native_evidence": {
+    "deterministic_match": true,
+    "match_basis": [
+      "approved pilot root",
+      "runtime-local relative locator from st1-046-mrp-structure.json",
+      "exact filename match",
+      "exact size match"
+    ],
+    "sanitized_source_locator": "approved_maroon_pilot_root::project_control_report::25_mrp_1402_12::5_other::070-TWRP-24 1402-12-05.xlsx",
+    "metadata_fingerprint": "51ef65287c2d20eee208ad407a89c21a9da129f12672d313b59eb8060d64a6b1",
+    "size_bytes": 249411368,
+    "original_sha256": "09ddb6d46440d9d126073f10635ce4d834ef1a960713c62b6c7b86e5801b51cc",
+    "transformation_output_sha256": "76524e8517a10221f62e6978233d270a7cea15751db5b2811f7c737f27d911ac",
+    "transformation_artifact": "runtime-local st1-046-twrp-cells.json",
+    "business_time_resolution_source": "workbook_labelled_reporting_week_header",
+    "business_time_report_period_value": "1402/11/21–1402/12/05"
+  },
+  "policy_boundary": {
+    "can_begin_independent_controlled_review": false,
+    "truthful_reason": "A2 and stable source-control evidence remain unresolved; the selected-series bundle cannot yet reach PENDING_INDEPENDENT_VERIFICATION.",
+    "policy_automatic_reached": false,
+    "certification_occurred": false
+  }
+}

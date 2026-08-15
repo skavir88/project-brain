@@ -1,0 +1,102 @@
+{
+  "supplement_version": "st1-136/v1",
+  "project_scope": "maroon_pilot",
+  "target_source_id": "maroon_project_controls_progress_workbook_series",
+  "series_scope": {
+    "stable_source_series_identifier": "synthetic-series-id-001",
+    "stable_source_series_identifier_kind": "controlled_report_series_code"
+  },
+  "evidence_items": {
+    "A2": {
+      "tier": "B",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "project_controls_accountability",
+      "subject_role_class": "project_controls_pmo_accountable_role",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "2026-08-11T00:00:00Z",
+      "signed_artifact_reference": "synthetic://attestations/a2",
+      "signed_artifact_fingerprint": "2222222222222222222222222222222222222222222222222222222222222222",
+      "acquisition_provenance": "synthetic_fixture",
+      "payload": {
+        "accountable_role_class": "Project Controls / PMO accountable role",
+        "report_classes": [
+          "project_controls_progress_workbook"
+        ],
+        "permitted_fact_classes": [
+          "report_period",
+          "reported_plan",
+          "reported_actual",
+          "reported_progress",
+          "reported_activity",
+          "reported_milestone",
+          "reported_project_control_issue"
+        ],
+        "prohibited_fact_classes": [
+          "contractual_delay_determination",
+          "entitlement",
+          "claim",
+          "payment_authorization_or_status",
+          "financial_liability",
+          "legal_conclusion",
+          "safety_or_compliance_certification",
+          "final_completion",
+          "current_executive_status_outside_report_period",
+          "reliance_eligibility",
+          "insurance_or_guarantee_status"
+        ],
+        "scope": "maroon_pilot",
+        "approval_method": "signed_controlled_attestation"
+      }
+    },
+    "A3": {
+      "tier": "B",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "controlled_report_definition",
+      "subject_role_class": "project_controls_pmo_accountable_role",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "2026-08-11T00:00:00Z",
+      "signed_artifact_reference": "synthetic://attestations/a3",
+      "signed_artifact_fingerprint": "3333333333333333333333333333333333333333333333333333333333333333",
+      "acquisition_provenance": "synthetic_fixture",
+      "payload": {
+        "source_report_class": "project_controls_progress_workbook",
+        "owning_role_class": "Project Controls / PMO accountable role",
+        "source_location_class": "controlled_internal_reporting_workspace",
+        "reporting_period_rule": {
+          "accepted_sources": [
+            "workbook_labelled_reporting_week_header",
+            "designated_reporting_period_field"
+          ],
+          "disallowed_substitutes": [
+            "row_level_planned_date",
+            "row_level_target_date",
+            "filesystem_timestamp",
+            "acquisition_timestamp"
+          ]
+        },
+        "document_identifier_convention": "controlled_workbook_identifier_or_revision",
+        "permitted_fact_classes": [
+          "report_period",
+          "reported_plan",
+          "reported_actual",
+          "reported_progress",
+          "reported_activity",
+          "reported_milestone",
+          "reported_project_control_issue"
+        ],
+        "prohibited_inference": [
+          "current_executive_status_outside_report_period",
+          "reliance_eligibility",
+          "insurance_or_guarantee_status"
+        ],
+        "scope": "maroon_pilot",
+        "approval_method": "signed_controlled_attestation"
+      }
+    }
+  },
+  "source_registration": {
+    "non_sensitive_location_class": "internal_project_controls_reporting_workspace",
+    "owning_role_class": "Project Controls / PMO accountable role",
+    "evidence_reference": "synthetic://source-registration/maroon-progress-workbook-series"
+  }
+}

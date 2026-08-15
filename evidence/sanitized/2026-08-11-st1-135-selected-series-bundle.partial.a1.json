@@ -1,0 +1,133 @@
+{
+  "bundle_version": "st1-078/v1",
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "activation_request": false,
+  "automatic_certification_requested": false,
+  "currentness_override_requested": false,
+  "reliance_override_requested": false,
+  "evidence_items": {
+    "A1": {
+      "tier": "B",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "governance_authority",
+      "subject_role_class": "pilot_governance_authority",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "2026-08-11",
+      "signed_artifact_reference": "evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json",
+      "signed_artifact_fingerprint": "60eca978c864b072062d2a6dacfcb54718109793885565808bbf283982af5c2b",
+      "acquisition_provenance": "user_provided_accountable_owner_attestation_via_local_chat_2026-08-11",
+      "payload": {
+        "governance_role_class": "Pilot Sponsor / Pilot Governance Authority",
+        "authority_basis": "Explicit approval to operate and evaluate the SDAS / Data Insurance pilot within the approved limited pilot boundary.",
+        "scope": "maroon_pilot",
+        "expiry_or_revocation_rule": "until_explicit_revocation_or_scope_change_for_the_current_limited_pilot",
+        "approval_method": "explicit_accountable_owner_attestation"
+      }
+    },
+    "A2": {
+      "tier": "A_OR_B_REQUIRED_INPUT",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "project_controls_accountability",
+      "subject_role_class": "REQUIRED_INPUT",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "REQUIRED_INPUT",
+      "signed_artifact_reference": "REQUIRED_INPUT",
+      "signed_artifact_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+      "acquisition_provenance": "REQUIRED_INPUT",
+      "payload": {
+        "accountable_role_class": "REQUIRED_INPUT",
+        "report_classes": [
+          "project_controls_progress_workbook"
+        ],
+        "permitted_fact_classes": [
+          "report_period",
+          "reported_plan",
+          "reported_actual",
+          "reported_progress",
+          "reported_activity",
+          "reported_milestone",
+          "reported_project_control_issue"
+        ],
+        "prohibited_fact_classes": [
+          "contractual_delay_determination",
+          "entitlement",
+          "claim",
+          "payment_authorization_or_status",
+          "financial_liability",
+          "legal_conclusion",
+          "safety_or_compliance_certification",
+          "final_completion",
+          "current_executive_status_outside_report_period",
+          "reliance_eligibility",
+          "insurance_or_guarantee_status"
+        ],
+        "scope": "maroon_pilot",
+        "approval_method": "REQUIRED_INPUT"
+      }
+    },
+    "A3": {
+      "tier": "A_OR_B_REQUIRED_INPUT",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "controlled_report_definition",
+      "subject_role_class": "REQUIRED_INPUT",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "REQUIRED_INPUT",
+      "signed_artifact_reference": "REQUIRED_INPUT",
+      "signed_artifact_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+      "acquisition_provenance": "REQUIRED_INPUT",
+      "payload": {
+        "source_report_class": "project_controls_progress_workbook",
+        "owning_role_class": "REQUIRED_INPUT",
+        "source_location_class": "REQUIRED_INPUT",
+        "reporting_period_rule": {
+          "accepted_sources": [
+            "workbook_labelled_reporting_week_header",
+            "designated_reporting_period_field"
+          ],
+          "disallowed_substitutes": [
+            "row_level_planned_date",
+            "row_level_target_date",
+            "filesystem_timestamp",
+            "acquisition_timestamp"
+          ]
+        },
+        "document_identifier_convention": "REQUIRED_INPUT",
+        "permitted_fact_classes": [
+          "report_period",
+          "reported_plan",
+          "reported_actual",
+          "reported_progress",
+          "reported_activity",
+          "reported_milestone",
+          "reported_project_control_issue"
+        ],
+        "prohibited_inference": [
+          "current_executive_status_outside_report_period",
+          "reliance_eligibility",
+          "insurance_or_guarantee_status"
+        ],
+        "scope": "maroon_pilot",
+        "approval_method": "REQUIRED_INPUT"
+      }
+    }
+  },
+  "source_registration": {
+    "source_id": "maroon_project_controls_progress_workbook_series",
+    "source_type": "recurring_report_series",
+    "non_sensitive_location_class": "REQUIRED_INPUT",
+    "owning_role_class": "REQUIRED_INPUT",
+    "project_scope": "maroon_pilot",
+    "report_class": "project_controls_progress_workbook",
+    "authority_state": "awaiting_validation",
+    "evidence_reference": "REQUIRED_INPUT"
+  },
+  "series_scope": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05",
+    "stable_source_series_identifier": "REQUIRED_INPUT",
+    "stable_source_series_identifier_kind": "REQUIRED_INPUT"
+  }
+}

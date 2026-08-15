@@ -1,0 +1,30 @@
+{
+  "task_id": "ST1-137",
+  "date": "2026-08-11",
+  "purpose": "requirement_by_requirement_completion_audit_against_st1_066",
+  "artifact_created": "scripts/audit_st1_066_requirement_matrix.py",
+  "overall_status": "NOT_COMPLETE",
+  "success_criterion_proven": false,
+  "requirements_total": 17,
+  "requirements_not_yet_proven": [
+    "ST1-066-OBJ-001",
+    "ST1-066-C-001"
+  ],
+  "critical_missing_real_world_evidence": [
+    "A2_project_controls_accountability_confirmation",
+    "A3_controlled_report_definition_confirmation",
+    "stable_source_registration_evidence_reference",
+    "stable_non_sensitive_source_series_identifier",
+    "real_selected_series_native_record_artifact"
+  ],
+  "invariants": {
+    "st1_061_is_not_success_target": true,
+    "automatic_certification_enabled": false,
+    "reliance_eligibility_enabled": false,
+    "new_source_boundary_required": false
+  },
+  "verification_commands": [
+    "python -m py_compile scripts/audit_st1_066_requirement_matrix.py",
+    "python scripts/audit_st1_066_requirement_matrix.py"
+  ]
+}

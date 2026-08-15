@@ -1,0 +1,56 @@
+{
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "source_registration": {
+    "source_id": "maroon_project_controls_progress_workbook_series",
+    "source_type": "recurring_report_series",
+    "non_sensitive_location_class": "approved_maroon_pilot_root::project_control_report::25_mrp_1402_12::5_other",
+    "owning_role_class": "NOT_VERIFIED",
+    "project_scope": "maroon_pilot",
+    "report_class": "project_controls_progress_workbook",
+    "authority_state": "not_verified",
+    "evidence_reference": "NOT_VERIFIED"
+  },
+  "series_scope": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "acquisition": {
+    "acquired_at": "2026-08-11T13:55:23.1110427Z",
+    "source_reference": "runtime-local://source-a08f4a79cf2116b1/metadata-fingerprint/51ef65287c2d20eee208ad407a89c21a9da129f12672d313b59eb8060d64a6b1",
+    "acquisition_method": "read_only_smb_hash",
+    "original_fingerprint": "09ddb6d46440d9d126073f10635ce4d834ef1a960713c62b6c7b86e5801b51cc",
+    "size_bytes": 249411368,
+    "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "read_only": true
+  },
+  "transformation": {
+    "tool_name": "extract_st1_046_twrp_ooxml.py",
+    "tool_version": "st1-046",
+    "transformed_at": "2026-08-10T05:14:25.973212+00:00",
+    "transformation_type": "workbook_cell_manifest",
+    "input_fingerprint": "09ddb6d46440d9d126073f10635ce4d834ef1a960713c62b6c7b86e5801b51cc",
+    "output_fingerprint": "76524e8517a10221f62e6978233d270a7cea15751db5b2811f7c737f27d911ac",
+    "deterministic": true,
+    "lineage_complete": true
+  },
+  "business_time": {
+    "resolved": true,
+    "resolution_source": "workbook_labelled_reporting_week_header",
+    "report_period_value": "1402/11/21–1402/12/05",
+    "disallowed_substitutes_used": []
+  },
+  "policy_context": {
+    "policy_id": "project-controls-progress-low-risk",
+    "policy_version": "v1",
+    "risk_tier": "LOW",
+    "automatic_certification_requested": false
+  },
+  "independent_verification": {
+    "bundle_independently_verified": false,
+    "source_control_independently_verified": false,
+    "business_time_rule_independently_verified": true
+  }
+}

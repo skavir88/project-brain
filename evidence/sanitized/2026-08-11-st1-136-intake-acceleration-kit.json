@@ -1,0 +1,42 @@
+{
+  "task_id": "ST1-136",
+  "date": "2026-08-11",
+  "purpose": "reduce_friction_for_the_next_real_selected_series_submission_after_a1",
+  "artifacts_created": [
+    "docs/examples/ST1_136_selected_series_remaining_inputs.template.json",
+    "docs/examples/ST1_136_selected_series_remaining_inputs.synthetic.ready.json",
+    "docs/examples/ST1_136_selected_series_native_record.template.json",
+    "scripts/apply_st1_136_remaining_selected_series_inputs.py"
+  ],
+  "verification_results": {
+    "supplement_merge": {
+      "result": "OK",
+      "a1_preserved": true,
+      "merged_output": "evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.synthetic.merged.json"
+    },
+    "merged_bundle_gate": {
+      "activation_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+      "selected_series_match": true,
+      "structurally_complete": true,
+      "required_external_inputs_remaining": []
+    },
+    "native_record_template_behavior": {
+      "expected_status": "BLOCKED_UNTIL_REAL_VALUES_ARE_SUPPLIED",
+      "observed_ready_for_selected_series_runtime_path": false
+    }
+  },
+  "boundary": {
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_policy_mutation": false,
+    "real_certification": false,
+    "st1_061_is_success_target": false
+  },
+  "verification_commands": [
+    "python -m py_compile scripts/apply_st1_136_remaining_selected_series_inputs.py",
+    "python scripts/apply_st1_136_remaining_selected_series_inputs.py --base-bundle evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json --supplement docs/examples/ST1_136_selected_series_remaining_inputs.synthetic.ready.json --output evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.synthetic.merged.json",
+    "python scripts/run_st1_125_series_bundle_gate.py --bundle evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.synthetic.merged.json",
+    "python scripts/verify_st1_131_selected_series_native_record.py --native-record docs/examples/ST1_136_selected_series_native_record.template.json"
+  ]
+}

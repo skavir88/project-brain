@@ -1,0 +1,58 @@
+{
+  "task_id": "ST1-135",
+  "date": "2026-08-11",
+  "purpose": "intake_one_real_A1_attestation_without_crossing_activation_or_certification_boundaries",
+  "input_artifacts": [
+    "evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json",
+    "evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json"
+  ],
+  "selected_target": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "a1_intake_result": {
+    "classification": "SUPPLIED_UNVALIDATED_REAL_EVIDENCE",
+    "scope": "maroon_pilot",
+    "confirmed_role": "Pilot Sponsor / Pilot Governance Authority",
+    "effective_date": "2026-08-11",
+    "limitations_preserved": true
+  },
+  "gate_result": {
+    "structurally_complete": true,
+    "selected_series_match": true,
+    "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "section_statuses": {
+      "bundle": "PARTIAL",
+      "A1": "PARTIAL",
+      "A2": "MISSING",
+      "A3": "MISSING",
+      "source_registration": "MISSING",
+      "series_scope": "MISSING"
+    },
+    "required_external_inputs_remaining": [
+      "A2_project_controls_accountability_confirmation",
+      "A3_controlled_report_definition_confirmation",
+      "stable_source_registration_evidence_reference",
+      "stable_non_sensitive_source_series_identifier"
+    ]
+  },
+  "boundary": {
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_policy_mutation": false,
+    "real_certification": false,
+    "historical_authority_backfilled": false,
+    "currentness_changed": false,
+    "reliance_changed": false,
+    "st1_061_is_success_target": false
+  },
+  "verification_commands": [
+    "python scripts/run_st1_125_series_bundle_gate.py --bundle evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json",
+    "python scripts/verify_st1_124_recurring_workbook_governance_bundle.py --bundle evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json",
+    "python -c \"import json, pathlib; json.loads(pathlib.Path(r'evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json').read_text(encoding='utf-8')); json.loads(pathlib.Path(r'evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json').read_text(encoding='utf-8')); print('JSON_OK')\"",
+    "git diff --check"
+  ]
+}

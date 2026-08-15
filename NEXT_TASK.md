@@ -1,87 +1,89 @@
 # Next Task
 
 ## Metadata
-- Task ID: ST1-135
+- Task ID: ST1-138
 - Stage: Stage 1 — Product Implementation
-- Status: Waiting for Two Real Selected-Series Artifacts
+- Status: BLOCKED_BY_EXTERNAL_EVIDENCE
 - Owner: Codex / Enterprise AI Project Operator
 
 ## Objective
-Use the ST1-134 request pack to obtain the exact two real selected-series
-artifacts still required on the ST1-066 critical path:
+Receive the minimum remaining real selected-series governance/source-control
+evidence required to re-run the exact ST1-136 gate chain for the already
+matched representative workbook.
 
-1. one real sanitized filled governance/report-definition bundle for
+Required real inputs only:
+
+1. exact-scope confirmation that the related Project Controls / PMO reporting
+   ownership/control signals already observed in the Maroon pilot also apply to
    `maroon_project_controls_progress_workbook_series`
-2. one real sanitized native-record artifact for the same selected series
+2. exact-scope controlled report-definition confirmation for the selected
+   recurring workbook series
+3. `stable_source_registration_evidence_reference`
 
 Then:
 
-3. validate the real bundle with the deterministic selected-series bundle gate;
-4. validate the real native-record artifact with the deterministic
-   selected-series native-record gate;
-5. validate the pair with the deterministic selected-series dual-input gate;
-6. if both are exact-scope and ready, compile the independent controlled-review
+4. merge/compile those real inputs onto the preserved A1 + pilot-series-id
+   bundle;
+5. reuse the existing partial real native-record artifact;
+6. re-run ST1-125, ST1-131, and ST1-132;
+7. if all gates become ready, compile the independent controlled-review
    handoff only;
-7. stop before any delegation activation, source registration, native
-   acquisition, policy mutation, or certification.
+8. stop before any delegation activation, source registration mutation,
+   native acquisition mutation, policy mutation, or certification.
 
 ## Rationale
-As of Tuesday, August 11, 2026, the repository-local path is already fully
-prepared:
+As of Tuesday, August 11, 2026:
 
-- bundle-side exact-scope gate exists;
-- native-record-side exact-scope gate exists;
-- dual-input convergence gate exists;
-- the Persian ST1-134 request pack narrows the real-world ask to exactly the
-  two remaining artifacts;
-- ST1-061 remains excluded as the first real success target.
-
-The blocker is now only the arrival of those two real artifacts and their
-controlled review.
+- the pilot non-sensitive series identifier is no longer missing;
+- the representative workbook is deterministically re-matched;
+- a truthful partial real native-record artifact already exists;
+- business-time evidence from the workbook header is already preserved;
+- already-authorized adjacent PMO/project-controls evidence exists for a
+  related Maroon reporting artifact;
+- the remaining blocker is now narrower and exact-scope external confirmation:
+  apply-or-do-not-apply confirmation for that reporting ownership/control
+  evidence on the selected recurring workbook series, plus one stable
+  source-registration evidence reference.
 
 ## Preconditions
-- The selected target remains the recurring Project Controls progress workbook
-  series, not ST1-061.
-- Both incoming artifacts must remain inside the approved Maroon pilot scope.
-- Both incoming artifacts must be sanitized or otherwise safe for
-  repository-local validation.
-- No delegation activation, source registration, acquisition, policy mutation,
-  or certification may occur in this task.
+- The target remains `maroon_project_controls_progress_workbook_series`.
+- The representative workbook remains `070-TWRP-24 1402-12-05.xlsx`.
+- The observed reporting-period example remains `1402/11/21–1402/12/05`.
+- The existing A1 limited pilot-governance evidence must remain preserved with
+  its explicit non-implication limits.
+- The existing partial real native-record artifact must remain preserved:
+  `evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json`
+- No new source boundary, broad discovery, or inferred historical authority is
+  allowed.
 
 ## Scope
-- Use:
-  - `docs/ST1_134_SELECTED_SERIES_REAL_INPUT_REQUEST_FA.md`
-- Validate the real selected-series governance bundle with:
-  - `scripts/validate_st1_078_real_evidence_bundle.py`
-  - `scripts/assess_st1_078_real_evidence_bundle.py`
-  - `scripts/verify_st1_124_recurring_workbook_governance_bundle.py`
+- Accept only the exact missing real inputs for the selected series.
+- Use the existing ST1-136 intake/gate machinery:
+  - `scripts/compile_st1_136_remaining_inputs_from_individual_attestations.py`
+  - `scripts/apply_st1_136_remaining_selected_series_inputs.py`
+  - `scripts/verify_st1_136_remaining_inputs_supplement.py`
+  - `scripts/run_st1_136_post_a1_submission_gate.py`
   - `scripts/run_st1_125_series_bundle_gate.py`
-- Validate the real selected-series native-record artifact with:
-  - `scripts/verify_st1_083_first_native_record_preflight.py`
   - `scripts/verify_st1_131_selected_series_native_record.py`
-- Validate the pair together with:
   - `scripts/run_st1_132_selected_series_dual_input_gate.py`
-- If the pair is ready, compile:
-  - `scripts/compile_st1_127_independent_verification_handoff.py`
+- Reuse the already prepared evidence:
+  - `evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json`
+  - `evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.a1-plus-pilot-series-id.json`
+  - `evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json`
 
 ## Out of Scope
-- Using ST1-061 as the first real `policy_automatic` success target
-- Real delegation activation
-- Real source registration
-- Real native acquisition
-- Real policy decision mutation
-- Real certification mutation
-- Any new source boundary
-- Any destructive change
+- Inventing or inferring A2/A3 authority from workbook content alone
+- Treating the pilot series identifier as an official organizational ID
+- Any new SMB discovery or new source boundary
+- Any runtime mutation before the gates truthfully allow controlled review
+- Any certification or Certified Knowledge mutation
 
 ## Files to Inspect
-- `docs/ST1_134_SELECTED_SERIES_REAL_INPUT_REQUEST_FA.md`
-- `evidence/sanitized/2026-08-11-st1-134-selected-series-real-input-request-pack.json`
-- `evidence/sanitized/2026-08-11-st1-132-selected-series-dual-input-gate.json`
-- `scripts/run_st1_125_series_bundle_gate.py`
-- `scripts/verify_st1_131_selected_series_native_record.py`
-- `scripts/run_st1_132_selected_series_dual_input_gate.py`
-- `scripts/compile_st1_127_independent_verification_handoff.py`
+- `evidence/sanitized/2026-08-11-st1-136-real-selected-series-reconciliation.json`
+- `evidence/sanitized/2026-08-11-st1-136-real-selected-series-gate-results.json`
+- `evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.a1-plus-pilot-series-id.json`
+- `evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json`
+- `docs/ST1_136_SELECTED_SERIES_COMPLETION_PACK_FA.md`
 
 ## Files Allowed to Change
 - sanitized evidence
@@ -92,54 +94,55 @@ controlled review.
 - `NEXT_TASK.md`
 
 ## Execution Steps
-1. Use the ST1-134 request pack as the exact handoff for the selected series.
-2. Receive one real sanitized filled bundle JSON for the selected recurring
-   workbook series.
-3. Receive one real sanitized native-record JSON for the same selected series.
-4. Run the deterministic selected-series bundle gate.
-5. Run the deterministic selected-series native-record gate.
-6. Run the deterministic selected-series dual-input gate.
-7. If both are scope-correct and ready, compile the independent-review handoff.
-8. Stop before any activation, registration, acquisition, policy mutation, or
-   certification.
+1. Receive one exact-scope confirmation from the accountable Project Controls /
+   PMO side, or its controlled evidence equivalent, that the selected recurring
+   workbook series is governed by the same reporting ownership/control process
+   evidenced in the related authorized Maroon reporting artifact.
+2. Receive one exact-scope controlled report-definition confirmation for the
+   same selected recurring workbook series that establishes the still-unresolved
+   ownership/control applicability beyond the workbook-header observation.
+3. Receive one real stable source-registration evidence reference for that same
+   selected series.
+4. Compile or merge those exact inputs onto the preserved A1 + pilot-series-id
+   bundle.
+5. Re-run the deterministic selected-series bundle gate.
+6. Re-run the deterministic selected-series native-record gate against the
+   preserved partial real native-record artifact.
+7. Re-run the deterministic dual-input gate.
+8. If the pair becomes ready, compile the independent controlled-review
+   handoff only.
 
 ## Acceptance Criteria
-- The target remains the recurring workbook series and not ST1-061.
-- The real filled bundle is classified truthfully with exact reason(s).
-- The real native-record artifact is classified truthfully with exact reason(s).
-- The real pair is classified truthfully with exact reason(s).
-- If both are ready, the exact independent controlled-review checklist is produced.
+- Only the narrowed exact-scope external confirmations plus the stable
+  source-registration reference are added.
 - No historical/source authority is fabricated.
-- No delegation is activated.
-- No source is registered.
-- No native acquisition occurs.
-- No policy mutation occurs.
-- No certification occurs.
-- No trust boundary is weakened.
+- The selected-series scope remains exact.
+- The native-record artifact is reused rather than rediscovered.
+- The gates return a truthful outcome with exact blocker reasons if still not
+  ready.
+- If controlled review becomes ready, the exact handoff is produced and no
+  runtime mutation beyond that occurs.
 
 ## Verification Commands
 ```powershell
-python scripts/run_st1_125_series_bundle_gate.py --bundle <real-sanitized-filled-bundle.json>
-python scripts/verify_st1_131_selected_series_native_record.py --native-record <real-sanitized-native-record.json>
-python scripts/run_st1_132_selected_series_dual_input_gate.py --bundle <real-sanitized-filled-bundle.json> --native-record <real-sanitized-native-record.json>
-python scripts/compile_st1_127_independent_verification_handoff.py --bundle <real-sanitized-filled-bundle.json>
+python scripts/run_st1_125_series_bundle_gate.py --bundle <updated-real-selected-series-bundle.json>
+python scripts/verify_st1_131_selected_series_native_record.py --native-record evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json
+python scripts/run_st1_132_selected_series_dual_input_gate.py --bundle <updated-real-selected-series-bundle.json> --native-record evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json
 git diff --check
 ```
 
 ## Evidence Required
 - Sanitized evidence showing:
-  - exact selected-series match or mismatch for the bundle;
-  - exact selected-series match or mismatch for the native record;
-  - exact pair convergence result;
-  - structural and readiness outcomes;
-  - exact missing or rejected fields if any;
-  - exact independent-review checklist if eligible;
-  - unchanged delegation/source-registration/acquisition/policy/certification boundaries.
+  - exact A2/A3/source-registration inputs received;
+  - exact bundle readiness after merge;
+  - exact native-record readiness after re-check;
+  - exact dual-input convergence result;
+  - unchanged non-activation / non-certification boundaries.
 
 ## Rollback
-- If either artifact is incomplete or rejected, no rollback is required.
-- If an additive evidence write begins and fails, roll back only the in-flight
-  write and do not mutate prior governance, ST1-061, or certification state.
+- If the new external evidence is incomplete or rejected, keep the current
+  partial artifacts unchanged and record the exact missing/invalid fields.
+- No destructive rollback is authorized or required.
 
 ## Completion Updates
 - `CURRENT_STATE.md`

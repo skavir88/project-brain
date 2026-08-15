@@ -308,3 +308,28 @@
 - Recorded sanitized ST1-132 evidence proving the selected-series bundle + selected-series native-record pair now deterministically converge to `begin_independent_controlled_review` when both exact-scope synthetic inputs are present.
 - Added the Persian real-input request pack `docs/ST1_134_SELECTED_SERIES_REAL_INPUT_REQUEST_FA.md`.
 - Recorded sanitized ST1-134 evidence narrowing the remaining real-world ask to exactly two selected-series artifacts and preserving the non-activation / non-certification boundary.
+- Added sanitized real A1 pilot-governance attestation evidence at `evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json`.
+- Added the exact selected-series partial real bundle with only A1 populated at `evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json`.
+- Recorded sanitized ST1-135 evidence proving the selected-series gate remains `WAITING_FOR_EXTERNAL_EVIDENCE` with `A1=PARTIAL` and the remaining exact blockers narrowed to A2, A3, stable source-registration evidence, and a stable non-sensitive series identifier.
+- Added the Persian post-A1 remaining-input request pack `docs/ST1_136_REMAINING_SELECTED_SERIES_INPUTS_FA.md`.
+- Recorded sanitized ST1-136 evidence narrowing the remaining ask to exactly A2, A3, stable source-registration evidence reference, stable non-sensitive series identifier, and one real selected-series native-record artifact.
+- Added `docs/examples/ST1_136_selected_series_remaining_inputs.template.json` and the positive synthetic companion `docs/examples/ST1_136_selected_series_remaining_inputs.synthetic.ready.json`.
+- Added `docs/examples/ST1_136_selected_series_native_record.template.json`.
+- Added `scripts/apply_st1_136_remaining_selected_series_inputs.py`.
+- Recorded sanitized ST1-136 evidence proving the remaining-input supplement can be merged onto the real A1 partial bundle and reach `PENDING_INDEPENDENT_VERIFICATION` through the existing selected-series gate without mutating trust state.
+- Added `scripts/verify_st1_136_remaining_inputs_supplement.py`.
+- Added `scripts/run_st1_136_post_a1_submission_gate.py`.
+- Recorded sanitized ST1-136 evidence proving the post-A1 selected-series path now has a single deterministic gate from supplement verification through dual-input controlled-review readiness, without mutating trust state.
+- Added the business-facing completion pack `docs/ST1_136_SELECTED_SERIES_COMPLETION_PACK_FA.md`.
+- Recorded sanitized ST1-136 evidence narrowing the external return path to exactly two sanitized artifacts plus the one-command post-A1 execution gate.
+- Added `scripts/audit_st1_066_requirement_matrix.py`.
+- Recorded sanitized ST1-137 evidence proving at requirement level that the ST1-066 objective remains incomplete only because no real selected-series record has yet traversed the native path to `policy_automatic`, and freezing the exact remaining real-world evidence set.
+- Added independent A2/A3 selected-series attestation templates and synthetic fixtures for the post-A1 path.
+- Added `scripts/compile_st1_136_remaining_inputs_from_individual_attestations.py`.
+- Recorded sanitized ST1-136 evidence proving separate A2/A3 attestation artifacts can now be compiled into a valid post-A1 supplement that reaches controlled-review readiness through the existing gate.
+- Added `evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.a1-plus-pilot-series-id.json` to preserve the accepted A1 evidence while fixing the approved pilot-only non-sensitive series identifier.
+- Added `evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json`, a truthful partial real native-record artifact for the representative workbook with exact read-only SHA-256, deterministic transformation lineage, and workbook-header business-time resolution.
+- Recorded sanitized ST1-136 reconciliation evidence at `evidence/sanitized/2026-08-11-st1-136-real-selected-series-reconciliation.json`, classifying `A2=MISSING`, `A3=REAL_PARTIAL`, `stable_source_registration_evidence_reference=MISSING`, `stable_non_sensitive_source_series_identifier=REAL_VERIFIED`, and `real_selected_series_native_record_artifact=REAL_PARTIAL`.
+- Recorded sanitized ST1-136 gate-result evidence at `evidence/sanitized/2026-08-11-st1-136-real-selected-series-gate-results.json`, proving the selected-series path remains blocked only by unresolved A2/A3/source-registration evidence and not by source matching or series identity.
+- Added `evidence/sanitized/2026-08-11-st1-138-related-project-controls-evidence.json`, capturing already-authorized adjacent PMO/project-controls signals from a related Maroon pilot reporting artifact without transferring them as exact authority proof for the selected workbook series.
+- Recorded sanitized ST1-138 evidence narrowing the blocker from pure absence to exact-scope confirmation: `A2=REAL_PARTIAL`, `A3=REAL_PARTIAL`, and `stable_source_registration_evidence_reference=MISSING`.

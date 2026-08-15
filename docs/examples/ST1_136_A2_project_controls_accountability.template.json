@@ -1,0 +1,46 @@
+{
+  "attestation_version": "st1-136-a2/v1",
+  "project_scope": "maroon_pilot",
+  "target_source_id": "maroon_project_controls_progress_workbook_series",
+  "evidence_item": {
+    "tier": "A_OR_B_REQUIRED_INPUT",
+    "status": "SUPPLIED_UNVALIDATED",
+    "attestation_kind": "project_controls_accountability",
+    "subject_role_class": "REQUIRED_INPUT",
+    "asserted_scope": "maroon_pilot",
+    "effective_from": "REQUIRED_INPUT",
+    "signed_artifact_reference": "REQUIRED_INPUT",
+    "signed_artifact_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "acquisition_provenance": "REQUIRED_INPUT",
+    "payload": {
+      "accountable_role_class": "REQUIRED_INPUT",
+      "report_classes": [
+        "project_controls_progress_workbook"
+      ],
+      "permitted_fact_classes": [
+        "report_period",
+        "reported_plan",
+        "reported_actual",
+        "reported_progress",
+        "reported_activity",
+        "reported_milestone",
+        "reported_project_control_issue"
+      ],
+      "prohibited_fact_classes": [
+        "contractual_delay_determination",
+        "entitlement",
+        "claim",
+        "payment_authorization_or_status",
+        "financial_liability",
+        "legal_conclusion",
+        "safety_or_compliance_certification",
+        "final_completion",
+        "current_executive_status_outside_report_period",
+        "reliance_eligibility",
+        "insurance_or_guarantee_status"
+      ],
+      "scope": "maroon_pilot",
+      "approval_method": "REQUIRED_INPUT"
+    }
+  }
+}

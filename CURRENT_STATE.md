@@ -735,3 +735,247 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
   - one real sanitized native-record artifact for the same selected series
 - It explicitly preserves all boundaries: no delegation activation, no source registration, no native acquisition execution, no policy mutation, no certification, and no current-status declaration are implied by the request.
 - It also states the exact truthful next step if both artifacts arrive and pass exact-scope validation: `begin_independent_controlled_review`. Evidence: `evidence/sanitized/2026-08-11-st1-134-selected-series-real-input-request-pack.json`.
+
+## ST1-135 First Real A1 Attestation Intake
+- One real pilot-governance A1 attestation is now captured in sanitized local evidence:
+  `evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json`.
+- The attestation is still only `SUPPLIED_UNVALIDATED_REAL_EVIDENCE`. It confirms
+  a limited pilot governance role for the current SDAS/Data Insurance pilot as
+  of `2026-08-11`, but it explicitly does **not** establish:
+  - historical Project Controls authority;
+  - historical source ownership;
+  - historical document authority;
+  - authority of the Maroon workbook series;
+  - current project status;
+  - certification;
+  - reliance eligibility.
+- The attestation was applied to the exact selected-series bundle contract in:
+  `evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json`.
+- Deterministic gate re-verification confirms:
+  - exact selected-series match = `true`;
+  - structural completeness = `true`;
+  - overall readiness = `WAITING_FOR_EXTERNAL_EVIDENCE`;
+  - `A1 = PARTIAL`;
+  - `A2 = MISSING`;
+  - `A3 = MISSING`;
+  - `source_registration = MISSING`;
+  - `series_scope = MISSING`.
+- The exact remaining external inputs are now narrowed to:
+  - `A2_project_controls_accountability_confirmation`
+  - `A3_controlled_report_definition_confirmation`
+  - `stable_source_registration_evidence_reference`
+  - `stable_non_sensitive_source_series_identifier`
+- No delegation was activated, no source was registered, no native acquisition
+  occurred, no policy mutation occurred, and no certification changed. Evidence:
+  `evidence/sanitized/2026-08-11-st1-135-a1-intake-and-gate.json`.
+
+## ST1-136 Remaining Selected-Series Input Narrowing
+- A post-A1 Persian request pack now exists to narrow the remaining real-world
+  ask to only the exact missing selected-series inputs:
+  `docs/ST1_136_REMAINING_SELECTED_SERIES_INPUTS_FA.md`.
+- This pack truthfully preserves that:
+  - `A1` has arrived but remains only `SUPPLIED_UNVALIDATED_REAL_EVIDENCE`;
+  - the remaining real governance inputs are exactly `A2`, `A3`,
+    `stable_source_registration_evidence_reference`, and
+    `stable_non_sensitive_source_series_identifier`;
+  - one real sanitized selected-series native-record artifact is still required;
+  - the next truthful step, if all arrive and pass exact-scope gates, remains
+    only `begin_independent_controlled_review`.
+- No delegation was activated, no source was registered, no acquisition ran,
+  no policy state changed, and no certification occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-136-remaining-input-request-pack.json`.
+
+## ST1-136 Intake Acceleration Kit
+- A machine-fillable intake acceleration kit now exists for the exact
+  post-A1 selected-series path:
+  - `docs/examples/ST1_136_selected_series_remaining_inputs.template.json`
+  - `docs/examples/ST1_136_selected_series_remaining_inputs.synthetic.ready.json`
+  - `docs/examples/ST1_136_selected_series_native_record.template.json`
+  - `scripts/apply_st1_136_remaining_selected_series_inputs.py`
+- The merge script was verified end-to-end against the existing A1 partial
+  bundle and the synthetic ready supplement. It preserved A1 and produced a
+  selected-series bundle that truthfully reaches
+  `PENDING_INDEPENDENT_VERIFICATION` through the existing ST1-125 gate.
+- The new native-record template is intentionally non-ready until real values
+  are supplied; it preserves the exact selected-series scope and business-time
+  boundary while blocking runtime readiness with placeholders.
+- No delegation was activated, no source was registered, no acquisition ran,
+  no policy state changed, and no certification occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-136-intake-acceleration-kit.json`.
+
+## ST1-136 Post-A1 Submission Gate
+- A deterministic post-A1 submission gate now exists for the exact selected
+  series:
+  - `scripts/verify_st1_136_remaining_inputs_supplement.py`
+  - `scripts/run_st1_136_post_a1_submission_gate.py`
+- This new gate proves three truthful states on Tuesday, August 11, 2026:
+  - the ST1-136 supplement template remains
+    `WAITING_FOR_EXTERNAL_EVIDENCE`;
+  - a structurally complete supplement reaches
+    `READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE`;
+  - the full synthetic post-A1 path
+    (`A1 partial bundle + ready supplement + exact selected-series native-record`)
+    reaches `can_begin_controlled_review = true` with next truthful step
+    `begin_independent_controlled_review`.
+- This closes another local-only gap: the next real submission can now be
+  validated by one exact command path after the remaining real evidence
+  arrives.
+- No delegation was activated, no source was registered, no acquisition ran,
+  no policy state changed, and no certification occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-136-post-a1-submission-gate.json`.
+
+## ST1-136 Completion Pack
+- A business-facing completion pack now exists for the exact post-A1
+  selected-series path:
+  `docs/ST1_136_SELECTED_SERIES_COMPLETION_PACK_FA.md`
+- The pack pre-binds the already received A1 evidence, preserves its limits,
+  and narrows the expected return to only two sanitized artifacts:
+  - one completed ST1-136 supplement for A2/A3/source-registration/series-id
+  - one completed selected-series native-record artifact
+- The pack also preserves the exact one-command post-A1 gate to run when those
+  two artifacts arrive.
+- No delegation was activated, no source was registered, no acquisition ran,
+  no policy state changed, and no certification occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-136-completion-pack.json`.
+
+## ST1-136 Individual A2/A3 Attestation Compiler
+- The post-A1 selected-series path now also supports independent A2 and A3
+  attestation artifacts, rather than requiring a hand-built combined
+  supplement:
+  - `docs/examples/ST1_136_A2_project_controls_accountability.template.json`
+  - `docs/examples/ST1_136_A2_project_controls_accountability.synthetic.ready.json`
+  - `docs/examples/ST1_136_A3_controlled_report_definition.template.json`
+  - `docs/examples/ST1_136_A3_controlled_report_definition.synthetic.ready.json`
+  - `scripts/compile_st1_136_remaining_inputs_from_individual_attestations.py`
+- The compiler was verified to turn separate A2/A3 attestation artifacts plus
+  source-registration/series-id fields into a valid ST1-136 supplement.
+- The compiled synthetic supplement then successfully traversed the existing
+  post-A1 selected-series gate and again reached:
+  - `bundle_activation_readiness = PENDING_INDEPENDENT_VERIFICATION`
+  - `native_record_ready_for_selected_series_runtime_path = true`
+  - `can_begin_controlled_review = true`
+  - `next_truthful_step = begin_independent_controlled_review`
+- No delegation was activated, no source was registered, no acquisition ran,
+  no policy state changed, and no certification occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-136-individual-attestation-compiler.json`.
+
+## ST1-137 Requirement-Matrix Completion Audit
+- A requirement-by-requirement completion audit now exists for the full
+  ST1-066 objective:
+  `scripts/audit_st1_066_requirement_matrix.py`
+- The audit raises the verification granularity beyond the earlier section-level
+  readiness audit and evaluates explicit ST1-066 requirements individually.
+- As of Tuesday, August 11, 2026, the audit truthfully keeps the overall state
+  at `NOT_COMPLETE` and identifies only two not-yet-proven requirements:
+  - `ST1-066-OBJ-001`: a real organizational record reaching
+    `policy_automatic`
+  - `ST1-066-C-001`: a real selected-series record traversing the native path
+    through policy decision
+- The audit also freezes the exact remaining real-world evidence set still
+  required to prove those requirements:
+  - `A2_project_controls_accountability_confirmation`
+  - `A3_controlled_report_definition_confirmation`
+  - `stable_source_registration_evidence_reference`
+  - `stable_non_sensitive_source_series_identifier`
+  - `real_selected_series_native_record_artifact`
+- No delegation was activated, no source was registered, no acquisition ran,
+  no policy state changed, and no certification occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-137-requirement-matrix-audit.json`.
+
+## ST1-136 Real Selected-Series Reconciliation
+- The active selected-series path has now been re-evaluated from current real
+  repository/runtime state rather than only from synthetic fixtures.
+- The fixed non-sensitive series identifier is now explicitly bound in local
+  evidence as:
+  - `maroon_project_controls_progress_workbook_series`
+  - identifier kind = `pilot_non_sensitive_series_identifier`
+  This remains a pilot-local identifier only; it is **not** treated as an
+  official organizational document-control identifier.
+- The representative workbook `070-TWRP-24 1402-12-05.xlsx` was
+  deterministically re-matched inside the already authorized Maroon pilot root
+  by exact filename plus exact size against the runtime-local ST1-046
+  structure state. A new sanitized partial native-record artifact now exists
+  at:
+  `evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json`.
+- The partial native-record artifact truthfully preserves:
+  - read-only SMB acquisition evidence;
+  - exact size `249411368` bytes;
+  - original SHA-256
+    `09ddb6d46440d9d126073f10635ce4d834ef1a960713c62b6c7b86e5801b51cc`;
+  - deterministic transformation lineage to the runtime-local workbook-cell
+    manifest with output SHA-256
+    `76524e8517a10221f62e6978233d270a7cea15751db5b2811f7c737f27d911ac`;
+  - business-time resolution only from the workbook-labelled reporting-week
+    header with period `1402/11/21–1402/12/05`.
+- A3 is now narrowed truthfully to `REAL_PARTIAL`: the workbook independently
+  evidences the workbook-level reporting-week header and observed reporting
+  period, but it still does **not** independently establish owning role,
+  issue/publication/approval rule, or official document-identifier control.
+- A2 remains `MISSING`, and `stable_source_registration_evidence_reference`
+  remains `MISSING`; no historical/source authority or PMO accountability was
+  inferred from filenames, folders, filesystem timestamps, acquisition
+  timestamps, or workbook content alone.
+- The updated selected-series bundle copy
+  `evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.a1-plus-pilot-series-id.json`
+  now truthfully reduces the remaining external bundle inputs to exactly:
+  - `A2_project_controls_accountability_confirmation`
+  - `A3_controlled_report_definition_confirmation`
+  - `stable_source_registration_evidence_reference`
+- Deterministic gate re-verification on Tuesday, August 11, 2026 shows:
+  - bundle gate -> `WAITING_FOR_EXTERNAL_EVIDENCE`
+  - native record selected-series scope -> `READY_FOR_SELECTED_SERIES_NATIVE_PATH`
+  - native record class-level readiness -> `BLOCKED_NATIVE_RECORD_METADATA_INVALID`
+    only because independent bundle/source-control verification is still false
+  - dual-input gate -> `can_begin_controlled_review = false`
+  - next truthful step -> `wait_for_missing_or_invalid_selected_series_input`
+- No delegation was activated, no source was registered, no runtime-native
+  write path was executed, no policy state changed, and no certification
+  occurred. Evidence:
+  - `evidence/sanitized/2026-08-11-st1-136-real-selected-series-reconciliation.json`
+  - `evidence/sanitized/2026-08-11-st1-136-real-selected-series-gate-results.json`
+
+## ST1-138 Related Project-Controls Evidence Narrowing
+- Already-authorized runtime-local evidence from a related project-controls /
+  management-report artifact now narrows the governance ambiguity without
+  over-claiming exact accountability for the selected workbook series.
+- The related evidence shows real observed control/reporting signals inside the
+  same Maroon pilot:
+  - a related controlled report artifact carries an observed identifier example
+    `PNS-PMO-624-RPT-001`;
+  - an observed issue-date example `21/01/1402`;
+  - observed role/function labels for progress/performance control and
+    planning/PMO;
+  - observed textual association of package-status monitoring with the
+    planning/PMO function.
+- The selected recurring workbook itself now has one more exact boundary
+  clarification from its already-authorized local cell evidence:
+  - cover cell `O8` shows only a generic document-title label (`عنوان مدرک`);
+  - cover cell `R8` shows the recurring bi-weekly title and explicit reporting
+    period;
+  - no document code, preparer label, approver label, or approval/release
+    field has yet been independently observed on that same workbook cover in
+    versioned evidence.
+- A full cell-manifest search of the selected workbook's versioned local
+  evidence also found no additional workbook-level occurrences of document
+  code, issue/revision fields, preparer/approver labels, PMO labels, or
+  Project Controls labels. This negative result matters: it confirms that the
+  remaining governance/control link cannot be truthfully inferred from the
+  workbook's own currently versioned cell evidence.
+- This evidence is still intentionally non-transferable to the selected
+  recurring workbook series as exact authority proof. It does **not**
+  independently verify:
+  - exact accountability for `maroon_project_controls_progress_workbook_series`;
+  - exact approval/publication rule for the selected workbook series;
+  - exact source registration/control reference for that series.
+- Because of that, the truthful selected-series reclassification is now:
+  - `A2_project_controls_accountability_confirmation = REAL_PARTIAL`
+  - `A3_controlled_report_definition_confirmation = REAL_PARTIAL`
+  - `stable_source_registration_evidence_reference = MISSING`
+- Controlled review still cannot begin. The remaining exact external ask is now
+  narrower than before: confirm that the same Project Controls / PMO reporting
+  ownership and control rule applies to the selected recurring workbook series,
+  and provide one stable source-registration evidence reference for that exact
+  series.
+- No new source boundary, SMB discovery, policy mutation, or certification
+  occurred. Evidence:
+  `evidence/sanitized/2026-08-11-st1-138-related-project-controls-evidence.json`

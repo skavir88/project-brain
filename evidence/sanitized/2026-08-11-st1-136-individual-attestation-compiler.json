@@ -1,0 +1,37 @@
+{
+  "task_id": "ST1-136",
+  "date": "2026-08-11",
+  "purpose": "compile_post_a1_supplement_from_individual_a2_a3_attestation_artifacts",
+  "artifacts_created": [
+    "docs/examples/ST1_136_A2_project_controls_accountability.template.json",
+    "docs/examples/ST1_136_A2_project_controls_accountability.synthetic.ready.json",
+    "docs/examples/ST1_136_A3_controlled_report_definition.template.json",
+    "docs/examples/ST1_136_A3_controlled_report_definition.synthetic.ready.json",
+    "scripts/compile_st1_136_remaining_inputs_from_individual_attestations.py"
+  ],
+  "verification_results": {
+    "compiler_syntax": "PASS",
+    "compiler_output": "evidence/sanitized/2026-08-11-st1-136-supplement.synthetic.from-individual-attestations.json",
+    "compiled_supplement_readiness": "READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE",
+    "full_post_a1_path": {
+      "bundle_activation_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+      "native_record_ready_for_selected_series_runtime_path": true,
+      "can_begin_controlled_review": true,
+      "next_truthful_step": "begin_independent_controlled_review"
+    },
+    "sequencing_note": "One parallel verification attempt observed a transient file-not-found because compile and verify were launched concurrently. The subsequent post-A1 gate consumed the compiled artifact successfully, proving the compiler output was valid."
+  },
+  "boundary": {
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_policy_mutation": false,
+    "real_certification": false,
+    "st1_061_is_success_target": false
+  },
+  "verification_commands": [
+    "python -m py_compile scripts/compile_st1_136_remaining_inputs_from_individual_attestations.py",
+    "python scripts/compile_st1_136_remaining_inputs_from_individual_attestations.py --a2 docs/examples/ST1_136_A2_project_controls_accountability.synthetic.ready.json --a3 docs/examples/ST1_136_A3_controlled_report_definition.synthetic.ready.json --stable-source-series-identifier synthetic-series-id-001 --stable-source-series-identifier-kind controlled_report_series_code --non-sensitive-location-class internal_project_controls_reporting_workspace --source-owning-role-class \"Project Controls / PMO accountable role\" --source-evidence-reference synthetic://source-registration/maroon-progress-workbook-series --output evidence/sanitized/2026-08-11-st1-136-supplement.synthetic.from-individual-attestations.json",
+    "python scripts/run_st1_136_post_a1_submission_gate.py --base-bundle evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json --supplement evidence/sanitized/2026-08-11-st1-136-supplement.synthetic.from-individual-attestations.json --native-record docs/examples/ST1_131_selected_series_native_record.synthetic.ready.json"
+  ]
+}

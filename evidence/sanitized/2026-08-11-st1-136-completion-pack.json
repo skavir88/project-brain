@@ -1,0 +1,30 @@
+{
+  "task_id": "ST1-136",
+  "date": "2026-08-11",
+  "purpose": "business_facing_completion_pack_for_the_post_a1_selected_series_path",
+  "artifact_created": "docs/ST1_136_SELECTED_SERIES_COMPLETION_PACK_FA.md",
+  "selected_target": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "prefilled_real_evidence": {
+    "A1_reference": "evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json",
+    "A1_status": "SUPPLIED_UNVALIDATED_REAL_EVIDENCE",
+    "A1_limitations_preserved": true
+  },
+  "remaining_artifacts_requested": [
+    "completed_st1_136_remaining_inputs_supplement",
+    "completed_selected_series_native_record_artifact"
+  ],
+  "recommended_execution_command": "python scripts/run_st1_136_post_a1_submission_gate.py --base-bundle evidence/sanitized/2026-08-11-st1-135-selected-series-bundle.partial.a1.json --supplement <real-st1-136-supplement.json> --native-record <real-selected-series-native-record.json>",
+  "boundary": {
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_policy_mutation": false,
+    "real_certification": false,
+    "st1_061_is_success_target": false
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "attestation_version": "st1-136-a3/v1",
+  "project_scope": "maroon_pilot",
+  "target_source_id": "maroon_project_controls_progress_workbook_series",
+  "evidence_item": {
+    "tier": "A_OR_B_REQUIRED_INPUT",
+    "status": "SUPPLIED_UNVALIDATED",
+    "attestation_kind": "controlled_report_definition",
+    "subject_role_class": "REQUIRED_INPUT",
+    "asserted_scope": "maroon_pilot",
+    "effective_from": "REQUIRED_INPUT",
+    "signed_artifact_reference": "REQUIRED_INPUT",
+    "signed_artifact_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "acquisition_provenance": "REQUIRED_INPUT",
+    "payload": {
+      "source_report_class": "project_controls_progress_workbook",
+      "owning_role_class": "REQUIRED_INPUT",
+      "source_location_class": "REQUIRED_INPUT",
+      "reporting_period_rule": {
+        "accepted_sources": [
+          "workbook_labelled_reporting_week_header",
+          "designated_reporting_period_field"
+        ],
+        "disallowed_substitutes": [
+          "row_level_planned_date",
+          "row_level_target_date",
+          "filesystem_timestamp",
+          "acquisition_timestamp"
+        ]
+      },
+      "document_identifier_convention": "REQUIRED_INPUT",
+      "permitted_fact_classes": [
+        "report_period",
+        "reported_plan",
+        "reported_actual",
+        "reported_progress",
+        "reported_activity",
+        "reported_milestone",
+        "reported_project_control_issue"
+      ],
+      "prohibited_inference": [
+        "current_executive_status_outside_report_period",
+        "reliance_eligibility",
+        "insurance_or_guarantee_status"
+      ],
+      "scope": "maroon_pilot",
+      "approval_method": "REQUIRED_INPUT"
+    }
+  }
+}

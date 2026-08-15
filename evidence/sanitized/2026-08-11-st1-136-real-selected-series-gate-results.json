@@ -1,0 +1,49 @@
+{
+  "task_id": "ST1-136",
+  "date": "2026-08-11",
+  "inputs": {
+    "bundle": "evidence/sanitized/2026-08-11-st1-136-selected-series-bundle.a1-plus-pilot-series-id.json",
+    "native_record": "evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json"
+  },
+  "bundle_gate": {
+    "task_id": "ST1-125",
+    "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "selected_series_match": true,
+    "structurally_complete": true,
+    "section_statuses": {
+      "bundle": "PARTIAL",
+      "A1": "PARTIAL",
+      "A2": "MISSING",
+      "A3": "MISSING",
+      "source_registration": "MISSING",
+      "series_scope": "PARTIAL"
+    },
+    "required_external_inputs_remaining": [
+      "A2_project_controls_accountability_confirmation",
+      "A3_controlled_report_definition_confirmation",
+      "stable_source_registration_evidence_reference"
+    ]
+  },
+  "native_record_gate": {
+    "task_id": "ST1-131",
+    "selected_series_native_readiness": "READY_FOR_SELECTED_SERIES_NATIVE_PATH",
+    "class_level_native_readiness": "BLOCKED_NATIVE_RECORD_METADATA_INVALID",
+    "blocking_reasons": [
+      "independent_verification.bundle_independently_verified must be true",
+      "independent_verification.source_control_independently_verified must be true"
+    ]
+  },
+  "dual_input_gate": {
+    "task_id": "ST1-132",
+    "bundle_ready_for_independent_review": false,
+    "native_record_ready_for_selected_series_runtime_path": false,
+    "can_begin_controlled_review": false,
+    "next_truthful_step": "wait_for_missing_or_invalid_selected_series_input"
+  },
+  "boundary": {
+    "policy_automatic_reached": false,
+    "certification_occurred": false,
+    "source_registration_mutated": false,
+    "native_acquisition_mutated": false
+  }
+}

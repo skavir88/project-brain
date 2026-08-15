@@ -1,0 +1,56 @@
+{
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "source_registration": {
+    "source_id": "maroon_project_controls_progress_workbook_series",
+    "source_type": "REQUIRED_INPUT",
+    "non_sensitive_location_class": "REQUIRED_INPUT",
+    "owning_role_class": "REQUIRED_INPUT",
+    "project_scope": "maroon_pilot",
+    "report_class": "project_controls_progress_workbook",
+    "authority_state": "awaiting_validation",
+    "evidence_reference": "REQUIRED_INPUT"
+  },
+  "series_scope": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "acquisition": {
+    "acquired_at": "REQUIRED_INPUT",
+    "source_reference": "REQUIRED_INPUT",
+    "acquisition_method": "REQUIRED_INPUT",
+    "original_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "size_bytes": 0,
+    "media_type": "REQUIRED_INPUT",
+    "read_only": true
+  },
+  "transformation": {
+    "tool_name": "REQUIRED_INPUT",
+    "tool_version": "REQUIRED_INPUT",
+    "transformed_at": "REQUIRED_INPUT",
+    "transformation_type": "REQUIRED_INPUT",
+    "input_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "output_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+    "deterministic": true,
+    "lineage_complete": true
+  },
+  "business_time": {
+    "resolved": true,
+    "resolution_source": "REQUIRED_INPUT",
+    "report_period_value": "1402/11/21–1402/12/05",
+    "disallowed_substitutes_used": []
+  },
+  "policy_context": {
+    "policy_id": "project-controls-progress-low-risk",
+    "policy_version": "REQUIRED_INPUT",
+    "risk_tier": "LOW",
+    "automatic_certification_requested": false
+  },
+  "independent_verification": {
+    "bundle_independently_verified": true,
+    "source_control_independently_verified": true,
+    "business_time_rule_independently_verified": true
+  }
+}
