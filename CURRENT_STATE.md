@@ -979,3 +979,109 @@ The synthetic Certified AI/RAG vertical slice is complete. DEC-014 approves one 
 - No new source boundary, SMB discovery, policy mutation, or certification
   occurred. Evidence:
   `evidence/sanitized/2026-08-11-st1-138-related-project-controls-evidence.json`
+
+## ST1-139 Prospective Governance-Owner Bootstrap for Selected Series
+- A new real pilot-governance decision is now recorded for the same selected
+  series, but only prospectively: for this pilot, the pilot owner is treated as
+  `Pilot Governance Owner` for SDAS/Data Insurance governance of
+  `maroon_project_controls_progress_workbook_series` going forward. Evidence:
+  `evidence/sanitized/2026-08-15-st1-139-a1-pilot-governance-owner-selected-series.json`.
+- The explicit prospective boundary is now
+  `governance_bootstrap_effective_from = 2026-08-15`. This boundary applies to
+  future governed evidence only. Historical records and historical business
+  time before that date do **not** inherit governance authority from this new
+  decision.
+- The representative historical workbook
+  `070-TWRP-24 1402-12-05.xlsx` remains unchanged:
+  - native read-only acquisition evidence remains preserved;
+  - SHA-256 / deterministic lineage remain preserved;
+  - reporting period from workbook content remains preserved;
+  - historical authority/accountability/certification state is unchanged.
+- The existing attestation/bundle machinery already supports the minimum
+  prospective path; no new generic governance framework was required. A new
+  selected-series partial bundle with only the prospective governance-owner A1
+  recorded reuses the same ST1-124/ST1-125 contract and remains truthfully
+  blocked only on the future-facing A2/A3/source-registration decision set.
+- Deterministic gate re-verification on Saturday, August 15, 2026 shows:
+  - structural validation -> pass;
+  - exact selected-series match -> `true`;
+  - activation readiness -> `WAITING_FOR_EXTERNAL_EVIDENCE`;
+  - `A1 -> PARTIAL`;
+  - `A2 -> MISSING`;
+  - `A3 -> MISSING`;
+  - `source_registration -> MISSING`.
+- The next path is no longer “prove historical A2/A3 from the 1402 workbook”.
+  It is one bounded prospective governance decision package for future reports
+  of this selected series: accountable role class, controlled report
+  definition, source-registration rule, stable pilot identifier use, and the
+  `2026-08-15` effective boundary. Evidence:
+  - `evidence/sanitized/2026-08-15-st1-139-prospective-governance-bootstrap.json`
+  - `evidence/sanitized/2026-08-15-st1-139-prospective-bundle-gate.json`
+  - `docs/ST1_139_PROSPECTIVE_SELECTED_SERIES_GOVERNANCE_PROPOSAL_FA.md`
+
+## ST1-140 Single-Decision Bridge and First Post-Bootstrap Native Contract
+- The prospective governance package from ST1-139 is now directly bridgeable
+  into the existing ST1-136 / ST1-124 machinery through one bounded local
+  compiler:
+  `scripts/compile_st1_140_selected_series_prospective_decision.py`.
+- This bridge is not a new governance framework. It is only a local
+  translation layer from one approved governance-owner decision into:
+  - A2 attestation artifact
+  - A3 attestation artifact
+  - ST1-136 supplement
+  - merged selected-series bundle
+- Synthetic verification on Saturday, August 15, 2026 proves:
+  - an `approve_as_proposed` ST1-140 decision compiles successfully;
+  - the compiled supplement reaches
+    `READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE`;
+  - the merged selected-series bundle reaches
+    `PENDING_INDEPENDENT_VERIFICATION`;
+  - the existing historical native record still does **not** converge with that
+    future-facing bundle, because it remains pre-bootstrap and still lacks
+    independently verified bundle/source-control evidence.
+- This confirms a truthful temporal split:
+  - historical representative workbook evidence remains preserved but is not
+    the first post-bootstrap record;
+  - after one bounded prospective governance decision, the next real
+    dependency becomes one first post-bootstrap native record for the selected
+    series.
+- That first post-bootstrap native-record contract is now explicit and
+  class-level rather than pinned to the historical representative workbook:
+  - `docs/examples/ST1_140_first_post_bootstrap_native_record.template.json`
+  - `docs/examples/ST1_140_first_post_bootstrap_native_record.synthetic.ready.json`
+- The same contract is now also documented in a human-readable, audit-friendly
+  form that explicitly separates:
+  - human/governance assertions;
+  - runtime-generated evidence;
+  - business-time evidence.
+  Documentation:
+  `docs/ST1_140_FIRST_POST_BOOTSTRAP_NATIVE_RECORD_CONTRACT.md`
+- Class-level preflight verification with the synthetic approved prospective
+  bundle and the synthetic post-bootstrap native record now reaches:
+  `READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT`.
+- The remaining business gate is now also packaged in a low-friction response
+  form for the Governance Owner:
+  - `docs/ST1_141_GOVERNANCE_OWNER_DECISION_RESPONSE_FA.md`
+  - `docs/examples/ST1_141_selected_series_prospective_decision.proposed.real.json`
+- This does not add a new framework or a new trust state. It only reduces the
+  remaining decision to one bounded approval or one bounded corrected approval.
+- Both allowed Governance Owner response modes are now verified on the local
+  bridge path:
+  - `approve_as_proposed`
+  - `approve_with_explicit_corrections`
+- The corrected-approval branch truthfully reaches the same future-facing local
+  readiness states as the proposed-approval branch:
+  - compiled supplement -> `READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE`
+  - merged bundle -> `PENDING_INDEPENDENT_VERIFICATION`
+- The ST1-141 response itself is now machine-checkable before compilation:
+  - pending real stub -> `WAITING_FOR_GOVERNANCE_OWNER_DECISION`
+  - approved as proposed -> `READY_FOR_TRANSLATION`
+  - approved with explicit corrections -> `READY_FOR_TRANSLATION`
+- This means the remaining gate is now purely business content, not technical
+  ambiguity about which response mode is acceptable. Evidence:
+  - `evidence/sanitized/2026-08-15-st1-141-corrected-decision-bridge.json`
+  - `evidence/sanitized/2026-08-15-st1-141-decision-validator.json`
+- No real delegation was activated, no real source was registered, no real
+  acquisition ran, and no certification occurred. Evidence:
+  - `evidence/sanitized/2026-08-15-st1-140-prospective-decision-bridge.json`
+  - `evidence/sanitized/2026-08-15-st1-140-first-post-bootstrap-native-contract.json`

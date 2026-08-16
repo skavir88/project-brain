@@ -1,0 +1,121 @@
+{
+  "task_id": "ST1-125",
+  "bundle_path": "evidence/sanitized/2026-08-15-st1-139-selected-series-bundle.prospective-owner.partial.json",
+  "structural_validation": {
+    "exit_code": 0,
+    "result": {
+      "activation_permitted": false,
+      "automatic_certification_permitted": false,
+      "candidate_class_id": "project_controls_progress_workbook",
+      "evidence_items": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "project_scope": "maroon_pilot",
+      "source_registration_ready": true,
+      "validation_result": "STRUCTURALLY_COMPLETE_PENDING_INDEPENDENT_VERIFICATION"
+    }
+  },
+  "readiness_assessment": {
+    "exit_code": 0,
+    "result": {
+      "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "boundary": {
+        "real_certification": false,
+        "real_delegation_activation": false,
+        "real_source_registration": false
+      },
+      "candidate_class_id": "project_controls_progress_workbook",
+      "project_scope": "maroon_pilot",
+      "section_details": {
+        "A1": [
+          "evidence_items.A1 is structurally complete but still pending independent verification"
+        ],
+        "A2": [
+          "evidence_items.A2 still contains REQUIRED_INPUT placeholder(s)"
+        ],
+        "A3": [
+          "evidence_items.A3 still contains REQUIRED_INPUT placeholder(s)"
+        ],
+        "bundle": [
+          "top-level bundle scope and control flags are structurally acceptable"
+        ],
+        "source_registration": [
+          "source_registration still contains REQUIRED_INPUT placeholder(s)"
+        ]
+      },
+      "section_statuses": {
+        "A1": "PARTIAL",
+        "A2": "MISSING",
+        "A3": "MISSING",
+        "bundle": "PARTIAL",
+        "source_registration": "MISSING"
+      },
+      "structural_validation_passed": true,
+      "verified_sections": []
+    }
+  },
+  "series_alignment_verification": {
+    "exit_code": 0,
+    "result": {
+      "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+      "boundary": {
+        "real_certification": false,
+        "real_delegation_activation": false,
+        "real_source_registration": false,
+        "st1_061_is_success_target": false
+      },
+      "required_external_inputs_remaining": [
+        "A2_project_controls_accountability_confirmation",
+        "A3_controlled_report_definition_confirmation",
+        "stable_source_registration_evidence_reference"
+      ],
+      "section_details": {
+        "A1": [
+          "evidence_items.A1 is structurally complete but still pending independent verification"
+        ],
+        "A2": [
+          "evidence_items.A2 still contains REQUIRED_INPUT placeholder(s)"
+        ],
+        "A3": [
+          "evidence_items.A3 still contains REQUIRED_INPUT placeholder(s)"
+        ],
+        "bundle": [
+          "top-level bundle scope and control flags are structurally acceptable"
+        ],
+        "series_scope": [
+          "series_scope is structurally complete but still pending independent verification"
+        ],
+        "source_registration": [
+          "source_registration still contains REQUIRED_INPUT placeholder(s)"
+        ]
+      },
+      "section_statuses": {
+        "A1": "PARTIAL",
+        "A2": "MISSING",
+        "A3": "MISSING",
+        "bundle": "PARTIAL",
+        "series_scope": "PARTIAL",
+        "source_registration": "MISSING"
+      },
+      "selected_target": {
+        "observed_reporting_period_example": "1402/11/21–1402/12/05",
+        "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+        "representative_source_alias": "source-a08f4a79cf2116b1",
+        "target_source_id": "maroon_project_controls_progress_workbook_series"
+      },
+      "structural_validation_passed": true,
+      "task_id": "ST1-124"
+    }
+  },
+  "gate_summary": {
+    "structurally_complete": true,
+    "activation_readiness": "WAITING_FOR_EXTERNAL_EVIDENCE",
+    "selected_series_match": true,
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_certification": false,
+    "st1_061_is_success_target": false
+  }
+}

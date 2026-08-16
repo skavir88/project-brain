@@ -1,0 +1,116 @@
+{
+  "task_id": "ST1-139",
+  "date": "2026-08-15",
+  "selected_series": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "historical_reporting_period_example": "1402/11/21–1402/12/05"
+  },
+  "governance_owner_decision": {
+    "recorded": true,
+    "evidence_reference": "evidence/sanitized/2026-08-15-st1-139-a1-pilot-governance-owner-selected-series.json",
+    "confirmed_role": "Pilot Governance Owner",
+    "effective_from": "2026-08-15",
+    "scope": "prospective_selected_series_pilot_governance_only"
+  },
+  "prospective_boundary": {
+    "governance_bootstrap_effective_from": "2026-08-15",
+    "pre_bootstrap_historical_evidence": "does_not_inherit_prospective_governance_authority",
+    "post_bootstrap_governed_evidence": "requires_source_registration_plus_A2_plus_A3_plus_native_evidence_plus_policy_checks"
+  },
+  "existing_machinery_reused": {
+    "selected_series_bundle_contract": "docs/examples/ST1_124_recurring_workbook_governance_bundle.template.json",
+    "selected_series_gate": "scripts/run_st1_125_series_bundle_gate.py",
+    "individual_attestation_templates": [
+      "docs/examples/ST1_136_A2_project_controls_accountability.template.json",
+      "docs/examples/ST1_136_A3_controlled_report_definition.template.json"
+    ],
+    "minimal_additive_framework_change_required": false
+  },
+  "historical_representative_record": {
+    "preserved_native_artifact": "evidence/sanitized/2026-08-11-st1-136-selected-series-native-record.partial.real.json",
+    "authority_state_changed": false,
+    "accountability_state_changed": false,
+    "certification_changed": false,
+    "reacquired": false
+  },
+  "prospective_A2_A3_path": {
+    "A2_historical_proof_attempt_reopened": false,
+    "A3_historical_proof_attempt_reopened": false,
+    "existing_architecture_supports_prospective_designation": true,
+    "designated_role_currently_present": false,
+    "controlled_report_definition_currently_active": false
+  },
+  "first_post_bootstrap_real_record_contract": {
+    "required_fields": [
+      "pilot_series_identifier",
+      "source_registration",
+      "native_read_only_acquisition",
+      "original_fingerprint",
+      "acquisition_timestamp",
+      "deterministic_transformation_lineage",
+      "reporting_or_business_period_from_approved_header_or_field",
+      "accountable_role_under_prospective_A2",
+      "controlled_report_definition_under_prospective_A3",
+      "applicable_policy_and_version",
+      "integrity_and_provenance_checks",
+      "conflict_and_revocation_checks"
+    ],
+    "runtime_generated_evidence": [
+      "native_read_only_acquisition",
+      "original_fingerprint",
+      "acquisition_timestamp",
+      "deterministic_transformation_lineage",
+      "policy_evaluation_timestamp"
+    ],
+    "human_or_governance_assertions": [
+      "governance_owner_decision",
+      "A2_accountable_role_designation",
+      "A3_controlled_report_definition",
+      "source_registration_rule"
+    ]
+  },
+  "single_next_business_decision": {
+    "required": true,
+    "proposal_reference": "docs/ST1_139_PROSPECTIVE_SELECTED_SERIES_GOVERNANCE_PROPOSAL_FA.md",
+    "proposal_scope": "future_selected_series_reports_only",
+    "status": "PROPOSED_NOT_ACTIVE",
+    "proposed_accountable_role_class": "Project Controls / PMO accountable role for future selected-series reports",
+    "proposed_source_location_class": "pilot_selected_series_controlled_reporting_workspace",
+    "proposed_document_identifier_convention": "future_controlled_release_identifier_required",
+    "selected_series_identifier": "maroon_project_controls_progress_workbook_series",
+    "selected_series_identifier_kind": "pilot_non_sensitive_series_identifier",
+    "effective_from": "2026-08-15",
+    "permitted_low_risk_facts": [
+      "report_period",
+      "reported_plan",
+      "reported_actual",
+      "reported_progress",
+      "reported_activity",
+      "reported_milestone",
+      "reported_project_control_issue"
+    ],
+    "prohibited_high_risk_facts": [
+      "contractual_delay_determination",
+      "entitlement",
+      "claim",
+      "payment_authorization_or_status",
+      "financial_liability",
+      "legal_conclusion",
+      "safety_or_compliance_certification",
+      "final_completion",
+      "current_executive_status_outside_report_period",
+      "reliance_eligibility",
+      "insurance_or_guarantee_status"
+    ]
+  },
+  "boundaries": {
+    "no_historical_authority_fabrication": true,
+    "no_historical_pmo_inference": true,
+    "no_policy_weakening": true,
+    "no_automatic_certification": true,
+    "no_current_status_declaration": true,
+    "no_reliance_activation": true,
+    "no_embedding_or_retrieval_change": true
+  }
+}

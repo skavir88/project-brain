@@ -1,0 +1,133 @@
+{
+  "bundle_version": "st1-078/v1",
+  "candidate_class_id": "project_controls_progress_workbook",
+  "project_scope": "maroon_pilot",
+  "activation_request": false,
+  "automatic_certification_requested": false,
+  "currentness_override_requested": false,
+  "reliance_override_requested": false,
+  "evidence_items": {
+    "A1": {
+      "tier": "B",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "governance_authority",
+      "subject_role_class": "pilot_governance_owner",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "2026-08-15",
+      "signed_artifact_reference": "evidence/sanitized/2026-08-15-st1-139-a1-pilot-governance-owner-selected-series.json",
+      "signed_artifact_fingerprint": "e4ee8969b5ae1c2b7e995b77b8fec510881c1dcee87f289378d408ae5e810087",
+      "acquisition_provenance": "user_provided_pilot_owner_governance_decision_via_local_chat_2026-08-15",
+      "payload": {
+        "governance_role_class": "Pilot Governance Owner",
+        "authority_basis": "Explicit pilot-owner governance decision for prospective SDAS / Data Insurance governance within the selected-series pilot boundary.",
+        "scope": "maroon_pilot",
+        "expiry_or_revocation_rule": "until_explicit_revocation_or_scope_change_for_the_current_selected_series_pilot_boundary",
+        "approval_method": "explicit_pilot_owner_governance_decision"
+      }
+    },
+    "A2": {
+      "tier": "B",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "project_controls_accountability",
+      "subject_role_class": "Project Controls accountable role for future selected-series reports",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "2026-08-15",
+      "signed_artifact_reference": "synthetic://st1-141/governance-owner-corrected-approval",
+      "signed_artifact_fingerprint": "866f271da1691ac2400d0b1f5f5b5b682e43d78b1c513484de677d2e72b79d69",
+      "acquisition_provenance": "synthetic_local_test",
+      "payload": {
+        "accountable_role_class": "Project Controls accountable role for future selected-series reports",
+        "report_classes": [
+          "project_controls_progress_workbook"
+        ],
+        "permitted_fact_classes": [
+          "report_period",
+          "reported_plan",
+          "reported_actual",
+          "reported_progress",
+          "reported_activity",
+          "reported_milestone",
+          "reported_project_control_issue"
+        ],
+        "prohibited_fact_classes": [
+          "contractual_delay_determination",
+          "entitlement",
+          "claim",
+          "payment_authorization_or_status",
+          "financial_liability",
+          "legal_conclusion",
+          "safety_or_compliance_certification",
+          "final_completion",
+          "current_executive_status_outside_report_period",
+          "reliance_eligibility",
+          "insurance_or_guarantee_status"
+        ],
+        "scope": "maroon_pilot",
+        "approval_method": "explicit_governance_owner_decision_with_corrections"
+      }
+    },
+    "A3": {
+      "tier": "B",
+      "status": "SUPPLIED_UNVALIDATED",
+      "attestation_kind": "controlled_report_definition",
+      "subject_role_class": "Project Controls accountable role for future selected-series reports",
+      "asserted_scope": "maroon_pilot",
+      "effective_from": "2026-08-15",
+      "signed_artifact_reference": "synthetic://st1-141/governance-owner-corrected-approval",
+      "signed_artifact_fingerprint": "866f271da1691ac2400d0b1f5f5b5b682e43d78b1c513484de677d2e72b79d69",
+      "acquisition_provenance": "synthetic_local_test",
+      "payload": {
+        "source_report_class": "project_controls_progress_workbook",
+        "owning_role_class": "Project Controls accountable role for future selected-series reports",
+        "source_location_class": "pilot_selected_series_registered_reporting_workspace",
+        "reporting_period_rule": {
+          "accepted_sources": [
+            "workbook_labelled_reporting_week_header",
+            "designated_reporting_period_field"
+          ],
+          "disallowed_substitutes": [
+            "row_level_planned_date",
+            "row_level_target_date",
+            "filesystem_timestamp",
+            "acquisition_timestamp"
+          ]
+        },
+        "document_identifier_convention": "controlled_release_identifier_required_before_runtime_registration",
+        "permitted_fact_classes": [
+          "report_period",
+          "reported_plan",
+          "reported_actual",
+          "reported_progress",
+          "reported_activity",
+          "reported_milestone",
+          "reported_project_control_issue"
+        ],
+        "prohibited_inference": [
+          "current_executive_status_outside_report_period",
+          "reliance_eligibility",
+          "insurance_or_guarantee_status"
+        ],
+        "scope": "maroon_pilot",
+        "approval_method": "explicit_governance_owner_decision_with_corrections"
+      }
+    }
+  },
+  "source_registration": {
+    "source_id": "maroon_project_controls_progress_workbook_series",
+    "source_type": "recurring_report_series",
+    "non_sensitive_location_class": "pilot_selected_series_registered_reporting_workspace",
+    "owning_role_class": "Project Controls accountable role for future selected-series reports",
+    "project_scope": "maroon_pilot",
+    "report_class": "project_controls_progress_workbook",
+    "authority_state": "awaiting_validation",
+    "evidence_reference": "synthetic://st1-141/governance-owner-corrected-approval"
+  },
+  "series_scope": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "representative_source_alias": "source-a08f4a79cf2116b1",
+    "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+    "observed_reporting_period_example": "1402/11/21–1402/12/05",
+    "stable_source_series_identifier": "maroon_project_controls_progress_workbook_series",
+    "stable_source_series_identifier_kind": "pilot_non_sensitive_series_identifier"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "task_id": "ST1-140",
+  "date": "2026-08-15",
+  "contract_purpose": "define the minimum truthful contract for the first post-bootstrap real selected-series record",
+  "selected_series": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "candidate_class_id": "project_controls_progress_workbook",
+    "project_scope": "maroon_pilot",
+    "governance_bootstrap_effective_from": "2026-08-15"
+  },
+  "artifacts": {
+    "contract_doc": "docs/ST1_140_FIRST_POST_BOOTSTRAP_NATIVE_RECORD_CONTRACT.md",
+    "template": "docs/examples/ST1_140_first_post_bootstrap_native_record.template.json",
+    "synthetic_ready_fixture": "docs/examples/ST1_140_first_post_bootstrap_native_record.synthetic.ready.json"
+  },
+  "evidence_groups": {
+    "human_or_governance_assertions": [
+      "prospective_A1_governance_owner_decision",
+      "prospective_A2_accountable_role_designation",
+      "prospective_A3_controlled_report_definition_designation",
+      "selected_series_pilot_identifier_approval",
+      "source_registration_rule",
+      "policy_or_version_selection"
+    ],
+    "runtime_generated_evidence": [
+      "native_read_only_acquisition_timestamp",
+      "source_reference",
+      "acquisition_method",
+      "original_fingerprint",
+      "size_and_media_type",
+      "deterministic_transformation_timestamp",
+      "transformation_tool_name_and_version",
+      "transformation_input_fingerprint",
+      "transformation_output_fingerprint",
+      "lineage_completeness"
+    ],
+    "business_time_evidence": [
+      "workbook_labelled_reporting_week_header",
+      "designated_reporting_period_field"
+    ]
+  },
+  "verification": {
+    "class_level_preflight_with_synthetic_approved_bundle": "READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT",
+    "historical_representative_record_future_path_status": "not_ready_for_post_bootstrap_future_path"
+  },
+  "boundary": {
+    "historical_representative_record_reused_as_first_post_bootstrap_record": false,
+    "historical_authority_backfilled": false,
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_certification": false
+  }
+}

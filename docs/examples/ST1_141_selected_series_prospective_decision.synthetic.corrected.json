@@ -1,0 +1,104 @@
+{
+  "decision_version": "st1-140/v1",
+  "project_scope": "maroon_pilot",
+  "target_source_id": "maroon_project_controls_progress_workbook_series",
+  "representative_filename": "070-TWRP-24 1402-12-05.xlsx",
+  "governance_bootstrap_effective_from": "2026-08-15",
+  "selected_series_identifier": "maroon_project_controls_progress_workbook_series",
+  "selected_series_identifier_kind": "pilot_non_sensitive_series_identifier",
+  "report_class": "project_controls_progress_workbook",
+  "governance_owner_decision_state": "APPROVED",
+  "approval_mode": "approve_with_explicit_corrections",
+  "decision_reference": "synthetic://st1-141/governance-owner-corrected-approval",
+  "decision_acquisition_provenance": "synthetic_local_test",
+  "proposed_values": {
+    "accountable_role_class": "Project Controls / PMO accountable role for future selected-series reports",
+    "source_location_class": "pilot_selected_series_controlled_reporting_workspace",
+    "document_identifier_convention": "future_controlled_release_identifier_required",
+    "approval_method": "explicit_pilot_governance_owner_selected_series_decision",
+    "permitted_fact_classes": [
+      "report_period",
+      "reported_plan",
+      "reported_actual",
+      "reported_progress",
+      "reported_activity",
+      "reported_milestone",
+      "reported_project_control_issue"
+    ],
+    "prohibited_fact_classes": [
+      "contractual_delay_determination",
+      "entitlement",
+      "claim",
+      "payment_authorization_or_status",
+      "financial_liability",
+      "legal_conclusion",
+      "safety_or_compliance_certification",
+      "final_completion",
+      "current_executive_status_outside_report_period",
+      "reliance_eligibility",
+      "insurance_or_guarantee_status"
+    ],
+    "prohibited_inference": [
+      "current_executive_status_outside_report_period",
+      "reliance_eligibility",
+      "insurance_or_guarantee_status"
+    ],
+    "reporting_period_rule": {
+      "accepted_sources": [
+        "workbook_labelled_reporting_week_header",
+        "designated_reporting_period_field"
+      ],
+      "disallowed_substitutes": [
+        "row_level_planned_date",
+        "row_level_target_date",
+        "filesystem_timestamp",
+        "acquisition_timestamp"
+      ]
+    }
+  },
+  "corrected_values": {
+    "accountable_role_class": "Project Controls accountable role for future selected-series reports",
+    "source_location_class": "pilot_selected_series_registered_reporting_workspace",
+    "document_identifier_convention": "controlled_release_identifier_required_before_runtime_registration",
+    "approval_method": "explicit_governance_owner_decision_with_corrections",
+    "permitted_fact_classes": [
+      "report_period",
+      "reported_plan",
+      "reported_actual",
+      "reported_progress",
+      "reported_activity",
+      "reported_milestone",
+      "reported_project_control_issue"
+    ],
+    "prohibited_fact_classes": [
+      "contractual_delay_determination",
+      "entitlement",
+      "claim",
+      "payment_authorization_or_status",
+      "financial_liability",
+      "legal_conclusion",
+      "safety_or_compliance_certification",
+      "final_completion",
+      "current_executive_status_outside_report_period",
+      "reliance_eligibility",
+      "insurance_or_guarantee_status"
+    ],
+    "prohibited_inference": [
+      "current_executive_status_outside_report_period",
+      "reliance_eligibility",
+      "insurance_or_guarantee_status"
+    ],
+    "reporting_period_rule": {
+      "accepted_sources": [
+        "workbook_labelled_reporting_week_header",
+        "designated_reporting_period_field"
+      ],
+      "disallowed_substitutes": [
+        "row_level_planned_date",
+        "row_level_target_date",
+        "filesystem_timestamp",
+        "acquisition_timestamp"
+      ]
+    }
+  }
+}

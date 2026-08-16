@@ -1,0 +1,39 @@
+{
+  "task_id": "ST1-141",
+  "date": "2026-08-15",
+  "purpose": "verify that the bounded Governance Owner response path supports approve_with_explicit_corrections without introducing a new framework",
+  "selected_series": {
+    "target_source_id": "maroon_project_controls_progress_workbook_series",
+    "project_scope": "maroon_pilot",
+    "governance_bootstrap_effective_from": "2026-08-15"
+  },
+  "synthetic_corrected_decision": {
+    "fixture": "docs/examples/ST1_141_selected_series_prospective_decision.synthetic.corrected.json",
+    "approval_mode": "approve_with_explicit_corrections",
+    "compile_result": "OK"
+  },
+  "compiled_outputs": {
+    "a2": "evidence/sanitized/2026-08-15-st1-141-a2.synthetic.corrected.json",
+    "a3": "evidence/sanitized/2026-08-15-st1-141-a3.synthetic.corrected.json",
+    "supplement": "evidence/sanitized/2026-08-15-st1-141-supplement.synthetic.corrected.json",
+    "bundle": "evidence/sanitized/2026-08-15-st1-141-bundle.synthetic.corrected.json"
+  },
+  "verification": {
+    "supplement_readiness": "READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE",
+    "bundle_activation_readiness": "PENDING_INDEPENDENT_VERIFICATION",
+    "required_external_inputs_remaining_after_corrected_decision": []
+  },
+  "truthful_conclusion": {
+    "both_allowed_governance_owner_response_modes_are_now_verified": true,
+    "approve_as_proposed_supported": true,
+    "approve_with_explicit_corrections_supported": true,
+    "no_new_framework_required": true
+  },
+  "boundary": {
+    "historical_authority_backfilled": false,
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_native_acquisition": false,
+    "real_certification": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "task_id": "ST1-141",
+  "date": "2026-08-15",
+  "validator": "scripts/validate_st1_141_selected_series_prospective_decision.py",
+  "cases": {
+    "pending_real_stub": {
+      "input": "docs/examples/ST1_141_selected_series_prospective_decision.proposed.real.json",
+      "readiness": "WAITING_FOR_GOVERNANCE_OWNER_DECISION"
+    },
+    "approved_as_proposed": {
+      "input": "docs/examples/ST1_140_selected_series_prospective_decision.synthetic.approved.json",
+      "readiness": "READY_FOR_TRANSLATION"
+    },
+    "approved_with_explicit_corrections": {
+      "input": "docs/examples/ST1_141_selected_series_prospective_decision.synthetic.corrected.json",
+      "readiness": "READY_FOR_TRANSLATION"
+    }
+  },
+  "truthful_conclusion": {
+    "st1_141_remaining_gate_is_machine_checkable": true,
+    "pending_response_is_distinguished_from_ready_response": true,
+    "both_allowed_approval_modes_are_ready_for_translation": true
+  },
+  "boundary": {
+    "historical_authority_backfilled": false,
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_certification": false
+  }
+}

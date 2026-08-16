@@ -3277,6 +3277,179 @@ authority.
   accountable organizational/report-control side, then re-running the existing
   ST1-125/ST1-131/ST1-132 gate chain without widening scope.
 
+## Session 149 - 2026-08-15
+
+### Objective
+Reduce the next future-facing governance gate to one exact machine-readable
+decision path and determine whether the preserved historical native record can
+truthfully serve as the first post-bootstrap selected-series record.
+
+### Completed
+- Added one bounded machine-readable ST1-140 decision template:
+  `docs/examples/ST1_140_selected_series_prospective_decision.template.json`
+- Added one synthetic approved decision fixture:
+  `docs/examples/ST1_140_selected_series_prospective_decision.synthetic.approved.json`
+- Added the local-only bridge compiler:
+  `scripts/compile_st1_140_selected_series_prospective_decision.py`
+- Verified the compiler with the approved synthetic decision and produced:
+  - `evidence/sanitized/2026-08-15-st1-140-a2.synthetic.approved.json`
+  - `evidence/sanitized/2026-08-15-st1-140-a3.synthetic.approved.json`
+  - `evidence/sanitized/2026-08-15-st1-140-supplement.synthetic.approved.json`
+  - `evidence/sanitized/2026-08-15-st1-140-bundle.synthetic.approved.json`
+- Verified:
+  - compiled supplement -> `READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE`
+  - merged bundle -> `PENDING_INDEPENDENT_VERIFICATION`
+- Rechecked the preserved historical native record against the selected-series
+  native gate and confirmed it still cannot truthfully serve as the first
+  post-bootstrap record because its bundle/source-control independent
+  verification remains false.
+- Added an explicit class-level contract for the first post-bootstrap native
+  record:
+  - `docs/examples/ST1_140_first_post_bootstrap_native_record.template.json`
+  - `docs/examples/ST1_140_first_post_bootstrap_native_record.synthetic.ready.json`
+- Added a human-readable contract document for the same future-facing record:
+  `docs/ST1_140_FIRST_POST_BOOTSTRAP_NATIVE_RECORD_CONTRACT.md`
+- Verified that the synthetic approved prospective bundle plus the synthetic
+  post-bootstrap native record reaches
+  `READY_FOR_FIRST_REAL_RUNTIME_ATTEMPT` at the class-level ST1-083 preflight.
+
+### Boundary and Next Gate
+- This session did not activate any real delegation or source registration.
+- It did not reinterpret or upgrade the historical representative workbook.
+- The next truthful path is now exact:
+  1. receive one bounded Governance Owner decision on the ST1-139 proposal
+  2. translate it through the ST1-140 bridge
+  3. receive one first post-bootstrap native record for the selected series
+4. then continue the existing preflight/gate chain without certification
+
+## Session 150 - 2026-08-15
+
+### Objective
+Reduce the remaining Governance Owner gate to the smallest possible exact
+response surface without introducing any new framework or trust state.
+
+### Completed
+- Added a concise Persian response pack for the Governance Owner:
+  `docs/ST1_141_GOVERNANCE_OWNER_DECISION_RESPONSE_FA.md`
+- Added a prefilled machine-readable real-decision stub:
+  `docs/examples/ST1_141_selected_series_prospective_decision.proposed.real.json`
+- Preserved exact scope:
+  - same selected series
+  - same prospective boundary `2026-08-15`
+  - same approved LOW-risk / prohibited HIGH-risk fact boundaries
+- Did not activate delegation, source registration, acquisition, or
+  certification.
+
+### Boundary and Next Gate
+- The remaining business gate is now only one bounded Governance Owner
+  approval:
+  - approve as proposed; or
+  - approve with exact corrections.
+- After that decision, the existing ST1-140 bridge and ST1-141 path can move
+  directly into bundle compilation and first post-bootstrap native-record
+  preparation.
+
+## Session 151 - 2026-08-15
+
+### Objective
+Remove the last technical ambiguity from ST1-141 by proving that the corrected
+approval path is as usable as the direct approval path.
+
+### Completed
+- Added one synthetic corrected-decision fixture:
+  `docs/examples/ST1_141_selected_series_prospective_decision.synthetic.corrected.json`
+- Verified the existing bridge compiler with
+  `approval_mode = approve_with_explicit_corrections`.
+- Produced corrected synthetic outputs:
+  - `evidence/sanitized/2026-08-15-st1-141-a2.synthetic.corrected.json`
+  - `evidence/sanitized/2026-08-15-st1-141-a3.synthetic.corrected.json`
+  - `evidence/sanitized/2026-08-15-st1-141-supplement.synthetic.corrected.json`
+  - `evidence/sanitized/2026-08-15-st1-141-bundle.synthetic.corrected.json`
+- Verified:
+  - corrected supplement -> `READY_TO_MERGE_ONTO_A1_PARTIAL_BUNDLE`
+  - corrected bundle -> `PENDING_INDEPENDENT_VERIFICATION`
+- Recorded sanitized evidence at:
+  `evidence/sanitized/2026-08-15-st1-141-corrected-decision-bridge.json`
+
+### Boundary and Next Gate
+- No real delegation, source registration, acquisition, policy mutation, or
+  certification occurred.
+- The remaining gate is now purely business content:
+  Governance Owner may approve the prepared package either as proposed or with
+  exact corrections; both modes are technically ready.
+
+## Session 152 - 2026-08-15
+
+### Objective
+Make the remaining ST1-141 Governance Owner decision itself machine-checkable
+before translation, so pending vs ready responses are deterministic.
+
+### Completed
+- Added the local decision validator:
+  `scripts/validate_st1_141_selected_series_prospective_decision.py`
+- Verified three truthful cases:
+  - pending real stub ->
+    `WAITING_FOR_GOVERNANCE_OWNER_DECISION`
+  - synthetic approved-as-proposed ->
+    `READY_FOR_TRANSLATION`
+  - synthetic approved-with-explicit-corrections ->
+    `READY_FOR_TRANSLATION`
+- Recorded sanitized evidence at:
+  `evidence/sanitized/2026-08-15-st1-141-decision-validator.json`
+
+### Boundary and Next Gate
+- No real governance decision was created or altered.
+- No runtime mutation, source registration, acquisition, policy execution, or
+  certification occurred.
+- The remaining gate is now strictly one real Governance Owner response.
+
+## Session 148 - 2026-08-15
+
+### Objective
+Pivot the selected-series path from repeated historical A2/A3 deadlock toward
+the minimum truthful prospective governance bootstrap after the new pilot-owner
+decision: “For this pilot, I am the Governance Owner.”
+
+### Completed
+- Read the new real governance directive and preserved its critical boundary:
+  the decision applies only prospectively and must not be interpreted as
+  historical PMO/Project Controls/document authority.
+- Recorded a new sanitized prospective governance-owner decision for the
+  selected series at:
+  `evidence/sanitized/2026-08-15-st1-139-a1-pilot-governance-owner-selected-series.json`
+- Established the explicit bootstrap boundary
+  `governance_bootstrap_effective_from = 2026-08-15` and preserved the
+  representative historical workbook as unchanged `REAL_PARTIAL` evidence.
+- Reused the existing ST1-124/ST1-125 selected-series machinery by creating a
+  new partial prospective bundle:
+  `evidence/sanitized/2026-08-15-st1-139-selected-series-bundle.prospective-owner.partial.json`
+- Re-ran the exact selected-series gate against that new bundle and verified:
+  - structural validation -> pass
+  - exact selected-series match -> `true`
+  - activation readiness -> `WAITING_FOR_EXTERNAL_EVIDENCE`
+  - `A1 -> PARTIAL`
+  - `A2 -> MISSING`
+  - `A3 -> MISSING`
+  - `source_registration -> MISSING`
+- Recorded the prospective bootstrap summary at:
+  `evidence/sanitized/2026-08-15-st1-139-prospective-governance-bootstrap.json`
+- Prepared one bounded Persian governance proposal for the next business
+  decision only:
+  `docs/ST1_139_PROSPECTIVE_SELECTED_SERIES_GOVERNANCE_PROPOSAL_FA.md`
+
+### Boundary and Next Gate
+- This session did not create or activate any real delegation.
+- It did not upgrade any historical authority, PMO ownership, source ownership,
+  certification, currentness, or reliance state.
+- It did not reacquire the representative workbook or broaden SMB/source
+  discovery.
+- The next smallest business gate is now one bounded prospective decision for
+  future selected-series reports:
+  1. designate the accountable role class prospectively
+  2. approve the controlled report-definition rule prospectively
+  3. confirm the pilot series identifier, source-registration rule, and
+     `2026-08-15` effective boundary
+
 ## Session 147 - 2026-08-11
 
 ### Objective

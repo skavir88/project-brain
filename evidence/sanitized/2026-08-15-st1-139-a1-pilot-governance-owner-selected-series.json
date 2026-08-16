@@ -1,0 +1,48 @@
+{
+  "task_id": "ST1-139",
+  "date": "2026-08-15",
+  "evidence_kind": "A1_governance_owner_decision_for_selected_series_prospective_only",
+  "project_scope": "maroon_pilot",
+  "target_source_id": "maroon_project_controls_progress_workbook_series",
+  "attestation_scope": "sdas_data_insurance_pilot_governance_for_selected_series_prospective_only",
+  "decision_statement": "For this pilot, I am the Governance Owner.",
+  "confirmed_role": "Pilot Governance Owner",
+  "signer_identity_reference": "evidence/sanitized/2026-08-11-st1-135-a1-pilot-governance-attestation.json",
+  "identity_note": "This decision reuses only already supplied pilot-owner identity evidence. No new personal identity, corporate title, PMO role, or Project Controls role is invented here.",
+  "authority_basis": "Explicit pilot-owner governance decision for prospective SDAS / Data Insurance governance within the selected-series pilot boundary.",
+  "effective_from": "2026-08-15",
+  "effective_from_semantics": "prospective_governance_boundary_for_new_selected_series_evidence_only",
+  "governance_actions_permitted_prospectively": [
+    "pilot_policy_scope",
+    "selected_source_or_report_class_for_testing",
+    "accountable_roles_prospectively",
+    "controlled_report_definition_rules_prospectively",
+    "source_registration_rules",
+    "assurance_policy_versions",
+    "pilot_activation_or_deactivation"
+  ],
+  "limitations": [
+    "Does not establish historical Project Controls authority.",
+    "Does not establish historical PMO authority.",
+    "Does not establish historical source ownership.",
+    "Does not establish historical document authority.",
+    "Does not establish that the representative 1402 workbook was historically approved by the Governance Owner.",
+    "Does not retroactively establish historical report-control conventions.",
+    "Does not establish that any historical business fact is true merely by assertion.",
+    "Does not establish certification.",
+    "Does not establish currentness.",
+    "Does not establish reliance eligibility."
+  ],
+  "status": "SUPPLIED_UNVALIDATED_REAL_EVIDENCE",
+  "boundary": {
+    "prospective_only": true,
+    "historical_authority_backfilled": false,
+    "historical_accountability_backfilled": false,
+    "historical_source_ownership_backfilled": false,
+    "real_delegation_activation": false,
+    "real_source_registration": false,
+    "real_certification": false,
+    "currentness_changed": false,
+    "reliance_changed": false
+  }
+}

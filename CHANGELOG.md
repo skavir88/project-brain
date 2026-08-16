@@ -333,3 +333,19 @@
 - Recorded sanitized ST1-136 gate-result evidence at `evidence/sanitized/2026-08-11-st1-136-real-selected-series-gate-results.json`, proving the selected-series path remains blocked only by unresolved A2/A3/source-registration evidence and not by source matching or series identity.
 - Added `evidence/sanitized/2026-08-11-st1-138-related-project-controls-evidence.json`, capturing already-authorized adjacent PMO/project-controls signals from a related Maroon pilot reporting artifact without transferring them as exact authority proof for the selected workbook series.
 - Recorded sanitized ST1-138 evidence narrowing the blocker from pure absence to exact-scope confirmation: `A2=REAL_PARTIAL`, `A3=REAL_PARTIAL`, and `stable_source_registration_evidence_reference=MISSING`.
+- Added sanitized ST1-139 prospective governance-owner evidence for the selected series at `evidence/sanitized/2026-08-15-st1-139-a1-pilot-governance-owner-selected-series.json`.
+- Added the prospective selected-series partial bundle `evidence/sanitized/2026-08-15-st1-139-selected-series-bundle.prospective-owner.partial.json`, reusing the existing ST1-124/ST1-125 machinery without retroactive authority.
+- Added the bounded Persian single-decision proposal `docs/ST1_139_PROSPECTIVE_SELECTED_SERIES_GOVERNANCE_PROPOSAL_FA.md`.
+- Recorded sanitized ST1-139 evidence proving the new prospective bootstrap boundary `2026-08-15` preserves historical evidence unchanged and that the selected-series gate truthfully remains `WAITING_FOR_EXTERNAL_EVIDENCE` only for future-facing A2/A3/source-registration inputs.
+- Added the machine-readable single-decision template `docs/examples/ST1_140_selected_series_prospective_decision.template.json`.
+- Added the synthetic approved ST1-140 decision fixture `docs/examples/ST1_140_selected_series_prospective_decision.synthetic.approved.json`.
+- Added the bridge compiler `scripts/compile_st1_140_selected_series_prospective_decision.py`.
+- Added the first post-bootstrap native-record template `docs/examples/ST1_140_first_post_bootstrap_native_record.template.json` and synthetic ready fixture `docs/examples/ST1_140_first_post_bootstrap_native_record.synthetic.ready.json`.
+- Added the human-readable contract `docs/ST1_140_FIRST_POST_BOOTSTRAP_NATIVE_RECORD_CONTRACT.md`.
+- Recorded sanitized ST1-140 evidence proving one approved future-facing governance decision can feed the existing selected-series machinery, that the historical native record still does not converge as a post-bootstrap record, and that the next truthful dependency after decision approval is one first post-bootstrap native record.
+- Added the Governance Owner response pack `docs/ST1_141_GOVERNANCE_OWNER_DECISION_RESPONSE_FA.md`.
+- Added the prefilled real-decision stub `docs/examples/ST1_141_selected_series_prospective_decision.proposed.real.json`.
+- Added the corrected synthetic Governance Owner decision fixture `docs/examples/ST1_141_selected_series_prospective_decision.synthetic.corrected.json`.
+- Recorded sanitized ST1-141 evidence proving the `approve_with_explicit_corrections` path compiles through the same existing bridge and reaches the same future-facing local readiness state without new framework or trust mutation.
+- Added `scripts/validate_st1_141_selected_series_prospective_decision.py`.
+- Recorded sanitized ST1-141 evidence proving the decision artifact itself is machine-checkable in three truthful states: pending, approved-as-proposed, and approved-with-explicit-corrections.
